@@ -1,14 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { PDFViewer } from '@react-pdf/renderer';
-import CV from './components/comp'
+import MyDocument from './components/MyDocument'
 
-const App = () => (
-  <PDFViewer>
-    <CV />
-  </PDFViewer>
-);
+export default class App extends React.Component{
+  render() {
+    return (
+     <PDFViewer>
+      <MyDocument/>
+    </PDFViewer >
+  )}
+}
 
-ReactDOM.render(<App />, document.getElementById('root'));
-
-export default App;
+render(<App />, document.getElementById('root'));
