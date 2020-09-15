@@ -1,7 +1,7 @@
 import React from 'react';
 import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
-import CustomSection from './CustomSection'
-import CertifiactesSection from './CertificatesSection'
+import CustomSection from '../CustomSection'
+import CertifiactesSection from '../CertificatesSection'
 
 export const styles = StyleSheet.create({
   page: {
