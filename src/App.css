@@ -12,8 +12,8 @@
 }
 
 .pdf {
-    height: 80vh;
-    width: 40vw;
+    height: 100vh;
+    width: 50vw;
     grid-area: pdf
 }
 
