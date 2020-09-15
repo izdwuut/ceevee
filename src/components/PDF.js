@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
   }
 });
 
-export default class MyDocument extends React.Component {
+export default class PDF extends React.Component {
   render() {
     return (
       <Document>

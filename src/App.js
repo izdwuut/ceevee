@@ -1,13 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { PDFViewer } from '@react-pdf/renderer';
-import MyDocument from './components/MyDocument'
+import PDF from './components/PDF'
 
 export default class App extends React.Component{
   render() {
     return (
      <PDFViewer>
-      <MyDocument/>
+      <PDF/>
     </PDFViewer >
   )}
 }
