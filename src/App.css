@@ -1,0 +1,23 @@
+.container {
+    display: grid;
+    text-align: center;
+    grid-template-areas:
+    
+    "ui pdf";
+        align-content: center;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+}
+
+.pdf {
+    height: 80vh;
+    width: 40vw;
+    grid-area: pdf
+}
+
+.ui {
+    grid-area: ui;
+    width: 50vw;
+}
