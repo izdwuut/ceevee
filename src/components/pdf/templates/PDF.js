@@ -1,18 +1,30 @@
 import React from 'react';
 import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
-import CustomSection from '../../sections/Custom'
-import CertifiactesSection from '../../sections/Certificates'
-import Header from '../../sections/Header'
-
+import Custom from '../Custom'
+import Certificates from '../Certificates'
+import Header from '../Header'
+import Skills from '../Skills';
+import Links from '../Links'
+import Details from '..//Details'
+import Languages from '../Languages'
+import Hobbies from '../Hobbies';
+import GDPA from '../../GDPA';
 export const styles = StyleSheet.create({
   page: {
     flexDirection: 'row',
   },
-  section: {
+  contents: {
     margin: 10,
     padding: 10,
-    flexGrow: 1,
-    width: 50
+    flexGrow: 0.8,
+    width: 80
+  },
+  sidebar: {
+    width: 30,
+    padding: 20,
+    flexGrow: 0.2,
+    width: 20,
+    backgroundColor: "yellow"
   }
 });
 
@@ -21,14 +33,20 @@ export default class PDF extends React.Component {
     return (
       <Document>
         <Page size="A4" style={styles.page}>
-          <View style={styles.section}>
-            <Text>
+          <View style={styles.section, styles.sidebar}>
               <Header/>
-            </Text>
+              <Details/>
+              <Links/>
+              <Skills/>
+              <Languages/>
+              <Hobbies/>
           </View>
-          <View style={styles.section}>
-            <CustomSection />
-            <CertifiactesSection />
+          <View style={styles.contents}>
+            <Custom />
+            <Certificates />
+            <Custom />
+            <Custom />
+            <GDPA/>
           </View>
         </Page>
       </Document>
