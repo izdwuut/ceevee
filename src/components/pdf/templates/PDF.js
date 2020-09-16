@@ -1,7 +1,8 @@
 import React from 'react';
 import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
-import CustomSection from '../CustomSection'
-import CertifiactesSection from '../CertificatesSection'
+import CustomSection from '../../sections/CustomSection'
+import CertifiactesSection from '../../sections/CertificatesSection'
+import Header from '../Header'
 
 export const styles = StyleSheet.create({
   page: {
@@ -20,7 +21,11 @@ export default class PDF extends React.Component {
     return (
       <Document>
         <Page size="A4" style={styles.page}>
-          <View style={styles.section}></View>
+          <View style={styles.section}>
+            <Text>
+              <Header/>
+            </Text>
+          </View>
           <View style={styles.section}>
             <CustomSection />
             <CertifiactesSection />
