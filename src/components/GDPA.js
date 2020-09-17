@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from '@react-pdf/renderer';
+import { Text } from '@react-pdf/renderer';
 
 export default class GDPA extends React.Component {
     render() {

@@ -20,4 +20,5 @@
 .ui {
     grid-area: ui;
     width: 50vw;
+    height: 100vh;
 }

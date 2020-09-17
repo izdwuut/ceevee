@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@fluentui/react": "^7.137.2",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "@react-pdf/renderer": "^1.6.11",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -14,11 +16,17 @@
     "@types/react-dom": "^16.9.8",
     "blob-stream": "^0.1.3",
     "fs": "0.0.1-security",
+    "grommet": "^2.15.0",
+    "grommet-icons": "^4.4.0",
+    "pdf-viewer-reactjs": "^2.1.1",
     "pdfkit": "^0.11.0",
+    "precise-ui": "^1.4.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-pdf": "^5.0.0",
     "react-scripts": "3.4.3",
+    "react-view-pdf": "0.0.14",
+    "styled-components": "^2.4.1",
     "typescript": "^4.0.2"
   },
   "scripts": {

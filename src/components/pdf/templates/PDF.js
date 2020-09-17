@@ -1,11 +1,11 @@
 import React from 'react';
-import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, View, StyleSheet } from '@react-pdf/renderer';
 import Custom from '../Custom'
 import Certificates from '../Certificates'
 import Header from '../Header'
 import Skills from '../Skills';
 import Links from '../Links'
-import Details from '..//Details'
+import Details from '../Details'
 import Languages from '../Languages'
 import Hobbies from '../Hobbies';
 import GDPA from '../../GDPA';
@@ -20,7 +20,6 @@ export const styles = StyleSheet.create({
     width: 80
   },
   sidebar: {
-    width: 30,
     padding: 20,
     flexGrow: 0.2,
     width: 20,
@@ -33,7 +32,7 @@ export default class PDF extends React.Component {
     return (
       <Document>
         <Page size="A4" style={styles.page}>
-          <View style={styles.section, styles.sidebar}>
+          <View style={styles.sidebar}>
               <Header/>
               <Details/>
               <Links/>
