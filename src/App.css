@@ -11,7 +11,7 @@
     
 }
 
-.pdf {
+.pdf, .pdf * {
     height: 100vh;
     width: 50vw;
     grid-area: pdf
