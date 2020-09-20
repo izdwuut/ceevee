@@ -1,0 +1,38 @@
+.container {
+    display: grid;
+    text-align: center;
+    grid-template-areas:
+    
+    "ui pdf";
+        align-content: center;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+}
+
+.pdf{
+    height: 100vh;
+    width: 50vw;
+    grid-area: pdf
+}
+
+.ui {
+    grid-area: ui;
+    width: 50vw;
+    height: 100vh;
+}
+
+.react-pdf__Page__canvas {
+    position: absolute !important;
+     top: 0 !important;
+     left: 50% !important;
+     transform: translate(-50%, 0%) !important;
+ }
+ 
+ .react-pdf__Page__textContent {
+     position: absolute !important;
+     top: 0 !important;
+     left: 50% !important;
+     transform: translate(-50%, 0%) !important;
+ }
