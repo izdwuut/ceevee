@@ -40,8 +40,8 @@ export default class App extends React.Component {
           <UI />
         </div>
         <div className="pdf">
-          <Document file={`${this.state.blob}`}>
-            <Page pageNumber={1} />
+          <Document file={`${this.state.blob}`} >
+            <Page pageNumber={1} renderMode="svg"/>
           </Document>
         </div>
       </div>
