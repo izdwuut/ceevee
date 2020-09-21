@@ -2,9 +2,8 @@ import React from 'react';
 import PDF from './components/pdf/templates/PDF'
 import styles from './App.css';
 import UI from './components/ui/UI'
-import { pdfjs } from 'react-pdf'
 import { pdf } from '@react-pdf/renderer'
-import { Document, Page } from 'react-pdf'
+import { Document, Page,pdfjs  } from 'react-pdf'
 
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -15,28 +14,23 @@ export default class App extends React.Component {
       base64: '',
       blob: null
     }
-    this.getBase64 = this.getBase64.bind(this);
+    this.getBase64 = this.getBlob.bind(this);
   }
 
-  getBase64(template) {
-    var reader = new FileReader();
+  getBlob(template) {
     pdf(template).toBlob().then((blob) => {
-      this.blob = blob
-      reader.readAsDataURL(blob);
-      reader.onloadend = () => {
-        this.setState({
-          base64: reader.result
-        })
-      }
+      this.setState({
+        blob: URL.createObjectURL(new Blob([blob], {
+          type:
+            'application/pdf'
+        }))
+      })
+
     })
   }
 
   componentDidMount() {
-    this.getBase64(<PDF />)
-  }
-
-  componentDidUpdate() {
-    console.log(this.state.base64)
+    this.getBlob(<PDF />)
   }
 
   render() {
@@ -46,12 +40,11 @@ export default class App extends React.Component {
           <UI />
         </div>
         <div className="pdf">
-          <Document file={`${this.state.base64}`}>
+          <Document file={`${this.state.blob}`}>
             <Page pageNumber={1} />
           </Document>
         </div>
       </div>
-
     )
   }
 }
