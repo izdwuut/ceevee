@@ -1,0 +1,8 @@
+.pdf{
+    height: 100vh;
+    width: 50vw;
+    grid-area: pdf
+}
+
+.react-pdf__Page__textContent {display: none;}
+

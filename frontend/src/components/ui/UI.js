@@ -1,14 +1,17 @@
 import * as React from 'react';
+import PDFViewer from '../pdf/PDFViewer'
+import PDF from '../pdf/templates/PDF'
+import styles from '../../styles/UI.css'
+import { Form, TextArea, Container, Header, Accordion, Icon, Input} from 'semantic-ui-react'
 
-import { Form, TextArea, Container, Header, Accordion, Icon, Input, Progress } from 'semantic-ui-react'
 export default class UI extends React.Component {
   state = { activeIndex: 0 }
-
+  headerProps = {header1: "John Kowalski", header2: "Junior Programmer"}
+  
   handleClick = (e, titleProps) => {
     const { index } = titleProps
     const { activeIndex } = this.state
     const newIndex = activeIndex === index ? -1 : index
-
     this.setState({ activeIndex: newIndex })
   }
 
@@ -16,6 +19,9 @@ export default class UI extends React.Component {
     const { activeIndex } = this.state
 
     return (
+      <div className="container">
+        <div className="ui" style={styles.ui}>
+          
       <Container>
         <Container text>
           <Header as='h2'>Summary</Header>
@@ -81,6 +87,10 @@ export default class UI extends React.Component {
           </Accordion>
         </Container>
       </Container>
+        </div>
+        <PDFViewer template={<PDF header={this.headerProps}/>} />
+      </div>
+      
     )
   }
 }

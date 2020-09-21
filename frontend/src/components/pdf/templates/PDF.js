@@ -1,5 +1,5 @@
 import React from 'react';
-import { Document, Page, View, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, View, StyleSheet, Font } from '@react-pdf/renderer';
 import Custom from '../Custom'
 import Certificates from '../Certificates'
 import Header from '../Header'
@@ -9,9 +9,16 @@ import Details from '../Details'
 import Languages from '../Languages'
 import Hobbies from '../Hobbies';
 import GDPA from '../../GDPA';
+
+Font.register({
+  family: "Roboto",
+  src:
+    "https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-medium-webfont.ttf"
+});
 export const styles = StyleSheet.create({
   page: {
     flexDirection: 'row',
+    fontFamily : "Roboto"
   },
   contents: {
     margin: 10,
@@ -33,7 +40,7 @@ export default class PDF extends React.Component {
       <Document>
         <Page size="A4" style={styles.page}>
           <View style={styles.sidebar}>
-              <Header/>
+              <Header contents={this.props.header} />
               <Details/>
               <Links/>
               <Skills/>

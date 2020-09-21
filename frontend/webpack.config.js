@@ -1,5 +1,6 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 module.exports = function (_env, argv) {
     const isProduction = argv.mode === "production";
@@ -46,7 +47,13 @@ module.exports = function (_env, argv) {
         new MiniCssExtractPlugin({
             filename: "assets/css/[name].[contenthash:8].css",
             chunkFilename: "assets/css/[name].[contenthash:8].chunk.css"
-        })
+        }),
+        new CopyWebpackPlugin([
+            {
+              from: 'node_modules/pdfjs-dist/cmaps/',
+              to: 'cmaps/'
+            },
+          ]),
     ].filter(Boolean),
         
                       

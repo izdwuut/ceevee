@@ -1,0 +1,22 @@
+.container {
+    display: grid;
+    grid-template-areas:
+        "ui pdf";
+    align-content: center;
+    justify-content: center;
+    background-color: rgb(248, 248, 248);
+    
+}
+
+.ui {
+    grid-area: ui;
+    width: 50vw;
+    
+}
+
+
+
+ .ui .input {
+     width: 100%;
+ }
+
