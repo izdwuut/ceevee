@@ -1,10 +1,9 @@
 import React from 'react';
-import PDF from './templates/PDF'
-import { pdf } from '@react-pdf/renderer'
-import { Document, Page, pdfjs } from 'react-pdf'
+import { pdf, BlobProvider } from '@react-pdf/renderer'
+import { Document, Page, pdfjs, } from 'react-pdf'
 import styles from '../../styles/PDFViewer.css'
 import { Button } from 'semantic-ui-react'
-
+import equal from 'fast-deep-equal'
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 export default class PDFViewer extends React.Component {
@@ -38,12 +37,16 @@ export default class PDFViewer extends React.Component {
   componentDidMount() {
     this.getBlob(this.props.template)
   }
+  
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.numberOfPages != this.state.numberOfPages || prevState.activePage != this.state.activePage) {
+    if (prevState.numberOfPages != this.state.numberOfPages || prevState.activePage != this.state.activePage || this.props != prevProps) {
       this.setState({
         isNextPage: this.isNextPage(),
         isPreviousPage: this.isPreviousPage()
       })
+    }
+    if (!equal(prevProps, this.props)) {
+      this.getBlob(this.props.template)
     }
   }
 
@@ -56,7 +59,7 @@ export default class PDFViewer extends React.Component {
 
   setIsPreviousPage() {
     this.setState({
-      activePage: this.isPreviousPage() ? this.state.activePage -1 : this.state.activePage
+      activePage: this.isPreviousPage() ? this.state.activePage - 1 : this.state.activePage
     })
   }
 
@@ -72,6 +75,7 @@ export default class PDFViewer extends React.Component {
     this.setState({
       numberOfPages: pdf.numPages
     })
+
   }
 
   render() {
@@ -80,7 +84,9 @@ export default class PDFViewer extends React.Component {
       <div className="pdf" style={styles.pdf}>
         <Button onClick={this.setIsPreviousPage} className={`${this.state.isPreviousPage ? 'enabled' : 'disabled'}`}>left</Button>
         <Button onClick={this.setIsNextPage} className={`${this.state.isNextPage ? 'enabled' : 'disabled'}`}>right</Button>
-        <Document file={`${this.state.blob}`} renderMode="svg" onLoadSuccess={this.setNumberOfPages}>
+
+
+        <Document file={this.state.blob} onLoadSuccess={this.setNumberOfPages}>
           <Page pageNumber={this.state.activePage} />
         </Document>
       </div>

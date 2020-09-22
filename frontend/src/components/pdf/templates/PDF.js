@@ -8,7 +8,7 @@ import Links from '../Links'
 import Details from '../Details'
 import Languages from '../Languages'
 import Hobbies from '../Hobbies';
-import GDPA from '../../GDPA';
+import GDPA from '../GDPA';
 
 Font.register({
   family: "Roboto",
@@ -35,12 +35,15 @@ export const styles = StyleSheet.create({
 });
 
 export default class PDF extends React.Component {
-  render() {
+  constructor(props) {
+    super(props)
+  }
+    render() {
     return (
       <Document>
         <Page size="A4" style={styles.page}>
           <View style={styles.sidebar}>
-              <Header contents={this.props.header} />
+              <Header replace={this.props.header} />
               <Details/>
               <Links/>
               <Skills/>
@@ -48,10 +51,10 @@ export default class PDF extends React.Component {
               <Hobbies/>
           </View>
           <View style={styles.contents}>
-            <Custom />
+            <Custom replace={this.props.summary}/>
             <Certificates />
-            <Custom />
-            <Custom />
+            <Custom replace={{header: ''}}/>
+            <Custom replace={{header: ''}}/>
             <GDPA/>
           </View>
         </Page>
