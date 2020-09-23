@@ -2,7 +2,6 @@ import * as React from 'react';
 import PDFViewer from '../../pdf/PDFViewer'
 import PDF from '../../pdf/templates/PDF'
 import styles from '../../../styles/GenerateCV.css'
-import { Form, TextArea, Container, Header, Accordion, Icon, Input } from 'semantic-ui-react'
 import Summary from '../Summary';
 import Skills from '../Skills'
 
