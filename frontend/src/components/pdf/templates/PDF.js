@@ -18,7 +18,7 @@ Font.register({
 export const styles = StyleSheet.create({
   page: {
     flexDirection: 'row',
-    fontFamily : "Roboto"
+    // fontFamily : "Roboto"
   },
   contents: {
     margin: 10,
