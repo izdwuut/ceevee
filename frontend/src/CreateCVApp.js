@@ -1,10 +1,10 @@
 import React from 'react';
-import ReactDOM  from 'react-dom';
+import ReactDOM from 'react-dom';
 import UI from './components/ui/templates/GenerateCV'
 import { Provider } from 'react-redux'
 import store from './redux/store'
 
-export default class App extends React.Component {
+export default class CreateCVApp extends React.Component {
   render() {
     return (
       <UI />
@@ -12,10 +12,9 @@ export default class App extends React.Component {
   }
 }
 
-const rootElement = document.getElementById('root')
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <CreateCVApp />
   </Provider>,
-  rootElement
+  document.getElementById('root')
 )

@@ -7,7 +7,6 @@ export default class Summary extends React.Component {
         this.state = {
             replace: this.replace
         }
-
         this.handleSummaryChange = this.handleSummaryChange.bind(this)
     }
 
@@ -23,7 +22,7 @@ export default class Summary extends React.Component {
     render() {
         return (
             <Container text>
-                <Header as='h2'>{this.state.replace.header}</Header>
+                <Header as='h2'>Summary</Header>
                 <p>
                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                 </p>

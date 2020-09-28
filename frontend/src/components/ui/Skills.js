@@ -25,7 +25,6 @@ export default class Skills extends React.Component {
         const { activeIndex } = this.state
         let skills = []
         for (const [index, skill] of this.replace.entries()) {
-            console.log(skill)
             skills.push(<Menu.Item>
                         <Accordion.Title
                             active={activeIndex === index}

@@ -85,7 +85,6 @@ export default class PDFViewer extends React.Component {
         <Button onClick={this.setIsPreviousPage} className={`${this.state.isPreviousPage ? 'enabled' : 'disabled'}`}>left</Button>
         <Button onClick={this.setIsNextPage} className={`${this.state.isNextPage ? 'enabled' : 'disabled'}`}>right</Button>
 
-
         <Document file={this.state.blob} onLoadSuccess={this.setNumberOfPages}>
           <Page pageNumber={this.state.activePage} />
         </Document>

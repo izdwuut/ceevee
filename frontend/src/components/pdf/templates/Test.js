@@ -34,30 +34,30 @@ export const styles = StyleSheet.create({
   }
 });
 
-export default class PDF extends React.Component {
+export default class Test extends React.Component {
   constructor(props) {
     super(props)
   }
     render() {
     return (
       <Document>
-        <Page size="A4" style={styles.page}>
+        {/* <Page size="A4" style={styles.page}> */}
           <View style={styles.sidebar}>
               <Header replace={this.props.header} />
-              <Details/>
+              {/* <Details/>
               <Links/>
               <Skills/>
               <Languages/>
-              <Hobbies/>
+              <Hobbies/> */}
           </View>
           <View style={styles.contents}>
-            <Custom replace={this.props.summary}/>
+            {/* <Custom replace={this.props.summary}/>
             <Certificates />
             <Custom replace={{header: ''}}/>
             <Custom replace={{header: ''}}/>
-            <GDPA/>
+            <GDPA/> */}
           </View>
-        </Page>
+        {/* </Page> */}
       </Document>
     )
   }

@@ -1,18 +1,17 @@
 import React from 'react';
 import { Text, View } from '@react-pdf/renderer';
+import { connect } from 'react-redux'
 
-
-export default class Header extends React.Component {
+export class Header extends React.Component {
     constructor(props) {
         super(props)
     }
     render() {
         return (
             <View className="header-section">
-                <Text className="header1">{this.props.replace.header1}</Text>
-                <Text className="header2">{this.props.replace.header2}</Text>
+                <Text className="header">{this.state.header}</Text>
+                <Text className="subheader">{this.state.subheader}</Text>
             </View>
         )
     }
 }
-
