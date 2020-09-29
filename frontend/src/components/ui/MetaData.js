@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 export class MetaData extends React.Component {
     updatePreview = this.debounce(() => {
         this.props.updatePreview(true)
-    }, 1000)
+    }, 2500)
     debounce(func, wait) {
         let timeout;
 
