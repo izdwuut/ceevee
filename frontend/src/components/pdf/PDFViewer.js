@@ -98,17 +98,17 @@ export class PDFViewer extends React.Component {
     this.setState({
       numberOfPages: pdf.numPages
     })
+    console.log(this.state)
   }
 
   render() {
     return (
 
       <div className="pdf" style={styles.pdf}>
-        <Button onClick={() => {this.state.isPdfIn = !this.state.isPdfIn}}>showNext</Button>
         <Button onClick={this.setIsPreviousPage} className={`${this.state.isPreviousPage ? 'enabled' : 'disabled'}`}>previous page</Button>
         <Button onClick={this.setIsNextPage} className={`${this.state.isNextPage ? 'enabled' : 'disabled'}`}>next page</Button>
 
-        <Document className="previous-pdf" file={this.props.previousBlob} loading=''>
+        <Document className="previous-pdf" file={this.props.previousBlob} loading='' onLoadSuccess={this.onPdfLoadSuccess}>
           <Page pageNumber={this.state.activePage} loading='' renderMode="canvas" />
         </Document>
         <CSSTransition
@@ -116,7 +116,7 @@ export class PDFViewer extends React.Component {
           classNames="my-node"
         >
           <Document className="next-pdf" file={this.props.nextBlob} loading='' noData=''>
-            <Page pageNumber={this.state.activePage} renderMode="canvas" loading='' onRenderSuccess={this.onPdfRenderSuccess} onLoadSuccess={this.onPdfLoadSuccess} />
+            <Page pageNumber={this.state.activePage} renderMode="canvas" loading='' onRenderSuccess={this.onPdfRenderSuccess}  />
           </Document>
         </CSSTransition>
 
