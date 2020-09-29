@@ -30,7 +30,7 @@ export class PDFViewer extends React.Component {
   }
 
 
-  getBlob() {
+ getBlob() {
     pdf(<Test />).toBlob().then((blob) => {
       const url = URL.createObjectURL(new Blob([blob], {
         type:
@@ -40,7 +40,6 @@ export class PDFViewer extends React.Component {
         this.props.updatePreviousBlob(url)
       }
       setTimeout(() => {
-
         this.setState({
           isPdfIn: false
         })
@@ -64,6 +63,7 @@ export class PDFViewer extends React.Component {
       })
     }
     if (this.props.update) {
+      
       this.getBlob()
       this.props.updatePreview(false)
     }

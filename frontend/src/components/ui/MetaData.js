@@ -6,9 +6,25 @@ import {updatePreview} from '../../redux/actions/pdf/pdfViewer/actions'
 import { connect } from "react-redux";
 
 export class MetaData extends React.Component {
+    updatePreview = this.debounce(() => {
+        this.props.updatePreview(true)
+    }, 1000)
+    debounce(func, wait) {
+        let timeout;
+
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
     updateFirstName(e) {
         this.props.updateFirstName(e.target.value)
-        this.props.updatePreview(true)
+        this.updatePreview()
     }
     render() {
         return (
