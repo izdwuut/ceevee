@@ -6,7 +6,7 @@ export default class Hobbies extends React.Component {
         return (
             <View>
                 <Text className="header1">Hobbies</Text>
-                <Text>Lorem, ipsum, dolor, sit, amet</Text>
+                <Text>Lorem, ipsum, dolor, sit, amet, Lorem, ipsum, dolor, sit, amet, Lorem, ipsum, dolor, sit, amet, Lorem, ipsum, dolor, sit, amet, Lorem, ipsum, dolor, sit, amet, Lorem, ipsum, dolor, sit, amet, Lorem, ipsum, dolor, sit, amet, Lorem, ipsum, dolor, sit, amet, Lorem, ipsum, dolor, sit, amet, Lorem, ipsum,  </Text>
             </View>
         )
     }

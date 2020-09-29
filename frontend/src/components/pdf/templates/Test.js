@@ -1,5 +1,5 @@
 import React from 'react';
-import { Document, Page, View, StyleSheet, Font } from '@react-pdf/renderer';
+import { Document, Page, View, StyleSheet, Font, Text } from '@react-pdf/renderer';
 import Custom from '../Custom'
 import Certificates from '../Certificates'
 import Header from '../Header'
@@ -20,20 +20,33 @@ Font.register({
 });
 export const styles = StyleSheet.create({
   page: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     // fontFamily : "Roboto"
+    paddingBottom: 20
   },
   contents: {
-    margin: 10,
-    padding: 10,
+    paddingHorizontal: 20,
+    marginBottom: 50,
     flexGrow: 0.8,
     width: 80
   },
   sidebar: {
-    padding: 20,
+    paddingHorizontal: 20,
     flexGrow: 0.2,
     width: 20,
     backgroundColor: "yellow"
+  },
+  header: {
+    flexDirection: 'row'
+  },
+  main: {
+    flexDirection: 'row',
+  },
+  headerSidebar: {
+    paddingHorizontal: 10,
+    flexGrow: 0.2,
+    height: 20,
+    backgroundColor: 'blue'
   }
 });
 
@@ -45,21 +58,31 @@ export default class Test extends React.Component {
     return (
       <Provider store={store} context={MainContext}>
         <Document>
-          <Page size="A4" style={styles.page}>
-            <View style={styles.sidebar}>
-              <Header context={MainContext} />
-              <Details />
-              <Links />
-              <Skills />
-              <Languages />
-              <Hobbies />
+          <Page style={styles.page}>
+            <View style={styles.header} fixed>
+              <View style={styles.headerSidebar}></View>
+              <View></View>
             </View>
-            <View style={styles.contents}>
-              <Custom />
-              <Certificates />
-              <Custom />
-              <Custom />
-              <GDPA />
+            <View style={styles.main}>
+              <View style={styles.sidebar}>
+                <Header context={MainContext} />
+                <Details />
+                <Links />
+                <Skills />
+                <Languages />
+                <Hobbies />
+              </View>
+              <View style={styles.contents}>
+                <Custom />
+                <Certificates />
+                <Custom />
+                <Custom />
+                <GDPA />
+              </View>
+            </View>
+            <View style={styles.header} fixed>
+              <View style={styles.headerSidebar}></View>
+              <View></View>
             </View>
           </Page>
         </Document>

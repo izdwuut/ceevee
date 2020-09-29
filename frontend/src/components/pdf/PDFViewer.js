@@ -98,7 +98,6 @@ export class PDFViewer extends React.Component {
     this.setState({
       numberOfPages: pdf.numPages
     })
-    console.log(this.state)
   }
 
   render() {
