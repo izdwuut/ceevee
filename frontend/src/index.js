@@ -7,14 +7,14 @@ import { Provider } from 'react-redux'
 import store from './redux/store'
 import MainContext  from './CreateCVApp'
 
-const rootElement = document.getElementById("root");
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store} context={MainContext}>
       <CreateCVApp />
     </Provider>
   </React.StrictMode>,
-  rootElement
+  document.getElementById("root")
 );
 
 const styleLink = document.createElement("link");

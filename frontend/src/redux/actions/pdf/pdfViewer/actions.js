@@ -7,8 +7,15 @@ export const updatePreview = update => ({
     }
 })
 
-export const updateBlob = blob => ({
-    type: actions.UPDATE_BLOB,
+export const updatePreviousBlob = blob => ({
+    type: actions.UPDATE_PREVIOUS_BLOB,
+    payload: {
+        blob: blob
+    }
+})
+
+export const updateNextBlob = blob => ({
+    type: actions.UPDATE_NEXT_BLOB,
     payload: {
         blob: blob
     }

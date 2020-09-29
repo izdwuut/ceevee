@@ -5,6 +5,7 @@ import Summary from '../Summary';
 import Skills from '../Skills'
 import MetaData from '../MetaData';
 import MainContext from '../../../CreateCVApp';
+
 export default class CreateCV extends React.Component {
   render() {
     return (

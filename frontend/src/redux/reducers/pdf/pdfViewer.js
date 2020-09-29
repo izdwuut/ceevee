@@ -3,7 +3,8 @@ import * as actions from '../../actions/pdf/pdfViewer/actionTypes'
 const initialState = {
     update: false,
     // template: null,
-    blob: null
+    previousBlob: null,
+    nextBlob: null
 }
 
 export default function pdfViewer(state = initialState, action) {
@@ -14,10 +15,16 @@ export default function pdfViewer(state = initialState, action) {
                 update: action.payload.update
             }
         }
-        case actions.UPDATE_BLOB: {
+        case actions.UPDATE_PREVIOUS_BLOB: {
             return {
                 ...state,
-                blob: action.payload.blob
+                previousBlob: action.payload.blob
+            }
+        }
+        case actions.UPDATE_NEXT_BLOB: {
+            return {
+                ...state,
+                nextBlob: action.payload.blob
             }
         }
         default:

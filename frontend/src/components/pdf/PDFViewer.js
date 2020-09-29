@@ -1,37 +1,54 @@
-import  MainContext  from '../../CreateCVApp';
+import MainContext from '../../CreateCVApp';
 import React from 'react';
 import { pdf, BlobProvider } from '@react-pdf/renderer'
 import { Document, Page, pdfjs, } from 'react-pdf'
 import styles from '../../styles/PDFViewer.css'
 import { Button } from 'semantic-ui-react'
 import Test from './templates/Test';
-import { updateBlob, updatePreview } from '../../redux/actions/pdf/pdfViewer/actions'
+import { updatePreviousBlob, updateNextBlob, updatePreview } from '../../redux/actions/pdf/pdfViewer/actions'
 import { connect } from 'react-redux'
+import { CSSTransition } from "react-transition-group";
+
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 export class PDFViewer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      blob: null,
       activePage: 1,
       numberOfPages: 0,
       isNextPage: false,
-      isPreviousPage: false
+      isPreviousPage: false,
+      isPdfIn: false
     }
 
     this.setIsNextPage = this.setIsNextPage.bind(this)
     this.setIsPreviousPage = this.setIsPreviousPage.bind(this)
-    this.setNumberOfPages = this.setNumberOfPages.bind(this)
+    this.onPdfRenderSuccess = this.onPdfRenderSuccess.bind(this)
+    this.onPdfLoadSuccess = this.onPdfLoadSuccess.bind(this)
+
   }
 
 
   getBlob() {
     pdf(<Test />).toBlob().then((blob) => {
-      this.props.updateBlob(URL.createObjectURL(new Blob([blob], {
+      const url = URL.createObjectURL(new Blob([blob], {
         type:
           'application/pdf'
-      })))
+      }))
+      if (!this.props.previousBlob) {
+        this.props.updatePreviousBlob(url)
+      }
+      setTimeout(() => {
+
+        this.setState({
+          isPdfIn: false
+        })
+        this.props.updateNextBlob(url)
+        this.setState({
+          isPdfIn: true
+        })
+      }, 2000)
     })
   }
 
@@ -73,22 +90,36 @@ export class PDFViewer extends React.Component {
     return this.state.activePage > 1
   }
 
-  setNumberOfPages(pdf) {
+  onPdfRenderSuccess() {
+    setTimeout(() => {this.props.updatePreviousBlob(this.props.nextBlob)}, 2000)
+  }
+
+  onPdfLoadSuccess(pdf) {
     this.setState({
       numberOfPages: pdf.numPages
     })
-
   }
 
   render() {
     return (
-      <div className="pdf" style={styles.pdf}>
-        <Button onClick={this.setIsPreviousPage} className={`${this.state.isPreviousPage ? 'enabled' : 'disabled'}`}>left</Button>
-        <Button onClick={this.setIsNextPage} className={`${this.state.isNextPage ? 'enabled' : 'disabled'}`}>right</Button>
 
-        <Document file={this.props.blob} onLoadSuccess={this.setNumberOfPages} loading=''>
-          <Page pageNumber={this.state.activePage} />
+      <div className="pdf" style={styles.pdf}>
+        <Button onClick={() => {this.state.isPdfIn = !this.state.isPdfIn}}>showNext</Button>
+        <Button onClick={this.setIsPreviousPage} className={`${this.state.isPreviousPage ? 'enabled' : 'disabled'}`}>previous page</Button>
+        <Button onClick={this.setIsNextPage} className={`${this.state.isNextPage ? 'enabled' : 'disabled'}`}>next page</Button>
+
+        <Document className="previous-pdf" file={this.props.previousBlob} loading=''>
+          <Page pageNumber={this.state.activePage} loading='' renderMode="canvas" />
         </Document>
+        <CSSTransition
+          in={this.state.isPdfIn}
+          classNames="my-node"
+        >
+          <Document className="next-pdf" file={this.props.nextBlob} loading='' noData=''>
+            <Page pageNumber={this.state.activePage} renderMode="canvas" loading='' onRenderSuccess={this.onPdfRenderSuccess} onLoadSuccess={this.onPdfLoadSuccess} />
+          </Document>
+        </CSSTransition>
+
       </div>
     )
   }
@@ -100,8 +131,7 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { updateBlob, updatePreview },
+  { updatePreviousBlob, updateNextBlob, updatePreview },
   null,
-  {context: MainContext}
-  
+  { context: MainContext }
 )(PDFViewer);
