@@ -1,1 +1,2 @@
 export const UPDATE_PREVIEW = 'UPDATE_PREVIEW'
+export const UPDATE_BLOB = 'UPDATE_BLOB'

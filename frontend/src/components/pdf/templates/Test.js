@@ -9,6 +9,9 @@ import Details from '../Details'
 import Languages from '../Languages'
 import Hobbies from '../Hobbies';
 import GDPA from '../GDPA';
+import MainContext from '../../../CreateCVApp';
+import { Provider } from 'react-redux'
+import store from '../../../redux/store'
 
 Font.register({
   family: "Roboto",
@@ -38,27 +41,29 @@ export default class Test extends React.Component {
   constructor(props) {
     super(props)
   }
-    render() {
+  render() {
     return (
-      <Document>
-        {/* <Page size="A4" style={styles.page}> */}
-          <View style={styles.sidebar}>
-              <Header replace={this.props.header} />
-              {/* <Details/>
-              <Links/>
-              <Skills/>
-              <Languages/>
-              <Hobbies/> */}
-          </View>
-          <View style={styles.contents}>
-            {/* <Custom replace={this.props.summary}/>
-            <Certificates />
-            <Custom replace={{header: ''}}/>
-            <Custom replace={{header: ''}}/>
-            <GDPA/> */}
-          </View>
-        {/* </Page> */}
-      </Document>
+      <Provider store={store} context={MainContext}>
+        <Document>
+          <Page size="A4" style={styles.page}>
+            <View style={styles.sidebar}>
+              <Header context={MainContext} />
+              <Details />
+              <Links />
+              <Skills />
+              <Languages />
+              <Hobbies />
+            </View>
+            <View style={styles.contents}>
+              <Custom />
+              <Certificates />
+              <Custom />
+              <Custom />
+              <GDPA />
+            </View>
+          </Page>
+        </Document>
+      </Provider>
     )
   }
 }

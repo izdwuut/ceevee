@@ -4,18 +4,17 @@ import styles from '../../../styles/GenerateCV.css'
 import Summary from '../Summary';
 import Skills from '../Skills'
 import MetaData from '../MetaData';
-
-export default class GenerateCV extends React.Component {
+import MainContext from '../../../CreateCVApp';
+export default class CreateCV extends React.Component {
   render() {
-
     return (
       <div className="container">
         <div className="ui" style={styles.ui}>
-          <MetaData onChange={e => console.log(e)}/>
+          <MetaData context={MainContext} />
           <Summary />
           <Skills />
         </div>
-        {/* <PDFViewer /> */}
+        <PDFViewer context={MainContext} />
       </div>
     )
   }

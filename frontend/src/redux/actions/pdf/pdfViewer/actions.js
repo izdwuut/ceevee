@@ -6,3 +6,10 @@ export const updatePreview = update => ({
         update: update
     }
 })
+
+export const updateBlob = blob => ({
+    type: actions.UPDATE_BLOB,
+    payload: {
+        blob: blob
+    }
+})

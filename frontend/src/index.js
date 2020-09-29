@@ -1,19 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import CreateCVApp from './CreateCVApp';
+import {CreateCVApp } from './CreateCVApp';
 import * as serviceWorker from './serviceWorker'
 import { Provider } from 'react-redux'
 import store from './redux/store'
+import MainContext  from './CreateCVApp'
 
-
+const rootElement = document.getElementById("root");
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={store} context={MainContext}>
       <CreateCVApp />
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  rootElement
 );
 
 const styleLink = document.createElement("link");
