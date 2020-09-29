@@ -39,15 +39,25 @@ export const styles = StyleSheet.create({
   header: {
     flexDirection: 'row'
   },
-  main: {
-    flexDirection: 'row',
-  },
   headerSidebar: {
     paddingHorizontal: 10,
     flexGrow: 0.2,
     height: 20,
     backgroundColor: 'blue'
-  }
+  },
+  main: {
+    flexDirection: 'row',
+  },
+  footer: {
+    flexDirection: 'row',
+    height: '100%',
+  },
+  footerSidebar: {
+    paddingHorizontal: 10,
+    flexGrow: 0.2,
+    height: '100%',
+    backgroundColor: 'blue'
+  },
 });
 
 export default class Test extends React.Component {
@@ -80,8 +90,8 @@ export default class Test extends React.Component {
                 <GDPA />
               </View>
             </View>
-            <View style={styles.header} fixed>
-              <View style={styles.headerSidebar}></View>
+            <View style={styles.footer} fixed>
+              <View style={styles.footerSidebar}></View>
               <View></View>
             </View>
           </Page>
