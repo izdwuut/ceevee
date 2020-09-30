@@ -21,7 +21,7 @@ Font.register({
 export const styles = StyleSheet.create({
   page: {
     flexDirection: 'column',
-    // fontFamily : "Roboto"
+    // fontFamily : "Roboto",
     paddingBottom: 20
   },
   contents: {

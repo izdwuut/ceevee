@@ -1,11 +1,11 @@
-import MainContext from '../../CreateCVApp';
+import MainContext from '../../../CreateCVApp';
 import React from 'react';
 import { pdf } from '@react-pdf/renderer'
 import { Document, Page, pdfjs, } from 'react-pdf'
-import styles from '../../styles/PDFViewer.css'
+import styles from './PDFViewer.css'
 import { Button } from 'semantic-ui-react'
-import Test from './templates/Test';
-import { updatePreviousBlob, updateNextBlob, updatePreview } from '../../redux/actions/pdf/pdfViewer/actions'
+import Test from '../templates/Test';
+import { updatePreviousBlob, updateNextBlob, updatePreview } from '../../../redux/actions/pdf/pdfViewer/actions'
 import { connect } from 'react-redux'
 import { CSSTransition } from "react-transition-group";
 
