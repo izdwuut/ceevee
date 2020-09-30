@@ -71,7 +71,6 @@ export default class Test extends React.Component {
           <Page style={styles.page}>
             <View style={styles.header} fixed>
               <View style={styles.headerSidebar}></View>
-              <View></View>
             </View>
             <View style={styles.main}>
               <View style={styles.sidebar}>
@@ -92,7 +91,6 @@ export default class Test extends React.Component {
             </View>
             <View style={styles.footer} fixed>
               <View style={styles.footerSidebar}></View>
-              <View></View>
             </View>
           </Page>
         </Document>

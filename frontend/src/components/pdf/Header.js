@@ -9,8 +9,8 @@ export class Header extends React.Component {
     render() {
         return (
             <View className="header-section">
-                <Text className="header">{this.props.firstName} {this.props.lastName}</Text>
-                <Text className="subheader">Lorem ipsum</Text>
+                <Text className="name">{this.props.firstName}{this.props.middleName && ' '}{this.props.middleName} {this.props.lastName}</Text>
+                <Text className="position">{this.props.position}</Text>
             </View>
         )
     }
