@@ -1,6 +1,6 @@
 import MainContext from '../../CreateCVApp';
 import * as React from 'react';
-import { Form, TextArea, Container, Accordion, Icon, Input } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
 import { updateFirstName } from '../../redux/actions/ui/metaData/actions'
 import {updatePreview} from '../../redux/actions/pdf/pdfViewer/actions'
 import { connect } from "react-redux";
