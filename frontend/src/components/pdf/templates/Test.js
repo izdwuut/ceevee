@@ -12,6 +12,7 @@ import GDPA from '../GDPA';
 import MainContext from '../../../CreateCVApp';
 import { Provider } from 'react-redux'
 import store from '../../../redux/store'
+import Spacer from '../Spacer';
 
 Font.register({
   family: "Roboto",
@@ -60,10 +61,15 @@ export const styles = StyleSheet.create({
   },
 });
 
+const headerStyles = StyleSheet.create({
+
+})
+
 export default class Test extends React.Component {
   constructor(props) {
     super(props)
   }
+
   render() {
     return (
       <Provider store={store} context={MainContext}>
@@ -75,10 +81,15 @@ export default class Test extends React.Component {
             <View style={styles.main}>
               <View style={styles.sidebar}>
                 <Header context={MainContext} />
+                <Spacer margin="10"/>
                 <Details context={MainContext} />
+                <Spacer margin="10"/>
                 <Links />
+                <Spacer margin="10"/>
                 <Skills />
+                <Spacer margin="10"/>
                 <Languages />
+                <Spacer margin="10"/>
                 <Hobbies />
               </View>
               <View style={styles.contents}>
