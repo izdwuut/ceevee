@@ -1,6 +1,6 @@
 import MainContext from '../../CreateCVApp';
 import React from 'react';
-import { pdf, BlobProvider } from '@react-pdf/renderer'
+import { pdf } from '@react-pdf/renderer'
 import { Document, Page, pdfjs, } from 'react-pdf'
 import styles from '../../styles/PDFViewer.css'
 import { Button } from 'semantic-ui-react'
@@ -26,11 +26,11 @@ export class PDFViewer extends React.Component {
     this.setIsPreviousPage = this.setIsPreviousPage.bind(this)
     this.onPdfRenderSuccess = this.onPdfRenderSuccess.bind(this)
     this.onPdfLoadSuccess = this.onPdfLoadSuccess.bind(this)
-
   }
 
+  timeout = 2000
 
- getBlob() {
+  getBlob() {
     pdf(<Test />).toBlob().then((blob) => {
       const url = URL.createObjectURL(new Blob([blob], {
         type:
@@ -47,7 +47,7 @@ export class PDFViewer extends React.Component {
         this.setState({
           isPdfIn: true
         })
-      }, 2000)
+      }, this.timeout)
     })
   }
 
@@ -63,7 +63,6 @@ export class PDFViewer extends React.Component {
       })
     }
     if (this.props.update) {
-      
       this.getBlob()
       this.props.updatePreview(false)
     }
@@ -91,7 +90,7 @@ export class PDFViewer extends React.Component {
   }
 
   onPdfRenderSuccess() {
-    setTimeout(() => {this.props.updatePreviousBlob(this.props.nextBlob)}, 2000)
+    setTimeout(() => this.props.updatePreviousBlob(this.props.nextBlob), this.timeout)
   }
 
   onPdfLoadSuccess(pdf) {
@@ -104,18 +103,43 @@ export class PDFViewer extends React.Component {
     return (
 
       <div className="pdf" style={styles.pdf}>
-        <Button onClick={this.setIsPreviousPage} className={`${this.state.isPreviousPage ? 'enabled' : 'disabled'}`}>previous page</Button>
-        <Button onClick={this.setIsNextPage} className={`${this.state.isNextPage ? 'enabled' : 'disabled'}`}>next page</Button>
+        <Button
+          onClick={this.setIsPreviousPage}
+          className={`${this.state.isPreviousPage ? 'enabled' : 'disabled'}`}
+        >
+          previous page
+        </Button>
+        <Button
+          onClick={this.setIsNextPage}
+          className={`${this.state.isNextPage ? 'enabled' : 'disabled'}`}
+        >
+          next page
+        </Button>
 
-        <Document className="previous-pdf" file={this.props.previousBlob} loading='' onLoadSuccess={this.onPdfLoadSuccess}>
+        <Document
+          className="previous-pdf"
+          file={this.props.previousBlob}
+          loading=''
+          onLoadSuccess={this.onPdfLoadSuccess}>
           <Page pageNumber={this.state.activePage} loading='' renderMode="canvas" />
         </Document>
         <CSSTransition
           in={this.state.isPdfIn}
+          timeout={this.timeout}
           classNames="my-node"
         >
-          <Document className="next-pdf" file={this.props.nextBlob} loading='' noData=''>
-            <Page pageNumber={this.state.activePage} renderMode="canvas" loading='' onRenderSuccess={this.onPdfRenderSuccess}  />
+          <Document
+            className="next-pdf"
+            file={this.props.nextBlob}
+            loading=''
+            noData=''
+          >
+            <Page
+              pageNumber={this.state.activePage}
+              renderMode="canvas"
+              loading=''
+              onRenderSuccess={this.onPdfRenderSuccess}
+            />
           </Document>
         </CSSTransition>
 
