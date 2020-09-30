@@ -64,7 +64,7 @@ export const updateDrivingLicense = drivingLicense => ({
 })
 
 export const updateBirthDate = birthDate => ({
-    type: actions.UPDATE_FIRST_NAME,
+    type: actions.UPDATE_BIRTH_DATE,
     payload: {
         birthDate: birthDate
     }

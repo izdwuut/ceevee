@@ -7,47 +7,53 @@ import { connect } from "react-redux";
 import debounce from '../../utilities/debounce'
 
 export class MetaData extends React.Component {
+    constructor(props) {
+        super(props)
+
+    }
+
     updatePreview = debounce(() => {
         this.props.updatePreview(true)
     }, 2500)
 
-    updateFirstName(e) {
+    updateFirstName = (e) => {
         this.props.updateFirstName(e.target.value)
         this.updatePreview()
     }
-    updateMiddleName(e) {
+    updateMiddleName = (e) => {
         this.props.updateMiddleName(e.target.value)
         this.updatePreview()
     }
-    updateLastName(e) {
+    updateLastName = (e) => {
         this.props.updateLastName(e.target.value)
         this.updatePreview()
     }
-    updatePosition(e) {
+    updatePosition = (e) => {
         this.props.updatePosition(e.target.value)
         this.updatePreview()
     }
-    updateEmail(e) {
+    updateEmail = (e) => {
         this.props.updateEmail(e.target.value)
         this.updatePreview()
     }
-    updateMobile(e) {
+    updateMobile = (e) => {
         this.props.updateMobile(e.target.value)
         this.updatePreview()
     }
-    updateCountry(e) {
+    updateCountry = (e) => {
         this.props.updateCountry(e.target.value)
         this.updatePreview()
     }
-    updateCity(e) {
+    updateCity = (e) => {
+        console.log(e.target.value)
         this.props.updateCity(e.target.value)
         this.updatePreview()
     }
-    updateDrivingLicense(e) {
+    updateDrivingLicense = (e) => {
         this.props.updateDrivingLicense(e.target.value)
         this.updatePreview()
     }
-    updateBirthDate(e) {
+    updateBirthDate = (e) => {
         this.props.updateBirthDate(e.target.value)
         this.updatePreview()
     }

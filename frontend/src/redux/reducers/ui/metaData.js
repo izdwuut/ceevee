@@ -5,7 +5,7 @@ const initialState = {
     middleName: 'Ipsum',
     lastName: 'Dolor',
     position: 'Position',
-    email: 'E-mail',
+    email: 'lorem@example.com',
     mobile: "000000000",
     country: 'Lorem',
     city: 'Ipsum',

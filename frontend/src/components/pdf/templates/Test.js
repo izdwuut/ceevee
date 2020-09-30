@@ -75,7 +75,7 @@ export default class Test extends React.Component {
             <View style={styles.main}>
               <View style={styles.sidebar}>
                 <Header context={MainContext} />
-                <Details />
+                <Details context={MainContext} />
                 <Links />
                 <Skills />
                 <Languages />
