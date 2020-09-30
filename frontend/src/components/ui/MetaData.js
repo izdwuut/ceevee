@@ -33,6 +33,13 @@ export class MetaData extends React.Component {
                 <Form.Input label='Second name' type='text' />
                 <Form.Input label='Last name' type='text' />
                 <Form.Input label='Position' type='text' />
+                <Form.Input label='E-mail' type='text' />
+                <Form.Input label='Mobile' type='text' />
+                <Form.Input label='Country' type='text' />
+                <Form.Input label='City' type='text' />
+                <Form.Input label='Adress' type='text' />
+                <Form.Input label='Driving license' type='text' />
+                <Form.Input label='Birth date' type='text' />
             </Form>
         )
     }
