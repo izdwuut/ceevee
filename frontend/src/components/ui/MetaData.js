@@ -26,7 +26,7 @@ export class MetaData extends React.Component {
                 <Form.Input label='Mobile' type='text' />
                 <Form.Input label='Country' type='text' />
                 <Form.Input label='City' type='text' />
-                <Form.Input label='Adress' type='text' />
+                <Form.Input label='Address' type='text' />
                 <Form.Input label='Driving license' type='text' />
                 <Form.Input label='Birth date' type='text' />
             </Form>
