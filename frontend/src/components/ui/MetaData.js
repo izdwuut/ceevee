@@ -4,24 +4,13 @@ import { Form, TextArea, Container, Accordion, Icon, Input } from 'semantic-ui-r
 import { updateFirstName } from '../../redux/actions/ui/metaData/actions'
 import {updatePreview} from '../../redux/actions/pdf/pdfViewer/actions'
 import { connect } from "react-redux";
+import debounce from '../../utilities/debounce'
 
 export class MetaData extends React.Component {
-    updatePreview = this.debounce(() => {
+    updatePreview = debounce(() => {
         this.props.updatePreview(true)
     }, 2500)
-    debounce(func, wait) {
-        let timeout;
 
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
     updateFirstName(e) {
         this.props.updateFirstName(e.target.value)
         this.updatePreview()
