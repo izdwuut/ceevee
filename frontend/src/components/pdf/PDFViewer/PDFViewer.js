@@ -122,7 +122,7 @@ export class PDFViewer extends React.Component {
           file={this.props.previousBlob}
           loading=''
           onLoadSuccess={this.onPdfLoadSuccess}>
-          <Page pageNumber={this.state.activePage} loading='' renderMode="svg" />
+          <Page pageNumber={this.state.activePage} loading='' renderMode="canvas" />
         </Document>
         <CSSTransition
           in={this.state.isPdfIn}
@@ -137,7 +137,7 @@ export class PDFViewer extends React.Component {
           >
             <Page
               pageNumber={this.state.activePage}
-              renderMode="svg"
+              renderMode="canvas"
               loading=''
               onRenderSuccess={this.onPdfRenderSuccess}
             />
