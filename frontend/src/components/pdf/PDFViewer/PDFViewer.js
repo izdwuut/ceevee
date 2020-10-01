@@ -8,7 +8,7 @@ import Test from '../templates/Test';
 import { updatePreviousBlob, updateNextBlob, updatePreview } from '../../../redux/actions/pdf/pdfViewer/actions'
 import { connect } from 'react-redux'
 import { CSSTransition } from "react-transition-group";
-import Upeksa from '../templates/Upeksa';
+import Upeksa from '../templates/upeksa/Upeksa';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 

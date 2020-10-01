@@ -1,0 +1,1 @@
+export const marginVertical = '20mm'
