@@ -8,6 +8,7 @@ import Test from '../templates/Test';
 import { updatePreviousBlob, updateNextBlob, updatePreview } from '../../../redux/actions/pdf/pdfViewer/actions'
 import { connect } from 'react-redux'
 import { CSSTransition } from "react-transition-group";
+import Upeksa from '../templates/Upeksa';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -31,7 +32,7 @@ export class PDFViewer extends React.Component {
   timeout = 2000
 
   getBlob() {
-    pdf(<Test />).toBlob().then((blob) => {
+    pdf(<Upeksa />).toBlob().then((blob) => {
       const url = URL.createObjectURL(new Blob([blob], {
         type:
           'application/pdf'
@@ -121,7 +122,7 @@ export class PDFViewer extends React.Component {
           file={this.props.previousBlob}
           loading=''
           onLoadSuccess={this.onPdfLoadSuccess}>
-          <Page pageNumber={this.state.activePage} loading='' renderMode="canvas" />
+          <Page pageNumber={this.state.activePage} loading='' renderMode="svg" />
         </Document>
         <CSSTransition
           in={this.state.isPdfIn}
@@ -136,7 +137,7 @@ export class PDFViewer extends React.Component {
           >
             <Page
               pageNumber={this.state.activePage}
-              renderMode="canvas"
+              renderMode="svg"
               loading=''
               onRenderSuccess={this.onPdfRenderSuccess}
             />
