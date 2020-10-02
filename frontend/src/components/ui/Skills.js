@@ -27,6 +27,9 @@ export class Skills extends React.Component {
 
     addSkill = () => {
         this.props.addSkill('New skill', "Your skill description")
+        this.setState({
+            activeIndex: this.props.skills.length
+        })
         this.updatePreview()
     }
 
