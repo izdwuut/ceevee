@@ -3,12 +3,6 @@ import * as actions from '../../actions/pdf/skills/actionTypes'
 const initialState = {
     header: 'Lorem',
     skills: [
-        {skill: 'Lorem', description: 'Lorem ipsum dolor'},
-        {skill: 'Lorem', description: 'Lorem ipsum dolor'},
-        {skill: 'Lorem', description: 'Lorem ipsum dolor'},
-        {skill: 'Lorem', description: 'Lorem ipsum dolor'},
-        {skill: 'Lorem', description: 'Lorem ipsum dolor'},
-        {skill: 'Lorem', description: 'Lorem ipsum dolor'}
     ],
 }
 
@@ -44,7 +38,8 @@ export default function skills(state = initialState, action) {
         }
         case actions.DELETE_SKILL: {
             let skillsCopy = [...state.skills]
-            skillsCopy.splice(action.payload.id)
+            skillsCopy.splice(action.payload.id, 1)
+            console.log(skillsCopy)
             return {
                 ...state,
                 skills: skillsCopy

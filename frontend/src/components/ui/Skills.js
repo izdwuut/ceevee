@@ -33,6 +33,11 @@ export class Skills extends React.Component {
         this.updatePreview()
     }
 
+    deleteSkill = (id) => {
+        this.props.deleteSkill(id)
+        this.updatePreview()
+    }
+
     handleClick(e, titleProps) {
         const { index } = titleProps
         const { activeIndex } = this.state
@@ -56,6 +61,9 @@ export class Skills extends React.Component {
                 <Accordion.Content active={activeIndex === i}>
                     <Input placeholder='Skill' className='input' value={this.props.skills[i].skill} onChange={e => this.updateSkill(i, e.target.value, null)} />
                     <Input placeholder='Short description' className='input' value={this.props.skills[i].description} onChange={e => this.updateSkill(i, null, e.target.value)} />
+                    <Button onClick={() => this.deleteSkill(i)}>
+                        Delete
+                  </Button>
                 </Accordion.Content>
             </Menu.Item>)
         }
@@ -66,9 +74,11 @@ export class Skills extends React.Component {
                 <p>
                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                 </p>
-                <Accordion styled as={Menu} vertical>
-                    {skills}
-                </Accordion>
+                {skills.length > 0 &&
+                    <Accordion styled as={Menu} vertical>
+                        {skills}
+                    </Accordion>
+                }
 
                 <Button onClick={this.addSkill}>
                     Add skill
