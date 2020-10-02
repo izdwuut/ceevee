@@ -1,13 +1,10 @@
 import React from 'react';
-import { Text, View, StyleSheet } from '@react-pdf/renderer';
+import { Text, View } from '@react-pdf/renderer';
 import { connect } from "react-redux";
 import MainContext from '../../CreateCVApp';
 
 
 export class Header extends React.Component {
-    constructor(props) {
-        super(props)
-    }
     render() {
         return (
             <View style={this.props.style.section}>

@@ -1,7 +1,7 @@
 import { StyleSheet } from '@react-pdf/renderer';
 
 export const detailsStyles = StyleSheet.create({
-    details: {
+   header: {
         paddingBottom: 15,
         borderBottom: '1 solid black',
         marginBottom: 10
@@ -12,10 +12,10 @@ export const detailsStyles = StyleSheet.create({
     email: {
         marginBottom: 5
     },
-    mobile: {
+    mobileWrapper: {
         marginBottom: 5
     },
-    birthDate: {
+    birthDateWrapper: {
         marginBottom: 5
     }
 })

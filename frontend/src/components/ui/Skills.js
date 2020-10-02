@@ -1,18 +1,27 @@
 import * as React from 'react';
 import { Container, Header, Accordion, Icon, Input, Menu } from 'semantic-ui-react'
+import { updateHeader, updateSkill, addSkill, deleteSkill} from '../../redux/actions/pdf/skills/actions'
+import { connect } from "react-redux"
+import MainContext from '../../CreateCVApp';
+import debounce from '../../utilities/debounce'
+import { updatePreview } from '../../redux/actions/pdf/pdfViewer/actions'
 
-export default class Skills extends React.Component {
+export class Skills extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             activeIndex: 0,
-            replace: this.replace
-        };
-
+        }
         this.handleClick = this.handleClick.bind(this);
     }
 
-    replace = [{skill: 'Lorem ipsum', description: 'Lorem ipsum'}, {skill: 'Lorem ipsum 2', description: 'Lorem ipsum 2'}]
+    updatePreview = debounce(() => {
+        this.props.updatePreview(true)
+    }, 2500)
+    updateSkill = (id, skill, description) => {
+        this.props.updateSkill(id, skill, description)
+        this.updatePreview()
+    }
 
     handleClick(e, titleProps) {
         const { index } = titleProps
@@ -24,19 +33,19 @@ export default class Skills extends React.Component {
     render() {
         const { activeIndex } = this.state
         let skills = []
-        for (const [index, skill] of this.replace.entries()) {
+        for(let i = 0; i < this.props.skills.length; i++) {
             skills.push(<Menu.Item>
                         <Accordion.Title
-                            active={activeIndex === index}
-                            index={index}
+                            active={activeIndex === i}
+                            index={i}
                             onClick={this.handleClick}
                         >
                             <Icon name='dropdown' />
-{skill.skill} - {skill.description}          
+{this.props.skills[i].skill}       
         </Accordion.Title>
-                        <Accordion.Content active={activeIndex === index}>
-                            <Input placeholder='Skill' className='input' value={skill.skill} />
-                            <Input placeholder='Short description' className='input' value={skill.description} />
+                        <Accordion.Content active={activeIndex === i}>
+                            <Input placeholder='Skill' className='input' value={this.props.skills[i].skill} onChange={e => this.updateSkill(i, e.target.value, null)}/>
+                            <Input placeholder='Short description' className='input' value={this.props.skills[i].description}  onChange={e => this.updateSkill(i, null, e.target.value)}/>
                         </Accordion.Content>
                     </Menu.Item>)
         }
@@ -54,3 +63,22 @@ export default class Skills extends React.Component {
         )
     }
 }
+
+const mapStateToProps = state => {
+    return state.skills
+}
+const mapDispatchToProps = dispatch => {
+    return {
+     updateHeader: (header) => dispatch(updateHeader(header)),
+     updateSkill: (id, skill, description) => dispatch(updateSkill(id, skill, description)),
+     addSkill: (skill, description) => dispatch(addSkill(skill, description)),
+     deleteSkill: id => dispatch(deleteSkill(id)),
+     updatePreview: (isUpdate) => dispatch(updatePreview(isUpdate))
+    };
+  };
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+    null,
+    { context: MainContext }
+)(Skills);

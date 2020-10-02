@@ -13,9 +13,10 @@ import MainContext from '../../../../CreateCVApp';
 import { Provider } from 'react-redux'
 import store from '../../../../redux/store'
 import Spacer from '../../Spacer';
-import {styles} from './styles'
-import {headerStyles} from './headerStyles'
-import {detailsStyles} from './detailsStyles'
+import { styles } from './styles/styles'
+import { headerStyles } from './styles/headerStyles'
+import { detailsStyles } from './styles/detailsStyles'
+import { skillsStyles } from './styles/skillsStyles'
 
 
 
@@ -32,6 +33,7 @@ export default class Upeksa extends React.Component {
             <View style={styles.contents}>
               <View style={styles.leftColumn}>
                 <Details context={MainContext} style={detailsStyles} />
+                <Skills context={MainContext} style={skillsStyles} />
               </View>
 
               <View style={styles.middleColumnLeft}></View>

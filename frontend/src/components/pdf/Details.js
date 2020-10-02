@@ -6,8 +6,8 @@ import { connect } from "react-redux";
 export class Details extends React.Component {
     render() {
         return (
-            <View className="details-section">
-                <Text style={this.props.style.details}>Details</Text>
+            <View style={this.props.style.section}>
+                <Text style={this.props.style.header}>Details</Text>
                 {(this.props.city != '' || this.props.country != '') &&
                     <Text style={this.props.style.name}>{this.props.city}{this.props.country != '' && this.props.city != '' ? ', ' : ''}{this.props.country}</Text>
                 }

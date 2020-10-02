@@ -1,5 +1,5 @@
 import { StyleSheet, Font} from '@react-pdf/renderer';
-import { marginVertical } from './variables'
+import  marginVertical  from './variables'
 
 Font.register({
     family: "Roboto",

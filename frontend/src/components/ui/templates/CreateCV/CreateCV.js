@@ -13,7 +13,7 @@ export default class CreateCV extends React.Component {
         <div className="ui" style={styles.ui}>
           <MetaData context={MainContext} />
           <Summary />
-          <Skills />
+          <Skills context={MainContext} />
         </div>
         <PDFViewer context={MainContext} />
       </div>

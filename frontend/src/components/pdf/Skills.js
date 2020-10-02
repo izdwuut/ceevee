@@ -1,19 +1,35 @@
 import React from 'react';
 import { Text, View } from '@react-pdf/renderer';
+import { connect } from "react-redux";
+import MainContext from '../../CreateCVApp';
+import debounce from '../../utilities/debounce'
 
-export default class Skills extends React.Component {
+export class Skills extends React.Component {
+   
     render() {
         return (
-            <View className="skills-section">
-                <Text className="header1">
+            <View style={this.props.style.section}>
+                <Text style={this.props.style.header}>
                     Skills
                 </Text>
-                <Text>Lorem</Text>
-                <Text>Ipsum</Text>
-                <Text>Lorem</Text>
-                <Text>Ipsum</Text>
+                {this.props.skills.map((skill) => {
+                    return <View style={this.props.style.skillWrapper}>
+                        <Text style={this.props.style.skill}>{skill.skill}</Text>
+                        <Text style={this.props.style.description}>{skill.description}</Text>
+                    </View>
+                })}
             </View>
         )
     }
 }
 
+const mapStateToProps = state => {
+    return state.skills
+}
+
+export default connect(
+    mapStateToProps,
+    null,
+    null,
+    { context: MainContext }
+)(Skills);
