@@ -4,6 +4,7 @@ const initialState = {
     header: 'Lorem',
     skills: [
     ],
+    visible: false
 }
 
 export default function skills(state = initialState, action) {
@@ -33,7 +34,8 @@ export default function skills(state = initialState, action) {
             })
             return {
                 ...state,
-                skills: skillsCopy
+                skills: skillsCopy,
+                visible: true
             }
         }
         case actions.DELETE_SKILL: {
@@ -42,7 +44,8 @@ export default function skills(state = initialState, action) {
             console.log(skillsCopy)
             return {
                 ...state,
-                skills: skillsCopy
+                skills: skillsCopy,
+                visible: skillsCopy.length > 0
             }
         }
         default:
