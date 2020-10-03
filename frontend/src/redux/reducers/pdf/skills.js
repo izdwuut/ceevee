@@ -41,7 +41,6 @@ export default function skills(state = initialState, action) {
         case actions.DELETE_SKILL: {
             let skillsCopy = [...state.skills]
             skillsCopy.splice(action.payload.id, 1)
-            console.log(skillsCopy)
             return {
                 ...state,
                 skills: skillsCopy,

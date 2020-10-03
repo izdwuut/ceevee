@@ -9,7 +9,7 @@ export class Skills extends React.Component {
             <View>
                 {this.props.visible && <View style={this.props.style.section}>
                     <Text style={this.props.style.header}>
-                        Skills
+                        {this.props.header}
                 </Text>
                     {this.props.skills.map((skill) => {
                         return <View style={this.props.style.skillWrapper}>
