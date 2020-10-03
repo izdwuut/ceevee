@@ -6,7 +6,7 @@ import MainContext from '../../CreateCVApp';
 import debounce from '../../utilities/debounce'
 import { updatePreview } from '../../redux/actions/pdf/pdfViewer/actions'
 import { Button } from 'semantic-ui-react'
-
+import {debounceTime} from '../../utilities/variables'
 export class Skills extends React.Component {
     constructor(props) {
         super(props)
@@ -18,7 +18,7 @@ export class Skills extends React.Component {
 
     updatePreview = debounce(() => {
         this.props.updatePreview(true)
-    }, 2500)
+    }, debounceTime)
 
     updateSkill = (id, skill, description) => {
         this.props.updateSkill(id, skill, description)

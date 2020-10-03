@@ -4,6 +4,7 @@ import { Form } from 'semantic-ui-react'
 import { updateFirstName, updateMiddleName, updateLastName, updatePosition, updateEmail, updateMobile, updateCountry, updateCity, updateDrivingLicense, updateBirthDate } from '../../redux/actions/ui/metaData/actions'
 import { updatePreview } from '../../redux/actions/pdf/pdfViewer/actions'
 import { connect } from "react-redux";
+import {debounceTime} from '../../utilities/variables'
 import debounce from '../../utilities/debounce'
 
 export class MetaData extends React.Component {
@@ -14,7 +15,7 @@ export class MetaData extends React.Component {
 
     updatePreview = debounce(() => {
         this.props.updatePreview(true)
-    }, 2500)
+    }, debounceTime)
 
     updateFirstName = (e) => {
         this.props.updateFirstName(e.target.value)

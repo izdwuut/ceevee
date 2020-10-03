@@ -6,6 +6,7 @@ import MainContext from '../../CreateCVApp';
 import debounce from '../../utilities/debounce'
 import { updatePreview } from '../../redux/actions/pdf/pdfViewer/actions'
 import { Button } from 'semantic-ui-react'
+import {debounceTime} from '../../utilities/variables'
 
 export class Hobbies extends React.Component {
     constructor(props) {
@@ -13,12 +14,12 @@ export class Hobbies extends React.Component {
         this.state = {
             activeIndex: 0,
         }
-        this.handleClick = this.handleClick.bind(this);
+        this.handleClick = this.handleClick.bind(this)
     }
 
     updatePreview = debounce(() => {
         this.props.updatePreview(true)
-    }, 2500)
+    }, debounceTime)
 
     updateHobby = (id, hobby) => {
         this.props.updateHobby(id, hobby)
@@ -90,6 +91,7 @@ export class Hobbies extends React.Component {
 const mapStateToProps = state => {
     return state.hobbies
 }
+
 const mapDispatchToProps = dispatch => {
     return {
         updateHeader: (header) => dispatch(updateHeader(header)),
@@ -97,8 +99,9 @@ const mapDispatchToProps = dispatch => {
         addHobby: (hobby) => dispatch(addHobby(hobby)),
         deleteHobby: id => dispatch(deleteHobby(id)),
         updatePreview: (isUpdate) => dispatch(updatePreview(isUpdate))
-    };
-};
+    }
+}
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps,

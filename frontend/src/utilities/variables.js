@@ -1,0 +1,1 @@
+export let debounceTime = 2500
