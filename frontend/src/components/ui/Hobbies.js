@@ -26,7 +26,7 @@ export class Hobbies extends React.Component {
     }
 
     addHobby = () => {
-        this.props.addHobby('New hobby')
+        this.props.addHobby('')
         this.setState({
             activeIndex: this.props.hobbies.length
         })
