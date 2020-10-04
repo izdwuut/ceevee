@@ -29,6 +29,7 @@
     "react-pdf": "^5.0.0",
     "react-redux": "^7.2.1",
     "react-scripts": "3.4.3",
+    "react-semantic-ui-datepickers": "^2.9.1",
     "react-transition-group": "^4.4.1",
     "react-view-pdf": "0.0.14",
     "redux": "^4.0.5",

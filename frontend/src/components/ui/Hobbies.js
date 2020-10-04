@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Container, Header, Accordion, Icon, Input, Menu } from 'semantic-ui-react'
-import { updateHeader, updateHobby, addHobby, deleteHobby } from '../../redux/actions/pdf/hobbies/actions'
+import * as Actions from '../../redux/actions/ui/hobbies/actions'
 import { connect } from "react-redux"
 import MainContext from '../../CreateCVApp';
 import debounce from '../../utilities/debounce'
@@ -94,10 +94,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        updateHeader: (header) => dispatch(updateHeader(header)),
-        updateHobby: (id, hobby) => dispatch(updateHobby(id, hobby)),
-        addHobby: (hobby) => dispatch(addHobby(hobby)),
-        deleteHobby: id => dispatch(deleteHobby(id)),
+        updateHeader: (header) => dispatch(Actions.updateHeader(header)),
+        updateHobby: (id, hobby) => dispatch(Actions.updateHobby(id, hobby)),
+        addHobby: (hobby) => dispatch(Actions.addHobby(hobby)),
+        deleteHobby: id => dispatch(Actions.deleteHobby(id)),
         updatePreview: (isUpdate) => dispatch(updatePreview(isUpdate))
     }
 }

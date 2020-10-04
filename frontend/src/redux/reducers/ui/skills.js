@@ -1,4 +1,4 @@
-import * as actions from '../../actions/pdf/skills/actionTypes'
+import * as actions from '../../actions/ui/skills/actionTypes'
 
 const initialState = {
     header: 'Lorem',

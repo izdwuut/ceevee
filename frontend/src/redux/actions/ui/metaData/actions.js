@@ -1,5 +1,12 @@
 import * as actions from './actionTypes'
 
+export const updateHeader = header => ({
+    type: actions.UPDATE_HEADER,
+    payload: {
+        header: header
+    }
+})
+
 export const updateFirstName = firstName => ({
     type: actions.UPDATE_FIRST_NAME,
     payload: {

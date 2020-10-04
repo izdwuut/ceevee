@@ -1,4 +1,4 @@
-import * as actions from '../../actions/pdf/hobbies/actionTypes'
+import * as actions from '../../actions/ui/hobbies/actionTypes'
 
 const initialState = {
     header: 'Hobbies',
