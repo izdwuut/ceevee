@@ -15,7 +15,7 @@ import { debounceTime } from '../../utilities/variables'
 import SemanticDatepicker from 'react-semantic-ui-datepickers'
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css'
 import * as Actions from '../../redux/actions/ui/experience/actions'
-import  DatePicker  from 'react-datepicker'
+import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 
 const mapStateToProps = state => {
@@ -24,62 +24,59 @@ const mapStateToProps = state => {
 
 
 
-export function Experience(props) {
+export class Experience extends React.Component {
 
-    const activeIndex = React.useState(0)
-
-    const updatePreview = debounce(() => {
-        props.updatePreview(true)
+    updatePreview = debounce(() => {
+        this.props.updatePreview(true)
     }, debounceTime)
 
-    const updateHeader = header => {
-        props.updateHeader(header)
-        updatePreview()
+    updateHeader = header => {
+        this.props.updateHeader(header)
+        this.updatePreview()
     }
 
-    const updatePosition = (id, position) => {
-        props.updatePosition(id, position)
-        updatePreview()
+    updatePosition = (id, position) => {
+        this.props.updatePosition(id, position)
+        this.updatePreview()
     }
 
-    const updateCompany = (id, company) => {
-        props.updateCompany(id, company)
-        updatePreview()
+    updateCompany = (id, company) => {
+        this.props.updateCompany(id, company)
+        this.updatePreview()
     }
 
-    const updateCity = (id, city) => {
-        props.updateCity(id, city)
-        updatePreview()
+    updateCity = (id, city) => {
+        this.props.updateCity(id, city)
+        this.updatePreview()
     }
 
-    const updateCountry = (id, country) => {
-        props.updateCountry(id, country)
-        updatePreview()
+    updateCountry = (id, country) => {
+        this.props.updateCountry(id, country)
+        this.updatePreview()
     }
 
-    const updateDescription = (id, description) => {
-        props.updateDescription(id, description)
-        updatePreview()
+    updateDescription = (id, description) => {
+        this.props.updateDescription(id, description)
+        this.updatePreview()
     }
 
-    const updateFromDate = (id, from) => {
-        console.log(new Date(from))
-        props.updateFromDate(id, new Date(from))
-        updatePreview()
+    updateFromDate = (id, from) => {
+        this.props.updateFromDate(id, new Date(from))
+        this.updatePreview()
     }
 
-    const updateToDate = (id, to) => {
-        props.updateToDate(id, new Date(to))
-        updatePreview()
+    updateToDate = (id, to) => {
+        this.props.updateToDate(id, new Date(to))
+        this.updatePreview()
     }
 
-    const deleteExperience = id => {
-        props.deleteExperience(id)
-        updatePreview()
+    deleteExperience = id => {
+        this.props.deleteExperience(id)
+        this.updatePreview()
     }
 
-    const addExperience = () => {
-        props.addExperience({
+    addExperience = () => {
+        this.props.addExperience({
             position: '',
             company: '',
             city: '',
@@ -88,88 +85,88 @@ export function Experience(props) {
             toDate: new Date(),
             description: ''
         })
-        activeIndex.useState = props.experience.length
-        updatePreview()
+        this.updatePreview()
     }
-
-    let experience = []
-    if (experience) {
-        for (let i = 0; i < props.experience.length; i++) {
-            experience.push(
-                <Segment>
-                    <Form.Field
-                        control={Input}
-                        label='Position'
-                        value={props.experience[i].position}
-                        onChange={e => updatePosition(i, e.target.value)}
-                    />
-                    <Form.Field
-                        control={Input}
-                        label='Company'
-                        value={props.experience[i].company}
-                        onChange={e => updateCompany(i, e.target.value)}
-                    />
-                    <Form.Group widths='equal'>
+    render() {
+        let experience = []
+        if (experience) {
+            for (let i = 0; i < this.props.experience.length; i++) {
+                experience.push(
+                    <Segment>
                         <Form.Field
                             control={Input}
-                            label='City'
-                            value={props.experience[i].city}
-                            onChange={e => updateCity(i, e.target.value)}
+                            label='Position'
+                            value={this.props.experience[i].position}
+                            onChange={e => this.updatePosition(i, e.target.value)}
                         />
                         <Form.Field
                             control={Input}
-                            label='Country'
-                            value={props.experience[i].country}
-                            onChange={e => updateCountry(i, e.target.value)}
+                            label='Company'
+                            value={this.props.experience[i].company}
+                            onChange={e => this.updateCompany(i, e.target.value)}
                         />
-                    </Form.Group>
-                    <Form.Group widths='equal'>
-                        <DatePicker
-                            selected={props.experience[i].fromDate}
-                            onChange={date => updateFromDate(i, date)}
-                            dateFormat="MM/yyyy"
-                            showMonthYearPicker
-                            showFullMonthYearPicker
-                        />
-                        <DatePicker
-                            selected={props.experience[i].toDate}
-                            onChange={date => updateToDate(i, date)}
-                            dateFormat="MM/yyyy"
-                            showMonthYearPicker
-                            showFullMonthYearPicker
-                        />
+                        <Form.Group widths='equal'>
+                            <Form.Field
+                                control={Input}
+                                label='City'
+                                value={this.props.experience[i].city}
+                                onChange={e => this.updateCity(i, e.target.value)}
+                            />
+                            <Form.Field
+                                control={Input}
+                                label='Country'
+                                value={this.props.experience[i].country}
+                                onChange={e => this.updateCountry(i, e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group widths='equal'>
+                            <DatePicker
+                                selected={this.props.experience[i].fromDate}
+                                onChange={date => this.updateFromDate(i, date)}
+                                dateFormat="MM/yyyy"
+                                showMonthYearPicker
+                                showFullMonthYearPicker
+                            />
+                            <DatePicker
+                                selected={this.props.experience[i].toDate}
+                                onChange={date => this.updateToDate(i, date)}
+                                dateFormat="MM/yyyy"
+                                showMonthYearPicker
+                                showFullMonthYearPicker
+                            />
 
-                    </Form.Group>
-                    <Form.Field
-                        control={TextArea}
-                        label='Description'
-                        value={props.experience[i].description}
-                        onChange={e => updateDescription(i, e.target.value)}
-                    />
-                    <Button onClick={() => deleteExperience(i)}>
-                        Delete
+                        </Form.Group>
+                        <Form.Field
+                            control={TextArea}
+                            label='Description'
+                            value={this.props.experience[i].description}
+                            onChange={e => this.updateDescription(i, e.target.value)}
+                        />
+                        <Button onClick={() => this.deleteExperience(i)}>
+                            Delete
                 </Button>
+                    </Segment>
+                )
+            }
+
+            return (
+                <Segment>
+                    <Header>{this.props.header}</Header>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                </p>
+                    {experience.length > 0 &&
+                        <Form>
+                            {experience}
+                        </Form>
+                    }
+
+                    <Button onClick={() => this.addExperience()}>
+                        Add
+            </Button>
                 </Segment>
             )
         }
-
-        return (
-            <Segment>
-                <Header>{props.header}</Header>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                </p>
-                {experience.length > 0 &&
-                    <Form>
-                        {experience}
-                    </Form>
-                }
-
-                <Button onClick={() => addExperience()}>
-                    Add
-            </Button>
-            </Segment>
-        )
     }
 }
 

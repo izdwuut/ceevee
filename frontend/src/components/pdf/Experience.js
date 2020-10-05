@@ -22,8 +22,8 @@ export class Experience extends React.Component {
                                 {(experience.city != '' || experience.country != '') &&
                                     <Text style={this.props.style.origin}>{experience.city}{experience.city && experience.country && ', '}{experience.country}</Text>
                                 }
-                                {(experience.from || experience.to) &&
-                                    <Text style={this.props.style.duration}>{getDateString(experience.from)}{experience.from && experience.to && ' - '}{getDateString(experience.to)}</Text>
+                                {(experience.fromDate || experience.toDate) &&
+                                    <Text style={this.props.style.duration}>{getDateString(experience.fromDate)}{experience.fromDate && experience.toDate && ' - '}{getDateString(experience.toDate)}</Text>
                                 }
                             </View>
                         })}
