@@ -5,7 +5,8 @@ import {
     Form,
     Input,
     TextArea,
-    Header
+    Header,
+    Icon
 } from 'semantic-ui-react'
 import { connect } from "react-redux"
 import MainContext from '../../CreateCVApp'
@@ -61,12 +62,12 @@ export class Experience extends React.Component {
     }
 
     updateFromDate = (id, from) => {
-        this.props.updateFromDate(id, new Date(from))
+        this.props.updateFromDate(id, from)
         this.updatePreview()
     }
 
     updateToDate = (id, to) => {
-        this.props.updateToDate(id, new Date(to))
+        this.props.updateToDate(id, to)
         this.updatePreview()
     }
 
@@ -76,15 +77,7 @@ export class Experience extends React.Component {
     }
 
     addExperience = () => {
-        this.props.addExperience({
-            position: '',
-            company: '',
-            city: '',
-            country: '',
-            fromDate: new Date(),
-            toDate: new Date(),
-            description: ''
-        })
+        this.props.addExperience()
         this.updatePreview()
     }
     render() {
@@ -120,22 +113,48 @@ export class Experience extends React.Component {
                             />
                         </Form.Group>
                         <Form.Group widths='equal'>
-                            <DatePicker
-                                selected={this.props.experience[i].fromDate}
-                                onChange={date => this.updateFromDate(i, date)}
-                                dateFormat="MMMM, yyyy"
-                                showMonthYearPicker
-                                showFullMonthYearPicker
-                                
+                        <Form.Field
+                                icon={<Icon name='calendar outline' link  {...this.props} calendar={this._calendarFrom} onClick={() => this._calendarFrom.setOpen(true)} />}
+                                control={Input}
+                                label='From'
+                                value={this.props.experience[i].fromDateString}
+                                onChange={e => this.updateFromDate(i, e.target.value)}
                             />
                             <DatePicker
-                                selected={this.props.experience[i].toDate}
+                                onChange={date => this.updateFromDate(i, date)}
+                                dateFormat="MMMM yyyy"
+                                showMonthYearPicker
+                                showFullMonthYearPicker
+                                ref={(c) => this._calendarFrom = c}
+
+                                customInput={
+                                    <div></div>
+
+                                }
+                            />
+                        </Form.Group>
+                        <Form.Group widths='equal'>
+                            <Form.Field
+                                icon={<Icon name='calendar outline' link  {...this.props} calendar={this._calendarTo} onClick={() => this._calendarTo.setOpen(true)} />}
+                                control={Input}
+                                label='To'
+                                value={this.props.experience[i].toDateString}
+                                onChange={e => this.updateToDate(i, e.target.value)}
+                            />
+                            <DatePicker
                                 onChange={date => this.updateToDate(i, date)}
                                 dateFormat="MMMM, yyyy"
                                 showMonthYearPicker
                                 showFullMonthYearPicker
-                                
+                                ref={(c) => this._calendarTo = c}
+
+                                customInput={
+                                    <div></div>
+
+                                }
                             />
+
+
 
                         </Form.Group>
                         <Form.Field

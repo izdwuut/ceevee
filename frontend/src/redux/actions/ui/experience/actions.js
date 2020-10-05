@@ -39,19 +39,19 @@ export const updateCountry = (id, country) => ({
     }
 })
 
-export const updateFromDate = (id, fromDate) => ({
+export const updateFromDate = (id, fromDateString) => ({
     type: actions.EXPERIENCE_UPDATE_FROM_DATE,
     payload: {
         id: id,
-        fromDate: fromDate,
+        fromDateString: fromDateString,
     }
 })
 
-export const updateToDate = (id, toDate) => ({
+export const updateToDate = (id, toDateString) => ({
     type: actions.EXPERIENCE_UPDATE_TO_DATE,
     payload: {
         id: id,
-        toDate: toDate,
+        toDateString: toDateString,
     }
 })
 
@@ -70,9 +70,9 @@ export const deleteExperience = id => ({
     }
 })
 
-export const addExperience = experience => ({
+export const addExperience = () => ({
     type: actions.EXPERIENCE_ADD_EXPERIENCE,
     payload: {
-        experience: experience
+        
     }
 })
