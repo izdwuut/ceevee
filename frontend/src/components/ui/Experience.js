@@ -123,16 +123,18 @@ export class Experience extends React.Component {
                             <DatePicker
                                 selected={this.props.experience[i].fromDate}
                                 onChange={date => this.updateFromDate(i, date)}
-                                dateFormat="MM/yyyy"
+                                dateFormat="MMMM, yyyy"
                                 showMonthYearPicker
                                 showFullMonthYearPicker
+                                
                             />
                             <DatePicker
                                 selected={this.props.experience[i].toDate}
                                 onChange={date => this.updateToDate(i, date)}
-                                dateFormat="MM/yyyy"
+                                dateFormat="MMMM, yyyy"
                                 showMonthYearPicker
                                 showFullMonthYearPicker
+                                
                             />
 
                         </Form.Group>
