@@ -15,49 +15,18 @@ import { debounceTime } from '../../utilities/variables'
 import SemanticDatepicker from 'react-semantic-ui-datepickers'
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css'
 import * as Actions from '../../redux/actions/ui/experience/actions'
+import  DatePicker  from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
 
 const mapStateToProps = state => {
     return state.experience
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        updateHeader: header => dispatch(Actions.updateHeader(header)),
-        updatePreview: isUpdate => dispatch(updatePreview(isUpdate)),
-        updatePosition: (id, position) => dispatch(Actions.updatePosition(id, position)),
-        updateCompany: (id, company) => dispatch(Actions.updateCompany(id, company)),
-        updateCity: (id, city) => dispatch(Actions.updateCity(id, city)),
-        updateCountry: (id, country) => dispatch(Actions.updateCountry(id, country)),
-        updateFrom: (id, from) => dispatch(Actions.updateFrom(id, from)),
-        updateTo: (id, to) => dispatch(Actions.updateTo(id, to)),
-        updateDescription: (id, description) => dispatch(Actions.updateDescription(id, description)),
-        deleteExperience: id => dispatch(Actions.deleteExperience(id)),
-        addExperience: experience => dispatch(Actions.addExperience(experience)),
-    }
-}
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-    null,
-    { context: MainContext }
-)(Experience)
 
 export function Experience(props) {
-    const [date, setDate] = React.useState(null);
+
     const activeIndex = React.useState(0)
-
-    const handleFromChange = (event, data, index) => {
-        setDate(data.value)
-        props.updateFrom(index, data.value)
-        updatePreview()
-    }
-
-    const handleToChange = (event, data, index) => {
-        setDate(data.value)
-        props.updateFrom(index, data.value)
-        updatePreview()
-    }
 
     const updatePreview = debounce(() => {
         props.updatePreview(true)
@@ -93,6 +62,17 @@ export function Experience(props) {
         updatePreview()
     }
 
+    const updateFromDate = (id, from) => {
+        console.log(new Date(from))
+        props.updateFromDate(id, new Date(from))
+        updatePreview()
+    }
+
+    const updateToDate = (id, to) => {
+        props.updateToDate(id, new Date(to))
+        updatePreview()
+    }
+
     const deleteExperience = id => {
         props.deleteExperience(id)
         updatePreview()
@@ -104,8 +84,8 @@ export function Experience(props) {
             company: '',
             city: '',
             country: '',
-            from: '',
-            to: '',
+            fromDate: new Date(),
+            toDate: new Date(),
             description: ''
         })
         activeIndex.useState = props.experience.length
@@ -144,8 +124,20 @@ export function Experience(props) {
                         />
                     </Form.Group>
                     <Form.Group widths='equal'>
-                        <SemanticDatepicker onChange={(e, data) => handleFromChange(e, data, i)} label='From' />
-                        <SemanticDatepicker onChange={(e, data) => handleToChange(e, data, i)} label='To' />
+                        <DatePicker
+                            selected={props.experience[i].fromDate}
+                            onChange={date => updateFromDate(i, date)}
+                            dateFormat="MM/yyyy"
+                            showMonthYearPicker
+                            showFullMonthYearPicker
+                        />
+                        <DatePicker
+                            selected={props.experience[i].toDate}
+                            onChange={date => updateToDate(i, date)}
+                            dateFormat="MM/yyyy"
+                            showMonthYearPicker
+                            showFullMonthYearPicker
+                        />
 
                     </Form.Group>
                     <Form.Field
@@ -180,3 +172,26 @@ export function Experience(props) {
         )
     }
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        updateHeader: header => dispatch(Actions.updateHeader(header)),
+        updatePreview: isUpdate => dispatch(updatePreview(isUpdate)),
+        updatePosition: (id, position) => dispatch(Actions.updatePosition(id, position)),
+        updateCompany: (id, company) => dispatch(Actions.updateCompany(id, company)),
+        updateCity: (id, city) => dispatch(Actions.updateCity(id, city)),
+        updateCountry: (id, country) => dispatch(Actions.updateCountry(id, country)),
+        updateFromDate: (id, from) => dispatch(Actions.updateFromDate(id, from)),
+        updateToDate: (id, to) => dispatch(Actions.updateToDate(id, to)),
+        updateDescription: (id, description) => dispatch(Actions.updateDescription(id, description)),
+        deleteExperience: id => dispatch(Actions.deleteExperience(id)),
+        addExperience: experience => dispatch(Actions.addExperience(experience)),
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+    null,
+    { context: MainContext }
+)(Experience)

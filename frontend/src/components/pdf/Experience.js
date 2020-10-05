@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View } from '@react-pdf/renderer';
 import MainContext from '../../CreateCVApp';
 import { connect } from "react-redux";
-
+import getDateString from '../../utilities/getDateString'
 export class Experience extends React.Component {
     render() {
         return (
@@ -20,10 +20,10 @@ export class Experience extends React.Component {
                                     <Text style={this.props.style.company}>{experience.company}</Text>
                                 }
                                 {(experience.city != '' || experience.country != '') &&
-                                    <Text style={this.props.style.origin}>{experience.city}{experience.city && experience.country  && ', '}{experience.country}</Text>
+                                    <Text style={this.props.style.origin}>{experience.city}{experience.city && experience.country && ', '}{experience.country}</Text>
                                 }
-                                {(experience.from != '' || experience.to != '') &&
-                                    <Text style={this.props.style.duration}>{experience.from}{experience.from && experience.to && ' - '}{experience.to}</Text>
+                                {(experience.from || experience.to) &&
+                                    <Text style={this.props.style.duration}>{getDateString(experience.from)}{experience.from && experience.to && ' - '}{getDateString(experience.to)}</Text>
                                 }
                             </View>
                         })}
@@ -35,7 +35,6 @@ export class Experience extends React.Component {
 }
 
 const mapStateToProps = state => {
-    // console.log(state)
     return state.experience
 }
 

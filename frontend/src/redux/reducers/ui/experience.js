@@ -18,7 +18,7 @@ export default function experience(state = initialState, action) {
 
         case actions.EXPERIENCE_UPDATE_POSITION: {
             let experienceCopy = [...state.experience]
-            experienceCopy[action.payload.id].position = action.payload.position || experienceCopy[action.payload.id]
+            experienceCopy[action.payload.id].position = action.payload.position || experienceCopy[action.payload.id].position
             return {
                 ...state,
                 experience: experienceCopy
@@ -27,7 +27,7 @@ export default function experience(state = initialState, action) {
 
         case actions.EXPERIENCE_UPDATE_COMPANY: {
             let experienceCopy = [...state.experience]
-            experienceCopy[action.payload.id].company = action.payload.company || experienceCopy[action.payload.id]
+            experienceCopy[action.payload.id].company = action.payload.company || experienceCopy[action.payload.id].company
             return {
                 ...state,
                 experience: experienceCopy
@@ -36,7 +36,7 @@ export default function experience(state = initialState, action) {
 
         case actions.EXPERIENCE_UPDATE_CITY: {
             let experienceCopy = [...state.experience]
-            experienceCopy[action.payload.id].city = action.payload.city || experienceCopy[action.payload.id]
+            experienceCopy[action.payload.id].city = action.payload.city || experienceCopy[action.payload.id].city
             return {
                 ...state,
                 experience: experienceCopy
@@ -45,25 +45,25 @@ export default function experience(state = initialState, action) {
 
         case actions.EXPERIENCE_UPDATE_COUNTRY: {
             let experienceCopy = [...state.experience]
-            experienceCopy[action.payload.id].country = action.payload.country || experienceCopy[action.payload.id]
+            experienceCopy[action.payload.id].country = action.payload.country || experienceCopy[action.payload.id].country
             return {
                 ...state,
                 experience: experienceCopy
             }
         }
 
-        case actions.EXPERIENCE_UPDATE_FROM: {
+        case actions.EXPERIENCE_UPDATE_FROM_DATE: {
             let experienceCopy = [...state.experience]
-            experienceCopy[action.payload.id].from = action.payload.from || experienceCopy[action.payload.id]
+            experienceCopy[action.payload.id].fromDate = action.payload.fromDate || experienceCopy[action.payload.id].fromDate
             return {
                 ...state,
                 experience: experienceCopy
             }
         }
 
-        case actions.EXPERIENCE_UPDATE_TO: {
+        case actions.EXPERIENCE_UPDATE_TO_DATE: {
             let experienceCopy = [...state.experience]
-            experienceCopy[action.payload.id].to = action.payload.to || experienceCopy[action.payload.id]
+            experienceCopy[action.payload.id].toDate = action.payload.toDate || experienceCopy[action.payload.id].toDate
             return {
                 ...state,
                 experience: experienceCopy
@@ -72,7 +72,7 @@ export default function experience(state = initialState, action) {
 
         case actions.EXPERIENCE_UPDATE_DESCRIPTION: {
             let experienceCopy = [...state.experience]
-            experienceCopy[action.payload.id].description = action.payload.description || experienceCopy[action.payload.id]
+            experienceCopy[action.payload.id].description = action.payload.description || experienceCopy[action.payload.id].description
             return {
                 ...state,
                 experience: experienceCopy
