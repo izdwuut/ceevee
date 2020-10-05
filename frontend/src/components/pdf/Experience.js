@@ -25,6 +25,9 @@ export class Experience extends React.Component {
                                 {(experience.fromDate || experience.toDate) &&
                                     <Text style={this.props.style.duration}>{getDateString(experience.fromDate)}{experience.fromDate && experience.toDate && ' - '}{getDateString(experience.toDate)}</Text>
                                 }
+                                {experience.description != '' &&
+                                    <Text style={this.props.style.description}>{experience.description}</Text>
+                                }
                             </View>
                         })}
                     </View>
