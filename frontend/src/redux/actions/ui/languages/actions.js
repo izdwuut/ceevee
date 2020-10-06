@@ -7,17 +7,18 @@ export const updateHeader = header => ({
     }
 })
 
-export const updateLanguage = language => ({
-    type: actions.LANGUAGES_UPDATE_HEADER,
+export const updateLanguage = (id, language) => ({
+    type: actions.LANGUAGES_UPDATE_LANGUAGE,
     payload: {
+        id: id,
         language: language
     }
 })
 
-export const addLanguage = language => ({
+export const addLanguage = () => ({
     type: actions.LANGUAGES_ADD_LANGUAGE,
     payload: {
-        language: language
+        
     }
 })
 

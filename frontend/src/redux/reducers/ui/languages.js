@@ -8,7 +8,7 @@ const initialState = {
     visible: false
 }
 
-export default function hobbies(state = initialState, action) {
+export default function languages(state = initialState, action) {
     switch (action.type) {
         case actions.LANGUAGES_UPDATE_HEADER: {
             return {
@@ -18,7 +18,7 @@ export default function hobbies(state = initialState, action) {
         }
         case actions.LANGUAGES_UPDATE_LANGUAGE: {
             let languagesCopy = [...state.languages]
-            languagesCopy.push(action.payload.language)
+            languagesCopy[action.payload.id] = action.payload.language
             return {
                 ...state,
                 languages: languagesCopy
