@@ -6,6 +6,7 @@ import MetaData from '../../MetaData';
 import Hobbies from '../../Hobbies';
 import Experience from '../../Experience'
 import MainContext from '../../../../CreateCVApp';
+import Languages from '../../Languages';
 
 export default class CreateCV extends React.Component {
   render() {
@@ -16,6 +17,7 @@ export default class CreateCV extends React.Component {
           <Skills context={MainContext} />
           <Hobbies context={MainContext} />
           <Experience context={MainContext} />
+          <Languages context={MainContext} />
         </div>
         <PDFViewer context={MainContext} />
       </div>
