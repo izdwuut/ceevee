@@ -39,8 +39,8 @@ export default class Upeksa extends React.Component {
               <View style={styles.leftColumn}>
                 <Details context={MainContext} style={detailsStyles} />
                 <Skills context={MainContext} style={skillsStyles} />
-                <Hobbies context={MainContext} style={hobbiesStyles} />
                 <Languages context={MainContext} style={languagesStyles} />
+                <Hobbies context={MainContext} style={hobbiesStyles} />
               </View>
 
               <View style={styles.middleColumnLeft}></View>
