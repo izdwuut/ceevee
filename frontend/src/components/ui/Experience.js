@@ -18,7 +18,7 @@ import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css'
 import * as Actions from '../../redux/actions/ui/experience/actions'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
-
+import {datepickerDateFormat} from '../../utilities/variables'
 const mapStateToProps = state => {
     return state.experience
 }
@@ -123,7 +123,7 @@ export class Experience extends React.Component {
                             />
                             <DatePicker
                                 onChange={date => this.updateFromDate(i, date)}
-                                dateFormat="MMMM yyyy"
+                                dateFormat={datepickerDateFormat}
                                 showMonthYearPicker
                                 showFullMonthYearPicker
                                 ref={(c) => this._calendarFrom = c}
@@ -146,7 +146,7 @@ export class Experience extends React.Component {
                             />
                             <DatePicker
                                 onChange={date => this.updateToDate(i, date)}
-                                dateFormat="MMMM yyyy"
+                                dateFormat={datepickerDateFormat}
                                 showMonthYearPicker
                                 showFullMonthYearPicker
                                 ref={(c) => this._calendarTo = c}

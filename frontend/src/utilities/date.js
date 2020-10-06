@@ -1,12 +1,12 @@
-import {monthNames} from './variables'
+import {monthNames, formatterDateFormat} from './variables'
 import moment from 'moment'
 export function getShortDateString(dateString) {
     if(!isDateValid(dateString)) {
         return dateString
     }
     let date = null
-    if(moment(dateString, 'YYYY MMMM', true).isValid()) {
-        date = moment(dateString, 'YYYY MMMM', true)
+    if(moment(dateString, formatterDateFormat, true).isValid()) {
+        date = moment(dateString, formatterDateFormat, true)
     } else {
         date = moment(dateString)
     }
@@ -14,10 +14,7 @@ export function getShortDateString(dateString) {
 }
 
 export function isDateValid(dateString) {
-    if(moment(new Date(dateString), 'MMMM YYYY', true).isValid()) {
-        return true
-    }
-    if(moment(dateString, 'MMMM YYYY', true).isValid()) {
+    if(moment(new Date(dateString), formatterDateFormat, true).isValid() || moment(dateString, formatterDateFormat, true).isValid()) {
         return true
     }
     return false

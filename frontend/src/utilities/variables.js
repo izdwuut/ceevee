@@ -13,3 +13,5 @@ export const monthNames = [
     "November",
     "December"
 ]
+export const formatterDateFormat = 'MMMM YYYY'
+export const datepickerDateFormat = 'MMMM yyyy'

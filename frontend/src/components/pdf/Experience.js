@@ -2,7 +2,6 @@ import React from 'react';
 import { Text, View } from '@react-pdf/renderer';
 import MainContext from '../../CreateCVApp';
 import { connect } from "react-redux";
-import {getShortDateString }from '../../utilities/date'
 export class Experience extends React.Component {
     render() {
         return (

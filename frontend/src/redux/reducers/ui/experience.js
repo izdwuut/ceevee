@@ -1,6 +1,8 @@
 import * as actions from '../../actions/ui/experience/actionTypes'
 import { isDateValid, getShortDateString } from '../../../utilities/date'
+import {formatterDateFormat} from '../../../utilities/variables'
 import moment from 'moment'
+
 const initialState = {
     header: 'Experience',
     originalHeader: 'Experience',
@@ -61,7 +63,7 @@ export default function experience(state = initialState, action) {
                 } else {
                     experienceCopy[action.payload.id].fromDateString = getShortDateString(action.payload.fromDateString)
                 }
-                experienceCopy[action.payload.id].fromDate = moment(experienceCopy[action.payload.id].fromDateString, 'MMMM YYYY').toDate()
+                experienceCopy[action.payload.id].fromDate = moment(experienceCopy[action.payload.id].fromDateString, formatterDateFormat).toDate()
             } else {
                 experienceCopy[action.payload.id].fromDateString = action.payload.fromDateString
 
@@ -80,7 +82,7 @@ export default function experience(state = initialState, action) {
                 } else {
                     experienceCopy[action.payload.id].toDateString = getShortDateString(action.payload.toDateString)
                 }
-                experienceCopy[action.payload.id].toDate = moment(experienceCopy[action.payload.id].toDateString, 'MMMM YYYY').toDate()
+                experienceCopy[action.payload.id].toDate = moment(experienceCopy[action.payload.id].toDateString, formatterDateFormat).toDate()
             } else {
                 experienceCopy[action.payload.id].toDateString = action.payload.toDateString
 
