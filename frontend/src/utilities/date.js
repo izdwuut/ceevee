@@ -10,7 +10,6 @@ export function getShortDateString(dateString) {
     } else {
         date = moment(dateString)
     }
-    
     return monthNames[date.month()] + ' ' + date.year() 
 }
 

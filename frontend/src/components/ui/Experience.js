@@ -123,7 +123,7 @@ export class Experience extends React.Component {
                             />
                             <DatePicker
                                 onChange={date => this.updateFromDate(i, date)}
-                                dateFormat="MMMM YYYY"
+                                dateFormat="MMMM yyyy"
                                 showMonthYearPicker
                                 showFullMonthYearPicker
                                 ref={(c) => this._calendarFrom = c}
@@ -140,15 +140,16 @@ export class Experience extends React.Component {
                                 control={Input}
                                 label='To'
                                 value={this.props.experience[i].toDateString}
+                                selected={this.props.experience[i].toDate}
                                 onChange={e => this.updateToDate(i, e.target.value)}
                             />
                             <DatePicker
                                 onChange={date => this.updateToDate(i, date)}
-                                dateFormat="MMMM YYYY"
+                                dateFormat="MMMM yyyy"
                                 showMonthYearPicker
                                 showFullMonthYearPicker
                                 ref={(c) => this._calendarTo = c}
-
+                                selected={this.props.experience[i].toDate}
                                 customInput={
                                     <div></div>
 
