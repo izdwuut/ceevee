@@ -19,6 +19,8 @@ import { detailsStyles } from './styles/detailsStyles'
 import { skillsStyles } from './styles/skillsStyles'
 import { hobbiesStyles } from './styles/hobbiesStyles'
 import { experienceStyles } from './styles/experienceStyles'
+import { languagesStyles } from './styles/languagesStyles'
+
 import  Experience  from '../../Experience';
 
 
@@ -38,6 +40,7 @@ export default class Upeksa extends React.Component {
                 <Details context={MainContext} style={detailsStyles} />
                 <Skills context={MainContext} style={skillsStyles} />
                 <Hobbies context={MainContext} style={hobbiesStyles} />
+                <Languages context={MainContext} style={languagesStyles} />
               </View>
 
               <View style={styles.middleColumnLeft}></View>
