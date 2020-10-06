@@ -14,3 +14,17 @@ export const updateLanguage = language => ({
     }
 })
 
+export const addLanguage = language => ({
+    type: actions.LANGUAGES_ADD_LANGUAGE,
+    payload: {
+        language: language
+    }
+})
+
+export const deleteLanguage = id => ({
+    type: actions.LANGUAGES_DELETE_LANGUAGE,
+    payload: {
+        id: id
+    }
+})
+

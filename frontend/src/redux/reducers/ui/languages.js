@@ -24,6 +24,24 @@ export default function hobbies(state = initialState, action) {
                 languages: languagesCopy
             }
         }
+        case actions.LANGUAGES_ADD_LANGUAGE: {
+            let languagesCopy = [...state.languages]
+            languagesCopy.push(action.payload.languages)
+            return {
+                ...state,
+                languages: languagesCopy,
+                visible: true
+            }
+        }
+        case actions.LANGUAGES_DELETE_LANGUAGE: {
+            let languagesCopy = [...state.languages]
+            languagesCopy.splice(action.payload.id, 1)
+            return {
+                ...state,
+                languages: languagesCopy,
+                visible: languagesCopy.length > 0
+            }
+        }
         default:
             return state;
     }
