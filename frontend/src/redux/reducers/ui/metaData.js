@@ -15,61 +15,61 @@ const initialState = {
 
 export default function metaData(state = initialState, action) {
     switch (action.type) {
-        case actions.UPDATE_FIRST_NAME: {
+        case actions.METADATA_UPDATE_FIRST_NAME: {
             return {
                 ...state,
                 firstName: action.payload.firstName
             }
         }
-        case actions.UPDATE_MIDDLE_NAME: {
+        case actions.METADATA_UPDATE_MIDDLE_NAME: {
             return {
                 ...state,
                 middleName: action.payload.middleName
             }
         }
-        case actions.UPDATE_LAST_NAME: {
+        case actions.METADATA_UPDATE_LAST_NAME: {
             return {
                 ...state,
                 lastName: action.payload.lastName
             }
         }
-        case actions.UPDATE_POSITION: {
+        case actions.METADATA_UPDATE_POSITION: {
             return {
                 ...state,
                 position: action.payload.position
             }
         }
-        case actions.UPDATE_EMAIL: {
+        case actions.METADATA_UPDATE_EMAIL: {
             return {
                 ...state,
                 email: action.payload.email
             }
         }
-        case actions.UPDATE_MOBILE: {
+        case actions.METADATA_UPDATE_MOBILE: {
             return {
                 ...state,
                 mobile: action.payload.mobile
             }
         }
-        case actions.UPDATE_COUNTRY: {
+        case actions.METADATA_UPDATE_COUNTRY: {
             return {
                 ...state,
                 country: action.payload.country
             }
         }
-        case actions.UPDATE_CITY: {
+        case actions.METADATA_UPDATE_CITY: {
             return {
                 ...state,
                 city: action.payload.city
             }
         }
-        case actions.UPDATE_DRIVING_LICENSE : {
+        case actions.METADATA_UPDATE_DRIVING_LICENSE : {
             return {
                 ...state,
                 drivingLicense: action.payload.drivingLicense
             }
         }
-        case actions.UPDATE_BIRTH_DATE: {
+        case actions.METADATA_UPDATE_BIRTH_DATE: {
             return {
                 ...state,
                 birthDate: action.payload.birthDate

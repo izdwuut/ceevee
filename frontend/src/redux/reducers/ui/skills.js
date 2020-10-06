@@ -9,13 +9,13 @@ const initialState = {
 
 export default function skills(state = initialState, action) {
     switch (action.type) {
-        case actions.UPDATE_HEADER: {
+        case actions.SKILLS_UPDATE_HEADER: {
             return {
                 ...state,
                 header: action.payload.header
             }
         }
-        case actions.UPDATE_SKILL: {
+        case actions.SKILLS_UPDATE_SKILL: {
             let skillsCopy = [...state.skills]
             skillsCopy[action.payload.id] = {
                 skill: action.payload.skill || skillsCopy[action.payload.id].skill,
@@ -26,7 +26,7 @@ export default function skills(state = initialState, action) {
                 skills: skillsCopy
             }
         }
-        case actions.ADD_SKILL: {
+        case actions.SKILLS_ADD_SKILL: {
             let skillsCopy = [...state.skills]
             skillsCopy.push({
                 skill: action.payload.skill,
@@ -38,7 +38,7 @@ export default function skills(state = initialState, action) {
                 visible: true
             }
         }
-        case actions.DELETE_SKILL: {
+        case actions.SKILLS_DELETE_SKILL: {
             let skillsCopy = [...state.skills]
             skillsCopy.splice(action.payload.id, 1)
             return {

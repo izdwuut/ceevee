@@ -1,14 +1,14 @@
 import * as actions from './actionTypes'
 
 export const updateHeader = header => ({
-    type: actions.UPDATE_HEADER,
+    type: actions.HOBBIES_UPDATE_HEADER,
     payload: {
         header: header
     }
 })
 
 export const updateHobby = (id, hobby) => ({
-    type: actions.UPDATE_HOBBY,
+    type: actions.HOBBIES_UPDATE_HOBBY,
     payload: {
         id: id,
         hobby: hobby,
@@ -16,14 +16,14 @@ export const updateHobby = (id, hobby) => ({
 })
 
 export const addHobby = hobby => ({
-    type: actions.ADD_HOBBY,
+    type: actions.HOBBIES_ADD_HOBBY,
     payload: {
         hobby: hobby
     }
 })
 
 export const deleteHobby = id => ({
-    type: actions.DELETE_HOBBY,
+    type: actions.HOBBIES_DELETE_HOBBY,
     payload: {
         id: id
     }
