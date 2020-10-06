@@ -1,15 +1,25 @@
 import {monthNames} from './variables'
+import moment from 'moment'
 export function getShortDateString(dateString) {
-    const date = new Date(dateString)
-    if(!isDateValid(date)) {
-        return ''
+    if(!isDateValid(dateString)) {
+        return dateString
     }
-    return monthNames[date.getMonth()] + ' ' + date.getFullYear() 
+    let date = null
+    if(moment(dateString, 'YYYY MMMM', true).isValid()) {
+        date = moment(dateString, 'YYYY MMMM', true)
+    } else {
+        date = moment(dateString)
+    }
+    
+    return monthNames[date.month()] + ' ' + date.year() 
 }
 
 export function isDateValid(dateString) {
-    if(isNaN(new Date(dateString))) {
-        return false
+    if(moment(new Date(dateString), 'MMMM YYYY', true).isValid()) {
+        return true
     }
-    return true
+    if(moment(dateString, 'MMMM YYYY', true).isValid()) {
+        return true
+    }
+    return false
 }

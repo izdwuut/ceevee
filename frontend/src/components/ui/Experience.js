@@ -67,7 +67,7 @@ export class Experience extends React.Component {
     }
 
     updateToDate = (id, to) => {
-        this.props.updateToDate(id, to)
+        this.props.updateToDate(id, to.toString())
         this.updatePreview()
     }
 
@@ -80,6 +80,7 @@ export class Experience extends React.Component {
         this.props.addExperience()
         this.updatePreview()
     }
+    
     render() {
         let experience = []
         if (experience) {
@@ -122,7 +123,7 @@ export class Experience extends React.Component {
                             />
                             <DatePicker
                                 onChange={date => this.updateFromDate(i, date)}
-                                dateFormat="MMMM yyyy"
+                                dateFormat="MMMM YYYY"
                                 showMonthYearPicker
                                 showFullMonthYearPicker
                                 ref={(c) => this._calendarFrom = c}
@@ -143,7 +144,7 @@ export class Experience extends React.Component {
                             />
                             <DatePicker
                                 onChange={date => this.updateToDate(i, date)}
-                                dateFormat="MMMM, yyyy"
+                                dateFormat="MMMM YYYY"
                                 showMonthYearPicker
                                 showFullMonthYearPicker
                                 ref={(c) => this._calendarTo = c}

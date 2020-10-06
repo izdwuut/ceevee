@@ -1,6 +1,6 @@
 import * as actions from '../../actions/ui/experience/actionTypes'
-import {isDateValid, getShortDateString} from '../../../utilities/date'
-import {moment} from 'moment'
+import { isDateValid, getShortDateString } from '../../../utilities/date'
+import moment from 'moment'
 const initialState = {
     header: 'Experience',
     originalHeader: 'Experience',
@@ -55,12 +55,16 @@ export default function experience(state = initialState, action) {
 
         case actions.EXPERIENCE_UPDATE_FROM_DATE: {
             let experienceCopy = [...state.experience]
-            experienceCopy[action.payload.id].fromDateString =  isDateValid(action.payload.fromDateString) ? action.payload.fromDateString: experienceCopy[action.payload.id].fromDateString
-            if(isDateValid(action.payload.fromDateString)) {
-                experienceCopy[action.payload.id].fromDateString = getShortDateString(experienceCopy[action.payload.id].fromDateString)
-                experienceCopy[action.payload.id].fromDate = new Date(action.payload.fromDateString)
+            if (isDateValid(action.payload.fromDateString)) {
+                if (isNaN(new Date(action.payload.fromDateString))) {
+                    experienceCopy[action.payload.id].fromDateString = action.payload.fromDateString
+                } else {
+                    experienceCopy[action.payload.id].fromDateString = getShortDateString(action.payload.fromDateString)
+                }
+                experienceCopy[action.payload.id].fromDate = moment(experienceCopy[action.payload.id].fromDateString, 'MMMM YYYY').toDate()
             } else {
-                experienceCopy[action.payload.id].fromDate = experienceCopy[action.payload.id].fromDate || null
+                experienceCopy[action.payload.id].fromDateString = action.payload.fromDateString
+
             }
             return {
                 ...state,
@@ -70,13 +74,16 @@ export default function experience(state = initialState, action) {
 
         case actions.EXPERIENCE_UPDATE_TO_DATE: {
             let experienceCopy = [...state.experience]
-            experienceCopy[action.payload.id].toDateString =  isDateValid(action.payload.toDateString) ? action.payload.toDateString: experienceCopy[action.payload.id].toDateString
-            if(isDateValid(action.payload.toDateString)) {
-                experienceCopy[action.payload.id].toDateString = getShortDateString(experienceCopy[action.payload.id].toDateString)
-                experienceCopy[action.payload.id].toDate = action.payload.toDateString
+            if (isDateValid(action.payload.toDateString)) {
+                if (isNaN(new Date(action.payload.toDateString))) {
+                    experienceCopy[action.payload.id].toDateString = action.payload.toDateString
+                } else {
+                    experienceCopy[action.payload.id].toDateString = getShortDateString(action.payload.toDateString)
+                }
+                experienceCopy[action.payload.id].toDate = moment(experienceCopy[action.payload.id].toDateString, 'MMMM YYYY').toDate()
             } else {
-                experienceCopy[action.payload.id].toDate = experienceCopy[action.payload.id].toDate || ''
-                
+                experienceCopy[action.payload.id].toDateString = action.payload.toDateString
+
             }
             return {
                 ...state,
