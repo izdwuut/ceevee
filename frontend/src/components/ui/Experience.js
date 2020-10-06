@@ -62,7 +62,7 @@ export class Experience extends React.Component {
     }
 
     updateFromDate = (id, from) => {
-        this.props.updateFromDate(id, from)
+        this.props.updateFromDate(id, from.toString())
         this.updatePreview()
     }
 
@@ -127,6 +127,7 @@ export class Experience extends React.Component {
                                 showMonthYearPicker
                                 showFullMonthYearPicker
                                 ref={(c) => this._calendarFrom = c}
+                                selected={this.props.experience[i].fromDate}
 
                                 customInput={
                                     <div></div>
