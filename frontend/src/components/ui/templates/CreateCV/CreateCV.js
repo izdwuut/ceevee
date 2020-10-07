@@ -16,10 +16,10 @@ export default class CreateCV extends React.Component {
         <div className="ui" style={styles.ui}>
           <MetaData context={MainContext} />
           <Experience context={MainContext} />
+          <Education context={MainContext} />
           <Skills context={MainContext} />
           <Languages context={MainContext} />
           <Hobbies context={MainContext} />
-          <Education context={MainContext} />
         </div>
         <PDFViewer context={MainContext} />
       </div>
