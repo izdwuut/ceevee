@@ -33,7 +33,7 @@ export default function education(state = initialState, action) {
             educationCopy[action.payload.id].title = action.payload.title || educationCopy[action.payload.id].title
             return {
                 ...state,
-                title: title
+                education: educationCopy
             }
         }
 
@@ -42,7 +42,7 @@ export default function education(state = initialState, action) {
             educationCopy[action.payload.id].city = action.payload.city || educationCopy[action.payload.id].city
             return {
                 ...state,
-                city: city
+                education: educationCopy
             }
         }
 
@@ -51,7 +51,7 @@ export default function education(state = initialState, action) {
             educationCopy[action.payload.id].country = action.payload.country || educationCopy[action.payload.id].country
             return {
                 ...state,
-                country: country
+                education: educationCopy
             }
         }
 
@@ -93,17 +93,17 @@ export default function education(state = initialState, action) {
             }
         }
 
-        case actions.EDUCATION_UPDATE_TITLE: {
+        case actions.EDUCATION_UPDATE_DESCRIPTION: {
             let educationCopy = [...state.education]
-            educationCopy[action.payload.id].title = action.payload.title || educationCopy[action.payload.id].title
+            educationCopy[action.payload.id].description = action.payload.description || educationCopy[action.payload.id].description
             return {
                 ...state,
-                title: title
+                education: educationCopy
             }
         }
 
         case actions.EDUCATION_ADD_EDUCATION: {
-            let educationCopy = [...state.experience]
+            let educationCopy = [...state.education]
             educationCopy.push({
                 school: '',
                 title: '',

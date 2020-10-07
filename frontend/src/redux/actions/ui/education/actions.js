@@ -40,7 +40,7 @@ export const updateCountry = (id, country) => ({
 })
 
 export const updateFromDate = (id, fromDateString) => ({
-    type: actions.EDUCATION_UPDATE_FROM,
+    type: actions.EDUCATION_UPDATE_FROM_DATE,
     payload: {
         id: id,
         fromDateString: fromDateString
@@ -56,7 +56,7 @@ export const updateToDate = (id, toDateString) => ({
 })
 
 export const updateDescription = (id, description) => ({
-    type: actions.EDUCATION_UPDATE_DESRIPTION,
+    type: actions.EDUCATION_UPDATE_DESCRIPTION,
     payload: {
         id: id,
         description: description

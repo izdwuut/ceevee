@@ -19,9 +19,7 @@ import * as Actions from '../../redux/actions/ui/experience/actions'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import {datepickerDateFormat} from '../../utilities/variables'
-const mapStateToProps = state => {
-    return state.experience
-}
+
 
 
 
@@ -141,7 +139,6 @@ export class Experience extends React.Component {
                                 control={Input}
                                 label='To'
                                 value={this.props.experience[i].toDateString}
-                                selected={this.props.experience[i].toDate}
                                 onChange={e => this.updateToDate(i, e.target.value)}
                             />
                             <DatePicker
@@ -192,6 +189,10 @@ export class Experience extends React.Component {
             )
         }
     }
+}
+
+const mapStateToProps = state => {
+    return state.experience
 }
 
 const mapDispatchToProps = dispatch => {
