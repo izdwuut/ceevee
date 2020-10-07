@@ -1,4 +1,4 @@
-import * as actions from '../../actions/ui/metaData/actionTypes'
+import * as actions from './actionTypes'
 
 const initialState = {
     firstName: 'Lorem',

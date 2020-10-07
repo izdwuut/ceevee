@@ -1,4 +1,4 @@
-import * as actions from '../../actions/pdf/pdfViewer/actionTypes'
+import * as actions from './actionTypes'
 
 const initialState = {
     update: false,

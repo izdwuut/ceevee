@@ -5,7 +5,7 @@ import { Document, Page, pdfjs, } from 'react-pdf'
 import styles from './PDFViewer.css'
 import { Button } from 'semantic-ui-react'
 import Test from '../templates/Test';
-import { updatePreviousBlob, updateNextBlob, updatePreview } from '../../../redux/actions/pdf/pdfViewer/actions'
+import { updatePreviousBlob, updateNextBlob, updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { connect } from 'react-redux'
 import { CSSTransition } from "react-transition-group";
 import Upeksa from '../templates/upeksa/Upeksa';

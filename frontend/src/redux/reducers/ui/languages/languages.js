@@ -1,4 +1,4 @@
-import * as actions from '../../actions/ui/languages/actionTypes'
+import * as actions from './actionTypes'
 
 const initialState = {
     header: 'Languages',

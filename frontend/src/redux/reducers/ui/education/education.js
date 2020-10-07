@@ -1,6 +1,6 @@
-import * as actions from '../../actions/ui/education/actionTypes'
-import { isDateValid, getShortDateString } from '../../../utilities/date'
-import { formatterDateFormat } from '../../../utilities/variables'
+import * as actions from './actionTypes'
+import { isDateValid, getShortDateString } from '../../../../utilities/date'
+import { formatterDateFormat } from '../../../../utilities/variables'
 import moment from 'moment'
 
 const initialState = {

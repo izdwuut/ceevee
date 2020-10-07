@@ -1,4 +1,4 @@
-import * as actions from '../../actions/ui/skills/actionTypes'
+import * as actions from './actionTypes'
 
 const initialState = {
     header: 'Lorem',

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Container, Header, Accordion, Icon, Input, Menu } from 'semantic-ui-react'
-import { updateHeader, updateSkill, addSkill, deleteSkill } from '../../redux/actions/ui/skills/actions'
+import { updateHeader, updateSkill, addSkill, deleteSkill } from '../../redux/reducers/ui/skills/actions'
 import { connect } from "react-redux"
 import MainContext from '../../CreateCVApp';
 import debounce from '../../utilities/debounce'
-import { updatePreview } from '../../redux/actions/pdf/pdfViewer/actions'
+import { updatePreview } from '../../redux/reducers/pdf/pdfViewer/actions'
 import { Button } from 'semantic-ui-react'
 import {debounceTime} from '../../utilities/variables'
 export class Skills extends React.Component {

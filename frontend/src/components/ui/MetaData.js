@@ -1,8 +1,8 @@
 import MainContext from '../../CreateCVApp';
 import * as React from 'react';
 import { Form } from 'semantic-ui-react'
-import { updateFirstName, updateMiddleName, updateLastName, updatePosition, updateEmail, updateMobile, updateCountry, updateCity, updateDrivingLicense, updateBirthDate } from '../../redux/actions/ui/metaData/actions'
-import { updatePreview } from '../../redux/actions/pdf/pdfViewer/actions'
+import { updateFirstName, updateMiddleName, updateLastName, updatePosition, updateEmail, updateMobile, updateCountry, updateCity, updateDrivingLicense, updateBirthDate } from '../../redux/reducers/ui/metaData/actions'
+import { updatePreview } from '../../redux/reducers/pdf/pdfViewer/actions'
 import { connect } from "react-redux";
 import {debounceTime} from '../../utilities/variables'
 import debounce from '../../utilities/debounce'
