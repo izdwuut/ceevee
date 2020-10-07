@@ -24,6 +24,7 @@ import { experienceStyles } from './styles/experienceStyles'
 import { languagesStyles } from './styles/languagesStyles'
 import { educationStyles } from './styles/educationStyles'
 import { linksStyles } from './styles/linksStyles'
+import { gdpaStyles } from './styles/gdpaStyles'
 
 import Experience from '../../Experience'
 
@@ -55,6 +56,7 @@ export default class Upeksa extends React.Component {
               <View style={styles.rightColumn}>
                 <Experience style={experienceStyles} context={MainContext} />
                 <Education style={educationStyles} context={MainContext} />
+                <GDPA style={gdpaStyles} context={MainContext} />
               </View>
 
             </View>
