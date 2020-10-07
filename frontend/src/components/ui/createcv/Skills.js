@@ -1,41 +1,40 @@
 import * as React from 'react';
 import { Container, Header, Accordion, Icon, Input, Menu } from 'semantic-ui-react'
-import * as Actions from '../../redux/reducers/ui/hobbies/actions'
+import { updateHeader, updateSkill, addSkill, deleteSkill } from '../../../redux/reducers/ui/skills/actions'
 import { connect } from "react-redux"
-import MainContext from '../../CreateCVApp';
-import debounce from '../../utilities/debounce'
-import { updatePreview } from '../../redux/reducers/pdf/pdfViewer/actions'
+import MainContext from '../../../CreateCVApp';
+import debounce from '../../../utilities/debounce'
+import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { Button } from 'semantic-ui-react'
-import {debounceTime} from '../../utilities/variables'
-
-export class Hobbies extends React.Component {
+import {debounceTime} from '../../../utilities/variables'
+export class Skills extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             activeIndex: 0,
         }
-        this.handleClick = this.handleClick.bind(this)
+        this.handleClick = this.handleClick.bind(this);
     }
 
     updatePreview = debounce(() => {
         this.props.updatePreview(true)
     }, debounceTime)
 
-    updateHobby = (id, hobby) => {
-        this.props.updateHobby(id, hobby)
+    updateSkill = (id, skill, description) => {
+        this.props.updateSkill(id, skill, description)
         this.updatePreview()
     }
 
-    addHobby = () => {
-        this.props.addHobby('')
+    addSkill = () => {
+        this.props.addSkill('', '')
         this.setState({
-            activeIndex: this.props.hobbies.length
+            activeIndex: this.props.skills.length
         })
         this.updatePreview()
     }
 
-    deleteHobby = id => {
-        this.props.deleteHobby(id)
+    deleteSkill = (id) => {
+        this.props.deleteSkill(id)
         this.updatePreview()
     }
 
@@ -48,20 +47,21 @@ export class Hobbies extends React.Component {
 
     render() {
         const { activeIndex } = this.state
-        let hobbies = []
-        for (let i = 0; i < this.props.hobbies.length; i++) {
-            hobbies.push(<Menu.Item>
+        let skills = []
+        for (let i = 0; i < this.props.skills.length; i++) {
+            skills.push(<Menu.Item>
                 <Accordion.Title
                     active={activeIndex === i}
                     index={i}
                     onClick={this.handleClick}
                 >
                     <Icon name='dropdown' />
-                    {this.props.hobbies[i]}
+                    {this.props.skills[i].skill}
                 </Accordion.Title>
                 <Accordion.Content active={activeIndex === i}>
-                    <Input placeholder='Hobby' className='input' value={this.props.hobbies[i]} onChange={e => this.updateHobby(i, e.target.value)} />
-                    <Button onClick={() => this.deleteHobby(i)}>
+                    <Input placeholder='Skill' className='input' value={this.props.skills[i].skill} onChange={e => this.updateSkill(i, e.target.value, null)} />
+                    <Input placeholder='Short description' className='input' value={this.props.skills[i].description} onChange={e => this.updateSkill(i, null, e.target.value)} />
+                    <Button onClick={() => this.deleteSkill(i)}>
                         Delete
                   </Button>
                 </Accordion.Content>
@@ -70,41 +70,39 @@ export class Hobbies extends React.Component {
 
         return (
             <Container text>
-                <Header>{this.props.header}</Header>
+                <Header>Skills</Header>
                 <p>
                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                 </p>
-                {hobbies.length > 0 &&
+                {skills.length > 0 &&
                     <Accordion styled as={Menu} vertical>
-                        {hobbies}
+                        {skills}
                     </Accordion>
                 }
 
-                <Button onClick={this.addHobby}>
-                    Add
-                </Button>
+                <Button onClick={this.addSkill}>
+                    Add skill
+                  </Button>
             </Container>
         )
     }
 }
 
 const mapStateToProps = state => {
-    return state.hobbies
+    return state.skills
 }
-
 const mapDispatchToProps = dispatch => {
     return {
-        updateHeader: (header) => dispatch(Actions.updateHeader(header)),
-        updateHobby: (id, hobby) => dispatch(Actions.updateHobby(id, hobby)),
-        addHobby: (hobby) => dispatch(Actions.addHobby(hobby)),
-        deleteHobby: id => dispatch(Actions.deleteHobby(id)),
+        updateHeader: (header) => dispatch(updateHeader(header)),
+        updateSkill: (id, skill, description) => dispatch(updateSkill(id, skill, description)),
+        addSkill: (skill, description) => dispatch(addSkill(skill, description)),
+        deleteSkill: id => dispatch(deleteSkill(id)),
         updatePreview: (isUpdate) => dispatch(updatePreview(isUpdate))
-    }
-}
-
+    };
+};
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
     null,
     { context: MainContext }
-)(Hobbies);
+)(Skills);

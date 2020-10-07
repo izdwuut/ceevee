@@ -9,16 +9,16 @@ import {
     Icon
 } from 'semantic-ui-react'
 import { connect } from "react-redux"
-import MainContext from '../../CreateCVApp'
-import debounce from '../../utilities/debounce'
-import { updatePreview } from '../../redux/reducers/pdf/pdfViewer/actions'
-import { debounceTime } from '../../utilities/variables'
+import MainContext from '../../../CreateCVApp'
+import debounce from '../../../utilities/debounce'
+import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
+import { debounceTime } from '../../../utilities/variables'
 import SemanticDatepicker from 'react-semantic-ui-datepickers'
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css'
-import * as Actions from '../../redux/reducers/ui/experience/actions'
+import * as Actions from '../../../redux/reducers/ui/experience/actions'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
-import {datepickerDateFormat} from '../../utilities/variables'
+import {datepickerDateFormat} from '../../../utilities/variables'
 
 
 

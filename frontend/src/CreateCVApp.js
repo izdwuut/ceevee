@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateCV from './components/ui/templates/CreateCV/CreateCV'
+import CreateCV from './components/ui/createcv/CreateCV'
 import { Provider } from 'react-redux'
 import store from './redux/store'
 
