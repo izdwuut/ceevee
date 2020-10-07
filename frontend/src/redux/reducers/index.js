@@ -7,6 +7,7 @@ import experience from './ui/experience/experience'
 import languages from './ui/languages/languages'
 import education from './ui/education/education'
 import links from './ui/links/links'
+import gdpa from './ui/gdpa/gdpa'
 
 
 
@@ -18,5 +19,6 @@ export default combineReducers({
     experience: experience,
     languages: languages,
     education: education,
-    links: links
+    links: links,
+    gdpa: gdpa
 });
