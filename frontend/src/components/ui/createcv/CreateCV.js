@@ -9,6 +9,7 @@ import MainContext from '../../../CreateCVApp';
 import Languages from './Languages';
 import Education from './Education';
 import  Links  from './Links';
+import GDPA from './GDPA';
 
 export default class CreateCV extends React.Component {
   render() {
@@ -22,6 +23,7 @@ export default class CreateCV extends React.Component {
           <Links context={MainContext} />
           <Languages context={MainContext} />
           <Hobbies context={MainContext} />
+          <GDPA context={MainContext} />
         </div>
         <PDFViewer context={MainContext} />
       </div>
