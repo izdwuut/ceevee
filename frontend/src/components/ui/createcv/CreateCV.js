@@ -8,6 +8,7 @@ import Experience from './Experience'
 import MainContext from '../../../CreateCVApp';
 import Languages from './Languages';
 import Education from './Education';
+import  Links  from './Links';
 
 export default class CreateCV extends React.Component {
   render() {
@@ -18,6 +19,7 @@ export default class CreateCV extends React.Component {
           <Experience context={MainContext} />
           <Education context={MainContext} />
           <Skills context={MainContext} />
+          <Links context={MainContext} />
           <Languages context={MainContext} />
           <Hobbies context={MainContext} />
         </div>
