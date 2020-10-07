@@ -5,6 +5,7 @@ import skills from './ui/skills'
 import hobbies from './ui/hobbies'
 import experience from './ui/experience'
 import languages from './ui/languages'
+import education from './ui/education'
 
 
 export default combineReducers({ 
@@ -13,5 +14,6 @@ export default combineReducers({
     skills: skills,
     hobbies: hobbies,
     experience: experience,
-    languages: languages
+    languages: languages,
+    education: education
 });

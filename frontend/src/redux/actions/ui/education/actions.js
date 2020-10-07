@@ -39,19 +39,19 @@ export const updateCountry = (id, country) => ({
     }
 })
 
-export const updateFrom = (id, from) => ({
-    type: actions.EDUCATION_UPDATE_from,
+export const updateFromDate = (id, fromDateString) => ({
+    type: actions.EDUCATION_UPDATE_FROM,
     payload: {
         id: id,
-        from: from
+        fromDateString: fromDateString
     }
 })
 
-export const updateTo = (id, to) => ({
-    type: actions.EDUCATION_UPDATE_TO,
+export const updateToDate = (id, toDateString) => ({
+    type: actions.EDUCATION_UPDATE_TO_DATE,
     payload: {
         id: id,
-        to: to
+        toDateString: toDateString
     }
 })
 
