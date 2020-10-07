@@ -1,45 +1,56 @@
-import * as actions from '../languages/actionTypes'
+import * as actions from './actionTypes'
 
 const initialState = {
-    header: 'Languages',
-    originalHeader: 'Languages',
-    languages: [
+    header: 'Links',
+    originalHeader: 'Links',
+    links: [
     ],
     visible: false
 }
 
-export default function languages(state = initialState, action) {
+export default function links(state = initialState, action) {
     switch (action.type) {
-        case actions.LANGUAGES_UPDATE_HEADER: {
+        case actions.LINKS_UPDATE_HEADER: {
             return {
                 ...state,
                 header: action.payload.header
             }
         }
-        case actions.LANGUAGES_UPDATE_LANGUAGE: {
-            let languagesCopy = [...state.languages]
-            languagesCopy[action.payload.id] = action.payload.language
+        case actions.LINKS_UPDATE_LABEL: {
+            let linksCopy = [...state.links]
+            linksCopy[action.payload.id].label = action.payload.label
             return {
                 ...state,
-                languages: languagesCopy
+                links: linksCopy
             }
         }
-        case actions.LANGUAGES_ADD_LANGUAGE: {
-            let languagesCopy = [...state.languages]
-            languagesCopy.push(action.payload.languages)
+        case actions.LINKS_UPDATE_LINK: {
+            let linksCopy = [...state.links]
+            linksCopy[action.payload.id].link = action.payload.link
             return {
                 ...state,
-                languages: languagesCopy,
+                links: linksCopy
+            }
+        }
+        case actions.LINKS_ADD_LINK: {
+            let linksCopy = [...state.links]
+            linksCopy.push({
+                label: '',
+                link: ''
+            })
+            return {
+                ...state,
+                links: linksCopy,
                 visible: true
             }
         }
-        case actions.LANGUAGES_DELETE_LANGUAGE: {
-            let languagesCopy = [...state.languages]
-            languagesCopy.splice(action.payload.id, 1)
+        case actions.LINKS_DELETE_LINK: {
+            let linksCopy = [...state.links]
+            linksCopy.splice(action.payload.id, 1)
             return {
                 ...state,
-                languages: languagesCopy,
-                visible: languagesCopy.length > 0
+                links: linksCopy,
+                visible: linksCopy.length > 0
             }
         }
         default:
