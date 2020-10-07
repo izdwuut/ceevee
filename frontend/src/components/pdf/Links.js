@@ -14,10 +14,9 @@ export class Links extends React.Component {
                     {this.props.links.map(link => {
                         return <Link style={this.props.style.link}src={link.link}>
                             {link.label}
-                    </Link>
+                        </Link>
                     })}
                 </View>}
-
             </View>
         )
     }
