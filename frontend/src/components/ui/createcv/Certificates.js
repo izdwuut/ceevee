@@ -112,7 +112,7 @@ export class Certificates extends React.Component {
                     </Form>
                 }
 
-                <Button onClick={() => this.addEducation()}>
+                <Button onClick={() => this.addCertificate()}>
                     Add
             </Button>
             </Segment>
