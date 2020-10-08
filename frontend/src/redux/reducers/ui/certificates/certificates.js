@@ -1,6 +1,6 @@
 import * as actions from './actionTypes'
 import { formatterDateFormat } from '../../../../utilities/variables'
-import { isDateValid, getShortDateString } from '../../../../utilities/date'
+import { getValidatedDate } from '../../../../utilities/date'
 import moment from 'moment'
 
 const initialState = {
@@ -38,21 +38,9 @@ export default function certificates(state = initialState, action) {
         }
 
         case actions.CERTIFICATES_UPDATE_VALID_UNTIL: {
-            let certificatesCopy = [...state.certificates]
-            if (isDateValid(action.payload.validUntilString)) {
-                if (isNaN(new Date(action.payload.validUntilString))) {
-                    certificatesCopy[action.payload.id].validUntilString = action.payload.validUntilString
-                } else {
-                    certificatesCopy[action.payload.id].validUntilString = getShortDateString(action.payload.validUntilString)
-                }
-                certificatesCopy[action.payload.id].validUntil = moment(certificatesCopy[action.payload.id].validUntilString, formatterDateFormat).toDate()
-            } else {
-                certificatesCopy[action.payload.id].validUntilString = action.payload.validUntilString
-
-            }
             return {
                 ...state,
-                certificates: certificatesCopy
+                certificates: getValidatedDate(state.certificates, 'validUntil', action)
             }
         }
 

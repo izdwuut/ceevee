@@ -1,5 +1,5 @@
 import * as actions from './actionTypes'
-import { isDateValid, getShortDateString } from '../../../../utilities/date'
+import { getValidatedDate } from '../../../../utilities/date'
 import { formatterDateFormat } from '../../../../utilities/variables'
 import moment from 'moment'
 
@@ -56,40 +56,18 @@ export default function education(state = initialState, action) {
         }
 
         case actions.EDUCATION_UPDATE_FROM_DATE: {
-            let educationCopy = [...state.education]
-            if (isDateValid(action.payload.fromDateString)) {
-                if (isNaN(new Date(action.payload.fromDateString))) {
-                    educationCopy[action.payload.id].fromDateString = action.payload.fromDateString
-                } else {
-                    educationCopy[action.payload.id].fromDateString = getShortDateString(action.payload.fromDateString)
-                }
-                educationCopy[action.payload.id].fromDate = moment(educationCopy[action.payload.id].fromDateString, formatterDateFormat).toDate()
-            } else {
-                educationCopy[action.payload.id].fromDateString = action.payload.fromDateString
-
-            }
+         
             return {
                 ...state,
-                education: educationCopy
+                education: getValidatedDate(state.education, 'fromDate', action)
             }
         }
 
         case actions.EDUCATION_UPDATE_TO_DATE: {
-            let educationCopy = [...state.education]
-            if (isDateValid(action.payload.toDateString)) {
-                if (isNaN(new Date(action.payload.toDateString))) {
-                    educationCopy[action.payload.id].toDateString = action.payload.toDateString
-                } else {
-                    educationCopy[action.payload.id].toDateString = getShortDateString(action.payload.toDateString)
-                }
-                educationCopy[action.payload.id].toDate = moment(educationCopy[action.payload.id].toDateString, formatterDateFormat).toDate()
-            } else {
-                educationCopy[action.payload.id].toDateString = action.payload.toDateString
-
-            }
+            
             return {
                 ...state,
-                education: educationCopy
+                education: getValidatedDate(state.education, 'toDate', action)
             }
         }
 
