@@ -10,6 +10,8 @@ import Languages from './Languages';
 import Education from './Education';
 import  Links  from './Links';
 import GDPA from './GDPA';
+import Certificates from './Certificates';
+
 
 export default class CreateCV extends React.Component {
   render() {
@@ -20,8 +22,9 @@ export default class CreateCV extends React.Component {
           <Experience context={MainContext} />
           <Education context={MainContext} />
           <Skills context={MainContext} />
-          <Links context={MainContext} />
           <Languages context={MainContext} />
+          <Links context={MainContext} />
+          <Certificates context={MainContext} />
           <Hobbies context={MainContext} />
           <GDPA context={MainContext} />
         </div>

@@ -1,10 +1,11 @@
 import * as actions from './actionTypes'
 import { formatterDateFormat } from '../../../../utilities/variables'
+import { isDateValid, getShortDateString } from '../../../../utilities/date'
 import moment from 'moment'
 
 const initialState = {
-    header: 'Education',
-    originalHeader: 'Education',
+    header: 'Certificates',
+    originalHeader: 'Certificates',
     certificates: [],
     visible: false
 }
@@ -59,16 +60,10 @@ export default function certificates(state = initialState, action) {
         case actions.CERTIFICATES_ADD_CERTIFICATE: {
             let certificatesCopy = [...state.certificates]
             certificatesCopy.push({
-                school: '',
-                title: '',
-                company: '',
-                city: '',
-                country: '',
-                fromDate: '',
-                toDate: '',
-                fromDateString: '',
-                toDateString: '',
-                description: ''
+                certificate: '',
+                issuer: '',
+                validUntilString: '',
+                validUntil: ''
             })
             return {
                 ...state,
