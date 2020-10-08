@@ -8,6 +8,8 @@ import languages from './ui/languages/languages'
 import education from './ui/education/education'
 import links from './ui/links/links'
 import gdpa from './ui/gdpa/gdpa'
+import certificates from './ui/certificates/certificates'
+
 
 
 
@@ -20,5 +22,6 @@ export default combineReducers({
     languages: languages,
     education: education,
     links: links,
-    gdpa: gdpa
+    gdpa: gdpa,
+    certificates: certificates
 });
