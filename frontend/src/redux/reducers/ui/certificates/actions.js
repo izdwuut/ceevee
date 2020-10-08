@@ -23,11 +23,11 @@ export const updateIssuer = (id, issuer) => ({
     }
 })
 
-export const updateValidUntil = (id, validUntil) => ({
+export const updateValidUntil = (id, validUntilString) => ({
     type: actions.CERTIFICATES_UPDATE_VALID_UNTIL,
     payload: {
         id: id,
-        validUntil: validUntil
+        validUntilString: validUntilString
     }
 })
 
