@@ -1,7 +1,6 @@
 import React from 'react'
 import { Document, Page, View, Text } from '@react-pdf/renderer'
 import Custom from '../../Custom'
-import Certificates from '../../Certificates'
 import Header from '../../Header'
 import Skills from '../../Skills'
 import Links from '../../Links'
@@ -25,8 +24,11 @@ import { languagesStyles } from './styles/languagesStyles'
 import { educationStyles } from './styles/educationStyles'
 import { linksStyles } from './styles/linksStyles'
 import { gdpaStyles } from './styles/gdpaStyles'
+import { certificatesStyles } from './styles/certificatesStyles'
 
 import Experience from '../../Experience'
+import Certificates from '../../Certificates'
+
 
 
 
@@ -56,6 +58,7 @@ export default class Upeksa extends React.Component {
               <View style={styles.rightColumn}>
                 <Experience style={experienceStyles} context={MainContext} />
                 <Education style={educationStyles} context={MainContext} />
+                <Certificates style={certificatesStyles} context={MainContext} />
                 <GDPA style={gdpaStyles} context={MainContext} />
               </View>
 
