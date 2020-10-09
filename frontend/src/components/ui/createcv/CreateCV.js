@@ -11,6 +11,7 @@ import Education from './Education';
 import  Links  from './Links';
 import GDPA from './GDPA';
 import Certificates from './Certificates';
+import  Projects from './Projects';
 
 
 export default class CreateCV extends React.Component {
@@ -26,6 +27,7 @@ export default class CreateCV extends React.Component {
           <Links context={MainContext} />
           <Certificates context={MainContext} />
           <Hobbies context={MainContext} />
+          <Projects context={MainContext} />
           <GDPA context={MainContext} />
         </div>
         <PDFViewer context={MainContext} />
