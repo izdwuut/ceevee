@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Container, Header, Accordion, Icon, Input, Menu } from 'semantic-ui-react'
+import { Segment, Header, Accordion, Icon, Input, Menu } from 'semantic-ui-react'
 import { updateHeader, updateSkill, addSkill, deleteSkill } from '../../../redux/reducers/ui/skills/actions'
 import { connect } from "react-redux"
 import MainContext from '../../../CreateCVApp';
@@ -69,7 +69,7 @@ export class Skills extends React.Component {
         }
 
         return (
-            <Container text>
+            <Segment>
                 <Header>Skills</Header>
                 <p>
                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
@@ -83,7 +83,7 @@ export class Skills extends React.Component {
                 <Button onClick={this.addSkill}>
                     Add skill
                   </Button>
-            </Container>
+                  </Segment>
         )
     }
 }

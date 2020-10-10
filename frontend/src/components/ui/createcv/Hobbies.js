@@ -1,22 +1,14 @@
 import * as React from 'react';
-import { Container, Header, Accordion, Icon, Input, Menu } from 'semantic-ui-react'
+import { Segment, Header, Accordion, Icon, Input, Menu } from 'semantic-ui-react'
 import * as Actions from '../../../redux/reducers/ui/hobbies/actions'
 import { connect } from "react-redux"
 import MainContext from '../../../CreateCVApp';
 import debounce from '../../../utilities/debounce'
 import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { Button } from 'semantic-ui-react'
-import {debounceTime} from '../../../utilities/variables'
+import { debounceTime } from '../../../utilities/variables'
 
 export class Hobbies extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            activeIndex: 0,
-        }
-        this.handleClick = this.handleClick.bind(this)
-    }
-
     updatePreview = debounce(() => {
         this.props.updatePreview(true)
     }, debounceTime)
@@ -28,9 +20,6 @@ export class Hobbies extends React.Component {
 
     addHobby = () => {
         this.props.addHobby('')
-        this.setState({
-            activeIndex: this.props.hobbies.length
-        })
         this.updatePreview()
     }
 
@@ -39,51 +28,35 @@ export class Hobbies extends React.Component {
         this.updatePreview()
     }
 
-    handleClick(e, titleProps) {
-        const { index } = titleProps
-        const { activeIndex } = this.state
-        const newIndex = activeIndex === index ? -1 : index
-        this.setState({ activeIndex: newIndex })
-    }
-
     render() {
-        const { activeIndex } = this.state
         let hobbies = []
         for (let i = 0; i < this.props.hobbies.length; i++) {
-            hobbies.push(<Menu.Item>
-                <Accordion.Title
-                    active={activeIndex === i}
-                    index={i}
-                    onClick={this.handleClick}
-                >
-                    <Icon name='dropdown' />
-                    {this.props.hobbies[i]}
-                </Accordion.Title>
-                <Accordion.Content active={activeIndex === i}>
+            hobbies.push(
+
+                <Segment>
                     <Input placeholder='Hobby' className='input' value={this.props.hobbies[i]} onChange={e => this.updateHobby(i, e.target.value)} />
                     <Button onClick={() => this.deleteHobby(i)}>
                         Delete
                   </Button>
-                </Accordion.Content>
-            </Menu.Item>)
+                  </Segment>
+            )
         }
 
         return (
-            <Container text>
+            <Segment>
                 <Header>{this.props.header}</Header>
                 <p>
                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                 </p>
-                {hobbies.length > 0 &&
-                    <Accordion styled as={Menu} vertical>
+                
                         {hobbies}
-                    </Accordion>
-                }
+                    
+                
 
                 <Button onClick={this.addHobby}>
                     Add
                 </Button>
-            </Container>
+            </Segment>
         )
     }
 }
@@ -96,7 +69,7 @@ const mapDispatchToProps = dispatch => {
     return {
         updateHeader: (header) => dispatch(Actions.updateHeader(header)),
         updateHobby: (id, hobby) => dispatch(Actions.updateHobby(id, hobby)),
-        addHobby: (hobby) => dispatch(Actions.addHobby(hobby)),
+        addHobby: () => dispatch(Actions.addHobby()),
         deleteHobby: id => dispatch(Actions.deleteHobby(id)),
         updatePreview: (isUpdate) => dispatch(updatePreview(isUpdate))
     }

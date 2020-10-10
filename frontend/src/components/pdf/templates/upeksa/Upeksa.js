@@ -25,9 +25,11 @@ import { educationStyles } from './styles/educationStyles'
 import { linksStyles } from './styles/linksStyles'
 import { gdpaStyles } from './styles/gdpaStyles'
 import { certificatesStyles } from './styles/certificatesStyles'
+import { projectsStyles } from './styles/projectsStyles'
 
 import Experience from '../../Experience'
 import Certificates from '../../Certificates'
+import Projects from '../../Projects'
 
 
 
@@ -59,6 +61,8 @@ export default class Upeksa extends React.Component {
                 <Experience style={experienceStyles} context={MainContext} />
                 <Education style={educationStyles} context={MainContext} />
                 <Certificates style={certificatesStyles} context={MainContext} />
+                <Projects style={projectsStyles} context={MainContext} />
+
                 <GDPA style={gdpaStyles} context={MainContext} />
               </View>
 
