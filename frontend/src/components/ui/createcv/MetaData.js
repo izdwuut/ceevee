@@ -1,6 +1,6 @@
 import MainContext from '../../../CreateCVApp';
 import * as React from 'react';
-import { Form } from 'semantic-ui-react'
+import { Form, Segment, Header } from 'semantic-ui-react'
 import { updateFirstName, updateMiddleName, updateLastName, updatePosition, updateEmail, updateMobile, updateCountry, updateCity, updateDrivingLicense, updateBirthDate } from '../../../redux/reducers/ui/metaData/actions'
 import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { connect } from "react-redux";
@@ -60,7 +60,10 @@ export class MetaData extends React.Component {
     }
     render() {
         return (
+            <Segment>
+            <Header>{this.props.header}</Header>
             <Form>
+
                 <Form.Input
                     label='Name'
                     type='text'
@@ -122,6 +125,7 @@ export class MetaData extends React.Component {
                     value={this.props.birthDate}
                 />
             </Form>
+            </Segment>
         )
     }
 }

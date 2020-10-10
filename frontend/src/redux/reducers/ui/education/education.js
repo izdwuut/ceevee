@@ -21,7 +21,7 @@ export default function education(state = initialState, action) {
 
         case actions.EDUCATION_UPDATE_SCHOOL: {
             let educationCopy = [...state.education]
-            educationCopy[action.payload.id].school = action.payload.school || educationCopy[action.payload.id].school
+            educationCopy[action.payload.id].school = action.payload.school
             return {
                 ...state,
                 education: educationCopy
@@ -30,7 +30,7 @@ export default function education(state = initialState, action) {
 
         case actions.EDUCATION_UPDATE_TITLE: {
             let educationCopy = [...state.education]
-            educationCopy[action.payload.id].title = action.payload.title || educationCopy[action.payload.id].title
+            educationCopy[action.payload.id].title = action.payload.title
             return {
                 ...state,
                 education: educationCopy
@@ -39,7 +39,7 @@ export default function education(state = initialState, action) {
 
         case actions.EDUCATION_UPDATE_CITY: {
             let educationCopy = [...state.education]
-            educationCopy[action.payload.id].city = action.payload.city || educationCopy[action.payload.id].city
+            educationCopy[action.payload.id].city = action.payload.city
             return {
                 ...state,
                 education: educationCopy
@@ -48,7 +48,7 @@ export default function education(state = initialState, action) {
 
         case actions.EDUCATION_UPDATE_COUNTRY: {
             let educationCopy = [...state.education]
-            educationCopy[action.payload.id].country = action.payload.country || educationCopy[action.payload.id].country
+            educationCopy[action.payload.id].country = action.payload.country 
             return {
                 ...state,
                 education: educationCopy
@@ -73,7 +73,7 @@ export default function education(state = initialState, action) {
 
         case actions.EDUCATION_UPDATE_DESCRIPTION: {
             let educationCopy = [...state.education]
-            educationCopy[action.payload.id].description = action.payload.description || educationCopy[action.payload.id].description
+            educationCopy[action.payload.id].description = action.payload.description
             return {
                 ...state,
                 education: educationCopy

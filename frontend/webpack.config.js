@@ -35,27 +35,52 @@ module.exports = function (_env, argv) {
                         isProduction ? MiniCssExtractPlugin.loader : "style-loader",
                         "css-loader"
                     ]
-                
+
                 }
             ]
-    },
-        resolve: {
-        extensions: [".js", ".jsx"]
-    },
-    plugins: [
-        isProduction &&
-        new MiniCssExtractPlugin({
-            filename: "assets/css/[name].[contenthash:8].css",
-            chunkFilename: "assets/css/[name].[contenthash:8].chunk.css"
-        }),
-        new CopyWebpackPlugin([
+        },
+        loaders: [
             {
-              from: 'node_modules/pdfjs-dist/cmaps/',
-              to: 'cmaps/'
+                test: /\.jsx?$/,
+                loaders: ['babel'],
+                include: [
+                    path.join(__dirname, 'public/src'),
+                    path.join(__dirname, 'node_modules/@salesforce/design-system-react'),
+                ]
             },
-          ]),
-    ].filter(Boolean),
-        
-                      
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract(
+                    'style-loader',
+                    'css-loader?url=false&outputStyle=expanded&sourceMap=true&sourceMapContents=true'
+                )
+            },
+            {
+                test: /\.(svg|gif|jpe?g|png)$/,
+                loader: 'url-loader?limit=10000'
+            },
+            {
+                test: /\.(eot|woff|woff2|ttf)$/,
+                loader: 'url-loader?limit=30&name=assets/fonts/webfonts/[name].[ext]'
+            }
+        ],
+        resolve: {
+            extensions: [".js", ".jsx"]
+        },
+        plugins: [
+            isProduction &&
+            new MiniCssExtractPlugin({
+                filename: "assets/css/[name].[contenthash:8].css",
+                chunkFilename: "assets/css/[name].[contenthash:8].chunk.css"
+            }),
+            new CopyWebpackPlugin([
+                {
+                    from: 'node_modules/pdfjs-dist/cmaps/',
+                    to: 'cmaps/'
+                },
+            ]),
+        ].filter(Boolean),
+
+
     }
 }

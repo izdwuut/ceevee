@@ -6,21 +6,25 @@ import * as serviceWorker from './serviceWorker'
 import { Provider } from 'react-redux'
 import store from './redux/store'
 import MainContext  from './CreateCVApp'
-
+import {IconSettings} from '@salesforce/design-system-react'
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store} context={MainContext}>
+    <IconSettings iconPath="/icons">
       <CreateCVApp />
+      </IconSettings>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
 
-const styleLink = document.createElement("link");
-styleLink.rel = "stylesheet";
-styleLink.href = "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css";
-document.head.appendChild(styleLink);
+const salesforceStyles = document.createElement("link");
+salesforceStyles.rel = "stylesheet";
+salesforceStyles.href = "/salesforce-lightning-design-system.min.css";
+document.head.appendChild(salesforceStyles);
+
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

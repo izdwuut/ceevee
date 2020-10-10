@@ -1,16 +1,18 @@
 import * as actions from './actionTypes'
 
 const initialState = {
-    firstName: 'Lorem',
-    middleName: 'Ipsum',
-    lastName: 'Dolor',
-    position: 'Position',
-    email: 'lorem@example.com',
-    mobile: "000000000",
-    country: 'Lorem',
-    city: 'Ipsum',
-    drivingLicense: 'Yes',
-    birthDate: '0000-00-00'
+    header: 'Meta data',
+    description: 'Lorem ipsum',
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    position: '',
+    email: '',
+    mobile: '',
+    country: '',
+    city: '',
+    drivingLicense: '',
+    birthDate: ''
 }
 
 export default function metaData(state = initialState, action) {
