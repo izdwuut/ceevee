@@ -150,24 +150,24 @@ export class Education extends React.Component {
                         value={this.props.education[i].title}
                         onChange={e => this.updateTitle(i, e.target.value)}
                     />
-                    <div className="slds-grid slds-grid_pull-padded slds-grid_vertical-align-center">
+                    <div className="slds-grid slds-gutters">
                         <Input
-                            className="slds-col_padded"
+                            className="slds-col"
                             variant="outlined"
                             label='City'
                             value={this.props.education[i].city}
                             onChange={e => this.updateCity(i, e.target.value)}
                         />
                         <Input
-                            className="slds-col_padded"
+                            className="slds-col"
                             variant="outlined"
                             label='Country'
                             value={this.props.education[i].country}
                             onChange={e => this.updateCountry(i, e.target.value)}
                         />
                     </div>
-                    <div className="slds-grid slds-grid_pull-padded slds-grid_vertical-align-center">
-                        <div className="slds-col_padded">
+                    <div className="slds-grid slds-gutters">
+                        <div className="slds-col">
                             <Input
                                 iconLeft={
                                     <InputIcon
@@ -205,7 +205,7 @@ export class Education extends React.Component {
                                 }
                             />
                         </div>
-                        <div className="slds-col_padded">
+                        <div className="slds-col">
                             <Input
                                 iconLeft={
                                     <InputIcon
