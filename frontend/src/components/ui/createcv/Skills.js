@@ -5,6 +5,7 @@ import MainContext from '../../../CreateCVApp';
 import debounce from '../../../utilities/debounce'
 import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { debounceTime } from '../../../utilities/variables'
+import * as Buttons from '../../../utilities/ui'
 
 import {
     Icon,
@@ -27,34 +28,6 @@ export class Skills extends React.Component {
         }
     }
 
-
-    getContentActions(id) {
-        return (
-            <Button
-                assistiveText={{ icon: 'Delete' }}
-                label="Delete"
-                iconCategory="action"
-                iconName="delete"
-                iconSize="small"
-                iconVariant="bare"
-                colorVariant="error"
-                onClick={() => {
-                    this.deleteSkill(id)
-                }}
-
-                variant="icon"
-            />
-        );
-    }
-
-    getTogglePanel(id) {
-        this.setState((state) => ({
-            ...state,
-            expandedPanels: {
-                [id]: !state.expandedPanels[id],
-            },
-        }));
-    }
     updatePreview = debounce(() => {
         this.props.updatePreview(true)
     }, debounceTime)
@@ -83,18 +56,6 @@ export class Skills extends React.Component {
         this.updatePreview()
     }
 
-
-    getAddSkill = () => {
-        return (
-            <Button
-                label="Add"
-                onClick={this.addSkill}
-                iconCategory="utility"
-                iconName="add"
-                iconPosition="left"
-            />
-        )
-    }
     render() {
         const isEmpty = this.props.skills.length === 0
 
@@ -102,9 +63,9 @@ export class Skills extends React.Component {
         for (let i = 0; i < this.props.skills.length; i++) {
             skills.push(
                 <AccordionPanel
-                    panelContentActions={this.getContentActions(i)}
+                    panelContentActions={Buttons.getContentActions(() => this.deleteSkill(i))}
                     key={i}
-                    onTogglePanel={(e) => this.getTogglePanel(i)}
+                    onTogglePanel={(e) => UI.getTogglePanel(i)}
                     expanded={!!this.state.expandedPanels[i]}
                     summary={this.props.skills[i].skill || 'Skill ' + (i + 1)}
                     
@@ -131,12 +92,12 @@ export class Skills extends React.Component {
 
                 icon={<Icon category="standard" name="skill" size="small" />}
                 headerActions={
-                    !isEmpty && this.getAddSkill()
+                    !isEmpty && Buttons.getAdd(this.addSkill)
                 }
                 empty={
                     isEmpty ? (
                         <CardEmpty heading="No skills">
-                            {this.getAddSkill()}
+                            {Buttons.getAdd(this.addSkill)}
                         </CardEmpty>
                     ) : null
                 }

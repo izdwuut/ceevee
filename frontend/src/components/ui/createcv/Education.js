@@ -10,6 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { datepickerDateFormat } from '../../../utilities/variables'
 import './template/CreateCV'
 import PropTypes from 'prop-types';
+import * as UI from '../../../utilities/ui'
 
 import {
     Icon,
@@ -96,46 +97,6 @@ export class Education extends React.Component {
         this.updatePreview()
     }
 
-    getContentActions(id) {
-        return (
-            <Button
-                assistiveText={{ icon: 'Delete' }}
-                label="Delete"
-                iconCategory="action"
-                iconName="delete"
-                iconSize="small"
-                iconVariant="bare"
-                colorVariant="error"
-                onClick={() => {
-                    this.deleteEducation(id)
-                }}
-
-                variant="icon"
-            />
-        );
-    }
-
-    getTogglePanel(id) {
-        this.setState((state) => ({
-            ...state,
-            expandedPanels: {
-                [id]: !state.expandedPanels[id],
-            },
-        }));
-    }
-
-
-    getAddEducation = () => {
-        return (
-            <Button
-                label="Add"
-                onClick={this.addEducation}
-                iconCategory="utility"
-                iconName="add"
-                iconPosition="left"
-            />
-        )
-    }
     render() {
         const isEmpty = this.props.education.length === 0;
 
@@ -143,18 +104,11 @@ export class Education extends React.Component {
         for (let i = 0; i < this.props.education.length; i++) {
             education.push(
                 <AccordionPanel
-                    panelContentActions={this.getContentActions(i)}
+                    panelContentActions={UI.getContentActions(() => this.deleteEducation(i))}
                     key={i}
-                    onTogglePanel={(e) => this.getTogglePanel(i)}
+                    onTogglePanel={(e) => UI.getTogglePanel(i)}
                     expanded={!!this.state.expandedPanels[i]}
                     summary={this.props.education[i].school || 'School ' + (i + 1)}
-                    empty={
-                        isEmpty ? (
-                            <CardEmpty heading="No education">
-                                {this.getAddEducation()}
-                            </CardEmpty>
-                        ) : null
-                    }
                 >
                     <Input
                         variant="outlined"
@@ -281,12 +235,12 @@ export class Education extends React.Component {
 
                 icon={<Icon category="standard" name="education" size="small" />}
                 headerActions={
-                    !isEmpty && this.getAddEducation()
+                    !isEmpty && UI.getAdd(this.addEducation)
                 }
                 empty={
                     isEmpty ? (
                         <CardEmpty heading="No education">
-                            {this.getAddEducation()}
+                            {UI.getAdd(this.addEducation)}
                         </CardEmpty>
                     ) : null
                 }
