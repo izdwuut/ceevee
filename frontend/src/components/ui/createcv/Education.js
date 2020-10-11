@@ -20,7 +20,8 @@ import {
     Accordion,
     AccordionPanel,
     Tooltip,
-    Textarea
+    Textarea,
+    CardEmpty
 } from '@salesforce/design-system-react';
 
 const propTypes = {
@@ -98,8 +99,8 @@ export class Education extends React.Component {
     getContentActions(id) {
         return (
             <Button
-                assistiveText={{ icon: 'Delete education' }}
-                label="Delete education"
+                assistiveText={{ icon: 'Delete' }}
+                label="Delete"
                 iconCategory="action"
                 iconName="delete"
                 iconSize="small"
@@ -123,6 +124,18 @@ export class Education extends React.Component {
         }));
     }
 
+
+    getAddEducation = () => {
+        return (
+            <Button
+                label="Add"
+                onClick={this.addEducation}
+                iconCategory="utility"
+                iconName="add"
+                iconPosition="left"
+            />
+        )
+    }
     render() {
         const isEmpty = this.props.education.length === 0;
 
@@ -135,6 +148,13 @@ export class Education extends React.Component {
                     onTogglePanel={(e) => this.getTogglePanel(i)}
                     expanded={!!this.state.expandedPanels[i]}
                     summary={this.props.education[i].school || 'School ' + (i + 1)}
+                    empty={
+                        isEmpty ? (
+                            <CardEmpty heading="No education">
+                                {this.getAddEducation()}
+                            </CardEmpty>
+                        ) : null
+                    }
                 >
                     <Input
                         variant="outlined"
@@ -180,7 +200,6 @@ export class Education extends React.Component {
                                     />}
                                 fieldLevelHelpTooltip={
                                     <Tooltip
-                                        id="field-level-help-tooltip"
                                         align="top left"
                                         content="ex: January 2020"
                                         isOpen={this.props.tooltipOpen}
@@ -218,7 +237,6 @@ export class Education extends React.Component {
                                     />}
                                 fieldLevelHelpTooltip={
                                     <Tooltip
-                                        id="field-level-help-tooltip"
                                         align="top left"
                                         content="ex: January 2020"
                                         isOpen={this.props.tooltipOpen}
@@ -261,15 +279,16 @@ export class Education extends React.Component {
             <Card
                 heading="Education"
 
-                icon={<Icon category="utility" name="education" size="small" />}
+                icon={<Icon category="standard" name="education" size="small" />}
                 headerActions={
-                    <Button
-                        label="Add education"
-                        onClick={this.addEducation}
-                        iconCategory="utility"
-                        iconName="add"
-                        iconPosition="left"
-                    />
+                    !isEmpty && this.getAddEducation()
+                }
+                empty={
+                    isEmpty ? (
+                        <CardEmpty heading="No education">
+                            {this.getAddEducation()}
+                        </CardEmpty>
+                    ) : null
                 }
             >
                 <p className='slds-col_padded'>

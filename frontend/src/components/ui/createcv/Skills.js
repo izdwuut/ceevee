@@ -1,21 +1,60 @@
 import * as React from 'react';
-import { Segment, Header, Accordion, Icon, Input, Menu } from 'semantic-ui-react'
 import { updateHeader, updateSkill, addSkill, deleteSkill } from '../../../redux/reducers/ui/skills/actions'
 import { connect } from "react-redux"
 import MainContext from '../../../CreateCVApp';
 import debounce from '../../../utilities/debounce'
 import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
-import { Button } from 'semantic-ui-react'
-import {debounceTime} from '../../../utilities/variables'
+import { debounceTime } from '../../../utilities/variables'
+
+import {
+    Icon,
+    InputIcon,
+    Button,
+    Card,
+    Input,
+    Accordion,
+    AccordionPanel,
+    Tooltip,
+    Textarea,
+    CardEmpty
+} from '@salesforce/design-system-react';
+
 export class Skills extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
-            activeIndex: 0,
+            expandedPanels: {},
         }
-        this.handleClick = this.handleClick.bind(this);
     }
 
+
+    getContentActions(id) {
+        return (
+            <Button
+                assistiveText={{ icon: 'Delete' }}
+                label="Delete"
+                iconCategory="action"
+                iconName="delete"
+                iconSize="small"
+                iconVariant="bare"
+                colorVariant="error"
+                onClick={() => {
+                    this.deleteSkill(id)
+                }}
+
+                variant="icon"
+            />
+        );
+    }
+
+    getTogglePanel(id) {
+        this.setState((state) => ({
+            ...state,
+            expandedPanels: {
+                [id]: !state.expandedPanels[id],
+            },
+        }));
+    }
     updatePreview = debounce(() => {
         this.props.updatePreview(true)
     }, debounceTime)
@@ -26,6 +65,12 @@ export class Skills extends React.Component {
     }
 
     addSkill = () => {
+        this.setState((state) => ({
+            ...state,
+            expandedPanels: {
+                [this.props.skills.length]: true
+            },
+        }));
         this.props.addSkill('', '')
         this.setState({
             activeIndex: this.props.skills.length
@@ -38,52 +83,76 @@ export class Skills extends React.Component {
         this.updatePreview()
     }
 
-    handleClick(e, titleProps) {
-        const { index } = titleProps
-        const { activeIndex } = this.state
-        const newIndex = activeIndex === index ? -1 : index
-        this.setState({ activeIndex: newIndex })
-    }
 
+    getAddSkill = () => {
+        return (
+            <Button
+                label="Add"
+                onClick={this.addSkill}
+                iconCategory="utility"
+                iconName="add"
+                iconPosition="left"
+            />
+        )
+    }
     render() {
-        const { activeIndex } = this.state
+        const isEmpty = this.props.skills.length === 0
+
         let skills = []
         for (let i = 0; i < this.props.skills.length; i++) {
-            skills.push(<Menu.Item>
-                <Accordion.Title
-                    active={activeIndex === i}
-                    index={i}
-                    onClick={this.handleClick}
+            skills.push(
+                <AccordionPanel
+                    panelContentActions={this.getContentActions(i)}
+                    key={i}
+                    onTogglePanel={(e) => this.getTogglePanel(i)}
+                    expanded={!!this.state.expandedPanels[i]}
+                    summary={this.props.skills[i].skill || 'Skill ' + (i + 1)}
+                    
                 >
-                    <Icon name='dropdown' />
-                    {this.props.skills[i].skill}
-                </Accordion.Title>
-                <Accordion.Content active={activeIndex === i}>
-                    <Input placeholder='Skill' className='input' value={this.props.skills[i].skill} onChange={e => this.updateSkill(i, e.target.value, null)} />
-                    <Input placeholder='Short description' className='input' value={this.props.skills[i].description} onChange={e => this.updateSkill(i, null, e.target.value)} />
-                    <Button onClick={() => this.deleteSkill(i)}>
-                        Delete
-                  </Button>
-                </Accordion.Content>
-            </Menu.Item>)
+                    <Input
+                        variant="outlined"
+                        label='Skill'
+                        value={this.props.skills[i].skill}
+                        onChange={e => this.updateSkill(i, e.target.value, null)}
+                    />
+                    <Input
+                        variant="outlined"
+                        label='Desciprion'
+                        value={this.props.skills[i].description}
+                        onChange={e => this.updateSkill(i, null, e.target.value)}
+                    />
+                </AccordionPanel>
+            )
         }
 
         return (
-            <Segment>
-                <Header>Skills</Header>
-                <p>
+            <Card
+                heading="Skills"
+
+                icon={<Icon category="standard" name="skill" size="small" />}
+                headerActions={
+                    !isEmpty && this.getAddSkill()
+                }
+                empty={
+                    isEmpty ? (
+                        <CardEmpty heading="No skills">
+                            {this.getAddSkill()}
+                        </CardEmpty>
+                    ) : null
+                }
+            >
+
+                <p className='slds-col_padded'>
                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                 </p>
                 {skills.length > 0 &&
-                    <Accordion styled as={Menu} vertical>
+                    <Accordion>
                         {skills}
                     </Accordion>
                 }
 
-                <Button onClick={this.addSkill}>
-                    Add skill
-                  </Button>
-                  </Segment>
+                
+            </Card>
         )
     }
 }
