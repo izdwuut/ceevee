@@ -249,9 +249,7 @@ export class Education extends React.Component {
                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                 </p>
                 {education.length > 0 &&
-                    <Accordion
-
-                    >
+                    <Accordion>
                         {education}
                     </Accordion>
                 }

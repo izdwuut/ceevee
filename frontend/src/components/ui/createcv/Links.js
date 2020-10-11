@@ -1,11 +1,16 @@
 import * as React from 'react';
 import {
+    Icon,
+    InputIcon,
     Button,
-    Segment,
-    Form,
+    Card,
     Input,
-    Header,
-} from 'semantic-ui-react'
+    Accordion,
+    AccordionPanel,
+    Tooltip,
+    Textarea,
+    CardEmpty
+} from '@salesforce/design-system-react';
 import { connect } from "react-redux"
 import MainContext from '../../../CreateCVApp'
 import debounce from '../../../utilities/debounce'
@@ -14,11 +19,16 @@ import { debounceTime } from '../../../utilities/variables'
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css'
 import * as Actions from '../../../redux/reducers/ui/links/actions'
 import "react-datepicker/dist/react-datepicker.css";
+import * as Buttons from '../../../utilities/ui'
+import * as UI from '../../../utilities/ui'
+
 
 export class Links extends React.Component {
     constructor(props) {
-        super(props)
-        console.log(props)
+        super(props);
+        this.state = {
+            expandedPanels: {},
+        }
     }
     updatePreview = debounce(() => {
         this.props.updatePreview(true)
@@ -40,52 +50,76 @@ export class Links extends React.Component {
     }
 
     addLink = () => {
-        console.log(this.props.addLink)
+        this.setState((state) => ({
+            ...state,
+            expandedPanels: {
+                [this.props.links.length]: true
+            },
+        }));
         this.props.addLink()
         this.updatePreview()
     }
 
+
+
     render() {
+        const isEmpty = this.props.links.length === 0;
+
         let links = []
         if (this.props.links) {
             for (let i = 0; i < this.props.links.length; i++) {
                 links.push(
-                    <Segment>
-                        <Form.Field
-                            control={Input}
+                    <AccordionPanel
+                        panelContentActions={UI.getContentActions(() => this.deleteLink(i))}
+                        key={i}
+                        onTogglePanel={(e) => UI.getTogglePanel(i)}
+                        expanded={!!this.state.expandedPanels[i]}
+                        summary={this.props.links[i].label || 'Link ' + (i + 1)}
+                    >
+                        <Input
+                            variant="outlined"
                             label='Label'
                             value={this.props.links[i].label}
                             onChange={e => this.updateLabel(i, e.target.value)}
                         />
-                        <Form.Field
-                            control={Input}
+                        <Input
+                            variant="outlined"
                             label='Link'
                             value={this.props.links[i].link}
                             onChange={e => this.updateLink(i, e.target.value)}
                         />
-                        <Button onClick={() => this.deleteLink(i)}>
-                            Delete
-                        </Button>
-                    </Segment>
+
+                    </AccordionPanel>
                 )
             }
         }
         return (
-            <Segment>
-                <Header>{this.props.header}</Header>
+            <Card
+                heading="Links"
+
+                icon={<Icon category="standard" name="link" size="small" />}
+                headerActions={
+                    !isEmpty && UI.getAdd(this.addLink)
+                }
+                empty={
+                    isEmpty ? (
+                        <CardEmpty heading="No links">
+                            {UI.getAdd(this.addLink)}
+                        </CardEmpty>
+                    ) : null
+                }
+            >
                 <p>
                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                 </p>
                 {links.length > 0 &&
-                    <Form>
+                    <Accordion>
                         {links}
-                    </Form>
+                    </Accordion>
                 }
 
-                <Button onClick={() => this.addLink()}>
-                    Add link
-            </Button>
-            </Segment>
+
+            </Card>
         )
     }
 }

@@ -5,7 +5,7 @@ import MainContext from '../../../CreateCVApp';
 import debounce from '../../../utilities/debounce'
 import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { debounceTime } from '../../../utilities/variables'
-import * as Buttons from '../../../utilities/ui'
+import * as UI from '../../../utilities/ui'
 
 import {
     Icon,
@@ -63,7 +63,7 @@ export class Skills extends React.Component {
         for (let i = 0; i < this.props.skills.length; i++) {
             skills.push(
                 <AccordionPanel
-                    panelContentActions={Buttons.getContentActions(() => this.deleteSkill(i))}
+                    panelContentActions={UI.getContentActions(() => this.deleteSkill(i))}
                     key={i}
                     onTogglePanel={(e) => UI.getTogglePanel(i)}
                     expanded={!!this.state.expandedPanels[i]}
@@ -92,12 +92,12 @@ export class Skills extends React.Component {
 
                 icon={<Icon category="standard" name="skill" size="small" />}
                 headerActions={
-                    !isEmpty && Buttons.getAdd(this.addSkill)
+                    !isEmpty && UI.getAdd(this.addSkill)
                 }
                 empty={
                     isEmpty ? (
                         <CardEmpty heading="No skills">
-                            {Buttons.getAdd(this.addSkill)}
+                            {UI.getAdd(this.addSkill)}
                         </CardEmpty>
                     ) : null
                 }
