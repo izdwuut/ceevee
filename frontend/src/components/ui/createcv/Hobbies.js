@@ -55,7 +55,7 @@ export class Hobbies extends React.Component {
                 <AccordionPanel
                     panelContentActions={UI.getContentActions(() => this.deleteHobby(i))}
                     key={i}
-                    onTogglePanel={(e) => UI.getTogglePanel(i)}
+                    onTogglePanel={(e) => UI.getTogglePanel(this.setState, i)}
                     expanded={!!this.state.expandedPanels[i]}
                     summary={this.props.hobbies[i] || 'Hobby ' + (i + 1)}
                 >

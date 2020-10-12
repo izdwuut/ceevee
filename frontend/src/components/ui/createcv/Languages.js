@@ -50,6 +50,12 @@ export class Languages extends React.Component {
     }
 
     addLanguage = () => {
+        this.setState((state) => ({
+            ...state,
+            expandedPanels: {
+                [this.props.languages.length]: true
+            },
+        }));
         this.props.addLanguage()
         this.updatePreview()
     }
