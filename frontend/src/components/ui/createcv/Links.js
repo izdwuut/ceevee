@@ -109,7 +109,7 @@ export class Links extends React.Component {
                     ) : null
                 }
             >
-                <p>
+                <p className='slds-col_padded'>
                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                 </p>
                 {links.length > 0 &&

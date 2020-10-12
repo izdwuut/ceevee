@@ -2,7 +2,7 @@ import * as React from 'react';
 import PDFViewer from '../../../pdf/PDFViewer/PDFViewer'
 import styles from './CreateCV.css'
 import Skills from '../Skills'
-import MetaData from '../MetaData';
+import Details from '../Details';
 import Hobbies from '../Hobbies';
 import Experience from '../Experience'
 import MainContext from '../../../../CreateCVApp';
@@ -21,7 +21,7 @@ export default class CreateCV extends React.Component {
     return (
       <div className="container">
         <div className="ui" style={styles.ui}>
-          <MetaData context={MainContext} />
+          <Details context={MainContext} />
           <Experience context={MainContext} />
           <Education context={MainContext} />
           <Skills context={MainContext} />

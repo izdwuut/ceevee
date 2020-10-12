@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import {debounceTime} from '../../../utilities/variables'
 import debounce from '../../../utilities/debounce'
 
-export class MetaData extends React.Component {
+export class Details extends React.Component {
     constructor(props) {
         super(props)
 
@@ -139,4 +139,4 @@ export default connect(
     { updateFirstName, updateMiddleName, updateLastName, updatePosition, updateEmail, updateMobile, updateCountry, updateCity, updateDrivingLicense, updateBirthDate, updatePreview },
     null,
     { context: MainContext }
-)(MetaData);
+)(Details);

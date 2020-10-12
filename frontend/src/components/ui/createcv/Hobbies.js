@@ -1,13 +1,24 @@
 import * as React from 'react';
-import { Segment, Header, Accordion, Icon, Input, Menu } from 'semantic-ui-react'
 import * as Actions from '../../../redux/reducers/ui/hobbies/actions'
 import { connect } from "react-redux"
 import MainContext from '../../../CreateCVApp';
 import debounce from '../../../utilities/debounce'
 import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
-import { Button } from 'semantic-ui-react'
 import { debounceTime } from '../../../utilities/variables'
+import * as UI from '../../../utilities/ui'
 
+import {
+    Icon,
+    InputIcon,
+    Button,
+    Card,
+    Input,
+    Accordion,
+    AccordionPanel,
+    Tooltip,
+    Textarea,
+    CardEmpty
+} from '@salesforce/design-system-react';
 export class Hobbies extends React.Component {
     updatePreview = debounce(() => {
         this.props.updatePreview(true)
@@ -19,6 +30,12 @@ export class Hobbies extends React.Component {
     }
 
     addHobby = () => {
+        this.setState((state) => ({
+            ...state,
+            expandedPanels: {
+                [this.props.hobbies.length]: true
+            },
+        }));
         this.props.addHobby('')
         this.updatePreview()
     }
@@ -29,34 +46,54 @@ export class Hobbies extends React.Component {
     }
 
     render() {
+        const isEmpty = this.props.hobbies.length === 0;
+
         let hobbies = []
         for (let i = 0; i < this.props.hobbies.length; i++) {
             hobbies.push(
 
-                <Segment>
-                    <Input placeholder='Hobby' className='input' value={this.props.hobbies[i]} onChange={e => this.updateHobby(i, e.target.value)} />
-                    <Button onClick={() => this.deleteHobby(i)}>
-                        Delete
-                  </Button>
-                  </Segment>
+                <AccordionPanel
+                    panelContentActions={UI.getContentActions(() => this.deleteHobby(i))}
+                    key={i}
+                    onTogglePanel={(e) => UI.getTogglePanel(i)}
+                    expanded={!!this.state.expandedPanels[i]}
+                    summary={this.props.hobbies[i] || 'Hobby ' + (i + 1)}
+                >
+                    <Input
+                        variant="outlined"
+                        label='Hobby'
+                        value={this.props.hobbies[i]} 
+                        onChange={e => this.updateHobby(i, e.target.value)}
+                    />
+                  </AccordionPanel>
             )
         }
 
         return (
-            <Segment>
-                <Header>{this.props.header}</Header>
-                <p>
+            <Card
+                heading="Hobbies"
+
+                icon={<Icon category="standard" name="topic" size="small" />}
+                headerActions={
+                    !isEmpty && UI.getAdd(this.addHobby)
+                }
+                empty={
+                    isEmpty ? (
+                        <CardEmpty heading="No hobbies">
+                            {UI.getAdd(this.addHobby)}
+                        </CardEmpty>
+                    ) : null
+                }
+            >
+                <p className='slds-col_padded'>
                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                 </p>
-                
+                <Accordion>
                         {hobbies}
-                    
+                        </Accordion>
                 
 
-                <Button onClick={this.addHobby}>
-                    Add
-                </Button>
-            </Segment>
+            </Card>
         )
     }
 }
