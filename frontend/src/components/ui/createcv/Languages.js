@@ -1,13 +1,4 @@
 import * as React from 'react';
-import {
-    Button,
-    Segment,
-    Form,
-    Input,
-    TextArea,
-    Header,
-    Icon
-} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import MainContext from '../../../CreateCVApp'
 import debounce from '../../../utilities/debounce'
@@ -18,13 +9,32 @@ import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css'
 import * as Actions from '../../../redux/reducers/ui/languages/actions'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
+import * as UI from '../../../utilities/ui'
+
+import {
+    Icon,
+    InputIcon,
+    Button,
+    Card,
+    Input,
+    Accordion,
+    AccordionPanel,
+    Tooltip,
+    Textarea,
+    CardEmpty
+} from '@salesforce/design-system-react';
 
 
 
 
 
 export class Languages extends React.Component {
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            expandedPanels: {},
+        }
+    }
     updatePreview = debounce(() => {
         this.props.updatePreview(true)
     }, debounceTime)
@@ -45,39 +55,56 @@ export class Languages extends React.Component {
     }
 
     render() {
+        const isEmpty = this.props.languages.length === 0;
+
+
         let languages = []
         for (let i = 0; i < this.props.languages.length; i++) {
             languages.push(
-                <Segment>
-                    <Form.Field
-                        control={Input}
+                <AccordionPanel
+                    panelContentActions={UI.getContentActions(() => this.deleteLanguage(i))}
+                    key={i}
+                    onTogglePanel={(e) => UI.getTogglePanel(i)}
+                    expanded={!!this.state.expandedPanels[i]}
+                    summary={this.props.languages[i] || 'Language ' + (i + 1)}
+                >
+                    <Input
+                        variant="outlined"
                         label='Language'
                         value={this.props.languages[i]}
                         onChange={e => this.updateLanguage(i, e.target.value)}
                     />
-                    <Button onClick={() => this.deleteLanguage(i)}>
-                        Delete
-                        </Button>
-                </Segment>
+
+                </AccordionPanel>
             )
         }
 
         return (
-            <Segment>
-                <Header>{this.props.header}</Header>
-                <p>
+            <Card
+                heading="Languages"
+
+                icon={<Icon category="standard" name="live_chat" size="small" />}
+                headerActions={
+                    !isEmpty && UI.getAdd(this.addLanguage)
+                }
+                empty={
+                    isEmpty ? (
+                        <CardEmpty heading="Languages">
+                            {UI.getAdd(this.addLanguage)}
+                        </CardEmpty>
+                    ) : null
+                }
+            >
+                <p className='slds-col_padded'>
                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                 </p>
                 {languages.length > 0 &&
-                    <Form>
+                    <Accordion>
                         {languages}
-                    </Form>
+                    </Accordion>
                 }
+            </Card>
 
-                <Button onClick={() => this.addLanguage()}>
-                    Add
-            </Button>
-            </Segment>
         )
     }
 }
