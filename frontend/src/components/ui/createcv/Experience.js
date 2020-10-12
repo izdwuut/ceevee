@@ -1,13 +1,4 @@
 import * as React from 'react';
-import {
-    Button,
-    Segment,
-    Form,
-    Input,
-    TextArea,
-    Header,
-    Icon
-} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import MainContext from '../../../CreateCVApp'
 import debounce from '../../../utilities/debounce'
@@ -18,8 +9,27 @@ import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css'
 import * as Actions from '../../../redux/reducers/ui/experience/actions'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
-import {datepickerDateFormat} from '../../../utilities/variables'
+import { datepickerDateFormat } from '../../../utilities/variables'
+import * as UI from '../../../utilities/ui'
+import PropTypes from 'prop-types';
 
+
+import {
+    Icon,
+    InputIcon,
+    Button,
+    Card,
+    Input,
+    Accordion,
+    AccordionPanel,
+    Tooltip,
+    Textarea,
+    CardEmpty
+} from '@salesforce/design-system-react';
+
+const propTypes = {
+    tooltipOpen: PropTypes.bool,
+};
 
 
 
@@ -75,117 +85,176 @@ export class Experience extends React.Component {
     }
 
     addExperience = () => {
+        this.setState((state) => ({
+            ...state,
+            expandedPanels: {
+                [this.props.experience.length]: true
+            },
+        }));
         this.props.addExperience()
         this.updatePreview()
     }
-    
+
     render() {
+        const isEmpty = this.props.experience.length === 0;
+
+
         let experience = []
         if (experience) {
             for (let i = 0; i < this.props.experience.length; i++) {
                 experience.push(
-                    <Segment>
-                        <Form.Field
-                            control={Input}
+                    <AccordionPanel
+                        panelContentActions={UI.getContentActions(() => this.deleteExperience(i))}
+                        key={i}
+                        onTogglePanel={(e) => UI.getTogglePanel(i)}
+                        expanded={!!this.state.expandedPanels[i]}
+                        summary={this.props.experience[i].position || 'Experience ' + (i + 1)}
+                    >
+                        <Input
+                            variant="outlined"
                             label='Position'
                             value={this.props.experience[i].position}
                             onChange={e => this.updatePosition(i, e.target.value)}
                         />
-                        <Form.Field
-                            control={Input}
+
+
+                        <Input
+                            variant="outlined"
                             label='Company'
                             value={this.props.experience[i].company}
                             onChange={e => this.updateCompany(i, e.target.value)}
                         />
-                        <Form.Group widths='equal'>
-                            <Form.Field
-                                control={Input}
+
+                        <div className="slds-grid slds-gutters">
+                            <Input
+                                className="slds-col"
+                                variant="outlined"
                                 label='City'
                                 value={this.props.experience[i].city}
                                 onChange={e => this.updateCity(i, e.target.value)}
                             />
-                            <Form.Field
-                                control={Input}
-                                label='Country'
+                            <Input
+                                className="slds-col"
+                                variant="outlined"
+                                label="Country"
                                 value={this.props.experience[i].country}
                                 onChange={e => this.updateCountry(i, e.target.value)}
                             />
-                        </Form.Group>
-                        <Form.Group widths='equal'>
-                        <Form.Field
-                                icon={<Icon name='calendar outline' link  {...this.props} calendar={this._calendarFrom} onClick={() => this._calendarFrom.setOpen(true)} />}
-                                control={Input}
-                                label='From'
-                                value={this.props.experience[i].fromDateString}
-                                onChange={e => this.updateFromDate(i, e.target.value)}
-                            />
-                            <DatePicker
-                                onChange={date => this.updateFromDate(i, date)}
-                                dateFormat={datepickerDateFormat}
-                                showMonthYearPicker
-                                showFullMonthYearPicker
-                                ref={(c) => this._calendarFrom = c}
-                                selected={this.props.experience[i].fromDate}
 
-                                customInput={
-                                    <div></div>
+                        </div>
+                        <div className="slds-grid slds-gutters">
+                            <div className="slds-col">
+                                <Input
+                                    iconLeft={
+                                        <InputIcon
+                                            assistiveText={{
+                                                icon: 'Pick from date',
+                                            }}
+                                            iconCategory="utility"
+                                            iconName="event"
+                                            calendar={this._calendarFrom} onClick={() => this._calendarFrom.setOpen(true)}
+                                        />}
+                                    fieldLevelHelpTooltip={
+                                        <Tooltip
+                                            align="top left"
+                                            content="ex: January 2020"
+                                            isOpen={this.props.tooltipOpen}
+                                        />
+                                    }
+                                    variant="outlined"
+                                    label='From'
+                                    value={this.props.experience[i].fromDateString}
+                                    onChange={e => this.updateFromDate(i, e.target.value)}
+                                />
+                                <DatePicker
+                                    onChange={date => this.updateFromDate(i, date)}
+                                    dateFormat={datepickerDateFormat}
+                                    showMonthYearPicker
+                                    showFullMonthYearPicker
+                                    ref={(c) => this._calendarFrom = c}
+                                    selected={this.props.experience[i].fromDate}
 
-                                }
-                            />
-                        </Form.Group>
-                        <Form.Group widths='equal'>
-                            <Form.Field
-                                icon={<Icon name='calendar outline' link  {...this.props} calendar={this._calendarTo} onClick={() => this._calendarTo.setOpen(true)} />}
-                                control={Input}
-                                label='To'
-                                value={this.props.experience[i].toDateString}
-                                onChange={e => this.updateToDate(i, e.target.value)}
-                            />
-                            <DatePicker
-                                onChange={date => this.updateToDate(i, date)}
-                                dateFormat={datepickerDateFormat}
-                                showMonthYearPicker
-                                showFullMonthYearPicker
-                                ref={(c) => this._calendarTo = c}
-                                selected={this.props.experience[i].toDate}
-                                customInput={
-                                    <div></div>
+                                    customInput={
+                                        <div></div>
+                                    }
+                                />
+                            </div>
+                            <div className="slds-col">
+                                <Input
+                                    iconLeft={
+                                        <InputIcon
+                                            assistiveText={{
+                                                icon: 'Pick from date',
+                                            }}
+                                            iconCategory="utility"
+                                            iconName="event"
+                                            calendar={this._calendarTo} onClick={() => this._calendarTo.setOpen(true)}
+                                        />}
+                                    fieldLevelHelpTooltip={
+                                        <Tooltip
+                                            align="top left"
+                                            content="ex: January 2020"
+                                            isOpen={this.props.tooltipOpen}
+                                        />
+                                    }
+                                    variant="outlined"
+                                    label='To'
+                                    value={this.props.experience[i].toDateString}
+                                    onChange={e => this.updateToDate(i, e.target.value)}
+                                />
 
-                                }
-                            />
+                                <DatePicker
+                                    onChange={date => this.updateToDate(i, date)}
+                                    dateFormat={datepickerDateFormat}
+                                    showMonthYearPicker
+                                    showFullMonthYearPicker
+                                    ref={(c) => this._calendarTo = c}
+                                    selected={this.props.experience[i].toDate}
+                                    customInput={
+                                        <div></div>
 
-
-
-                        </Form.Group>
-                        <Form.Field
-                            control={TextArea}
+                                    }
+                                />
+                            </div>
+                        </div>
+                        <Input
+                            variant="outlined"
                             label='Description'
                             value={this.props.experience[i].description}
                             onChange={e => this.updateDescription(i, e.target.value)}
                         />
-                        <Button onClick={() => this.deleteExperience(i)}>
-                            Delete
-                </Button>
-                    </Segment>
+
+                    </AccordionPanel>
                 )
             }
 
             return (
-                <Segment>
-                    <Header>{this.props.header}</Header>
-                    <p>
+                <Card
+                    heading="Experience"
+
+                    icon={<Icon category="standard" name="case" size="small" />}
+                    headerActions={
+                        !isEmpty && UI.getAdd(this.addExperience)
+                    }
+                    empty={
+                        isEmpty ? (
+                            <CardEmpty heading="No experience">
+                                {UI.getAdd(this.addExperience)}
+                            </CardEmpty>
+                        ) : null
+                    }
+                >
+                    <p className='slds-col_padded'>
                         Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                 </p>
                     {experience.length > 0 &&
-                        <Form>
+                        <Accordion>
                             {experience}
-                        </Form>
+                        </Accordion>
                     }
 
-                    <Button onClick={() => this.addExperience()}>
-                        Add
-            </Button>
-                </Segment>
+
+                </Card>
             )
         }
     }
