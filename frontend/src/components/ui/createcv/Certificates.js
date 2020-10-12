@@ -1,13 +1,4 @@
 import * as React from 'react';
-import {
-    Button,
-    Segment,
-    Form,
-    Input,
-    TextArea,
-    Header,
-    Icon
-} from 'semantic-ui-react'
 import { connect } from "react-redux"
 import MainContext from '../../../CreateCVApp'
 import debounce from '../../../utilities/debounce'
@@ -19,9 +10,32 @@ import * as Actions from '../../../redux/reducers/ui/certificates/actions'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import { datepickerDateFormat } from '../../../utilities/variables'
+import * as UI from '../../../utilities/ui'
+import PropTypes from 'prop-types';
 
+import {
+    Icon,
+    InputIcon,
+    Button,
+    Card,
+    Input,
+    Accordion,
+    AccordionPanel,
+    Tooltip,
+    Textarea,
+    CardEmpty
+} from '@salesforce/design-system-react';
+
+const propTypes = {
+    tooltipOpen: PropTypes.bool,
+};
 export class Certificates extends React.Component {
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            expandedPanels: {},
+        }
+    }
     updatePreview = debounce(() => {
         this.props.updatePreview(true)
     }, debounceTime)
@@ -52,30 +66,62 @@ export class Certificates extends React.Component {
     }
 
     addCertificate = () => {
+        this.setState((state) => ({
+            ...state,
+            expandedPanels: {
+                [this.props.certificates.length]: true
+            },
+        }));
         this.props.addCertificate()
         this.updatePreview()
     }
 
     render() {
+        const isEmpty = this.props.certificates.length === 0;
+
         let certificates = []
         for (let i = 0; i < this.props.certificates.length; i++) {
             certificates.push(
-                <Segment>
-                    <Form.Field
-                        control={Input}
+                <AccordionPanel
+                    panelContentActions={UI.getContentActions(() => this.deleteCertificate(i))}
+                    key={i}
+                    onTogglePanel={(e) => UI.getTogglePanel(i)}
+                    expanded={!!this.state.expandedPanels[i]}
+                    summary={this.props.certificates[i].certificate || 'Certificate ' + (i + 1)}
+                >
+                    <Input
+                        variant="outlined"
                         label='Certificate'
-                        value={this.props.certificates[i].position}
+                        value={this.props.certificates[i].certificate}
                         onChange={e => this.updateCertificate(i, e.target.value)}
                     />
-                    <Form.Field
-                        control={Input}
+
+
+                    <Input
+                        variant="outlined"
                         label='Issuer'
-                        value={this.props.certificates[i].title}
+                        value={this.props.certificates[i].issuer}
                         onChange={e => this.updateIssuer(i, e.target.value)}
                     />
-                    <Form.Field
-                        icon={<Icon name='calendar outline' link  {...this.props} calendar={this._calendarFrom} onClick={() => this._calendarFrom.setOpen(true)} />}
-                        control={Input}
+
+                    <Input
+                        iconLeft={
+                            <InputIcon
+                                assistiveText={{
+                                    icon: 'Pick valid until date',
+                                }}
+                                iconCategory="utility"
+                                iconName="event"
+                                calendar={this._calendarValidUntil} onClick={() => this._calendarValidUntil.setOpen(true)}
+                            />}
+                        fieldLevelHelpTooltip={
+                            <Tooltip
+                                align="top left"
+                                content="ex: January 2020"
+                                isOpen={this.props.tooltipOpen}
+                            />
+                        }
+                        variant="outlined"
                         label='Valid until'
                         value={this.props.certificates[i].validUntilString}
                         onChange={e => this.updateValidUntil(i, e.target.value)}
@@ -85,37 +131,44 @@ export class Certificates extends React.Component {
                         dateFormat={datepickerDateFormat}
                         showMonthYearPicker
                         showFullMonthYearPicker
-                        ref={(c) => this._calendarFrom = c}
+                        ref={(c) => this._calendarValidUntil = c}
                         selected={this.props.certificates[i].validUntil}
                         customInput={
                             <div></div>
                         }
                     />
 
-                    <Button onClick={() => this.deleteCertificate(i)}>
-                        Delete certificate
-                </Button>
-                </Segment>
+                </AccordionPanel>
             )
         }
 
 
         return (
-            <Segment>
-                <Header>{this.props.header}</Header>
-                <p>
+           
+                <Card
+                heading="Certificates"
+
+                icon={<Icon category="standard" name="document" size="small" />}
+                headerActions={
+                    !isEmpty && UI.getAdd(this.addEducation)
+                }
+                empty={
+                    isEmpty ? (
+                        <CardEmpty heading="No certificates">
+                            {UI.getAdd(this.addCertificate)}
+                        </CardEmpty>
+                    ) : null
+                }
+            >
+                <p className='slds-col_padded'>
                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                 </p>
                 {certificates.length > 0 &&
-                    <Form>
+                    <Accordion>
                         {certificates}
-                    </Form>
+                        </Accordion>
                 }
-
-                <Button onClick={() => this.addCertificate()}>
-                    Add
-            </Button>
-            </Segment>
+            </Card>
         )
 
     }
