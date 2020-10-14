@@ -146,7 +146,7 @@ export class Certificates extends React.Component {
         return (
            
                 <Card
-                heading="Certificates"
+                heading={this.props.header}
 
                 icon={<Icon category="standard" name="document" size="small" />}
                 headerActions={

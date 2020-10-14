@@ -1,6 +1,6 @@
 import MainContext from '../../../CreateCVApp';
 import * as React from 'react';
-import { updateFirstName, updateMiddleName, updateLastName, updatePosition, updateEmail, updateMobile, updateCountry, updateCity, updateDrivingLicense, updateBirthDate } from '../../../redux/reducers/ui/metaData/actions'
+import { updateFirstName, updateMiddleName, updateLastName, updatePosition, updateEmail, updateMobile, updateCountry, updateCity, updateDrivingLicense, updateBirthDate } from '../../../redux/reducers/ui/details/actions'
 import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { connect } from "react-redux";
 import { debounceTime } from '../../../utilities/variables'
@@ -77,7 +77,7 @@ export class Details extends React.Component {
 
         return (
             <Card
-                heading="Details"
+                heading={this.props.header}
                 icon={<Icon category="standard" name="contact" size="small" />}
             >
                 <div className="slds-grid slds-gutters slds-col_padded">

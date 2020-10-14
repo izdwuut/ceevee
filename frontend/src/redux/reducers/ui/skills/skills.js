@@ -1,7 +1,7 @@
 import * as actions from './actionTypes'
 
 const initialState = {
-    header: 'Lorem',
+    header: 'Skills',
     skills: [
     ],
     visible: false

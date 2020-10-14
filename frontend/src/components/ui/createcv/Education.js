@@ -231,7 +231,7 @@ export class Education extends React.Component {
 
         return (
             <Card
-                heading="Education"
+                heading={this.props.header}
 
                 icon={<Icon category="standard" name="education" size="small" />}
                 headerActions={

@@ -230,7 +230,7 @@ export class Experience extends React.Component {
 
             return (
                 <Card
-                    heading="Experience"
+                    heading={this.props.header}
 
                     icon={<Icon category="standard" name="case" size="small" />}
                     headerActions={

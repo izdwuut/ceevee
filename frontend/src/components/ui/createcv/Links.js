@@ -95,7 +95,7 @@ export class Links extends React.Component {
         }
         return (
             <Card
-                heading="Links"
+                heading={this.props.header}
 
                 icon={<Icon category="standard" name="link" size="small" />}
                 headerActions={

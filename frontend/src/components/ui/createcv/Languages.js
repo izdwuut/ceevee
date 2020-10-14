@@ -87,7 +87,7 @@ export class Languages extends React.Component {
 
         return (
             <Card
-                heading="Languages"
+                heading={this.props.header}
 
                 icon={<Icon category="standard" name="live_chat" size="small" />}
                 headerActions={

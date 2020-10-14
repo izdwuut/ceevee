@@ -31,7 +31,7 @@ export class GDPA extends React.Component {
     render() {
         return (
             <Card
-                heading="GDPA"
+                heading={this.props.header}
 
                 icon={<Icon category="standard" name="note" size="small" />}
             >

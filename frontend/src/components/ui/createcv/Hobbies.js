@@ -71,7 +71,7 @@ export class Hobbies extends React.Component {
 
         return (
             <Card
-                heading="Hobbies"
+                heading={this.props.header}
 
                 icon={<Icon category="standard" name="topic" size="small" />}
                 headerActions={
