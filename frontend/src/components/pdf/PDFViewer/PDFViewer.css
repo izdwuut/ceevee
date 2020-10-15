@@ -1,10 +1,14 @@
 .pdf {
   position: fixed;
+  top: 48%;
+  left: 75%;
+  margin-top: -45vh;
+  margin-left: calc((90vh * -0.71) / 2)
 }
 
 .react-pdf__Page__canvas {
-  height: calc(90vh) !important;
-  width: calc(90vh * 0.71) !important;
+  height: 90vh !important;
+  width: calc(90vh * 0.71) !important; /* 0.71 is A4 page scale ratio. */
 }
 
 .react-pdf__Page__textContent {
