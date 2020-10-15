@@ -1,13 +1,23 @@
 .container {
     display: grid;
-    grid-template-areas: "ui pdf";
-    align-content: center;
-    justify-content: center;
-    background-color: rgb(248, 248, 248);
+    grid-template-areas: 
+    ". . . . ."
+    ". ui-container . pdf-container ."
+    ". . . . .";
+    
+    grid-template-columns: auto 1fr auto 1fr auto;
+    padding: 1%;
 }
 
-.ui {
-    grid-area: ui;
-    width: 50vw;
+.ui-container {
+    grid-area: ui-container;
+    padding-right: 1%;
 }
 
+.pdf-container{
+    grid-area: pdf-container;
+    
+    
+   
+    
+}

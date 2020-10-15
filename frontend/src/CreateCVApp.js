@@ -2,6 +2,7 @@ import React from 'react';
 import CreateCV from './components/ui/createcv/template/CreateCV'
 import { Provider } from 'react-redux'
 import store from './redux/store'
+import './CreateCVApp.css'
 
 
 const MainContext = React.createContext()

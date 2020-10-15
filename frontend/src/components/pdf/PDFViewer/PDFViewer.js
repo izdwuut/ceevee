@@ -9,7 +9,6 @@ import { updatePreviousBlob, updateNextBlob, updatePreview } from '../../../redu
 import { connect } from 'react-redux'
 import { CSSTransition } from "react-transition-group";
 import Upeksa from '../templates/upeksa/Upeksa';
-
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 export class PDFViewer extends React.Component {
@@ -96,12 +95,16 @@ export class PDFViewer extends React.Component {
 
   onPdfLoadSuccess(pdf) {
     this.setState({
-      numberOfPages: pdf.numPages
+      numberOfPages: pdf.numPages,
+      width: pdf.width,
+      height: pdf.height
     })
   }
 
   render() {
     return (
+
+
 
       <div className="pdf" style={styles.pdf}>
         <Button
@@ -117,18 +120,27 @@ export class PDFViewer extends React.Component {
           next page
         </Button>
 
+
         <Document
           className="previous-pdf"
           file={this.props.previousBlob}
           loading=''
           onLoadSuccess={this.onPdfLoadSuccess}>
-          <Page pageNumber={this.state.activePage} loading='' renderMode="canvas" />
+          <Page
+           pageNumber={this.state.activePage}
+            loading=''
+             renderMode="canvas" 
+
+             />
         </Document>
+
+
         <CSSTransition
           in={this.state.isPdfIn}
           timeout={this.timeout}
           classNames="my-node"
         >
+
           <Document
             className="next-pdf"
             file={this.props.nextBlob}
@@ -142,9 +154,12 @@ export class PDFViewer extends React.Component {
               onRenderSuccess={this.onPdfRenderSuccess}
             />
           </Document>
+
         </CSSTransition>
 
       </div>
+
+
     )
   }
 }
