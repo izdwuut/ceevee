@@ -1,10 +1,12 @@
 import React from 'react';
-import { View} from '@react-pdf/renderer';
+import { View, Text} from '@react-pdf/renderer';
 
 export default class Spacer extends React.Component {
   render() {
     return (
-        <View style={{marginTop: this.props.size}}></View>
+        <View style={{marginTop: this.props.size}}>
+          <Text> </Text>
+          </View>
     )
   }
 }

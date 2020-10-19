@@ -43,11 +43,19 @@ export default class Upeksa extends React.Component {
         <Document>
           <Page style={styles.page}>
             <View style={styles.header} fixed></View>
-            <Header context={MainContext} style={headerStyles}></Header>
-            <Spacer size='15'></Spacer>
             <View style={styles.contents}>
               <View style={styles.leftColumn}>
-                <Details context={MainContext} style={detailsStyles} />
+                <Details context={MainContext} style={detailsStyles} emptyHeader />
+              </View>
+              <View style={styles.middleColumnLeft}></View>
+              <View style={styles.middleColumnRight}></View>
+              <View style={styles.rightColumn}>
+                <Header context={MainContext} style={headerStyles}/>
+              </View>
+            </View>
+            <Spacer size='25.5mm'> </Spacer>
+            <View style={styles.contents}>
+              <View style={styles.leftColumn}>
                 <Skills context={MainContext} style={skillsStyles} />
                 <Links context={MainContext} style={linksStyles} />
                 <Languages context={MainContext} style={languagesStyles} />
@@ -77,7 +85,7 @@ export default class Upeksa extends React.Component {
             </View> */}
           </Page>
         </Document>
-      </Provider>
+      </Provider >
     )
   }
 }

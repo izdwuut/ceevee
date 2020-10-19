@@ -7,7 +7,7 @@ export class Details extends React.Component {
     render() {
         return (
             <View style={this.props.style.section}>
-                <Text style={this.props.style.header}>Details</Text>
+                <Text style={this.props.style.header}>{this.props.emptyHeader ? '' : this.props.header}</Text>
                 {(this.props.city != '' || this.props.country != '') &&
                     <Text style={this.props.style.name}>{this.props.city}{this.props.country != '' && this.props.city != '' ? ', ' : ''}{this.props.country}</Text>
                 }

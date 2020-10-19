@@ -1,14 +1,35 @@
-import { StyleSheet} from '@react-pdf/renderer';
+import { StyleSheet, Font } from '@react-pdf/renderer';
+import * as Variables from './variables'
+
+
+Font.register(
+    {
+        family: "Domine",
+        fonts: [
+            {src: "/fonts/Domine-Bold.ttf", fontWeight: 700},
+        ]
+    }
+);
 
 export const headerStyles = StyleSheet.create({
+    
     section: {
-        alignItems: 'center'
+        fontFamily: Variables.serifFont
     },
-    wrapper: {
-        border: '1 solid black',
-        alignItems: 'center'
+    fullName: {
+        display: 'none'
     },
-    name: {
-        marginBottom: 20
+    firstName: {
+        fontSize: Variables.headerNameSize,
     },
+    middleName: {
+        fontSize: Variables.headerNameSize
+    },
+    lastName: {
+        fontSize: Variables.headerNameSize
+    },
+    position: {
+        fontSize: 18,
+        color: Variables.detailColor
+    }
 })

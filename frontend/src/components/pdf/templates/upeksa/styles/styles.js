@@ -1,28 +1,38 @@
-import { StyleSheet, Font} from '@react-pdf/renderer';
-import  * as Variables  from './variables'
+import { StyleSheet, Font } from '@react-pdf/renderer';
+import * as Variables from './variables'
 
-Font.register({
-    family: "Roboto",
-    src:
-        "https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-medium-webfont.ttf"
-});
+Font.register(
+    {
+        family: "Montserrat",
+        fonts: [
+
+            { src: "/fonts/Montserrat-Bold.ttf", fontWeight: 700 },
+            { src: "/fonts/Montserrat-BoldItalic.ttf", fontStyle: 'italic', fontWeight: 700 },
+            { src: "/fonts/Montserrat-Light.ttf", fontWeight: 300 },
+            { src: "/fonts/Montserrat-LightItalic.ttf", fontStyle: 'italic', fontWeight: 300 },
+        ]
+    },
+);
 
 export const styles = StyleSheet.create({
     page: {
         flexDirection: 'column',
-        // fontFamily : "Roboto",
+        fontFamily: "Montserrat",
+        fontWeight: 300,
+        fontSize: '9pt',
         paddingBottom: '17mm',
         height: '100%',
+
         objectFit: '100%',
+        backgroundColor: Variables.backgroundColor
     },
     contents: {
         paddingHorizontal: Variables.marginHorizontal,
         flexDirection: 'row',
-        fontSize: 8
     },
     leftColumn: {
         width: '50mm',
-        backgroundColor: 'red'
+        textAlign: 'right'
     },
     middleColumnLeft: {
         width: Variables.middleColumnWidth,
@@ -34,7 +44,6 @@ export const styles = StyleSheet.create({
         width: '105mm',
     },
     header: {
-        backgroundColor: 'blue',
         height: '26mm',
     },
     // footer: {
