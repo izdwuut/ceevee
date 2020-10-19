@@ -67,14 +67,14 @@ export default class Upeksa extends React.Component {
               </View>
 
             </View>
-            <View>
+            {/* <View>
               <View style={styles.footerColumn}>
                 <Text> </Text>
               </View>
             </View>
             <View style={styles.footer} fixed>
               <Text> </Text>
-            </View>
+            </View> */}
           </Page>
         </Document>
       </Provider>
