@@ -4,7 +4,6 @@ import MainContext from '../../../CreateCVApp'
 import debounce from '../../../utilities/debounce'
 import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { debounceTime } from '../../../utilities/variables'
-import SemanticDatepicker from 'react-semantic-ui-datepickers'
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css'
 import * as Actions from '../../../redux/reducers/ui/experience/actions'
 import DatePicker from 'react-datepicker'
@@ -252,8 +251,6 @@ export class Experience extends React.Component {
                             {experience}
                         </Accordion>
                     }
-
-
                 </Card>
             )
         }

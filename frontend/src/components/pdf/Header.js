@@ -17,15 +17,20 @@ export class Header extends React.Component {
                     {!this.props.fullName &&
                         <Text style={this.props.style.firstName}>
                             {this.props.firstName}Lorem
-                    </Text>
+                        </Text>
                     }
                     {!this.props.fullName &&
-                        <Text style={this.props.style.middleName}>{this.props.middleName}</Text>
+                        <Text style={this.props.style.middleName}>
+                            {this.props.middleName}
+                        </Text>
                     }
                     {!this.props.fullName &&
-                        <Text style={this.props.style.lastName}>{this.props.lastName}Ipsum</Text>
+                        <Text style={this.props.style.lastName}>
+                            {this.props.lastName}Ipsum
+                        </Text>
                     }
-                    <Text style={this.props.style.position}>{this.props.position}Junior programmer</Text>
+
+                    <Text style={this.props.style.position}>{this.props.position}Junior Programmer</Text>
                 </View>
             </View>
         )

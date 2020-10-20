@@ -22,7 +22,6 @@ export const styles = StyleSheet.create({
         fontSize: '9pt',
         paddingBottom: '17mm',
         height: '100%',
-
         objectFit: '100%',
         backgroundColor: Variables.backgroundColor
     },
