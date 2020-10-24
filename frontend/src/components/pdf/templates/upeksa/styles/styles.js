@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'column',
         fontFamily: "Montserrat",
         fontWeight: 300,
-        fontSize: '9pt',
+        fontSize: '8pt',
         paddingBottom: '17mm',
         height: '100%',
         objectFit: '100%',
