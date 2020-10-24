@@ -23,7 +23,8 @@ export const educationStyles = StyleSheet.create({
     },
 
     description: {
-        paddingTop: Variables.contentsDescriptionPadding
+        paddingTop: Variables.contentsDescriptionPadding,
+        paddingBottom: Variables.contentsPadding
     }
 
 })

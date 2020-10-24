@@ -22,6 +22,7 @@ export const experienceStyles = StyleSheet.create({
         paddingTop: Variables.contentsPadding
     },
     description: {
-        paddingTop: Variables.contentsDescriptionPadding
+        paddingTop: Variables.contentsDescriptionPadding,
+        paddingBottom: Variables.contentsPadding
     }
 })
