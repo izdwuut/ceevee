@@ -17,10 +17,6 @@ export const skillsStyles = StyleSheet.create({
         fontSize: 16,
         paddingBottom: Variables.sectionPadding
     },
-
-    skill: {
-        fontWeight: Variables.contentsSectionMetaDataFontWeight,
-    },
     description: {
         paddingBottom: Variables.contentsSpacing
     },
