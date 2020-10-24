@@ -11,7 +11,6 @@ export class Experience extends React.Component {
                         <Text style={this.props.style.header}>{this.props.header}</Text>
                         {this.props.experience.map(experience => {
                             return <View style={this.props.style.section}>
-                                <Text style={this.props.style.header}>{experience.header}</Text>
                                 {(experience.position != '' || experience.company != '' || experience.city != '' || experience.country != '') &&
                                     <Text style={this.props.style.metaData}>
                                         {experience.position}{experience.position && (experience.company || experience.city || experience.country) && ', '}{experience.company}{experience.company && (experience.position || experience.city || experience.country) && ', '}{experience.city}{experience.city && experience.country && ', '}{experience.country}

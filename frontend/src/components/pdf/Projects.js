@@ -11,7 +11,6 @@ export class Projects extends React.Component {
                         <Text style={this.props.style.header}>{this.props.header}</Text>
                         {this.props.projects.map(project => {
                             return <View style={this.props.style.section}>
-                                <Text style={this.props.style.header}>{project.header}</Text>
                                 {(project.project != '' && project.position != '' || project.company != '' || project.city != '' || project.country != '') &&
                                     <Text style={this.props.style.metaData}>
                                         {project.project}{project.project && (project.position && project.company || project.city || project.country) && ', '}{project.position}{project.position && (project.company || project.city || project.country) && ', '}{project.company}{project.company && (project.position || project.city || project.country) && ', '}{project.city}{project.city && project.country && ', '}{project.country}
