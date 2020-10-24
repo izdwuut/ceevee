@@ -12,20 +12,10 @@ export class Projects extends React.Component {
                         {this.props.projects.map(project => {
                             return <View style={this.props.style.section}>
                                 <Text style={this.props.style.header}>{project.header}</Text>
-                                {project.project != '' &&
-                                    <Text style={this.props.style.project}>{project.project}</Text>
-                                }
-                                {project.position != '' &&
-                                    <Text style={this.props.style.position}>{project.position}</Text>
-                                }
-                                {project.company != '' &&
-                                    <Text style={this.props.style.company}>{project.company}</Text>
-                                }
-                                {(project.city != '' || project.country != '') &&
-                                    <Text style={this.props.style.origin}>{project.city}{project.city && project.country && ', '}{project.country}</Text>
-                                }
-                                {(project.fromDateString != '' || project.toDateString != '') &&
-                                    <Text style={this.props.style.duration}>{project.fromDateString}{project.fromDateString && project.toDateString && ' - '}{project.toDateString}</Text>
+                                {(project.project != '' && project.position != '' || project.company != '' || project.city != '' || project.country != '') &&
+                                    <Text style={this.props.style.metaData}>
+                                        {project.project}{project.project && (project.position && project.company || project.city || project.country) && ', '}{project.position}{project.position && (project.company || project.city || project.country) && ', '}{project.company}{project.company && (project.position || project.city || project.country) && ', '}{project.city}{project.city && project.country && ', '}{project.country}
+                                    </Text>
                                 }
                                 {project.description != '' &&
                                     <Text style={this.props.style.description}>{project.description}</Text>

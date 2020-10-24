@@ -19,7 +19,7 @@ export const experienceStyles = StyleSheet.create({
 
     metaData: {
         fontWeight: Variables.contentsSectionMetaDataFontWeight,
-        paddingTop: Variables.contentsHeaderPadding
+        paddingTop: Variables.contentsPadding
     },
     description: {
         paddingTop: Variables.contentsDescriptionPadding

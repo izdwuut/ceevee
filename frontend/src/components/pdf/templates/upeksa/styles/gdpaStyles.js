@@ -3,6 +3,6 @@ import * as Variables from './variables'
 
 export const gdpaStyles = StyleSheet.create({
     gdpa: {
-        paddingTop: Variables.contentsHeaderPadding
+        paddingTop: Variables.contentsPadding
     }
 })

@@ -19,7 +19,7 @@ export const educationStyles = StyleSheet.create({
 
     metaData: {
         fontWeight: Variables.contentsSectionMetaDataFontWeight,
-        paddingTop: Variables.contentsHeaderPadding
+        paddingTop: Variables.contentsPadding
     },
 
     description: {
