@@ -34,6 +34,6 @@ export const headerStyles = StyleSheet.create({
         fontSize: 18,
         color: Variables.detailColor,
         position: 'relative',
-        top: Variables.headerTopPosition + 5
+        top: Variables.headerTopPosition - 4
     }
 })
