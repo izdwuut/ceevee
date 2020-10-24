@@ -5,6 +5,7 @@ export const backgroundColor = '#FFFBF8'
 export const serifFont = 'DM Serif Display'
 export const serifFontURL = '/fonts/DMSerifDisplay-Regular.ttf'
 export const detailColor = '#CA8F5D'
+export const fontColor = 'black'
 
 // Header
 export const headerNameSize = 30
