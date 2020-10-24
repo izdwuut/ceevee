@@ -16,7 +16,7 @@ export class Header extends React.Component {
                     }
                     {!this.props.fullName &&
                         <Text style={this.props.style.firstName}>
-                            {this.props.firstName}Lorem
+                            {this.props.firstName}
                         </Text>
                     }
                     {!this.props.fullName &&
@@ -26,11 +26,11 @@ export class Header extends React.Component {
                     }
                     {!this.props.fullName &&
                         <Text style={this.props.style.lastName}>
-                            {this.props.lastName}Ipsum
+                            {this.props.lastName}
                         </Text>
                     }
 
-                    <Text style={this.props.style.position}>{this.props.position}Junior Programmer</Text>
+                    <Text style={this.props.style.position}>{this.props.position}</Text>
                 </View>
             </View>
         )
