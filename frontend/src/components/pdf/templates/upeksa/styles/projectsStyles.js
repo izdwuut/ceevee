@@ -15,10 +15,11 @@ export const projectsStyles = StyleSheet.create({
         fontFamily: Variables.serifFont,
         fontWeight: 400,
         fontSize: 16,
+        paddingBottom: Variables.contentsPadding
     },
+
     metaData: {
         fontWeight: Variables.contentsSectionMetaDataFontWeight,
-        paddingTop: Variables.contentsPadding
     },
     description: {
         paddingTop: Variables.contentsDescriptionPadding,
