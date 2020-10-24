@@ -11,7 +11,6 @@ Font.register(
 );
 
 export const headerStyles = StyleSheet.create({
-    
     section: {
         fontFamily: Variables.serifFont,
         position: 'relative',

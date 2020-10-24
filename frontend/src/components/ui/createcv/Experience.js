@@ -216,7 +216,7 @@ export class Experience extends React.Component {
                                 />
                             </div>
                         </div>
-                        <Input
+                        <Textarea
                             variant="outlined"
                             label='Description'
                             value={this.props.experience[i].description}

@@ -12,14 +12,10 @@ export class Experience extends React.Component {
                         {this.props.experience.map(experience => {
                             return <View style={this.props.style.section}>
                                 <Text style={this.props.style.header}>{experience.header}</Text>
-                                {experience.position != '' &&
-                                    <Text style={this.props.style.position}>{experience.position}</Text>
-                                }
-                                {experience.company != '' &&
-                                    <Text style={this.props.style.company}>{experience.company}</Text>
-                                }
-                                {(experience.city != '' || experience.country != '') &&
-                                    <Text style={this.props.style.origin}>{experience.city}{experience.city && experience.country && ', '}{experience.country}</Text>
+                                {(experience.position != '' || experience.company != '' || experience.city != '' || experience.country != '') &&
+                                    <Text style={this.props.style.metaData}>
+                                        {experience.position}{experience.position && (experience.company || experience.city || experience.country) && ', '}{experience.company}{experience.company && (experience.position || experience.city || experience.country) && ', '}{experience.city}{experience.city && experience.country && ', '}{experience.country}
+                                    </Text>
                                 }
                                 {(experience.fromDateString != '' || experience.toDateString != '') &&
                                     <Text style={this.props.style.duration}>{experience.fromDateString}{experience.fromDateString && experience.toDateString && ' - '}{experience.toDateString}</Text>
