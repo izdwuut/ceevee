@@ -20,6 +20,12 @@ import {
     CardEmpty
 } from '@salesforce/design-system-react';
 export class Hobbies extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            expandedPanels: {},
+        }
+    }
     updatePreview = debounce(() => {
         this.props.updatePreview(true)
     }, debounceTime)

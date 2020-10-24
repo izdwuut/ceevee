@@ -33,7 +33,12 @@ const propTypes = {
 
 
 export class Experience extends React.Component {
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            expandedPanels: {},
+        }
+    }
     updatePreview = debounce(() => {
         this.props.updatePreview(true)
     }, debounceTime)

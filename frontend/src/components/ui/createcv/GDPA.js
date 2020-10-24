@@ -20,6 +20,7 @@ import {
     CardEmpty
 } from '@salesforce/design-system-react';
 export class GDPA extends React.Component {
+    
     updatePreview = debounce(() => {
         this.props.updatePreview(true)
     }, debounceTime)
