@@ -15,14 +15,14 @@ export const experienceStyles = StyleSheet.create({
         fontFamily: Variables.serifFont,
         fontWeight: 400,
         fontSize: 16,
-        paddingBottom: Variables.contentsPadding
+        paddingBottom: Variables.sectionPadding
     },
 
     metaData: {
         fontWeight: Variables.contentsSectionMetaDataFontWeight,
     },
     description: {
-        paddingTop: Variables.contentsDescriptionPadding,
-        paddingBottom: Variables.contentsPadding
+        paddingTop: Variables.contentsSpacing,
+        paddingBottom: Variables.sectionPadding
     }
 })

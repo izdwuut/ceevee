@@ -1,12 +1,31 @@
-import { StyleSheet } from '@react-pdf/renderer';
+import { StyleSheet, Font } from '@react-pdf/renderer';
+import * as Variables from './variables'
+
+Font.register(
+    {
+        family: Variables.serifFont,
+        fonts: [
+            {src: Variables.serifFontURL, fontWeight: 400},
+        ]
+    }
+);
 
 export const skillsStyles = StyleSheet.create({
-   section: {
-        paddingTop: 25
-    },
     header: {
-        paddingBottom: 15,
-        borderBottom: '1 solid black',
-        marginBottom: 10
+        fontFamily: Variables.serifFont,
+        fontWeight: 400,
+        fontSize: 16,
+        paddingBottom: Variables.sectionPadding
+    },
+
+    skill: {
+        fontWeight: Variables.contentsSectionMetaDataFontWeight,
+    },
+    description: {
+        paddingBottom: Variables.contentsSpacing
+    },
+    section: {
+        paddingBottom: Variables.sectionPadding
+        
     }
 })

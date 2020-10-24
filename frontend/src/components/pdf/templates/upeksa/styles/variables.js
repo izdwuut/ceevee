@@ -11,6 +11,6 @@ export const headerNameSize = 30
 export const headerTopPosition = -10
 
 // Sections
-export const contentsPadding = 7
-export const contentsDescriptionPadding = 2
+export const sectionPadding = 7
+export const contentsSpacing = 2
 export const contentsSectionMetaDataFontWeight = 700

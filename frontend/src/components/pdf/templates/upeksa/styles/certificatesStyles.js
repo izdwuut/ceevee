@@ -15,13 +15,13 @@ export const certificatesStyles = StyleSheet.create({
         fontFamily: Variables.serifFont,
         fontWeight: 400,
         fontSize: 16,
-        paddingBottom: Variables.contentsPadding
+        paddingBottom: Variables.sectionPadding
     },
 
     metaData: {
         fontWeight: Variables.contentsSectionMetaDataFontWeight,
     },
     description: {
-        paddingBottom: Variables.contentsPadding
+        paddingBottom: Variables.sectionPadding
     }
 })
