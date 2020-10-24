@@ -12,15 +12,13 @@ export class Certificates extends React.Component {
                         <Text style={this.props.style.header}>{this.props.header}</Text>
                         {this.props.certificates.map(certificate => {
                             return <View style={this.props.style.section}>
-                                {certificate.certificate !== '' &&
-                                    <Text style={this.props.style.certificate}>{certificate.certificate}</Text>
+                                {(certificate.certificate !== '' || certificate.issuer !== '') &&
+                                    <Text style={this.props.style.metaData}>{certificate.certificate}{certificate.certificate && certificate.issuer && ', '}{certificate.issuer}</Text>
                                 }
-                                {certificate.issuer !== '' &&
-                                    <Text style={this.props.style.issuer}>{certificate.issuer}</Text>
-                                }
-                                {(certificate.validUntilString !== '') &&
+                                {certificate.validUntilString !== '' &&
                                     <Text style={this.props.style.validUntil}>Valid until: {certificate.validUntilString}</Text>
                                 }
+                                <Text style={this.props.style.description}> </Text>
                             </View>
                         })}
                     </View>
