@@ -46,6 +46,11 @@ export class Education extends React.Component {
         this.updatePreview()
     }
 
+    updateCourse = (id, course) => {
+        this.props.updateCourse(id, course)
+        this.updatePreview()
+    }
+
     updateSchool = (id, school) => {
         this.props.updateSchool(id, school)
         this.updatePreview()
@@ -110,6 +115,12 @@ export class Education extends React.Component {
                     expanded={!!this.state.expandedPanels[i]}
                     summary={this.props.education[i].school || 'School ' + (i + 1)}
                 >
+                    <Input
+                        variant="outlined"
+                        label='Course'
+                        value={this.props.education[i].course}
+                        onChange={e => this.updateCourse(i, e.target.value)}
+                    />
                     <Input
                         variant="outlined"
                         label='School'
@@ -269,6 +280,7 @@ const mapDispatchToProps = dispatch => {
         updateHeader: header => dispatch(Actions.updateHeader(header)),
         updatePreview: isUpdate => dispatch(updatePreview(isUpdate)),
         updateSchool: (id, school) => dispatch(Actions.updateSchool(id, school)),
+        updateCourse: (id, course) => dispatch(Actions.updateCourse(id, course)),
         updateTitle: (id, title) => dispatch(Actions.updateTitle(id, title)),
         updateCity: (id, city) => dispatch(Actions.updateCity(id, city)),
         updateCountry: (id, country) => dispatch(Actions.updateCountry(id, country)),

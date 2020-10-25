@@ -7,6 +7,14 @@ export const updateHeader = header => ({
     }
 })
 
+export const updateCourse = (id, course) => ({
+    type: actions.EDUCATION_UPDATE_COURSE,
+    payload: {
+        id: id,
+        course: course
+    }
+})
+
 export const updateSchool = (id, school) => ({
     type: actions.EDUCATION_UPDATE_SCHOOL,
     payload: {

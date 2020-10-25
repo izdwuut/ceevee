@@ -19,6 +19,15 @@ export default function education(state = initialState, action) {
             }
         }
 
+        case actions.EDUCATION_UPDATE_COURSE: {
+            let educationCopy = [...state.education]
+            educationCopy[action.payload.id].course = action.payload.course
+            return {
+                ...state,
+                education: educationCopy
+            }
+        }
+
         case actions.EDUCATION_UPDATE_SCHOOL: {
             let educationCopy = [...state.education]
             educationCopy[action.payload.id].school = action.payload.school
@@ -83,6 +92,7 @@ export default function education(state = initialState, action) {
         case actions.EDUCATION_ADD_EDUCATION: {
             let educationCopy = [...state.education]
             educationCopy.push({
+                course: '',
                 school: '',
                 title: '',
                 company: '',
