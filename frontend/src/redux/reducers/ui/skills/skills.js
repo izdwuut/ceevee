@@ -18,8 +18,8 @@ export default function skills(state = initialState, action) {
         case actions.SKILLS_UPDATE_SKILL: {
             let skillsCopy = [...state.skills]
             skillsCopy[action.payload.id] = {
-                skill: action.payload.skill || skillsCopy[action.payload.id].skill,
-                description: action.payload.description || skillsCopy[action.payload.id].description
+                skill: action.payload.skill,
+                description: action.payload.description
             }
             return {
                 ...state,
