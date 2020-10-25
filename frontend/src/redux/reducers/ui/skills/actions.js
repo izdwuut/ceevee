@@ -7,20 +7,25 @@ export const updateHeader = header => ({
     }
 })
 
-export const updateSkill = (id, skill, description) => ({
+export const updateSkill = (id, skill) => ({
     type: actions.SKILLS_UPDATE_SKILL,
     payload: {
         id: id,
         skill: skill,
+    }
+})
+
+export const updateDescription = (id, description) => ({
+    type: actions.SKILLS_UPDATE_DESCRIPTION,
+    payload: {
+        id: id,
         description: description
     }
 })
 
-export const addSkill = (skill, description) => ({
+export const addSkill = () => ({
     type: actions.SKILLS_ADD_SKILL,
     payload: {
-        skill: skill,
-        description: description
     }
 })
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { updateHeader, updateSkill, addSkill, deleteSkill } from '../../../redux/reducers/ui/skills/actions'
+import * as Actions from '../../../redux/reducers/ui/skills/actions'
 import { connect } from "react-redux"
 import MainContext from '../../../CreateCVApp';
 import debounce from '../../../utilities/debounce'
@@ -32,8 +32,13 @@ export class Skills extends React.Component {
         this.props.updatePreview(true)
     }, debounceTime)
 
-    updateSkill = (id, skill, description) => {
-        this.props.updateSkill(id, skill, description)
+    updateSkill = (id, skill) => {
+        this.props.updateSkill(id, skill)
+        this.updatePreview()
+    }
+
+    updateDescription = (id, description) => {
+        this.props.updateDescription(id, description)
         this.updatePreview()
     }
 
@@ -44,7 +49,7 @@ export class Skills extends React.Component {
                 [this.props.skills.length]: true
             },
         }));
-        this.props.addSkill('', '')
+        this.props.addSkill()
         this.setState({
             activeIndex: this.props.skills.length
         })
@@ -74,13 +79,13 @@ export class Skills extends React.Component {
                         variant="outlined"
                         label='Skill'
                         value={this.props.skills[i].skill}
-                        onChange={e => this.updateSkill(i, e.target.value, null)}
+                        onChange={e => this.updateSkill(i, e.target.value)}
                     />
                     <Input
                         variant="outlined"
-                        label='Desciprion'
+                        label='Description'
                         value={this.props.skills[i].description}
-                        onChange={e => this.updateSkill(i, null, e.target.value)}
+                        onChange={e => this.updateDescription(i, e.target.value)}
                     />
                 </AccordionPanel>
             )
@@ -123,10 +128,11 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        updateHeader: (header) => dispatch(updateHeader(header)),
-        updateSkill: (id, skill, description) => dispatch(updateSkill(id, skill, description)),
-        addSkill: (skill, description) => dispatch(addSkill(skill, description)),
-        deleteSkill: id => dispatch(deleteSkill(id)),
+        updateHeader: (header) => dispatch(Actions.updateHeader(header)),
+        updateSkill: (id, skill) => dispatch(Actions.updateSkill(id, skill)),
+        updateDescription: (id, description) => dispatch(Actions.updateDescription(id, description)),
+        addSkill: () => dispatch(Actions.addSkill()),
+        deleteSkill: id => dispatch(Actions.deleteSkill(id)),
         updatePreview: (isUpdate) => dispatch(updatePreview(isUpdate))
     };
 };
