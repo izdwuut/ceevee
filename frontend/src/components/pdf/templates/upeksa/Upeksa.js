@@ -53,7 +53,7 @@ export default class Upeksa extends React.Component {
                 <Header context={MainContext} style={headerStyles}/>
               </View>
             </View>
-            <Spacer size='25.5mm'> </Spacer>
+            <Spacer size='20.5mm'> </Spacer>
             <View style={styles.contents}>
               <View style={styles.leftColumn}>
                 <Skills context={MainContext} style={skillsStyles} />
