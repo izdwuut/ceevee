@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 export class Experience extends React.Component {
     render() {
         return (
-            <View>
+            <View style={this.props.style.section}>
+
                 {this.props.visible &&
                     <View>
                         <Text style={this.props.style.header}>{this.props.header}</Text>
