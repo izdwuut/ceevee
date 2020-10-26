@@ -3,13 +3,19 @@ import React from 'react';
 import { pdf } from '@react-pdf/renderer'
 import { Document, Page, pdfjs, } from 'react-pdf'
 import styles from './PDFViewer.css'
-import { Button } from 'semantic-ui-react'
-import Test from '../templates/Test';
 import { updatePreviousBlob, updateNextBlob, updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { connect } from 'react-redux'
 import { CSSTransition } from "react-transition-group";
 import Upeksa from '../templates/upeksa/Upeksa';
+import {
+  Button,
+  Dropdown,
+  DropdownTrigger,
+} from '@salesforce/design-system-react';
+
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+
+
 
 export class PDFViewer extends React.Component {
   constructor(props) {
@@ -119,6 +125,23 @@ export class PDFViewer extends React.Component {
         >
           next page
         </Button>
+        <Dropdown
+					tabIndex="-1"
+					align="right"
+					options={[
+						{ label: 'PDF', value: '0' },
+						{ label: 'Text', value: '1' },
+					]}
+				>
+					<DropdownTrigger>
+						<Button
+							iconCategory="utility"
+							iconName="download"
+							iconPosition="left"
+							label="Download..."
+						/>
+					</DropdownTrigger>
+				</Dropdown>
 
 
         <Document
