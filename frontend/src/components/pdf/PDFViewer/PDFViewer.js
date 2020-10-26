@@ -68,7 +68,7 @@ export class PDFViewer extends React.Component {
         isPreviousPage: this.isPreviousPage()
       })
     }
-    if (this.props.update) {
+    if (this.props.pdfViewer.update) {
       this.getBlob()
       this.props.updatePreview(false)
     }
@@ -96,7 +96,7 @@ export class PDFViewer extends React.Component {
   }
 
   onPdfRenderSuccess() {
-    setTimeout(() => this.props.updatePreviousBlob(this.props.nextBlob), this.timeout)
+    setTimeout(() => this.props.updatePreviousBlob(this.props.pdfViewer.nextBlob), this.timeout)
   }
 
   onPdfLoadSuccess(pdf) {
@@ -117,7 +117,7 @@ export class PDFViewer extends React.Component {
 
   downloadPDF = (fileName) => {
     let anchor = document.createElement('a');
-    anchor.setAttribute('href', this.props.nextBlob);
+    anchor.setAttribute('href', this.props.pdfViewer.nextBlob);
     anchor.setAttribute('download', fileName);
 
     anchor.style.display = 'none';
@@ -127,7 +127,10 @@ export class PDFViewer extends React.Component {
 
     document.body.removeChild(anchor);
   }
-  
+
+  downloadText = (fileName) => {
+
+  }
   render() {
     return (
 
@@ -163,7 +166,7 @@ export class PDFViewer extends React.Component {
 		
         <Document
           className="previous-pdf"
-          file={this.props.previousBlob}
+          file={this.props.pdfViewer.previousBlob}
           loading=''
           onLoadSuccess={this.onPdfLoadSuccess}>
           <Page
@@ -183,7 +186,7 @@ export class PDFViewer extends React.Component {
 
           <Document
             className="next-pdf"
-            file={this.props.nextBlob}
+            file={this.props.pdfViewer.nextBlob}
             loading=''
             noData=''
           >
@@ -205,7 +208,7 @@ export class PDFViewer extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return state.pdfViewer
+  return state
 }
 
 export default connect(
