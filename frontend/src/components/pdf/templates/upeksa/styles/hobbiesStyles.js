@@ -17,6 +17,9 @@ export const hobbiesStyles = StyleSheet.create({
         fontSize: 16,
         paddingBottom: Variables.sectionPadding
     },
+    hobby: {
+        paddingBottom: Variables.contentsSpacing
+    },
     section: {
         paddingBottom: Variables.sectionPadding
         

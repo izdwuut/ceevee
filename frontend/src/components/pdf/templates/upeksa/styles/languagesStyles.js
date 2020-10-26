@@ -17,8 +17,10 @@ export const languagesStyles = StyleSheet.create({
         fontSize: 16,
         paddingBottom: Variables.sectionPadding
     },
+    language: {
+        paddingBottom: Variables.contentsSpacing
+    },
     section: {
         paddingBottom: Variables.sectionPadding
-        
     }
 })

@@ -21,10 +21,8 @@ export const linksStyles = StyleSheet.create({
     link: {
         color: Variables.fontColor,
         paddingBottom: Variables.contentsSpacing
-
     },
     section: {
         paddingBottom: Variables.sectionPadding
-        
     }
 })
