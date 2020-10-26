@@ -108,16 +108,21 @@ export class PDFViewer extends React.Component {
   }
 
   handleDownloadOption = (e) => {
+    const fileName = 'file'
     console.log(e)
     switch (e.value) {
       case 'pdf':
-        this.downloadPDF('file.pdf')
+        this.downloadCV(fileName + '.pdf', this.props.pdfViewer.nextBlob)
+        break;
+      case 'text':
+        this.downloadCV(fileName + '.txt', this.getText())
+        break;
     }
   }
 
-  downloadPDF = (fileName) => {
+  downloadCV = (fileName, file) => {
     let anchor = document.createElement('a');
-    anchor.setAttribute('href', this.props.pdfViewer.nextBlob);
+    anchor.setAttribute('href', file);
     anchor.setAttribute('download', fileName);
 
     anchor.style.display = 'none';
@@ -128,8 +133,152 @@ export class PDFViewer extends React.Component {
     document.body.removeChild(anchor);
   }
 
-  downloadText = (fileName) => {
+  getText = () => {
+    let experience = []
+    this.props.experience.experience.forEach((entry) => {
+      const exp =
+        `Position: ${entry.position}
+Company: ${entry.company}
+City: ${entry.city}
+Country: ${entry.country}
+From: ${entry.fromDateString}
+To: ${entry.toDateString}
+Description: ${entry.description}`
+      experience.push(exp)
+    })
 
+    let education = []
+    this.props.education.education.forEach((entry) => {
+      const edu =
+        `Course: ${entry.course}
+School: ${entry.school}
+Title: ${entry.title}
+Company: ${entry.company}
+City: ${entry.city}
+Country: ${entry.country}
+From: ${entry.from}
+To: ${entry.to}
+Description: ${entry.description}`
+      education.push(edu)
+    })
+
+    let skills = []
+    this.props.skills.skills.forEach((entry) => {
+      const skill =
+        `Skill: ${entry.skill}
+Description: ${entry.description}`
+      skills.push(skill)
+    })
+
+    let languages = []
+    this.props.languages.languages.forEach((entry) => {
+      const language =
+        `${entry.language}`
+      languages.push(language)
+    })
+
+    let links = []
+    this.props.links.links.forEach((entry) => {
+      const link =
+        `Label: ${entry.label}
+Link: ${entry.link}`
+      links.push(link)
+    })
+
+    let certificates = []
+    this.props.certificates.certificates.forEach((entry) => {
+      const certificate =
+        `Certificate: ${entry.certificate} 
+Issuer: ${entry.issuer}
+Valid until: ${entry.validUntilString}`
+      certificates.push(certificate)
+    })
+
+    let hobbies = []
+    this.props.hobbies.hobbies.forEach((entry) => {
+      const hobby =
+        `${entry}`
+      hobbies.push(hobby)
+    })
+
+    let projects = []
+    this.props.projects.projects.forEach((entry) => {
+      const project =
+        `Project: ${entry.project}
+Company: ${entry.company}
+City: ${entry.city}
+Country: ${entry.country}
+Position: ${entry.position}
+From: ${entry.fromDateString}
+To: ${entry.toDateString}
+Description: ${entry.description}`
+      projects.push(project)
+    })
+
+    let downloadText =
+      `---
+Header
+---
+First name: ${this.props.details.firstName}
+Middle name: ${this.props.details.middleName}
+Last name: ${this.props.details.lastName}
+Position: ${this.props.details.position}
+
+---
+Details
+---
+E-mail: ${this.props.details.email}
+Mobile: ${this.props.details.mobile}
+Country: ${this.props.details.country}
+City: ${this.props.details.city}
+Driving license: ${this.props.details.drivingLicense}
+Birth date: ${this.props.details.birthDate}
+
+---
+Experience
+---
+${experience.join('\n')}
+
+---
+Education
+---
+${education.join('\n')}
+
+---
+Skills
+---
+${skills.join('\n')}
+
+---
+Links
+---
+${links.join('\n')}
+
+---
+Certificates
+---
+${certificates.join('\n')}
+
+---
+Hobbies
+---
+${hobbies.join('\n')}
+
+---
+Projects
+---
+${projects.join('\n')}
+
+---
+GDPA
+---
+${this.props.gdpa.gdpa}
+`
+
+    return URL.createObjectURL(new Blob([downloadText], {
+      type:
+        'application/text'
+    }))
   }
   render() {
     return (
@@ -152,18 +301,18 @@ export class PDFViewer extends React.Component {
 
 
         <Dropdown
-				align="right"
-				iconCategory="utility"
-				iconName="download"
-				iconPosition="left"
-				label="Download..."
-				options={[
-          { label: 'PDF', value: 'pdf' },
-          { label: 'Text', value: 'text' },
-        ]}
-        onSelect={(event) => this.handleDownloadOption(event)}
-			/>
-		
+          align="right"
+          iconCategory="utility"
+          iconName="download"
+          iconPosition="left"
+          label="Download..."
+          options={[
+            { label: 'PDF', value: 'pdf' },
+            { label: 'Text', value: 'text' },
+          ]}
+          onSelect={(event) => this.handleDownloadOption(event)}
+        />
+
         <Document
           className="previous-pdf"
           file={this.props.pdfViewer.previousBlob}

@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import pdfViewer from "./pdf/pdfViewer/pdfViewer";
-import metaData from './ui/details/details'
+import details from './ui/details/details'
 import skills from './ui/skills/skills'
 import hobbies from './ui/hobbies/hobbies'
 import experience from './ui/experience/experience'
@@ -15,7 +15,7 @@ import projects from './ui/projects/projects'
 
 
 export default combineReducers({ 
-    metaData: metaData,
+    details: details,
     pdfViewer: pdfViewer,
     skills: skills,
     hobbies: hobbies,

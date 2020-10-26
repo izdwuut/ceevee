@@ -183,7 +183,7 @@ export class Details extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return state.metaData
+    return state.details
 }
 
 export default connect(
