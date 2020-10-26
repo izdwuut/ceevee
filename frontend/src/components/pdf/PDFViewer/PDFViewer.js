@@ -107,6 +107,27 @@ export class PDFViewer extends React.Component {
     })
   }
 
+  handleDownloadOption = (e) => {
+    console.log(e)
+    switch (e.value) {
+      case 'pdf':
+        this.downloadPDF('file.pdf')
+    }
+  }
+
+  downloadPDF = (fileName) => {
+    let anchor = document.createElement('a');
+    anchor.setAttribute('href', this.props.nextBlob);
+    anchor.setAttribute('download', fileName);
+
+    anchor.style.display = 'none';
+    document.body.appendChild(anchor);
+
+    anchor.click();
+
+    document.body.removeChild(anchor);
+  }
+  
   render() {
     return (
 
@@ -125,36 +146,32 @@ export class PDFViewer extends React.Component {
         >
           next page
         </Button>
+
+
         <Dropdown
-					tabIndex="-1"
-					align="right"
-					options={[
-						{ label: 'PDF', value: '0' },
-						{ label: 'Text', value: '1' },
-					]}
-				>
-					<DropdownTrigger>
-						<Button
-							iconCategory="utility"
-							iconName="download"
-							iconPosition="left"
-							label="Download..."
-						/>
-					</DropdownTrigger>
-				</Dropdown>
-
-
+				align="right"
+				iconCategory="utility"
+				iconName="download"
+				iconPosition="left"
+				label="Download..."
+				options={[
+          { label: 'PDF', value: 'pdf' },
+          { label: 'Text', value: 'text' },
+        ]}
+        onSelect={(event) => this.handleDownloadOption(event)}
+			/>
+		
         <Document
           className="previous-pdf"
           file={this.props.previousBlob}
           loading=''
           onLoadSuccess={this.onPdfLoadSuccess}>
           <Page
-           pageNumber={this.state.activePage}
+            pageNumber={this.state.activePage}
             loading=''
-             renderMode="canvas" 
+            renderMode="canvas"
 
-             />
+          />
         </Document>
 
 
