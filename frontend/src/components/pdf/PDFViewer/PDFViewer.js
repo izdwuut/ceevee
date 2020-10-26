@@ -107,7 +107,7 @@ export class PDFViewer extends React.Component {
     })
   }
 
-  handleDownloadOption = (e) => {
+  handleDownload = (e) => {
     const fileName = 'file'
     console.log(e)
     switch (e.value) {
@@ -143,7 +143,8 @@ City: ${entry.city}
 Country: ${entry.country}
 From: ${entry.fromDateString}
 To: ${entry.toDateString}
-Description: ${entry.description}`
+Description: ${entry.description}
+`
       experience.push(exp)
     })
 
@@ -153,12 +154,12 @@ Description: ${entry.description}`
         `Course: ${entry.course}
 School: ${entry.school}
 Title: ${entry.title}
-Company: ${entry.company}
 City: ${entry.city}
 Country: ${entry.country}
 From: ${entry.from}
 To: ${entry.to}
-Description: ${entry.description}`
+Description: ${entry.description}
+`
       education.push(edu)
     })
 
@@ -166,14 +167,16 @@ Description: ${entry.description}`
     this.props.skills.skills.forEach((entry) => {
       const skill =
         `Skill: ${entry.skill}
-Description: ${entry.description}`
+Description: ${entry.description}
+`
       skills.push(skill)
     })
 
     let languages = []
     this.props.languages.languages.forEach((entry) => {
       const language =
-        `${entry.language}`
+        `${entry.language}
+`
       languages.push(language)
     })
 
@@ -181,7 +184,8 @@ Description: ${entry.description}`
     this.props.links.links.forEach((entry) => {
       const link =
         `Label: ${entry.label}
-Link: ${entry.link}`
+Link: ${entry.link}
+`
       links.push(link)
     })
 
@@ -190,7 +194,8 @@ Link: ${entry.link}`
       const certificate =
         `Certificate: ${entry.certificate} 
 Issuer: ${entry.issuer}
-Valid until: ${entry.validUntilString}`
+Valid until: ${entry.validUntilString}
+`
       certificates.push(certificate)
     })
 
@@ -211,7 +216,8 @@ Country: ${entry.country}
 Position: ${entry.position}
 From: ${entry.fromDateString}
 To: ${entry.toDateString}
-Description: ${entry.description}`
+Description: ${entry.description}
+`
       projects.push(project)
     })
 
@@ -310,7 +316,7 @@ ${this.props.gdpa.gdpa}
             { label: 'PDF', value: 'pdf' },
             { label: 'Text', value: 'text' },
           ]}
-          onSelect={(event) => this.handleDownloadOption(event)}
+          onSelect={(event) => this.handleDownload(event)}
         />
 
         <Document
