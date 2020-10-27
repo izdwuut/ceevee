@@ -13,7 +13,6 @@ import GDPA from '../GDPA';
 import Certificates from '../Certificates';
 import Projects from '../Projects';
 import './CreateCV.css'
-import { Divider } from 'semantic-ui-react';
 import { SizeMe } from 'react-sizeme'
 
 

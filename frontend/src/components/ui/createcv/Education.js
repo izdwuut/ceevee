@@ -36,6 +36,7 @@ export class Education extends React.Component {
             expandedPanels: {},
         }
     }
+    setState = this.setState.bind(this)
 
     updatePreview = debounce(() => {
         this.props.updatePreview(true)
@@ -111,7 +112,7 @@ export class Education extends React.Component {
                 <AccordionPanel
                     panelContentActions={UI.getContentActions(() => this.deleteEducation(i))}
                     key={i}
-                    onTogglePanel={(e) => UI.getTogglePanel(i)}
+                    onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
                     expanded={!!this.state.expandedPanels[i]}
                     summary={this.props.education[i].school || 'School ' + (i + 1)}
                 >

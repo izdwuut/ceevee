@@ -31,8 +31,8 @@ export const getContentActions = (callback) => {
     );
 }
 
-export const getTogglePanel = (id) => {
-    this.setState((state) => ({
+export const getTogglePanel = (id, setState) => {
+    setState((state) => ({
         ...state,
         expandedPanels: {
             [id]: !state.expandedPanels[id],

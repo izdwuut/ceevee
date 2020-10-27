@@ -36,6 +36,9 @@ export class Certificates extends React.Component {
             expandedPanels: {},
         }
     }
+    setState = this.setState.bind(this)
+
+
     updatePreview = debounce(() => {
         this.props.updatePreview(true)
     }, debounceTime)
@@ -85,7 +88,7 @@ export class Certificates extends React.Component {
                 <AccordionPanel
                     panelContentActions={UI.getContentActions(() => this.deleteCertificate(i))}
                     key={i}
-                    onTogglePanel={(e) => UI.getTogglePanel(i)}
+                    onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
                     expanded={!!this.state.expandedPanels[i]}
                     summary={this.props.certificates[i].certificate || 'Certificate ' + (i + 1)}
                 >
