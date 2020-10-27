@@ -30,6 +30,8 @@ export class Links extends React.Component {
             expandedPanels: {},
         }
     }
+    setState = this.setState.bind(this)
+
     updatePreview = debounce(() => {
         this.props.updatePreview(true)
     }, debounceTime)
@@ -72,7 +74,7 @@ export class Links extends React.Component {
                     <AccordionPanel
                         panelContentActions={UI.getContentActions(() => this.deleteLink(i))}
                         key={i}
-                        onTogglePanel={(e) => UI.getTogglePanel(i)}
+                        onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
                         expanded={!!this.state.expandedPanels[i]}
                         summary={this.props.links[i].label || 'Link ' + (i + 1)}
                     >

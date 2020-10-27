@@ -26,6 +26,8 @@ export class Hobbies extends React.Component {
             expandedPanels: {},
         }
     }
+    setState = this.setState.bind(this)
+
     updatePreview = debounce(() => {
         this.props.updatePreview(true)
     }, debounceTime)
@@ -61,7 +63,7 @@ export class Hobbies extends React.Component {
                 <AccordionPanel
                     panelContentActions={UI.getContentActions(() => this.deleteHobby(i))}
                     key={i}
-                    onTogglePanel={(e) => UI.getTogglePanel(this.setState, i)}
+                    onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
                     expanded={!!this.state.expandedPanels[i]}
                     summary={this.props.hobbies[i] || 'Hobby ' + (i + 1)}
                 >

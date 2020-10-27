@@ -38,7 +38,10 @@ export class Experience extends React.Component {
         this.state = {
             expandedPanels: {},
         }
+        
     }
+    setState = this.setState.bind(this)
+
     updatePreview = debounce(() => {
         this.props.updatePreview(true)
     }, debounceTime)
@@ -110,7 +113,7 @@ export class Experience extends React.Component {
                     <AccordionPanel
                         panelContentActions={UI.getContentActions(() => this.deleteExperience(i))}
                         key={i}
-                        onTogglePanel={(e) => UI.getTogglePanel(i)}
+                        onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
                         expanded={!!this.state.expandedPanels[i]}
                         summary={this.props.experience[i].position || 'Experience ' + (i + 1)}
                     >
