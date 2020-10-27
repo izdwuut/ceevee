@@ -42,7 +42,7 @@ export class PDFViewer extends React.Component {
         type:
           'application/pdf'
       }))
-      if (!this.props.previousBlob) {
+      if (!this.props.pdfViewer.previousBlob) {
         this.props.updatePreviousBlob(url)
       }
       setTimeout(() => {
