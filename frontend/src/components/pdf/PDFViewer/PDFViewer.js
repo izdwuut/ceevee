@@ -293,17 +293,22 @@ ${this.props.gdpa.gdpa}
 
       <div className="pdf" style={styles.pdf}>
         <Button
+        iconCategory="utility"
+        iconName="chevronleft"
+        iconPosition="left"
+        disabled={!this.state.isPreviousPage}
+          
           onClick={this.setIsPreviousPage}
-          className={`${this.state.isPreviousPage ? 'enabled' : 'disabled'}`}
-        >
-          previous page
-        </Button>
+          label="Previous page"
+        />
         <Button
+        iconCategory="utility"
+        iconName="chevronright"
+        iconPosition="right"
           onClick={this.setIsNextPage}
-          className={`${this.state.isNextPage ? 'enabled' : 'disabled'}`}
-        >
-          next page
-        </Button>
+          disabled={!this.state.isNextPage}
+          label="Next page"
+        />
 
 
         <Dropdown
