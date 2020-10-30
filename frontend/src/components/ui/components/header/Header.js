@@ -50,8 +50,12 @@ export default class Header extends React.Component {
         <GlobalNavigationBarRegion region="secondary" navigation>
           <GlobalNavigationBarLink active label="Homepage" id="home-link" />
           <GlobalNavigationBarLink label="CVs list" />
+          <GlobalNavigationBarLink label="About us" />
+          <GlobalNavigationBarLink label="Contact" />
+
+
         </GlobalNavigationBarRegion>
-        <GlobalNavigationBarRegion region="tertiary">
+        <GlobalNavigationBarRegion region="tertiary" className="header-actions">
           <Popover
             body={
               <ul class="accessibility">
@@ -91,10 +95,25 @@ export default class Header extends React.Component {
                 </li>
               </ul>
             }
-            align="bottom"
+            align="bottom right"
           >
             <Button
               label="Accessibility options"
+              iconCategory="utility"
+              iconName="settings"
+              iconPosition="left"
+            />
+            <Button
+              label="Profile"
+              iconCategory="utility"
+              iconName="user"
+              iconPosition="left"
+            />
+            <Button
+              label="Log out"
+              iconCategory="utility"
+              iconName="logout"
+              iconPosition="left"
             />
           </Popover>
         </GlobalNavigationBarRegion>

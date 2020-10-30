@@ -1,28 +1,33 @@
 .header {
     background-color: white;
-
+    z-index: 5;
+    width: 100%;
+    padding:  0  1.5rem !important
 }
 
-
-.header,
 .logo {
-    display: flex;
+    padding-right: 1.5rem
 }
 
 .accessibility {
     align-self: flex-end;
 }
+.header,
+.logo,
 .font-size {
     display: flex;
 }
 
-.logo {
+.logo,
+.header-actions {
     align-items: center;
     justify-content: center;
 }
 
 .slds-checkbox_toggle {
-    display: flex;
     justify-content: space-between
 }
 
+.slds-context-bar {
+    padding: 1.5rem 0
+}
