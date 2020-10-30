@@ -14,13 +14,13 @@ import Certificates from '../Certificates';
 import Projects from '../Projects';
 import './CreateCV.css'
 import { SizeMe } from 'react-sizeme'
-
+import Navigation from '../../components/navigation/Navigation'
 
 export default class CreateCV extends React.Component {
   render() {
-
     return (
       <div className="container">
+        <Navigation  />
         <div className="ui-container" style={styles.ui}>
           <Details context={MainContext} />
           <Experience context={MainContext} />

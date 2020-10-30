@@ -1,0 +1,15 @@
+.nav {
+    background-color: white;
+    padding: 1%;
+}
+
+.accessibility,
+.nav {
+    display: flex;
+}
+
+.font-size {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
