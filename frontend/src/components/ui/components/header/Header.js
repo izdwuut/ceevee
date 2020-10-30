@@ -48,20 +48,18 @@ export default class Header extends React.Component {
           <a href="#" rel="Go to homepage" className="logo">{Variables.applicationName}</a>
         </GlobalNavigationBarRegion>
         <GlobalNavigationBarRegion region="secondary" navigation>
-          <GlobalNavigationBarLink active label="Home" id="home-link" />
-          <GlobalNavigationBarLink label="Menu Item" />
-          <GlobalNavigationBarLink label="Menu Item" />
-          <GlobalNavigationBarLink label="Menu Item" />
+          <GlobalNavigationBarLink active label="Homepage" id="home-link" />
+          <GlobalNavigationBarLink label="CVs list" />
         </GlobalNavigationBarRegion>
-        <GlobalNavigationBarRegion region="secondary">
+        <GlobalNavigationBarRegion region="tertiary">
           <Popover
             body={
               <ul class="accessibility">
                 <li>
                   <Checkbox
-                    
-                      label='Color Blind Mode'
-                    
+
+                    label='Color Blind Mode'
+
                     variant="toggle"
                   />
                 </li>
@@ -82,18 +80,6 @@ export default class Header extends React.Component {
                   />
                 </li>
                 <li className="font-size">
-                  {/* <Icon
-                    assistiveText={{ label: 'Font size' }}
-                    category="utility"
-                    name="type_tool"
-                    size="xx-small"
-                  />
-                  <Icon
-                    assistiveText={{ label: 'Font size' }}
-                    category="utility"
-                    name="type_tool"
-                    size="small"
-                  /> */}
                   <Slider
                     label="Font size (in percents)"
                     min={100}
@@ -105,11 +91,11 @@ export default class Header extends React.Component {
                 </li>
               </ul>
             }
-
-
             align="bottom"
           >
-            <Button label="Accessibility options" />
+            <Button
+              label="Accessibility options"
+            />
           </Popover>
         </GlobalNavigationBarRegion>
       </GlobalNavigationBar>
