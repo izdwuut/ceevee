@@ -1,11 +1,11 @@
 .header {
     background-color: white;
-    padding: 0.5%;
-    
+
 }
 
-.accessibility,
-.header {
+
+.header,
+.logo {
     display: flex;
 }
 
@@ -16,10 +16,13 @@
     display: flex;
 }
 
-.header * {
-    
+.logo {
     align-items: center;
     justify-content: center;
 }
 
+.slds-checkbox_toggle {
+    display: flex;
+    justify-content: space-between
+}
 
