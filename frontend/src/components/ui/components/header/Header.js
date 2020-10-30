@@ -13,10 +13,10 @@ import {
   Slider,
   Checkbox,
 } from '@salesforce/design-system-react';
-import styles from './Navigation.css'
+import styles from './Header.css'
 import * as Variables from '../../../../utilities/variables'
 
-export default class Navigation extends React.Component {
+export default class Header extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -32,7 +32,7 @@ export default class Navigation extends React.Component {
   render() {
 
     return (
-      <nav className="nav">
+      <header className="header">
         <a href="#" rel="Go to homepage">{Variables.applicationName}</a>
         <ul class="accessibility">
           <li>
@@ -60,18 +60,18 @@ export default class Navigation extends React.Component {
             />
           </li>
           <li className="font-size">
-          <Icon
-							assistiveText={{ label: 'Font size' }}
-							category="utility"
-							name="type_tool"
-							size="xx-small"
-						/>
             <Icon
-							assistiveText={{ label: 'Font size' }}
-							category="utility"
-							name="type_tool"
-							size="small"
-						/>
+              assistiveText={{ label: 'Font size' }}
+              category="utility"
+              name="type_tool"
+              size="xx-small"
+            />
+            <Icon
+              assistiveText={{ label: 'Font size' }}
+              category="utility"
+              name="type_tool"
+              size="small"
+            />
             <Slider
               label="Font size (in percents)"
               min={100}
@@ -88,7 +88,11 @@ export default class Navigation extends React.Component {
           iconName="back"
           iconPosition="left"
         />
-      </nav>
+        <nav className="nav">
+
+        </nav>
+      </header>
+
     )
   }
 }

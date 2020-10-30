@@ -1,15 +1,25 @@
-.nav {
+.header {
     background-color: white;
-    padding: 1%;
+    padding: 0.5%;
+    
 }
 
 .accessibility,
-.nav {
+.header {
     display: flex;
 }
 
+.accessibility {
+    align-self: flex-end;
+}
 .font-size {
     display: flex;
+}
+
+.header * {
+    
     align-items: center;
     justify-content: center;
 }
+
+
