@@ -20,7 +20,7 @@ import {
     CardEmpty
 } from '@salesforce/design-system-react';
 export class GDPA extends React.Component {
-    
+
     updatePreview = debounce(() => {
         this.props.updatePreview(true)
     }, debounceTime)
@@ -37,7 +37,7 @@ export class GDPA extends React.Component {
                 icon={<Icon category="standard" name="note" size="small" />}
             >
                 <p className='slds-col_padded'>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                    {this.props.description}
                 </p>
                 <div className="slds-grid slds-gutters slds-col_padded">
                     <div className="slds-col">
