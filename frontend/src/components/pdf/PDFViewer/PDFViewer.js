@@ -291,38 +291,39 @@ ${this.props.gdpa.gdpa}
 
 
 
-      <div className="pdf" style={styles.pdf}>
-        <Button
-        iconCategory="utility"
-        iconName="chevronleft"
-        iconPosition="left"
-        disabled={!this.state.isPreviousPage}
-          
-          onClick={this.setIsPreviousPage}
-          label="Previous page"
-        />
-        <Button
-        iconCategory="utility"
-        iconName="chevronright"
-        iconPosition="right"
-          onClick={this.setIsNextPage}
-          disabled={!this.state.isNextPage}
-          label="Next page"
-        />
+      <div className="pdf">
+        <div className="actions-top">
+          <Button
+            iconCategory="utility"
+            iconName="chevronleft"
+            iconPosition="left"
+            disabled={!this.state.isPreviousPage}
 
+            onClick={this.setIsPreviousPage}
+            label="Previous page"
+          />
+          <Dropdown
+            align="right"
+            iconCategory="utility"
+            iconName="download"
+            iconPosition="left"
+            label="Download..."
+            options={[
+              { label: 'PDF', value: 'pdf' },
+              { label: 'Text', value: 'text' },
+            ]}
+            onSelect={(event) => this.handleDownload(event)}
+          />
 
-        <Dropdown
-          align="right"
-          iconCategory="utility"
-          iconName="download"
-          iconPosition="left"
-          label="Download..."
-          options={[
-            { label: 'PDF', value: 'pdf' },
-            { label: 'Text', value: 'text' },
-          ]}
-          onSelect={(event) => this.handleDownload(event)}
-        />
+          <Button
+            iconCategory="utility"
+            iconName="chevronright"
+            iconPosition="right"
+            onClick={this.setIsNextPage}
+            disabled={!this.state.isNextPage}
+            label="Next page"
+          />
+        </div>
 
         <Document
           className="previous-pdf"

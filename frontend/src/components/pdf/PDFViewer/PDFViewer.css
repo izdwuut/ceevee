@@ -2,13 +2,15 @@
   position: fixed;
   top: 48%;
   left: 75%;
-  margin-top: -45vh;
-  margin-left: calc((90vh * -0.71) / 2)
+  margin-top: -42.5vh;
+  margin-left: calc((85vh * -0.71) / 2);
+  height: 85vh;
+  width: calc(85vh * 0.71);
 }
 
 .react-pdf__Page__canvas {
-  height: 90vh !important;
-  width: calc(90vh * 0.71) !important; /* 0.71 is A4 page scale ratio. */
+  height: 85vh !important;
+  width: calc(85vh * 0.71) !important; /* 0.71 is A4 page scale ratio. */
 }
 
 .react-pdf__Page__textContent {
@@ -41,3 +43,10 @@
   opacity: 0;
   transition: opacity 2500ms;
 }
+
+.actions-top {
+  display: flex;
+  justify-content: space-between;
+ padding-bottom: 0.5rem
+}
+

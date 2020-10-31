@@ -20,7 +20,7 @@ export default class CreateCV extends React.Component {
   render() {
     return (
       <div className="container">
-        <Header  />
+        <Header />
         <div className="ui-container" style={styles.ui}>
           <Details context={MainContext} />
           <Experience context={MainContext} />
