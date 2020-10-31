@@ -10,7 +10,8 @@ import MainContext from './CreateCVApp'
 import { IconSettings } from '@salesforce/design-system-react'
 import { jsx, css } from '@emotion/core';
 
-const access = css`
+const defaultTheme = css``
+const highContrastTheme = css`
   background-color: black;
   color: white;
 
@@ -18,7 +19,11 @@ const access = css`
     color: white;
   }
 
-  a {
+  a,
+  a:hover,
+  a:focus,
+  .slds-dropdown__item a:hover,
+  .slds-dropdown__item a:focus {
     color: yellow;
   }
 
@@ -26,13 +31,32 @@ const access = css`
     background-color: black;
   }
 
-  .slds-button {
+  .slds-button{
     color: yellow;
     background-color: #282828;
     border-color: #A0A0A0;
   }
 
-  .slds-button:hover,
+  .slds-dropdown,
+  .slds-popover {
+    background-color: #282828;
+  }
+
+  .slds-dropdown__item a:hover,
+  .slds-dropdown__item a:focus,
+   {
+    background-color: #3D3D3D
+  }
+
+  .slds-dropdown__item a,
+  .slds-popover,
+  .slds-form-element__label,
+  .slds-checkbox_off,
+  .slds-checkbox_on {
+    color: white
+  }
+
+  .slds-button:hover:not(:disabled),
   .slds-button:focus   {
     background-color: #3D3D3D;
     color: yellow;
@@ -45,16 +69,14 @@ const access = css`
     box-shadow: var(--sds-c-button-shadow-focus,0 0 3px yellow)
   }
 
-  .slds-button:focus,
   .slds-input:focus,
   .slds-textarea:focus {
     background-color: #3D3D3D;
     border-color: yellow
-
   }
 
   .slds-button:disabled {
-    background-color: #111111;
+    background-color: black;
     color: #white;
   }
 
@@ -62,7 +84,6 @@ const access = css`
   .slds-card {
     background-color: #0F0F0F;
     border-color: #A0A0A0;
-    
   }   
 
   .header-action-icon {
@@ -70,33 +91,36 @@ const access = css`
   }
 
   .slds-context-bar__item.slds-is-active::before {
-    background-color: yellow;
+    background-color: yellow; 
   }
 
+  .slds-context-bar__item.slds-is-active,
+  .slds-context-bar__item:hover{
+    background-color: #070707 !important;
+  }
 
-  .slds-context-bar__item.slds-is-active {
-    background-color: #070707 !important
+  .slds-popover {
+    
   }
 
   .slds-input,
   .slds-textarea {
     background-color: #282828;
     border-color: #A0A0A0;
-
   }
 
   .slds-context-bar {
     border-bottom: 3px solid yellow;
   }
 
-  .
+  
 `
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store} context={MainContext}>
       <IconSettings iconPath="/icons">
-        <div css={access}>
+        <div css={highContrastTheme}>
           <CreateCVApp />
         </div>
       </IconSettings>
