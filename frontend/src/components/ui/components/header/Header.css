@@ -1,12 +1,11 @@
 .header {
     z-index: 5;
     width: 100%;
-    padding-right: 1.5rem !important
-    
+    padding-right: 1.5rem !important;
 }
 
 .logo {
-    padding-right: 1.5rem
+    padding-right: 1.5rem;
 }
 
 .accessibility {
@@ -21,21 +20,26 @@
 .logo,
 .header-actions {
     align-items: center;
-    justify-content: center;
 }
 
 .slds-checkbox_toggle {
-    justify-content: space-between
+    justify-content: space-between;
 }
 
 .slds-context-bar {
-    padding: 1.5rem 0
+    padding: 1.5rem 0;
 }
 
-.header-action {
-    padding-left: 1.5rem;
+.accessibility {
+    position: relative !important;
 }
 
 .header-action-icon {
-    margin-right: 0.5rem
+    margin-right: 0.5rem;
+}
+
+.header-action:not(.accessibility) {
+    display: flex;            /* new */
+     align-items: center;      /* new */
+     padding-left: 1.5rem
 }

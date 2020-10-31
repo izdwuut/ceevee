@@ -56,9 +56,11 @@ export default class Header extends React.Component {
         </GlobalNavigationBarRegion>
 
         <GlobalNavigationBarRegion region="tertiary" className="header-actions">
+
           <Popover
+
             body={
-              <ul class="accessibility">
+              <ul>
                 <li>
                   <Checkbox
 
@@ -104,36 +106,37 @@ export default class Header extends React.Component {
               iconName="settings"
               iconPosition="left"
               iconSize="medium"
-              className="header-action"
+              className="header-action accessibility"
             />
-            <a 
-            href="#" 
+          </Popover>
+          <a
+            href="#"
             className="header-action"
-            >
-              <Icon
+          >
+            <Icon
               assistiveText={{ label: 'User Profile' }}
-                category="utility"
-                name="user"
-                size="x-small"
-                className="header-action-icon"
-              />
+              category="utility"
+              name="user"
+              size="x-small"
+              className="header-action-icon"
+            />
               User Profile
               </a>
-              <a 
-            href="#" 
+          <a
+            href="#"
             className="header-action"
-            >
-              <Icon
+          >
+            <Icon
               assistiveText={{ label: 'Log Out' }}
-                category="utility"
-                name="logout"
-                size="x-small"
-                className="header-action-icon"
+              category="utility"
+              name="logout"
+              size="x-small"
+              className="header-action-icon"
 
-              />
+            />
               Log Out
-              </a>
-          </Popover>
+            </a>
+
         </GlobalNavigationBarRegion>
       </GlobalNavigationBar>
 
