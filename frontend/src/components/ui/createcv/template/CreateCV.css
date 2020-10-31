@@ -1,7 +1,7 @@
 .container {
     display: grid;
     grid-template-areas: 
-    ". . . . ."
+    "header header header header header"
     ". ui-container . pdf-container ."
     ". . . . .";
     
@@ -20,4 +20,9 @@
     display: flex;
     justify-content: center;
     
+}
+
+.header {
+    grid-area: header
+
 }

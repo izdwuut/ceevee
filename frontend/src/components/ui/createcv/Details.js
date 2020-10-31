@@ -80,6 +80,9 @@ export class Details extends React.Component {
                 heading={this.props.header}
                 icon={<Icon category="standard" name="contact" size="small" />}
             >
+                <p className='slds-col_padded'>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                </p>
                 <div className="slds-grid slds-gutters slds-col_padded">
                     <div className="slds-col">
                         <Input

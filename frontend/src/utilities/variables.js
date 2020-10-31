@@ -15,3 +15,5 @@ export const monthNames = [
 ]
 export const formatterDateFormat = 'MMMM YYYY'
 export const datepickerDateFormat = 'MMMM yyyy'
+
+export const applicationName = 'create.cv'
