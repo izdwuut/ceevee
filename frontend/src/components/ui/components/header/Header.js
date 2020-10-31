@@ -97,24 +97,31 @@ export default class Header extends React.Component {
             }
             align="bottom right"
           >
+
             <Button
               label="Accessibility Options"
               iconCategory="utility"
               iconName="settings"
               iconPosition="left"
             />
-            <Button
-              label="User Profile"
-              iconCategory="utility"
-              iconName="user"
-              iconPosition="left"
-            />
-            <Button
-              label="Log Out"
-              iconCategory="utility"
-              iconName="logout"
-              iconPosition="left"
-            />
+            <a href="#">
+              <Icon
+              assistiveText={{ label: 'User Profile' }}
+                category="utility"
+                name="user"
+                size="x-small"
+              />
+              User Profile
+              </a>
+            <a href="#">
+              <Icon
+              assistiveText={{ label: 'Log Out' }}
+                category="utility"
+                name="logout"
+                size="x-small"
+              />
+              Log Out
+              </a>
           </Popover>
         </GlobalNavigationBarRegion>
       </GlobalNavigationBar>
