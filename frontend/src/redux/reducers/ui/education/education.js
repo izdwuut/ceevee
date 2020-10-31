@@ -5,7 +5,7 @@ import moment from 'moment'
 
 const initialState = {
     header: 'Education',
-    description: "From high school to university, your education os one of the most valuable assets.",
+    description: "From high school to university, your education is one of the most valuable assets.",
     originalHeader: 'Education',
     education: [],
     visible: false
