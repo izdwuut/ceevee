@@ -147,8 +147,8 @@ export class Certificates extends React.Component {
 
 
         return (
-           
-                <Card
+
+            <Card
                 heading={this.props.header}
 
                 icon={<Icon category="standard" name="document" size="small" />}
@@ -164,12 +164,12 @@ export class Certificates extends React.Component {
                 }
             >
                 <p className='slds-col_padded'>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                    {this.props.description}
                 </p>
                 {certificates.length > 0 &&
                     <Accordion>
                         {certificates}
-                        </Accordion>
+                    </Accordion>
                 }
             </Card>
         )
