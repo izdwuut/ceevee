@@ -32,6 +32,27 @@ const access = css`
     border-color: #A0A0A0;
   }
 
+  .slds-button:hover,
+  .slds-button:focus   {
+    background-color: #3D3D3D;
+    color: yellow;
+    border-color: yellow
+  }
+
+  .slds-button:focus,
+  .slds-input:focus,
+  .slds-textarea:focus {
+    box-shadow: var(--sds-c-button-shadow-focus,0 0 3px yellow)
+  }
+
+  .slds-button:focus,
+  .slds-input:focus,
+  .slds-textarea:focus {
+    background-color: #3D3D3D;
+    border-color: yellow
+
+  }
+
   .slds-button:disabled {
     background-color: #111111;
     color: #white;
