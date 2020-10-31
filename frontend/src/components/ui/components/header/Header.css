@@ -8,9 +8,6 @@
     padding-right: 1.5rem;
 }
 
-.accessibility {
-    align-self: flex-end;
-}
 .header,
 .logo,
 .font-size {
@@ -22,16 +19,8 @@
     align-items: center;
 }
 
-.slds-checkbox_toggle {
-    justify-content: space-between;
-}
-
 .slds-context-bar {
     padding: 1.5rem 0;
-}
-
-.accessibility {
-    position: relative !important;
 }
 
 .header-action-icon {
@@ -39,7 +28,7 @@
 }
 
 .header-action:not(.accessibility) {
-    display: flex;            /* new */
-     align-items: center;      /* new */
+    display: flex;            
+     align-items: center;   
      padding-left: 1.5rem
 }
