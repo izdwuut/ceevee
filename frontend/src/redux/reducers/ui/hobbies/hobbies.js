@@ -3,6 +3,7 @@ import * as actions from './actionTypes'
 const initialState = {
     header: 'Hobbies',
     originalHeader: 'Hobbies',
+    description: "Books? Movies? Vigorously scrolling through Reddit looking for dank memes? We don't judge.",
     hobbies: [
     ],
     visible: false
