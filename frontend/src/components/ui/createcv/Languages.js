@@ -104,7 +104,7 @@ export class Languages extends React.Component {
                 }
             >
                 <p className='slds-col_padded'>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                    {this.props.description}
                 </p>
                 {languages.length > 0 &&
                     <Accordion>
