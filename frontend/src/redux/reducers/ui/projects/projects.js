@@ -4,6 +4,7 @@ import { getValidatedDate } from '../../../../utilities/date'
 const initialState = {
     header: 'Projects',
     originalHeader: 'Projects',
+    description: "Did you create a cool website? Or maybe you're like us and work for the benefit of others? Don't be shy - list it all.",
     projects: [],
     visible: false
 }

@@ -258,7 +258,7 @@ export class Education extends React.Component {
                 }
             >
                 <p className='slds-col_padded'>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                    {this.props.description}
                 </p>
                 {education.length > 0 &&
                     <Accordion>

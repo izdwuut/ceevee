@@ -5,6 +5,7 @@ import moment from 'moment'
 
 const initialState = {
     header: 'Experience',
+    description: "The core of every CV. Don't hesitate to add anything related to the position you're applying for.",
     originalHeader: 'Experience',
     experience: [],
     visible: false

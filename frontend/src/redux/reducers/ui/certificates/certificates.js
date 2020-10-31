@@ -6,6 +6,7 @@ import moment from 'moment'
 const initialState = {
     header: 'Certificates',
     originalHeader: 'Certificates',
+    description: "Certificates are a great way to vouch that you have some skills. Got any? Add them here!",
     certificates: [],
     visible: false
 }

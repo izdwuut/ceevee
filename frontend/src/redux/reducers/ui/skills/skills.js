@@ -2,6 +2,7 @@ import * as actions from './actionTypes'
 
 const initialState = {
     header: 'Skills',
+    description: "Soft skills? Hard skills? We got you covered!",
     skills: [
     ],
     visible: false

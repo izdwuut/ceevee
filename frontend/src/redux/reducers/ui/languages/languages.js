@@ -2,6 +2,7 @@ import * as actions from './actionTypes'
 
 const initialState = {
     header: 'Languages',
+    description: "Habla español? Sprechen sie Deutsch? Mówisz po polsku? Show it off!",
     originalHeader: 'Languages',
     languages: [
     ],

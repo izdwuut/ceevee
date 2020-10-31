@@ -2,9 +2,9 @@ import * as actions from './actionTypes'
 
 const initialState = {
     header: 'Links',
+    description: "Do you run a website? Perhaps you have a portfolio? LinkedIn profile? Attach it all.",
     originalHeader: 'Links',
-    links: [
-    ],
+    links: [],
     visible: false
 }
 

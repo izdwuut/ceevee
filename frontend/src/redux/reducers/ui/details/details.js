@@ -2,7 +2,7 @@ import * as actions from './actionTypes'
 
 const initialState = {
     header: 'Details',
-    description: 'Lorem ipsum',
+    description: 'Various settings related to you. Let the employer know a little more about you!',
     firstName: '',
     middleName: '',
     lastName: '',

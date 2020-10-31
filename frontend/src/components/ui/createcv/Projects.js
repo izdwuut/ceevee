@@ -273,8 +273,8 @@ export class Projects extends React.Component {
                     }
                 >
                     <p className='slds-col_padded'>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                </p>
+                        {this.props.description}
+                    </p>
                     {projects.length > 0 &&
                         <Accordion>
                             {projects}

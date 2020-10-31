@@ -70,10 +70,10 @@ export class Hobbies extends React.Component {
                     <Input
                         variant="outlined"
                         label='Hobby'
-                        value={this.props.hobbies[i]} 
+                        value={this.props.hobbies[i]}
                         onChange={e => this.updateHobby(i, e.target.value)}
                     />
-                  </AccordionPanel>
+                </AccordionPanel>
             )
         }
 
@@ -94,12 +94,12 @@ export class Hobbies extends React.Component {
                 }
             >
                 <p className='slds-col_padded'>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                    {this.props.description}
                 </p>
                 <Accordion>
-                        {hobbies}
-                        </Accordion>
-                
+                    {hobbies}
+                </Accordion>
+
 
             </Card>
         )

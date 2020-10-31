@@ -74,7 +74,7 @@ export class Skills extends React.Component {
                     onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
                     expanded={!!this.state.expandedPanels[i]}
                     summary={this.props.skills[i].skill || 'Skill ' + (i + 1)}
-                    
+
                 >
                     <Input
                         variant="outlined"
@@ -110,7 +110,7 @@ export class Skills extends React.Component {
             >
 
                 <p className='slds-col_padded'>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                    {this.props.description}
                 </p>
                 {skills.length > 0 &&
                     <Accordion>
@@ -118,7 +118,7 @@ export class Skills extends React.Component {
                     </Accordion>
                 }
 
-                
+
             </Card>
         )
     }
