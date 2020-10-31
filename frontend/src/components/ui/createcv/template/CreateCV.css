@@ -24,5 +24,12 @@
 
 .header {
     grid-area: header
+}
 
+.description {
+    padding-top: 0.75rem
+}
+
+.page-header {
+    margin-bottom: 2rem
 }

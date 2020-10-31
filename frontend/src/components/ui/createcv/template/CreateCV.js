@@ -37,7 +37,7 @@ export default class CreateCV extends React.Component {
     return (
       <div className="container">
         <Header />
-        <div className="ui-container" style={styles.ui}>
+        <div className="ui-container">
         <PageHeader
 					icon={
 						<Icon
@@ -52,9 +52,10 @@ export default class CreateCV extends React.Component {
 							}}
 							title="CV"
 						/>
-					}
+          }
+          className="page-header"
 					title="Create CV"
-          info={<div>
+          info={<div className="description">
             Our core functionality - creating CVs. Here you have access to various components, like your personal details, work experience, education, and more. When something is not being used, it doesn't display on a generated document. By default, the preview is pretty much empty. That's because it fills with content as you update the form.
             <br /><br />
             You have an option to download the generated document in two formats: PDF and text (for accessibility).
