@@ -47,14 +47,14 @@ export default class Header extends React.Component {
         <GlobalNavigationBarRegion region="primary">
           <a href="#" rel="Go to homepage" className="logo">{Variables.applicationName}</a>
         </GlobalNavigationBarRegion>
+
         <GlobalNavigationBarRegion region="secondary" navigation>
           <GlobalNavigationBarLink active label="Homepage" id="home-link" />
           <GlobalNavigationBarLink label="CVs List" />
           <GlobalNavigationBarLink label="About Us" />
           <GlobalNavigationBarLink label="Contact" />
-
-
         </GlobalNavigationBarRegion>
+
         <GlobalNavigationBarRegion region="tertiary" className="header-actions">
           <Popover
             body={
@@ -103,22 +103,33 @@ export default class Header extends React.Component {
               iconCategory="utility"
               iconName="settings"
               iconPosition="left"
+              iconSize="medium"
+              className="header-action"
             />
-            <a href="#">
+            <a 
+            href="#" 
+            className="header-action"
+            >
               <Icon
               assistiveText={{ label: 'User Profile' }}
                 category="utility"
                 name="user"
                 size="x-small"
+                className="header-action-icon"
               />
               User Profile
               </a>
-            <a href="#">
+              <a 
+            href="#" 
+            className="header-action"
+            >
               <Icon
               assistiveText={{ label: 'Log Out' }}
                 category="utility"
                 name="logout"
                 size="x-small"
+                className="header-action-icon"
+
               />
               Log Out
               </a>
