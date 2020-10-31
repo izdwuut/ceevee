@@ -49,8 +49,8 @@ export default class Header extends React.Component {
         </GlobalNavigationBarRegion>
         <GlobalNavigationBarRegion region="secondary" navigation>
           <GlobalNavigationBarLink active label="Homepage" id="home-link" />
-          <GlobalNavigationBarLink label="CVs list" />
-          <GlobalNavigationBarLink label="About us" />
+          <GlobalNavigationBarLink label="CVs List" />
+          <GlobalNavigationBarLink label="About Us" />
           <GlobalNavigationBarLink label="Contact" />
 
 
@@ -98,19 +98,19 @@ export default class Header extends React.Component {
             align="bottom right"
           >
             <Button
-              label="Accessibility options"
+              label="Accessibility Options"
               iconCategory="utility"
               iconName="settings"
               iconPosition="left"
             />
             <Button
-              label="Profile"
+              label="User Profile"
               iconCategory="utility"
               iconName="user"
               iconPosition="left"
             />
             <Button
-              label="Log out"
+              label="Log Out"
               iconCategory="utility"
               iconName="logout"
               iconPosition="left"
