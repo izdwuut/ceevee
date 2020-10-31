@@ -9,6 +9,7 @@ module.exports = {
       "@babel/preset-react"
     ],
     plugins: [
+      "emotion",
       "@babel/plugin-transform-runtime",
       "@babel/plugin-syntax-dynamic-import",
       "@babel/plugin-proposal-class-properties"
@@ -17,6 +18,7 @@ module.exports = {
       production: {
         only: ["src"],
         plugins: [
+          "emotion",
           [
             "transform-react-remove-prop-types",
             {
@@ -26,6 +28,9 @@ module.exports = {
           "@babel/plugin-transform-react-inline-elements",
           "@babel/plugin-transform-react-constant-elements"
         ]
+      },
+      "development": {
+        "plugins": [["emotion", { "sourceMap": true }]]
       }
     }
   };

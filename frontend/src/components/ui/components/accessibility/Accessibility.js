@@ -30,18 +30,32 @@ import styles from './Accessibility.css'
 import * as Variables from '../../../../utilities/variables'
 
 
-
 export default class Accessibility extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            fontSize: 100
+            fontSize: 100,
+            isContrastMode: false
         }
     }
     handleFontSizeChange = (event, { value }) => {
         this.setState({
             fontSize: value
         })
+    }
+    handleContrastModeChange = (event, { checked }) => {
+        
+        this.setState({
+            isContrastMode: !this.state.isContrastMode
+        })
+    }
+    componentDidUpdate(prevProps, prevState) {
+        if(this.state.isContrastMode) {
+            this.applyStylesheet('./styles/contrast.css')
+        }
+    }
+    applyStylesheet = (stylesheet) => {
+        require(stylesheet)
     }
     render() {
         return (
@@ -62,7 +76,9 @@ export default class Accessibility extends React.Component {
                                 labels={{
                                     label: 'High Contrast Mode',
                                 }}
+                                defaultChecked={this.state.isContrastMode}
                                 variant="toggle"
+                                onChange={this.handleContrastModeChange}
                             />
                         </li>
                         <li>

@@ -33,7 +33,7 @@ module.exports = function (_env, argv) {
                     test: /\.css$/,
                     use: [
                         isProduction ? MiniCssExtractPlugin.loader : "style-loader",
-                        "css-loader"
+                        "css-loader",
                     ]
 
                 }
@@ -49,11 +49,8 @@ module.exports = function (_env, argv) {
                 ]
             },
             {
-                test: /\.css$/,
-                loader: ExtractTextPlugin.extract(
-                    'style-loader',
-                    'css-loader?url=false&outputStyle=expanded&sourceMap=true&sourceMapContents=true'
-                )
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
             },
             {
                 test: /\.(svg|gif|jpe?g|png)$/,
@@ -65,7 +62,7 @@ module.exports = function (_env, argv) {
             }
         ],
         resolve: {
-            extensions: [".js", ".jsx"]
+            extensions: [".js", ".jsx"],
         },
         plugins: [
             isProduction &&
