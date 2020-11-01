@@ -23,6 +23,8 @@ export class CreateCVApp extends React.Component {
       <div css={this.getTheme()}>
         <Router>
           <Route path="/cv/edit/:id" component={CreateCV} />
+          <Route path="/cv/list" component={CreateCV} />
+
         </Router>
       </div>
     )
