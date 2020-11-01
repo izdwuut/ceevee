@@ -29,6 +29,7 @@ import {
 import styles from './Header.css'
 import * as Variables from '../../../../utilities/variables'
 import Accessibility from '../accessibility/Accessibility'
+import MainContext from '../../../../index';
 
 export default class Header extends React.Component {
   
@@ -48,7 +49,7 @@ export default class Header extends React.Component {
 
         <GlobalNavigationBarRegion region="tertiary" className="header-actions">
 
-          <Accessibility />
+          <Accessibility context={MainContext}/>
           <a
             href="#"
             className="header-action"

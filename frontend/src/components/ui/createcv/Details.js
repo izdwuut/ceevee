@@ -1,4 +1,4 @@
-import MainContext from '../../../CreateCVApp';
+import MainContext from '../../../index';
 import * as React from 'react';
 import { updateFirstName, updateMiddleName, updateLastName, updatePosition, updateEmail, updateMobile, updateCountry, updateCity, updateDrivingLicense, updateBirthDate } from '../../../redux/reducers/ui/details/actions'
 import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'

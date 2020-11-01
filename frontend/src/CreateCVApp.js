@@ -8,11 +8,16 @@ import './CreateCVApp.css'
 import { jsx } from '@emotion/core';
 import highContrastTheme from './styles/highContrastTheme'
 import defaultTheme from './styles/defaultTheme'
-
-const MainContext = React.createContext()
-export default MainContext;
+import { connect } from "react-redux"
+import * as Actions from './redux/reducers/ui/accessibility/actions'
+import MainContext from './index'
 
 export class CreateCVApp extends React.Component {
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log(prevProps)
+  }
+
   render() {
     return (
       <div css={highContrastTheme}>
@@ -22,3 +27,14 @@ export class CreateCVApp extends React.Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return state.accessibility
+}
+
+export default connect(
+  mapStateToProps,
+  null,
+  null,
+  { context: MainContext }
+)(CreateCVApp)

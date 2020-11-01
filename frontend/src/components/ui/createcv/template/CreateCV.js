@@ -5,7 +5,7 @@ import Skills from '../Skills'
 import Details from '../Details';
 import Hobbies from '../Hobbies';
 import Experience from '../Experience'
-import MainContext from '../../../../CreateCVApp';
+import MainContext from '../../../../index';
 import Languages from '../Languages';
 import Education from '../Education';
 import Links from '../Links';
@@ -36,7 +36,7 @@ export default class CreateCV extends React.Component {
 
     return (
       <div className="container">
-        <Header />
+        <Header context={MainContext} />
         <div className="ui-container">
         <PageHeader
 					icon={

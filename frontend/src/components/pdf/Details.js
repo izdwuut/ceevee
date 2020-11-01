@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, Link } from '@react-pdf/renderer';
-import MainContext from '../../CreateCVApp';
+import MainContext from '../../index';
 import { connect } from "react-redux";
 
 export class Details extends React.Component {

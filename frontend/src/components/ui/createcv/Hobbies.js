@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as Actions from '../../../redux/reducers/ui/hobbies/actions'
 import { connect } from "react-redux"
-import MainContext from '../../../CreateCVApp';
+import MainContext from '../../../index';
 import debounce from '../../../utilities/debounce'
 import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { debounceTime } from '../../../utilities/variables'

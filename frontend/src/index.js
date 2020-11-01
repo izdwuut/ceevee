@@ -5,10 +5,11 @@ import { CreateCVApp } from './CreateCVApp';
 import * as serviceWorker from './serviceWorker'
 import { Provider } from 'react-redux'
 import store from './redux/store'
-import MainContext from './CreateCVApp'
+
 import { IconSettings } from '@salesforce/design-system-react'
 
-
+const MainContext = React.createContext()
+export default MainContext
 
 ReactDOM.render(
   <React.StrictMode>

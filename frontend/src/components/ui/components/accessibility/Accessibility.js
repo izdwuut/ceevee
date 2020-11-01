@@ -28,9 +28,10 @@ import {
 } from '@salesforce/design-system-react';
 import styles from './Accessibility.css'
 import * as Variables from '../../../../utilities/variables'
-
-
-export default class Accessibility extends React.Component {
+import { connect } from "react-redux"
+import * as Actions from '../../../../redux/reducers/ui/accessibility/actions'
+import MainContext from '../../../../index'
+export class Accessibility extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -49,14 +50,7 @@ export default class Accessibility extends React.Component {
             isContrastMode: !this.state.isContrastMode
         })
     }
-    componentDidUpdate(prevProps, prevState) {
-        if(this.state.isContrastMode) {
-            this.applyStylesheet('./styles/contrast.css')
-        }
-    }
-    applyStylesheet = (stylesheet) => {
-        // require(stylesheet)
-    }
+
     render() {
         return (
             <Popover
@@ -117,3 +111,23 @@ export default class Accessibility extends React.Component {
         )
     }
 }
+
+const mapStateToProps = state => {
+    return state.accessibility
+  }
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+      toggleDarkMode: () => Actions.toggleDarkMode(),
+      resizeFont: (fontSize) => Actions.resizeFont(fontSize),
+      toggleColorBlindMode: () => Actions.toggleColorBlindMode(),
+      toggleHighContrastMode: () => Actions.toggleHighContrastMode()
+    }
+  }
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+    null,
+    { context: MainContext }
+  )(Accessibility)
