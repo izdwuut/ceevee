@@ -34,7 +34,6 @@ const highContrastTheme = css`
   .slds-button{
     color: yellow;
     background-color: #282828;
-    border-color: #A0A0A0;
   }
 
   .slds-dropdown,
@@ -118,17 +117,20 @@ const highContrastTheme = css`
 
   }
   
-  /* All the same stuff for Firefox */
   input[type=range]::-moz-range-thumb {
 
     background: yellow;
   }
   
-  /* All the same stuff for IE */
   input[type=range]::-ms-thumb {
     
     background: yellow;
   }
+
+  .font-size .slds-form-element {
+    width: 100%
+  }
+  /* Checkbox */
 
 
 `
