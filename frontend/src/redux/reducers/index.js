@@ -10,6 +10,7 @@ import links from './ui/links/links'
 import gdpa from './ui/gdpa/gdpa'
 import certificates from './ui/certificates/certificates'
 import projects from './ui/projects/projects'
+import accessibility from './ui/accessibility/accessibility'
 
 
 
@@ -25,5 +26,6 @@ export default combineReducers({
     links: links,
     gdpa: gdpa,
     certificates: certificates,
-    projects: projects
+    projects: projects,
+    accessibility: accessibility,
 });
