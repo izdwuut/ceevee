@@ -1,19 +1,19 @@
 /** @jsx jsx */
 import React from 'react';
-import CreateCV from './components/ui/createcv/template/CreateCV'
+import CreateCV from './pages/ui/createcv/template/CreateCV'
 import { connect } from 'react-redux'
 import './CreateCVApp.css'
 import { jsx } from '@emotion/core';
 import highContrastTheme from './styles/highContrastTheme'
 import defaultTheme from './styles/defaultTheme'
 import MainContext from './index'
-
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 
 export class CreateCVApp extends React.Component {
   theme = null
 
-  
+
 
   getTheme() {
     return this.props.isHighContrastMode ? highContrastTheme : defaultTheme
@@ -21,7 +21,9 @@ export class CreateCVApp extends React.Component {
   render() {
     return (
       <div css={this.getTheme()}>
-        <CreateCV />
+        <Router>
+          <Route path="/cv/edit/:id" component={CreateCV} />
+        </Router>
       </div>
     )
   }
