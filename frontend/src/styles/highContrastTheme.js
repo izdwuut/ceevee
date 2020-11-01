@@ -6,7 +6,7 @@ const backgroundColor = 'black'
 const secondaryColor = '#0F0F0F'
 const focusColor = '#161616'
 const hoverColor = focusColor
-const borderColor = '#A0A0A0'
+const borderColor = 'white'
 
 const highContrastTheme = css`
   background-color: black;
@@ -52,7 +52,9 @@ const highContrastTheme = css`
     color: ${mainTextColor}
   }
 
-  .slds-button:hover:not(:disabled),
+  .slds-button:hover:not(:disabled) {
+    background-color: ${hoverColor};
+  }
   .slds-button:focus   {
     background-color: ${focusColor};
     color: ${accentColor};
@@ -66,11 +68,16 @@ const highContrastTheme = css`
   }
 
   .slds-input:focus,
-  .slds-textarea:focus,
-  .slds-input:hover,
-  .slds-textarea:hover {
+  .slds-textarea:focus
+   {
     background-color: ${focusColor};
     border-color: ${accentColor}
+  }
+
+  .slds-input:hover,
+  .slds-textarea:hover {
+    background-color: ${hoverColor};
+    
   }
 
   .slds-button:disabled {
