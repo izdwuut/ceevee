@@ -1,11 +1,19 @@
 import { css } from '@emotion/core';
 
+const mainTextColor = 'white'
+const accentColor = 'yellow'
+const backgroundColor = 'black'
+const secondaryColor = '#0F0F0F'
+const focusColor = '#161616'
+const hoverColor = focusColor
+const borderColor = '#A0A0A0'
+
 const highContrastTheme = css`
   background-color: black;
-  color: white;
+  color: ${mainTextColor};
 
   label {
-    color: white;
+    ${mainTextColor};
   }
 
   a,
@@ -13,27 +21,27 @@ const highContrastTheme = css`
   a:focus,
   .slds-dropdown__item a:hover,
   .slds-dropdown__item a:focus {
-    color: yellow;
+    color: ${accentColor};
   }
 
   .header {
-    background-color: black;
+    background-color: ${backgroundColor};
   }
 
   .slds-button{
-    color: yellow;
-    background-color: #282828;
+    color: ${accentColor};
+    background-color: ${secondaryColor};
   }
 
   .slds-dropdown,
   .slds-popover {
-    background-color: #282828;
+    background-color: ${secondaryColor};
   }
 
   .slds-dropdown__item a:hover,
   .slds-dropdown__item a:focus
    {
-    background-color: #3D3D3D;
+    background-color: ${focusColor};
   }
 
   .slds-dropdown__item a,
@@ -41,45 +49,53 @@ const highContrastTheme = css`
   .slds-form-element__label,
   .slds-checkbox_off,
   .slds-checkbox_on {
-    color: white
+    color: ${mainTextColor}
   }
 
   .slds-button:hover:not(:disabled),
   .slds-button:focus   {
-    background-color: #3D3D3D;
-    color: yellow;
-    border-color: yellow
+    background-color: ${focusColor};
+    color: ${accentColor};
+    border-color: ${accentColor};
   }
 
   .slds-button:focus,
   .slds-input:focus,
   .slds-textarea:focus {
-    box-shadow: var(--sds-c-button-shadow-focus,0 0 3px yellow)
+    box-shadow: var(--sds-c-button-shadow-focus,0 0 3px ${accentColor})
   }
 
   .slds-input:focus,
-  .slds-textarea:focus {
-    background-color: #3D3D3D;
-    border-color: yellow
+  .slds-textarea:focus,
+  .slds-input:hover,
+  .slds-textarea:hover {
+    background-color: ${focusColor};
+    border-color: ${accentColor}
   }
 
   .slds-button:disabled {
-    background-color: black;
+    background-color: ${backgroundColor};
     color: #white;
   }
 
-  .slds-page-header,
+  .slds-page-header
+   {
+    background-color: ${secondaryColor};
+    border-color: ${borderColor};
+  }   
+
+  
   .slds-card {
-    background-color: #0F0F0F;
-    border-color: #A0A0A0;
+    background-color: ${backgroundColor};
+    border-color: ${borderColor};
   }   
 
   .header-action-icon {
-    fill: yellow;
+    fill: ${accentColor};
   }
 
   .slds-context-bar__item.slds-is-active::before {
-    background-color: yellow; 
+    background-color: ${accentColor}; 
   }
 
   .slds-context-bar__item.slds-is-active,
@@ -90,55 +106,57 @@ const highContrastTheme = css`
 
   .slds-input,
   .slds-textarea {
-    background-color: #282828;
-    border-color: #A0A0A0;
+    background-color: ${secondaryColor};
+    border-color: ${borderColor};
   }
 
   .slds-context-bar {
-    border-bottom: 3px solid yellow;
+    border-bottom: 3px solid ${accentColor};
   }
 
   /* Slider */
   input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    background: yellow;
+    background: ${accentColor};
     margin-top: -14px;
 
   }
   
-  input[type=range]::-moz-range-thumb {
+  input[type=range]::-moz-range-thumb
+   {
+    background: ${accentColor};
+  }
 
-    background: yellow;
+  input[type=range]::-ms-thumb {
+    background: ${accentColor};
   }
   
-  input[type=range]::-ms-thumb {
-    
-    background: yellow;
-  }
+   
 
   .font-size .slds-form-element {
     width: 100%
   }
+
   /* Checkbox */
 
   .slds-checkbox_toggle .slds-checkbox_faux {
-    border: 1px solid #A0A0A0;
-    background-color: #282828;
+    border: 1px solid ${borderColor};
+    background-color: ${secondaryColor};
   }
 
   .slds-checkbox_toggle .slds-checkbox_faux::after {
-    background-color: yellow
+    background-color: ${accentColor}
   }
 
   .slds-checkbox_toggle .slds-checkbox_faux:hover:not(:disabled),
   .slds-checkbox_toggle .slds-checkbox_faux:focus,
   .slds-checkbox_toggle [type="checkbox"]:checked + .slds-checkbox_faux_container .slds-checkbox_faux::before   {
-    background-color: #3D3D3D;
+    background-color: ${focusColor};
     
   }
 
   .slds-checkbox_toggle .slds-checkbox_faux:focus {
-    box-shadow: var(--sds-c-button-shadow-focus,0 0 3px yellow) !important
+    box-shadow: var(--sds-c-button-shadow-focus,0 0 3px ${accentColor}) !important
   }
 
   
@@ -146,19 +164,19 @@ const highContrastTheme = css`
   .slds-checkbox_toggle .slds-checkbox_faux:hover:not(:disabled),
   .slds-checkbox_toggle .slds-checkbox_faux:focus,
   [type="checkbox"]:focus + .slds-checkbox_faux_container .slds-checkbox_faux {
-    border: 1px solid yellow !important
+    border: 1px solid ${accentColor} !important
     
   }
 
 
   .slds-checkbox_toggle [type="checkbox"]:checked + .slds-checkbox_faux_container .slds-checkbox_faux:hover,
   .slds-checkbox_toggle [type="checkbox"]:checked + .slds-checkbox_faux_container .slds-checkbox_faux {
-    background-color: yellow !important
+    background-color: ${accentColor} !important
   }
 
   .slds-checkbox_toggle [type="checkbox"]:checked + .slds-checkbox_faux_container .slds-checkbox_faux::after {
-    border-bottom: 2px solid #3D3D3D !important;
-    border-right: 2px solid #3D3D3D
+    border-bottom: 2px solid ${focusColor} !important;
+    border-right: 2px solid ${focusColor}
   }
 `
 
