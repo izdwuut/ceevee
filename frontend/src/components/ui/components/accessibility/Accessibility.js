@@ -55,7 +55,7 @@ export default class Accessibility extends React.Component {
         }
     }
     applyStylesheet = (stylesheet) => {
-        require(stylesheet)
+        // require(stylesheet)
     }
     render() {
         return (

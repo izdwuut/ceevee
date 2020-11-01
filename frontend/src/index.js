@@ -113,7 +113,7 @@ const highContrastTheme = css`
   input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
     background: yellow;
-    margin-top: -14px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+    margin-top: -14px;
 
   }
   
@@ -132,7 +132,45 @@ const highContrastTheme = css`
   }
   /* Checkbox */
 
+  .slds-checkbox_toggle .slds-checkbox_faux {
+    border: 1px solid #A0A0A0;
+    background-color: #282828;
+  }
 
+  .slds-checkbox_toggle .slds-checkbox_faux::after {
+    background-color: yellow
+  }
+
+  .slds-checkbox_toggle .slds-checkbox_faux:hover:not(:disabled),
+  .slds-checkbox_toggle .slds-checkbox_faux:focus,
+  .slds-checkbox_toggle [type="checkbox"]:checked + .slds-checkbox_faux_container .slds-checkbox_faux::before   {
+    background-color: #3D3D3D;
+    
+  }
+
+  .slds-checkbox_toggle .slds-checkbox_faux:focus {
+    box-shadow: var(--sds-c-button-shadow-focus,0 0 3px yellow) !important
+  }
+
+  
+  .slds-checkbox_toggle [type="checkbox"]:checked + .slds-checkbox_faux_container .slds-checkbox_faux,
+  .slds-checkbox_toggle .slds-checkbox_faux:hover:not(:disabled),
+  .slds-checkbox_toggle .slds-checkbox_faux:focus,
+  [type="checkbox"]:focus + .slds-checkbox_faux_container .slds-checkbox_faux {
+    border: 1px solid yellow !important
+    
+  }
+
+
+  .slds-checkbox_toggle [type="checkbox"]:checked + .slds-checkbox_faux_container .slds-checkbox_faux:hover,
+  .slds-checkbox_toggle [type="checkbox"]:checked + .slds-checkbox_faux_container .slds-checkbox_faux {
+    background-color: yellow !important
+  }
+
+  .slds-checkbox_toggle [type="checkbox"]:checked + .slds-checkbox_faux_container .slds-checkbox_faux::after {
+    border-bottom: 2px solid #3D3D3D !important;
+    border-right: 2px solid #3D3D3D
+  }
 `
 
 ReactDOM.render(
