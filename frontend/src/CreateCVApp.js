@@ -1,29 +1,28 @@
 /** @jsx jsx */
-
 import React from 'react';
 import CreateCV from './components/ui/createcv/template/CreateCV'
-import { Provider } from 'react-redux'
-import store from './redux/store'
+import { connect } from 'react-redux'
 import './CreateCVApp.css'
 import { jsx } from '@emotion/core';
 import highContrastTheme from './styles/highContrastTheme'
 import defaultTheme from './styles/defaultTheme'
-import { connect } from "react-redux"
-import * as Actions from './redux/reducers/ui/accessibility/actions'
 import MainContext from './index'
 
+
+
 export class CreateCVApp extends React.Component {
+  theme = null
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log(prevProps)
+  
+
+  getTheme() {
+    return this.props.isHighContrastMode ? highContrastTheme : defaultTheme
   }
-
   render() {
     return (
-      <div css={highContrastTheme}>
+      <div css={this.getTheme()}>
         <CreateCV />
       </div>
-
     )
   }
 }

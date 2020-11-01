@@ -1,7 +1,7 @@
 import React from 'react'
 import { Document, Page, View, Text } from '@react-pdf/renderer'
 import Custom from '../../Custom'
-import Header from '../../Header'
+import {Header}from '../../Header'
 import Skills from '../../Skills'
 import Links from '../../Links'
 import Details from '../../Details'

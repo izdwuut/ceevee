@@ -30,13 +30,15 @@ import {
     PageHeader,
     
 } from '@salesforce/design-system-react';
+import { connect } from 'react-redux'
+
 
 export default class CreateCV extends React.Component {
   render() {
 
     return (
       <div className="container">
-        <Header context={MainContext} />
+        <Header />
         <div className="ui-container">
         <PageHeader
 					icon={
@@ -89,3 +91,4 @@ export default class CreateCV extends React.Component {
     )
   }
 }
+

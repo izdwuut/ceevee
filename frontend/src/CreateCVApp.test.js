@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import CreateCVApp from './CreateCVApp';
+import CreateCVApp from './index';
 
 test('renders learn react link', () => {
   const { getByText } = render(<CreateCVApp />);

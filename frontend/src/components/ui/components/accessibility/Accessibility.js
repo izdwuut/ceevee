@@ -45,10 +45,7 @@ export class Accessibility extends React.Component {
         })
     }
     handleContrastModeChange = (event, { checked }) => {
-        
-        this.setState({
-            isContrastMode: !this.state.isContrastMode
-        })
+        this.props.toggleHighContrastMode()
     }
 
     render() {
@@ -118,10 +115,10 @@ const mapStateToProps = state => {
   
   const mapDispatchToProps = dispatch => {
     return {
-      toggleDarkMode: () => Actions.toggleDarkMode(),
-      resizeFont: (fontSize) => Actions.resizeFont(fontSize),
-      toggleColorBlindMode: () => Actions.toggleColorBlindMode(),
-      toggleHighContrastMode: () => Actions.toggleHighContrastMode()
+      toggleDarkMode: () => dispatch(Actions.toggleDarkMode()),
+      resizeFont: (fontSize) => dispatch(Actions.resizeFont(fontSize)),
+      toggleColorBlindMode: () => dispatch(Actions.toggleColorBlindMode()),
+      toggleHighContrastMode: () => dispatch(Actions.toggleHighContrastMode())
     }
   }
   
