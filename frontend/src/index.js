@@ -113,7 +113,27 @@ const highContrastTheme = css`
     border-bottom: 3px solid yellow;
   }
 
+  /* Slider */
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: yellow;
+    margin-top: -14px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+
+  }
   
+  /* All the same stuff for Firefox */
+  input[type=range]::-moz-range-thumb {
+
+    background: yellow;
+  }
+  
+  /* All the same stuff for IE */
+  input[type=range]::-ms-thumb {
+    
+    background: yellow;
+  }
+
+
 `
 
 ReactDOM.render(
