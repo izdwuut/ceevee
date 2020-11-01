@@ -43,9 +43,9 @@ const highContrastTheme = css`
   }
 
   .slds-dropdown__item a:hover,
-  .slds-dropdown__item a:focus,
+  .slds-dropdown__item a:focus
    {
-    background-color: #3D3D3D
+    background-color: #3D3D3D;
   }
 
   .slds-dropdown__item a,
@@ -99,9 +99,6 @@ const highContrastTheme = css`
     background-color: #070707 !important;
   }
 
-  .slds-popover {
-    
-  }
 
   .slds-input,
   .slds-textarea {
