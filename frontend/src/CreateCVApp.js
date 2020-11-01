@@ -1,6 +1,8 @@
 /** @jsx jsx */
 import React from 'react';
 import CreateCV from './pages/ui/createcv/template/CreateCV'
+import CVList from './pages/ui/cvlist/template/CVList'
+
 import { connect } from 'react-redux'
 import './CreateCVApp.css'
 import { jsx } from '@emotion/core';
@@ -23,7 +25,7 @@ export class CreateCVApp extends React.Component {
       <div css={this.getTheme()}>
         <Router>
           <Route path="/cv/edit/:id" component={CreateCV} />
-          <Route path="/cv/list" component={CreateCV} />
+          <Route path="/cv/list" component={CVList} />
 
         </Router>
       </div>

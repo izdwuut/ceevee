@@ -30,9 +30,10 @@ import styles from './Header.css'
 import * as Variables from '../../../../utilities/variables'
 import Accessibility from '../accessibility/Accessibility'
 import MainContext from '../../../../index';
+import { Link } from 'react-router-dom'
 
 export default class Header extends React.Component {
-  
+
   render() {
     return (
       <GlobalNavigationBar className="header">
@@ -42,14 +43,17 @@ export default class Header extends React.Component {
 
         <GlobalNavigationBarRegion region="secondary" navigation>
           <GlobalNavigationBarLink active label="Homepage" id="home-link" />
-          <GlobalNavigationBarLink label="CVs List" />
+          <GlobalNavigationBarLink label="Edit CV" href="/cv/edit/1"  />
+          
+            <GlobalNavigationBarLink label="CVs List" href="/cv/list"/>
+          
           <GlobalNavigationBarLink label="About Us" />
           <GlobalNavigationBarLink label="Contact" />
         </GlobalNavigationBarRegion>
 
         <GlobalNavigationBarRegion region="tertiary" className="header-actions">
 
-          <Accessibility context={MainContext}/>
+          <Accessibility context={MainContext} />
           <a
             href="#"
             className="header-action"

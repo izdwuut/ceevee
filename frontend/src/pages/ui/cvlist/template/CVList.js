@@ -16,6 +16,7 @@ import {
     
 } from '@salesforce/design-system-react';
 import { connect } from 'react-redux'
+import Header from '../../components/header/Header'
 
 
 export default class CVList extends React.Component {
