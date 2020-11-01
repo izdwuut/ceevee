@@ -1,4 +1,4 @@
-import MainContext from '../../../CreateCVApp';
+import MainContext from '../../../index';
 import * as React from 'react';
 import { updateGdpa } from '../../../redux/reducers/ui/gdpa/actions'
 import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'

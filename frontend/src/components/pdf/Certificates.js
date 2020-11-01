@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from '@react-pdf/renderer';
-import MainContext from '../../CreateCVApp';
+import MainContext from '../../index';
 import { connect } from "react-redux";
 
 export class Certificates extends React.Component {

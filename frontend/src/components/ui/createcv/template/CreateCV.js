@@ -5,7 +5,7 @@ import Skills from '../Skills'
 import Details from '../Details';
 import Hobbies from '../Hobbies';
 import Experience from '../Experience'
-import MainContext from '../../../../CreateCVApp';
+import MainContext from '../../../../index';
 import Languages from '../Languages';
 import Education from '../Education';
 import Links from '../Links';
@@ -30,6 +30,8 @@ import {
     PageHeader,
     
 } from '@salesforce/design-system-react';
+import { connect } from 'react-redux'
+
 
 export default class CreateCV extends React.Component {
   render() {
@@ -89,3 +91,4 @@ export default class CreateCV extends React.Component {
     )
   }
 }
+

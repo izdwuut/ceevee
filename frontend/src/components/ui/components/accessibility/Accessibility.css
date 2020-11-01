@@ -1,0 +1,11 @@
+.accessibility {
+    position: relative !important;
+}
+
+.slds-checkbox_toggle {
+    justify-content: space-between;
+}
+
+.accessibility {
+    align-self: flex-end;
+}

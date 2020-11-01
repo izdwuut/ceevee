@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text } from '@react-pdf/renderer';
 import { connect } from "react-redux";
-import MainContext from '../../CreateCVApp';
+import MainContext from '../../index';
 
 export class GDPA extends React.Component {
     render() {

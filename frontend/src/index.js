@@ -1,21 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {CreateCVApp } from './CreateCVApp';
+import  CreateCVApp  from './CreateCVApp';
 import * as serviceWorker from './serviceWorker'
 import { Provider } from 'react-redux'
 import store from './redux/store'
-import MainContext  from './CreateCVApp'
-import {IconSettings} from '@salesforce/design-system-react'
+import { IconSettings } from '@salesforce/design-system-react'
+
+
+
+const MainContext = React.createContext()
+export default MainContext
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store} context={MainContext}>
-    <IconSettings iconPath="/icons">
-      <CreateCVApp />
+      <IconSettings iconPath="/icons">
+        <CreateCVApp context={MainContext}/>
       </IconSettings>
     </Provider>
-  </React.StrictMode>,
+  </React.StrictMode >,
   document.getElementById("root")
 );
 

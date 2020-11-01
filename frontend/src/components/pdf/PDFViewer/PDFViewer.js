@@ -1,4 +1,4 @@
-import MainContext from '../../../CreateCVApp';
+import MainContext from '../../../index';
 import React from 'react';
 import { pdf } from '@react-pdf/renderer'
 import { Document, Page, pdfjs, } from 'react-pdf'

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from '@react-pdf/renderer';
 import { connect } from "react-redux";
-import MainContext from '../../CreateCVApp';
+import MainContext from '../../index';
 
 export class Skills extends React.Component {
     render() {
