@@ -55,6 +55,7 @@ const highContrastTheme = css`
 
   .slds-button:hover:not(:disabled) {
     background-color: ${hoverColor};
+    color: ${accentColor}
   }
   .slds-button:focus   {
     background-color: ${focusColor};
