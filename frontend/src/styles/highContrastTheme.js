@@ -9,6 +9,7 @@ const hoverColor = focusColor
 const borderColor = 'white'
 
 const highContrastTheme = css`
+@media screen and (-ms-high-contrast: active) {
   body,html {
     background: black;
     color: ${mainTextColor};
@@ -184,7 +185,8 @@ const highContrastTheme = css`
   .slds-checkbox_toggle [type="checkbox"]:checked + .slds-checkbox_faux_container .slds-checkbox_faux::after {
     border-bottom: 2px solid ${focusColor} !important;
     border-right: 2px solid ${focusColor}
-  }
+  } 
+}
 `
 
 export default highContrastTheme
