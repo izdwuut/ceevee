@@ -142,9 +142,7 @@ const highContrastTheme = css`
   
    
 
-  .font-size .slds-form-element {
-    width: 100%
-  }
+ 
 
   /* Checkbox */
 
