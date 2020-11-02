@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PDFViewer from '../../../pdf/PDFViewer/PDFViewer'
-import styles from './CreateCV.css'
+import './CreateCV.css'
 import Skills from '../Skills'
 import Details from '../Details';
 import Hobbies from '../Hobbies';
@@ -12,7 +12,6 @@ import Links from '../Links';
 import GDPA from '../GDPA';
 import Certificates from '../Certificates';
 import Projects from '../Projects';
-import './CreateCV.css'
 import { SizeMe } from 'react-sizeme'
 import Header from '../../components/header/Header'
 
@@ -81,7 +80,7 @@ export default class CreateCV extends React.Component {
           monitorHeight
           refreshRate={32}
           render={({ size }) =>
-            <div className="pdf-container" style={styles.pdf}>
+            <div className="pdf-container">
               <PDFViewer context={MainContext} size={size} />
             </div>
           }

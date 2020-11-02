@@ -9,7 +9,7 @@ import { jsx } from '@emotion/core';
 import highContrastTheme from './styles/highContrastTheme'
 import defaultTheme from './styles/defaultTheme'
 import MainContext from './index'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 
 export class CreateCVApp extends React.Component {
@@ -24,9 +24,10 @@ export class CreateCVApp extends React.Component {
     return (
       <div css={this.getTheme()}>
         <Router>
+          <Switch>
           <Route path="/cv/edit/:id" component={CreateCV} />
           <Route path="/cv/list" component={CVList} />
-
+          </Switch>
         </Router>
       </div>
     )

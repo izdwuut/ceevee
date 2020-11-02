@@ -1,6 +1,7 @@
+/** @jsx jsx */
 import * as React from 'react';
 import MainContext from '../../../../index';
-
+import { jsx, css } from '@emotion/core';
 import {
   Icon,
   InputIcon,
@@ -18,14 +19,16 @@ import {
 } from '@salesforce/design-system-react';
 import { connect } from 'react-redux'
 import Header from '../../components/header/Header'
-import './CVList.css'
+import styles from './CVList.css'
 import { getAdd } from '../../../../utilities/ui'
 import { CV } from '../CV'
 export default class CVList extends React.Component {
   render() {
 
     return (
-      <div className="container">
+      <div className="container" css={css`
+      ${styles}
+    `}>
         <Header />
 
         <PageHeader
