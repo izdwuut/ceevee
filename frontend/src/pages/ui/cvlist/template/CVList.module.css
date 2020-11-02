@@ -1,3 +1,4 @@
+
 .container {
   display: grid;
   grid-template-areas:
@@ -19,12 +20,12 @@
   grid-area: cvs;
 }
 
-.cv-actions .slds-button, 
+.slds-button, 
 .slds-dropdown-trigger {
   width: 100%;
 }
 
-.cv-actions .slds-button + .slds-button {
+.slds-button + .slds-button {
   margin-left: 0 !important;
  
 }

@@ -2,7 +2,7 @@
 import { jsx, css } from '@emotion/core';
 import * as React from 'react';
 import PDFViewer from '../../../pdf/PDFViewer/PDFViewer'
-import styles from './CreateCV.css'
+import classes from './CreateCV.module.css'
 import Skills from '../Skills'
 import Details from '../Details';
 import Hobbies from '../Hobbies';
@@ -38,11 +38,9 @@ export default class CreateCV extends React.Component {
   render() {
 
     return (
-      <div className="container" styles={css`
-    ${styles}
-    `}>
+      <div className={classes.container}>
         <Header />
-        <div className="ui-container">
+        <div className={classes.uiContainer}>
           <PageHeader
             icon={
               <Icon
@@ -84,7 +82,7 @@ export default class CreateCV extends React.Component {
           monitorHeight
           refreshRate={32}
           render={({ size }) =>
-            <div className="pdf-container">
+            <div className={classes.pdfContainer}>
               <PDFViewer context={MainContext} size={size} />
             </div>
           }

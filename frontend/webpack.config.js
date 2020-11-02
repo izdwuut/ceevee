@@ -34,6 +34,7 @@ module.exports = function (_env, argv) {
                     use: [
                         isProduction ? MiniCssExtractPlugin.loader : "style-loader",
                         "css-loader",
+                        'to-string-loader'
                     ]
 
                 }

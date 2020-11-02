@@ -19,16 +19,14 @@ import {
 } from '@salesforce/design-system-react';
 import { connect } from 'react-redux'
 import Header from '../../components/header/Header'
-import styles from './CVList.css'
 import { getAdd } from '../../../../utilities/ui'
 import { CV } from '../CV'
+import classes from './CVList.module.css'
+
 export default class CVList extends React.Component {
   render() {
-
     return (
-      <div className="container" css={css`
-      ${styles}
-    `}>
+      <div className="container" >
         <Header />
 
         <PageHeader
