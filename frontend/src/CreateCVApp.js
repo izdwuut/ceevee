@@ -5,7 +5,7 @@ import CVList from './pages/ui/cvlist/template/CVList'
 
 import { connect } from 'react-redux'
 import './CreateCVApp.css'
-import { jsx } from '@emotion/core';
+import { jsx, Global } from '@emotion/core';
 import highContrastTheme from './styles/highContrastTheme'
 import defaultTheme from './styles/defaultTheme'
 import MainContext from './index'
@@ -22,11 +22,12 @@ export class CreateCVApp extends React.Component {
   }
   render() {
     return (
-      <div css={this.getTheme()}>
+      <div>
+        <Global styles={this.getTheme()} />
         <Router>
           <Switch>
-          <Route path="/cv/edit/:id" component={CreateCV} />
-          <Route path="/cv/list" component={CVList} />
+            <Route path="/cv/edit/:id" component={CreateCV} />
+            <Route path="/cv/list" component={CVList} />
           </Switch>
         </Router>
       </div>

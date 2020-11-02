@@ -26,7 +26,7 @@ import {
   Slider,
   Checkbox
 } from '@salesforce/design-system-react';
-import styles from './Header.css'
+import './Header.css'
 import * as Variables from '../../../../utilities/variables'
 import Accessibility from '../accessibility/Accessibility'
 import MainContext from '../../../../index';
