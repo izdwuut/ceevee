@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core';
 import MainContext from '../../../index';
 import React from 'react';
 import { pdf } from '@react-pdf/renderer'
@@ -293,7 +295,9 @@ ${this.props.gdpa.gdpa}
 
 
 
-      <div className="pdf">
+      <div className="pdf" css={css`
+    ${styles}
+    `}>
         <div className="actions-top">
           <Button
             iconCategory="utility"
