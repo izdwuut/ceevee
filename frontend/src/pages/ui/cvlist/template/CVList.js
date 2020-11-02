@@ -20,13 +20,13 @@ import {
 import { connect } from 'react-redux'
 import Header from '../../components/header/Header'
 import { getAdd } from '../../../../utilities/ui'
-import { CV } from '../CV'
+import { CV } from '../components/cv/CV'
 import classes from './CVList.module.css'
 
 export default class CVList extends React.Component {
   render() {
     return (
-      <div className="container" >
+      <div className={classes.container} >
         <Header />
 
         <PageHeader
@@ -45,9 +45,9 @@ export default class CVList extends React.Component {
               title="CV"
             />
           }
-          className="page-header"
+          className={classes.pageHeader}
           title="CV List"
-          info={<div className="description">
+          info={<div className={classes.description}>
             A list of CVs you've created. You can edit title, go to editing, clone, delete and download the documents.
               <br /><br />
               Next to each CV is a graphical representation of a PDF to be created. Because of it's size, it's a bit undecipherable, but we believe it's enough for a sneak peak. Once opened, the CV editing view provides a preview with more detail.
@@ -71,7 +71,7 @@ export default class CVList extends React.Component {
 
           }
         />
-        <div class="slds-grid slds-gutters cvs slds-wrap ">
+        <div className={`slds-grid slds-gutters ${classes.cvs} slds-wrap`}>
           <div class="slds-col slds-size_3-of-12">
             <CV header="Lorem ipsum" />
           </div>

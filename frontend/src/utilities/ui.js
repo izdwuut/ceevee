@@ -41,7 +41,7 @@ export const getTogglePanel = (id, setState) => {
     }));
 }
 
-export const getDownload = (onSelect = null) => {
+export const getDownload = (onSelect = null, buttonClassName = null, triggerClassName = null) => {
     return (
         <Dropdown
             align="right"
@@ -54,6 +54,8 @@ export const getDownload = (onSelect = null) => {
                 { label: 'Text', value: 'text' },
             ]}
             onSelect={onSelect}
+            buttonClassName={buttonClassName}
+            triggerClassName={triggerClassName}
         />
     )
 }

@@ -9,7 +9,7 @@
   grid-template-columns: 1rem auto 0.5rem;
 }
 
-.page-header {
+.pageHeader {
   grid-area: page-header;
   align-self: center;
   justify-self: center;
@@ -20,20 +20,6 @@
   grid-area: cvs;
 }
 
-.slds-button, 
-.slds-dropdown-trigger {
-  width: 100%;
-}
-
-.slds-button + .slds-button {
-  margin-left: 0 !important;
- 
-}
-
-.cv-actions .slds-button:not(:last-child),
-.slds-dropdown-trigger {
-  margin-bottom: 0.25rem;
-}
 
 .slds-grid:last-child {
   margin-right: 0;
