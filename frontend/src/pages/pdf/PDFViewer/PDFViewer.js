@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core';
 import MainContext from '../../../index';
 import React from 'react';
 import { pdf } from '@react-pdf/renderer'
@@ -12,6 +14,8 @@ import {
   Dropdown,
   DropdownTrigger,
 } from '@salesforce/design-system-react';
+import * as UI from '../../../utilities/ui'
+
 
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -291,7 +295,9 @@ ${this.props.gdpa.gdpa}
 
 
 
-      <div className="pdf">
+      <div className="pdf" css={css`
+    ${styles}
+    `}>
         <div className="actions-top">
           <Button
             iconCategory="utility"
@@ -302,18 +308,7 @@ ${this.props.gdpa.gdpa}
             onClick={this.setIsPreviousPage}
             label="Previous page"
           />
-          <Dropdown
-            align="right"
-            iconCategory="utility"
-            iconName="download"
-            iconPosition="left"
-            label="Download..."
-            options={[
-              { label: 'PDF', value: 'pdf' },
-              { label: 'Text', value: 'text' },
-            ]}
-            onSelect={(event) => this.handleDownload(event)}
-          />
+          {UI.getDownload((event) => this.handleDownload(event))}
 
           <Button
             iconCategory="utility"

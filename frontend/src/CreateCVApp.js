@@ -1,27 +1,35 @@
 /** @jsx jsx */
 import React from 'react';
-import CreateCV from './components/ui/createcv/template/CreateCV'
+import CreateCV from './pages/ui/createcv/template/CreateCV'
+import CVList from './pages/ui/cvlist/template/CVList'
+
 import { connect } from 'react-redux'
 import './CreateCVApp.css'
-import { jsx } from '@emotion/core';
+import { jsx, Global } from '@emotion/core';
 import highContrastTheme from './styles/highContrastTheme'
 import defaultTheme from './styles/defaultTheme'
 import MainContext from './index'
-
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 
 export class CreateCVApp extends React.Component {
   theme = null
 
-  
+
 
   getTheme() {
     return this.props.isHighContrastMode ? highContrastTheme : defaultTheme
   }
   render() {
     return (
-      <div css={this.getTheme()}>
-        <CreateCV />
+      <div>
+        <Global styles={this.getTheme()} />
+        <Router>
+          <Switch>
+            <Route path="/cv/edit/:id" component={CreateCV} />
+            <Route path="/cv/list" component={CVList} />
+          </Switch>
+        </Router>
       </div>
     )
   }

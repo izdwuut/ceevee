@@ -9,9 +9,10 @@ const hoverColor = focusColor
 const borderColor = 'white'
 
 const highContrastTheme = css`
-  background-color: black;
-  color: ${mainTextColor};
-
+  body,html {
+    background: black;
+    color: ${mainTextColor};
+  }
   label {
     ${mainTextColor};
   }
@@ -21,7 +22,7 @@ const highContrastTheme = css`
   a:focus,
   .slds-dropdown__item a:hover,
   .slds-dropdown__item a:focus {
-    color: ${accentColor};
+    color: ${accentColor} !important;
   }
 
   .header {
@@ -54,6 +55,7 @@ const highContrastTheme = css`
 
   .slds-button:hover:not(:disabled) {
     background-color: ${hoverColor};
+    color: ${accentColor}
   }
   .slds-button:focus   {
     background-color: ${focusColor};
