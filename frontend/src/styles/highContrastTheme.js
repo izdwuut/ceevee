@@ -9,10 +9,15 @@ const hoverColor = focusColor
 const borderColor = 'white'
 
 const highContrastTheme = css`
-@media screen and (-ms-high-contrast: active) {
-  body,html {
+  body,
+  html {
     background: black;
     color: ${mainTextColor};
+   
+  }
+  ::selection {
+    color: black;
+    background: yellow;
   }
   label {
     ${mainTextColor};
@@ -186,7 +191,6 @@ const highContrastTheme = css`
     border-bottom: 2px solid ${focusColor} !important;
     border-right: 2px solid ${focusColor}
   } 
-}
 `
 
 export default highContrastTheme
