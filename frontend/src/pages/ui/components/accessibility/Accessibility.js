@@ -35,17 +35,20 @@ export class Accessibility extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            fontSize: 100,
             isContrastMode: false
         }
     }
     handleFontSizeChange = (event, { value }) => {
-        this.setState({
-            fontSize: value
-        })
+        this.props.handleFontSizeChange(value)
     }
-    handleContrastModeChange = (event, { checked }) => {
+    handleHighContrastModeChange = (event, { checked }) => {
         this.props.toggleHighContrastMode()
+    }
+    handleColorBlindModeChange = (event, { checked }) => {
+        this.props.toggleColorBlindMode()
+    }
+    handleDarkModeChange = (event, { checked }) => {
+        this.props.toggleDarkMode()
     }
 
     render() {
@@ -60,6 +63,8 @@ export class Accessibility extends React.Component {
                                 label='Color Blind Mode'
 
                                 variant="toggle"
+                                checked={this.props.isColorBlindMode}
+                                onChange={this.handleColorBlindModeChange}
                             />
                         </li>
                         <li>
@@ -67,9 +72,9 @@ export class Accessibility extends React.Component {
                                 labels={{
                                     label: 'High Contrast Mode',
                                 }}
-                                defaultChecked={this.state.isContrastMode}
                                 variant="toggle"
-                                onChange={this.handleContrastModeChange}
+                                checked={this.props.isHighContrastMode}
+                                onChange={this.handleHighContrastModeChange}
                             />
                         </li>
                         <li>
@@ -78,6 +83,8 @@ export class Accessibility extends React.Component {
                                     label: 'Dark Mode',
                                 }}
                                 variant="toggle"
+                                checked={this.props.isDarkMode}
+                                onChange={this.handleDarkModeChange}
                             />
                         </li>
                         <li className="font-size">
@@ -86,7 +93,7 @@ export class Accessibility extends React.Component {
                                 min={100}
                                 max={200}
                                 step={1}
-                                value={this.state.fontSize}
+                                value={this.props.fontSize}
                                 onChange={this.handleFontSizeChange}
                             />
                         </li>
