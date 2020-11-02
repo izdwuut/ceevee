@@ -5,7 +5,6 @@ import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { connect } from "react-redux";
 import { debounceTime } from '../../../utilities/variables'
 import debounce from '../../../utilities/debounce'
-import * as UI from '../../../utilities/ui'
 
 import {
     Dropdown,
@@ -20,6 +19,8 @@ import {
     Textarea,
     CardEmpty
 } from '@salesforce/design-system-react';
+import * as UI from '../../../utilities/ui'
+
 export class CV extends React.Component {
 
     updatePreview = debounce(() => {
@@ -61,17 +62,7 @@ export class CV extends React.Component {
                             iconName="copy"
                             iconPosition="left"
                         />
-                        <Dropdown
-                            align="right"
-                            iconCategory="utility"
-                            iconName="download"
-                            iconPosition="left"
-                            label="Download..."
-                            options={[
-                                { label: 'PDF', value: 'pdf' },
-                                { label: 'Text', value: 'text' },
-                            ]}
-                        />
+                        {UI.getDownload()}
                         <Button
                             label="Delete CV"
                             iconCategory="utility"
