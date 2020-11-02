@@ -9,9 +9,15 @@ const hoverColor = focusColor
 const borderColor = 'white'
 
 const highContrastTheme = css`
-  body,html {
+  body,
+  html {
     background: black;
     color: ${mainTextColor};
+   
+  }
+  ::selection {
+    color: black;
+    background: yellow;
   }
   label {
     ${mainTextColor};
@@ -142,9 +148,7 @@ const highContrastTheme = css`
   
    
 
-  .font-size .slds-form-element {
-    width: 100%
-  }
+ 
 
   /* Checkbox */
 
@@ -186,7 +190,7 @@ const highContrastTheme = css`
   .slds-checkbox_toggle [type="checkbox"]:checked + .slds-checkbox_faux_container .slds-checkbox_faux::after {
     border-bottom: 2px solid ${focusColor} !important;
     border-right: 2px solid ${focusColor}
-  }
+  } 
 `
 
 export default highContrastTheme

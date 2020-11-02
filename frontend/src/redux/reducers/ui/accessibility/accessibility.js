@@ -12,7 +12,7 @@ export default function accessibility(state = initialState, action) {
         case actions.ACCESSIBILITY_TOGGLE_COLOR_BLIND_MODE: {
             return {
                 ...state,
-                isDarkMode: !state.isDarkMode
+                isColorBlindMode: !state.isColorBlindMode
             }
         }
         case actions.ACCESSIBILITY_TOGGLE_HIGH_CONTRAST_MODE: {

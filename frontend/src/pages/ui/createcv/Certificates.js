@@ -153,7 +153,7 @@ export class Certificates extends React.Component {
 
                 icon={<Icon category="standard" name="document" size="small" />}
                 headerActions={
-                    !isEmpty && UI.getAdd(this.addEducation)
+                    !isEmpty && UI.getAdd(this.addCertificate)
                 }
                 empty={
                     isEmpty ? (
