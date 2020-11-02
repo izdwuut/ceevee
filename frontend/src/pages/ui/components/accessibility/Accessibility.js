@@ -39,7 +39,7 @@ export class Accessibility extends React.Component {
         }
     }
     handleFontSizeChange = (event, { value }) => {
-        this.props.handleFontSizeChange(value)
+        this.props.resizeFont(value)
     }
     handleHighContrastModeChange = (event, { checked }) => {
         this.props.toggleHighContrastMode()
