@@ -71,7 +71,7 @@ export default class CVList extends React.Component {
 
           }
         />
-        <div className={`slds-grid slds-gutters ${classes.cvs} slds-wrap`}>
+        <div className={`slds-grid ${classes['slds-grid']}  slds-gutters ${classes.cvs} slds-wrap`}>
           <div class="slds-col slds-size_3-of-12">
             <CV header="Lorem ipsum" />
           </div>
