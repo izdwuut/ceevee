@@ -1,16 +1,47 @@
 .container {
-    display: grid;
-    grid-template-areas: 
+  display: grid;
+  grid-template-areas:
     "header header header"
-    ". contents ."
-    ". . .";
-    
-    grid-template-columns: 1fr 5fr 1fr;
+    "page-header page-header page-header"
+    ". cvs . ";
+
+  grid-template-columns: 1rem auto 0.5rem;
 }
 
-.contents {
-    grid-area: contents;
-    align-self: center;
+.page-header {
+  grid-area: page-header;
+  align-self: center;
   justify-self: center;
   width: 100%;
 }
+
+.cvs {
+  grid-area: cvs;
+}
+
+.cv-actions {
+  
+}
+
+
+.cv-actions .slds-button, 
+.slds-dropdown-trigger {
+  width: 100%;
+}
+
+.cv-actions .slds-button + .slds-button {
+  margin-left: 0 !important;
+ 
+}
+
+.cv-actions .slds-button:not(:last-child),
+.slds-dropdown-trigger {
+  margin-bottom: 0.25rem;
+}
+
+.slds-grid:last-child {
+  margin-right: 0;
+}
+
+
+
