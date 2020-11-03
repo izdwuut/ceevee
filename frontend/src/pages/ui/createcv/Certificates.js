@@ -12,6 +12,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { datepickerDateFormat } from '../../../utilities/variables'
 import * as UI from '../../../utilities/ui'
 import PropTypes from 'prop-types';
+import DeleteItem from '../components/contentActions/DeleteItem'
 
 import {
     Icon,
@@ -86,7 +87,9 @@ export class Certificates extends React.Component {
         for (let i = 0; i < this.props.certificates.length; i++) {
             certificates.push(
                 <AccordionPanel
-                    panelContentActions={UI.getContentActions(() => this.deleteCertificate(i))}
+                    panelContentActions={
+                        <DeleteItem title="Delete certificate" item={this.props.certificates[i].certificate || 'Certificate ' + (i + 1)} onDelete={() => this.deleteCertificate(i)} context={MainContext} />
+                    }
                     key={i}
                     onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
                     expanded={!!this.state.expandedPanels[i]}

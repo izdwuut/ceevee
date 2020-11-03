@@ -11,6 +11,7 @@ import { datepickerDateFormat } from '../../../utilities/variables'
 import './template/CreateCV'
 import PropTypes from 'prop-types';
 import * as UI from '../../../utilities/ui'
+import DeleteItem from '../components/contentActions/DeleteItem'
 
 import {
     Icon,
@@ -110,7 +111,9 @@ export class Education extends React.Component {
         for (let i = 0; i < this.props.education.length; i++) {
             education.push(
                 <AccordionPanel
-                    panelContentActions={UI.getContentActions(() => this.deleteEducation(i))}
+                    panelContentActions={
+                        <DeleteItem title="Delete education" item={this.props.education[i].school || 'School ' + (i + 1)} onDelete={() => this.deleteEducation(i)} context={MainContext} />
+                    }
                     key={i}
                     onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
                     expanded={!!this.state.expandedPanels[i]}

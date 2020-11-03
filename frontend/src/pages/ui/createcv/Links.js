@@ -21,6 +21,7 @@ import * as Actions from '../../../redux/reducers/ui/createcv/links/actions'
 import "react-datepicker/dist/react-datepicker.css";
 import * as Buttons from '../../../utilities/ui'
 import * as UI from '../../../utilities/ui'
+import DeleteItem from '../components/contentActions/DeleteItem'
 
 
 export class Links extends React.Component {
@@ -72,7 +73,9 @@ export class Links extends React.Component {
             for (let i = 0; i < this.props.links.length; i++) {
                 links.push(
                     <AccordionPanel
-                        panelContentActions={UI.getContentActions(() => this.deleteLink(i))}
+                        panelContentActions={
+                            <DeleteItem title="Delete link" item={this.props.links[i].label || 'Link ' + (i + 1)} onDelete={() => this.deleteLink(i)} context={MainContext} />
+                        }
                         key={i}
                         onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
                         expanded={!!this.state.expandedPanels[i]}

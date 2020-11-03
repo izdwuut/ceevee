@@ -12,6 +12,7 @@ import * as Actions from '../../../redux/reducers/ui/createcv/languages/actions'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import * as UI from '../../../utilities/ui'
+import DeleteItem from '../components/contentActions/DeleteItem'
 
 import {
     Icon,
@@ -72,7 +73,9 @@ export class Languages extends React.Component {
         for (let i = 0; i < this.props.languages.length; i++) {
             languages.push(
                 <AccordionPanel
-                    panelContentActions={UI.getContentActions(() => this.deleteLanguage(i))}
+                    panelContentActions={
+                        <DeleteItem title="Delete language" item={this.props.languages[i] || 'Language ' + (i + 1)} onDelete={() => this.deleteLanguage(i)} context={MainContext} />
+                    }
                     key={i}
                     onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
                     expanded={!!this.state.expandedPanels[i]}

@@ -19,6 +19,7 @@ import {
     Textarea,
     CardEmpty
 } from '@salesforce/design-system-react';
+import DeleteItem from '../components/contentActions/DeleteItem'
 
 export class Skills extends React.Component {
     constructor(props) {
@@ -69,7 +70,8 @@ export class Skills extends React.Component {
         for (let i = 0; i < this.props.skills.length; i++) {
             skills.push(
                 <AccordionPanel
-                    panelContentActions={UI.getContentActions(() => this.deleteSkill(i))}
+                    panelContentActions={
+                        <DeleteItem title="Delete skill" item={this.props.skills[i].skill || 'Skill ' + (i + 1)} onDelete={() => this.deleteSkill(i)} context={MainContext} />}
                     key={i}
                     onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
                     expanded={!!this.state.expandedPanels[i]}

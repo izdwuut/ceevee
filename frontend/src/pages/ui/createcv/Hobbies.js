@@ -6,6 +6,7 @@ import debounce from '../../../utilities/debounce'
 import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { debounceTime } from '../../../utilities/variables'
 import * as UI from '../../../utilities/ui'
+import DeleteItem from '../components/contentActions/DeleteItem'
 
 import {
     Icon,
@@ -61,7 +62,9 @@ export class Hobbies extends React.Component {
             hobbies.push(
 
                 <AccordionPanel
-                    panelContentActions={UI.getContentActions(() => this.deleteHobby(i))}
+                    panelContentActions={
+                        <DeleteItem title="Delete hobby" item={this.props.hobbies[i] || 'Hobby ' + (i + 1)} onDelete={() => this.deleteHobby(i)} context={MainContext} />
+                    }
                     key={i}
                     onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
                     expanded={!!this.state.expandedPanels[i]}
