@@ -1,20 +1,12 @@
 import * as React from 'react';
 import { connect } from "react-redux"
-import MainContext from '../../../../index'
-import debounce from '../../../../utilities/debounce'
-import { updatePreview } from '../../../../redux/reducers/pdf/pdfViewer/actions'
-import { debounceTime } from '../../../../utilities/variables'
+import MainContext from '../../../index'
 import SemanticDatepicker from 'react-semantic-ui-datepickers'
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css'
-import * as Actions from '../../../../redux/reducers/ui/certificates/actions'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
-import { datepickerDateFormat } from '../../../../utilities/variables'
-import * as UI from '../../../../utilities/ui'
 import PropTypes from 'prop-types';
-import { connect } from "react-redux"
 import * as Actions from '../../../redux/reducers/ui/components/modal/actions'
-import MainContext from '../../../index'
 
 import {
     Icon,
@@ -27,7 +19,7 @@ import {
     Tooltip,
     Textarea,
     CardEmpty,
-    Modal
+    Modal as SLDSModal
 } from '@salesforce/design-system-react';
 
 
@@ -42,7 +34,7 @@ export class Modal extends React.Component {
 
     render() {
         return (
-            <Modal
+            <SLDSModal
                 footer={[
                     this.props.isDelete ?
                     <Button
@@ -70,7 +62,7 @@ export class Modal extends React.Component {
                 <div className="slds-m-around_medium">
                     Are you sure you want to delete "{this.props.item}"?
                     </div>
-            </Modal>
+            </SLDSModal>
 
         )
 
