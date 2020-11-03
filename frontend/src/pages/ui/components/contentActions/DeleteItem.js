@@ -84,9 +84,10 @@ export class DeleteItem extends React.Component {
                     title={<span>{this.props.title}</span>}
                 >
                     <div className="slds-m-around_medium">
-                        Are you sure you want to delete {this.props.item}?
+                        Are you sure you want to delete "{this.props.item}"?
                     </div>
                 </Modal>
+                
             </div>
         )
 
