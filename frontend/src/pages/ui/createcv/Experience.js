@@ -25,7 +25,7 @@ import {
     Textarea,
     CardEmpty
 } from '@salesforce/design-system-react';
-
+import {DeleteItem} from '../components/contentActions/DeleteItem'
 const propTypes = {
     tooltipOpen: PropTypes.bool,
 };
@@ -111,7 +111,7 @@ export class Experience extends React.Component {
             for (let i = 0; i < this.props.experience.length; i++) {
                 experience.push(
                     <AccordionPanel
-                        panelContentActions={UI.getContentActions(() => this.deleteExperience(i))}
+                        panelContentActions={<DeleteItem onDelete={() => this.deleteExperience(i)}/>}
                         key={i}
                         onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
                         expanded={!!this.state.expandedPanels[i]}
