@@ -10,7 +10,7 @@ import highContrastTheme from './styles/highContrastTheme'
 import defaultTheme from './styles/defaultTheme'
 import MainContext from './index'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import {Modal} from './pages/ui/components/Modal'
+import Modal from 'pages/ui/components/Modal'
 
 export class CreateCVApp extends React.Component {
   theme = null
@@ -30,7 +30,7 @@ export class CreateCVApp extends React.Component {
             <Route path="/cv/list" component={CVList} />
           </Switch>
         </Router>
-        <Modal />
+        <Modal context={MainContext} />
       </div>
     )
   }

@@ -8,14 +8,14 @@ export const showModal = (action, title, item, isDelete = false, modalType='', a
         title: title,
         item: item,
         isDelete: isDelete,
-        type: modalType,
-        variant: actionButtonVariant,
+        modalType: modalType,
+        actionButtonVariant: actionButtonVariant,
         isVisible: true
     }
 })
 
 export const hideModal = () => ({
-    type: actions.MODAL_SHOW,
+    type: actions.MODAL_HIDE,
     payload: {
         action: null,
         title: '',

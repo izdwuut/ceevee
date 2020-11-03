@@ -13,6 +13,7 @@ import { datepickerDateFormat } from '../../../../utilities/variables'
 import * as UI from '../../../../utilities/ui'
 import PropTypes from 'prop-types';
 
+import { showModal } from 'redux/reducers/ui/components/modal/actions'
 import {
     Icon,
     InputIcon,
@@ -23,23 +24,14 @@ import {
     AccordionPanel,
     Tooltip,
     Textarea,
-    CardEmpty,
-    Modal
+    CardEmpty
 } from '@salesforce/design-system-react';
 
 
 export class DeleteItem extends React.Component {
-    state = {
-        isDeleteConfirmationOpen: false
-    };
 
-    toggleDeleteConfirmation = () => {
-        this.setState({ isDeleteConfirmationOpen: !this.state.isDeleteConfirmationOpen });
-    };
-
-    deleteItem = () => {
-        this.props.onDelete()
-        this.toggleDeleteConfirmation()
+    showModal = () => {
+        this.props.showModal(this.props.onDelete, this.props.title, this.props.item, true, 'warning', 'destructive')
     }
 
     render() {
@@ -54,39 +46,9 @@ export class DeleteItem extends React.Component {
                     iconSize="small"
                     iconVariant="bare"
                     colorVariant="error"
-                    onClick={this.toggleDeleteConfirmation}
+                    onClick={this.showModal}
                     variant="icon"
                 />
-                <Modal
-                    footer={[
-
-                        <Button
-
-                            variant="destructive"
-                            onClick={this.deleteItem}
-
-
-                            label="Delete"
-                            iconCategory="action"
-                            iconName="delete"
-                            iconPosition="left"
-                        />,
-                        <Button
-                            key="promptBtn"
-                            label="Cancel"
-                            onClick={this.toggleDeleteConfirmation}
-                        />,
-                    ]}
-                    isOpen={this.state.isDeleteConfirmationOpen}
-                    onRequestClose={this.toggleDeleteConfirmation}
-                    prompt="warning"
-
-                    title={<span>{this.props.title}</span>}
-                >
-                    <div className="slds-m-around_medium">
-                        Are you sure you want to delete "{this.props.item}"?
-                    </div>
-                </Modal>
                 {/* <ToastContainer>
 					<Toast
 						labels={{
@@ -106,3 +68,16 @@ export class DeleteItem extends React.Component {
 
     }
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        showModal: (action, title, item, isDelete, modalType, actionButtonVariant) => dispatch(showModal(action, title, item, isDelete, modalType, actionButtonVariant))
+    }
+}
+
+export default connect(
+    null,
+    mapDispatchToProps,
+    null,
+    { context: MainContext }
+)(DeleteItem)

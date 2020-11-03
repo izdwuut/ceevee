@@ -11,6 +11,8 @@ import gdpa from './ui/createcv/gdpa/gdpa'
 import certificates from './ui/createcv/certificates/certificates'
 import projects from './ui/createcv/projects/projects'
 import accessibility from './ui/components/accessibility/accessibility'
+import modal from './ui/components/modal/modal'
+
 
 
 
@@ -28,4 +30,5 @@ export default combineReducers({
     certificates: certificates,
     projects: projects,
     accessibility: accessibility,
+    modal: modal
 });

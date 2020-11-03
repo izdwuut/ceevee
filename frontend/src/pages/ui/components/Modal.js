@@ -24,44 +24,43 @@ import {
 
 
 export class Modal extends React.Component {
-    state = {
-        isOpen: false
-    };
-
-    toggleOpen = () => {
-        this.setState({ isOpen: !this.state.isOpen });
+    hideModal = () => {
+        this.props.hideModal()
     }
-
+    confirmAction = () => {
+        this.props.action()
+        this.hideModal()
+    }
     render() {
         return (
             <SLDSModal
                 footer={[
                     this.props.isDelete ?
-                    <Button
-                        variant="destructive"
-                        onClick={this.props.action}
-                        label="Delete"
-                    />
-                    :
-                    <Button
-                        onClick={this.props.action}
-                        label="Ok"
-                    />,
+                        <Button
+                            variant="destructive"
+                            onClick={this.confirmAction}
+                            label="Delete"
+                        />
+                        :
+                        <Button
+                            onClick={this.confirmAction}
+                            label="Ok"
+                        />,
                     <Button
                         key="promptBtn"
                         label="Cancel"
-                        onClick={this.toggleOpen}
+                        onClick={(e) => this.hideModal()}
                     />,
                 ]}
-                isOpen={this.state.isOpen}
-                onRequestClose={this.toggleOpen}
-                prompt={this.props.type}
+                isOpen={this.props.isVisible}
+                onRequestClose={this.hideModal}
+                prompt={this.props.modalType}
 
                 title={<span>{this.props.title}</span>}
             >
                 <div className="slds-m-around_medium">
                     Are you sure you want to delete "{this.props.item}"?
-                    </div>
+                </div>
             </SLDSModal>
 
         )
@@ -72,18 +71,17 @@ export class Modal extends React.Component {
 
 const mapStateToProps = state => {
     return state.modal
-  }
-  
-  const mapDispatchToProps = dispatch => {
+}
+
+const mapDispatchToProps = dispatch => {
     return {
-      showModal: (action, title, item, isDelete = false, modalType='', actionButtonVariant='') => dispatch(Actions.showModal((action, title, item, isDelete = false, modalType='', actionButtonVariant=''))),
-      hideModal: () => dispatch(Actions.hideModal())
+        hideModal: () => dispatch(Actions.hideModal())
     }
-  }
-  
-  export default connect(
+}
+
+export default connect(
     mapStateToProps,
     mapDispatchToProps,
     null,
     { context: MainContext }
-  )(Modal)
+)(Modal)

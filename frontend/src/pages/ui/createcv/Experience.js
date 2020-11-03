@@ -11,8 +11,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import { datepickerDateFormat } from '../../../utilities/variables'
 import * as UI from '../../../utilities/ui'
 import PropTypes from 'prop-types';
-import {Modal} from 'pages/ui/components/Modal'
-
 import {
     Icon,
     InputIcon,
@@ -25,7 +23,7 @@ import {
     Textarea,
     CardEmpty
 } from '@salesforce/design-system-react';
-import {DeleteItem} from '../components/contentActions/DeleteItem'
+import DeleteItem from '../components/contentActions/DeleteItem'
 const propTypes = {
     tooltipOpen: PropTypes.bool,
 };
@@ -111,7 +109,7 @@ export class Experience extends React.Component {
             for (let i = 0; i < this.props.experience.length; i++) {
                 experience.push(
                     <AccordionPanel
-                        panelContentActions={<DeleteItem title="Delete experience" item={this.props.experience[i].position || 'Experience ' + (i + 1)} onDelete={() => this.deleteExperience(i)}/>}
+                        panelContentActions={<DeleteItem title="Delete experience" item={this.props.experience[i].position || 'Experience ' + (i + 1)} onDelete={() => this.deleteExperience(i)} context={MainContext} />}
                         key={i}
                         onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
                         expanded={!!this.state.expandedPanels[i]}
@@ -282,6 +280,7 @@ const mapDispatchToProps = dispatch => {
         updateDescription: (id, description) => dispatch(Actions.updateDescription(id, description)),
         deleteExperience: id => dispatch(Actions.deleteExperience(id)),
         addExperience: experience => dispatch(Actions.addExperience(experience)),
+       
     }
 }
 

@@ -12,16 +12,28 @@ const initialState = {
 
 export default function modal(state = initialState, action) {
     switch (action.type) {
-        case actions.MODAL_SHOW || actions.MODAL_HIDE: {
+        case actions.MODAL_SHOW: {
             return {
                 ...state,
-                action: action.action,
-                title: action.title,
-                item: action.item,
-                isDelete: action.isDelete,
-                modalType: action.modalType,
-                actionButtonVariant: action.actionButtonVariant,
-                isVisible: action.isVisible
+                action: action.payload.action,
+                title: action.payload.title,
+                item: action.payload.item,
+                isDelete: action.payload.isDelete,
+                modalType: action.payload.modalType,
+                actionButtonVariant: action.payload.actionButtonVariant,
+                isVisible: action.payload.isVisible
+            }
+        }
+        case actions.MODAL_HIDE: {
+            return {
+                ...state,
+                action: action.payload.action,
+                title: action.payload.title,
+                item: action.payload.item,
+                isDelete: action.payload.isDelete,
+                modalType: action.payload.modalType,
+                actionButtonVariant: action.payload.actionButtonVariant,
+                isVisible: action.payload.isVisible
             }
         }
 
