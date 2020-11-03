@@ -11,7 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { datepickerDateFormat } from '../../../utilities/variables'
 import * as UI from '../../../utilities/ui'
 import PropTypes from 'prop-types';
-
+import {Modal} from 'pages/ui/components/Modal'
 
 import {
     Icon,
