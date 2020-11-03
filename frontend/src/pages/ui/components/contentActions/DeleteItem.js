@@ -31,7 +31,7 @@ import {
 export class DeleteItem extends React.Component {
 
     showModal = () => {
-        this.props.showModal(this.props.onDelete, this.props.title, this.props.item, true, 'warning', 'destructive')
+        this.props.showModal(this.props.onDelete, this.props.title, this.props.item, true)
     }
 
     render() {
@@ -71,7 +71,7 @@ export class DeleteItem extends React.Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        showModal: (action, title, item, isDelete, modalType, actionButtonVariant) => dispatch(showModal(action, title, item, isDelete, modalType, actionButtonVariant))
+        showModal: (action, title, item, isDelete) => dispatch(showModal(action, title, item, isDelete))
     }
 }
 

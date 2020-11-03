@@ -19,8 +19,6 @@ export default function modal(state = initialState, action) {
                 title: action.payload.title,
                 item: action.payload.item,
                 isDelete: action.payload.isDelete,
-                modalType: action.payload.modalType,
-                actionButtonVariant: action.payload.actionButtonVariant,
                 isVisible: action.payload.isVisible
             }
         }
@@ -31,8 +29,6 @@ export default function modal(state = initialState, action) {
                 title: action.payload.title,
                 item: action.payload.item,
                 isDelete: action.payload.isDelete,
-                modalType: action.payload.modalType,
-                actionButtonVariant: action.payload.actionButtonVariant,
                 isVisible: action.payload.isVisible
             }
         }

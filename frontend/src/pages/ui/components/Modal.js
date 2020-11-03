@@ -54,7 +54,6 @@ export class Modal extends React.Component {
                 ]}
                 isOpen={this.props.isVisible}
                 onRequestClose={this.hideModal}
-                prompt={this.props.modalType}
 
                 title={<span>{this.props.title}</span>}
             >

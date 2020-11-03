@@ -1,15 +1,13 @@
 import * as actions from './actionTypes'
 
 
-export const showModal = (action, title, item, isDelete = false, modalType='', actionButtonVariant='') => ({
+export const showModal = (action, title, item, isDelete = false) => ({
     type: actions.MODAL_SHOW,
     payload: {
         action: action,
         title: title,
         item: item,
         isDelete: isDelete,
-        modalType: modalType,
-        actionButtonVariant: actionButtonVariant,
         isVisible: true
     }
 })
@@ -21,8 +19,6 @@ export const hideModal = () => ({
         title: '',
         item: '',
         isDelete: false,
-        modalType: '',
-        actionButtonVariant: '',
         isVisible: false
     }
 })
