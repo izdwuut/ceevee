@@ -87,7 +87,20 @@ export class DeleteItem extends React.Component {
                         Are you sure you want to delete "{this.props.item}"?
                     </div>
                 </Modal>
-                
+                {/* <ToastContainer>
+					<Toast
+						labels={{
+							heading: [
+								'Account ',
+								<a key="acme-100" href="javascript:void(0);">
+									ACME - 100
+								</a>,
+								' widgets was created.',
+							],
+						}}
+						variant="success"
+					/>
+				</ToastContainer> */}
             </div>
         )
 
