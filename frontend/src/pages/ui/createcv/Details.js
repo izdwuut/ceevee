@@ -1,6 +1,6 @@
 import MainContext from '../../../index';
 import * as React from 'react';
-import { updateFirstName, updateMiddleName, updateLastName, updatePosition, updateEmail, updateMobile, updateCountry, updateCity, updateDrivingLicense, updateBirthDate } from '../../../redux/reducers/ui/details/actions'
+import { updateFirstName, updateMiddleName, updateLastName, updatePosition, updateEmail, updateMobile, updateCountry, updateCity, updateDrivingLicense, updateBirthDate } from '../../../redux/reducers/ui/createcv/details/actions'
 import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { connect } from "react-redux";
 import { debounceTime } from '../../../utilities/variables'

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as Actions from '../../../redux/reducers/ui/skills/actions'
+import * as Actions from '../../../redux/reducers/ui/createcv/skills/actions'
 import { connect } from "react-redux"
 import MainContext from '../../../index';
 import debounce from '../../../utilities/debounce'

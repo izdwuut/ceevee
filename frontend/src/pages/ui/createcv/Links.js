@@ -17,7 +17,7 @@ import debounce from '../../../utilities/debounce'
 import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { debounceTime } from '../../../utilities/variables'
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css'
-import * as Actions from '../../../redux/reducers/ui/links/actions'
+import * as Actions from '../../../redux/reducers/ui/createcv/links/actions'
 import "react-datepicker/dist/react-datepicker.css";
 import * as Buttons from '../../../utilities/ui'
 import * as UI from '../../../utilities/ui'

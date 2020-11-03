@@ -6,7 +6,7 @@ import { updatePreview } from '../../../../redux/reducers/pdf/pdfViewer/actions'
 import { debounceTime } from '../../../../utilities/variables'
 import SemanticDatepicker from 'react-semantic-ui-datepickers'
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css'
-import * as Actions from '../../../../redux/reducers/ui/certificates/actions'
+import * as Actions from '../../../../redux/reducers/ui/createcv/certificates/actions'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import { datepickerDateFormat } from '../../../../utilities/variables'

@@ -4,7 +4,7 @@ import MainContext from '../../../index'
 import debounce from '../../../utilities/debounce'
 import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { debounceTime } from '../../../utilities/variables'
-import * as Actions from '../../../redux/reducers/ui/education/actions'
+import * as Actions from '../../../redux/reducers/ui/createcv/education/actions'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import { datepickerDateFormat } from '../../../utilities/variables'

@@ -1,6 +1,6 @@
 import MainContext from '../../../index';
 import * as React from 'react';
-import { updateGdpa } from '../../../redux/reducers/ui/gdpa/actions'
+import { updateGdpa } from '../../../redux/reducers/ui/createcv/gdpa/actions'
 import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { connect } from "react-redux";
 import { debounceTime } from '../../../utilities/variables'
