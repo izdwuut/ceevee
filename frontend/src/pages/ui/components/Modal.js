@@ -12,6 +12,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import { datepickerDateFormat } from '../../../../utilities/variables'
 import * as UI from '../../../../utilities/ui'
 import PropTypes from 'prop-types';
+import { connect } from "react-redux"
+import * as Actions from '../../../redux/reducers/ui/components/modal/actions'
+import MainContext from '../../../index'
 
 import {
     Icon,
@@ -28,7 +31,7 @@ import {
 } from '@salesforce/design-system-react';
 
 
-export class DeleteItem extends React.Component {
+export class Modal extends React.Component {
     state = {
         isOpen: false
     };
@@ -73,3 +76,22 @@ export class DeleteItem extends React.Component {
 
     }
 }
+
+
+const mapStateToProps = state => {
+    return state.modal
+  }
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+      showModal: (action, title, item, isDelete = false, modalType='', actionButtonVariant='') => dispatch(Actions.showModal((action, title, item, isDelete = false, modalType='', actionButtonVariant=''))),
+      hideModal: () => dispatch(Actions.hideModal())
+    }
+  }
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+    null,
+    { context: MainContext }
+  )(Modal)
