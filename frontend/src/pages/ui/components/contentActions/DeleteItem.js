@@ -49,20 +49,6 @@ export class DeleteItem extends React.Component {
                     onClick={this.showModal}
                     variant="icon"
                 />
-                {/* <ToastContainer>
-					<Toast
-						labels={{
-							heading: [
-								'Account ',
-								<a key="acme-100" href="javascript:void(0);">
-									ACME - 100
-								</a>,
-								' widgets was created.',
-							],
-						}}
-						variant="success"
-					/>
-				</ToastContainer> */}
             </div>
         )
 

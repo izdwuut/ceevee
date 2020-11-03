@@ -24,6 +24,7 @@ import {
     CardEmpty
 } from '@salesforce/design-system-react';
 import DeleteItem from '../components/contentActions/DeleteItem'
+import {showToast} from 'redux/reducers/ui/components/toasts/actions'
 const propTypes = {
     tooltipOpen: PropTypes.bool,
 };
@@ -86,6 +87,7 @@ export class Experience extends React.Component {
 
     deleteExperience = id => {
         this.props.deleteExperience(id)
+        this.props.showToast(['Experience has been deleted.'])
         this.updatePreview()
     }
 
@@ -97,6 +99,7 @@ export class Experience extends React.Component {
             },
         }));
         this.props.addExperience()
+        this.props.showToast(['New experience has been added.'], 'success')
         this.updatePreview()
     }
 
@@ -280,7 +283,7 @@ const mapDispatchToProps = dispatch => {
         updateDescription: (id, description) => dispatch(Actions.updateDescription(id, description)),
         deleteExperience: id => dispatch(Actions.deleteExperience(id)),
         addExperience: experience => dispatch(Actions.addExperience(experience)),
-       
+       showToast: (heading, variant) => dispatch(showToast(heading, variant))
     }
 }
 

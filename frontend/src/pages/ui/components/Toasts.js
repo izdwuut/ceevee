@@ -6,7 +6,7 @@ import { updatePreview } from 'redux/reducers/pdf/pdfViewer/actions'
 
 import SemanticDatepicker from 'react-semantic-ui-datepickers'
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css'
-import * as Actions from 'redux/reducers/ui/createcv/certificates/actions'
+import * as Actions from 'redux/reducers/ui/components/toasts/actions'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import { datepickerDateFormat } from 'utilities/variables'
@@ -31,25 +31,46 @@ import {
 } from '@salesforce/design-system-react';
 
 
-export default class Toasts extends React.Component {
+export class Toasts extends React.Component {
 
 
     render() {
+        let toasts = []
 
+        for (let i = 0; i < this.props.toasts.length; i++) {
+            toasts.push(
+                <Toast
+                    labels={{
+                        heading: this.props.toasts[i].heading,
+                    }}
+                    variant={this.props.toasts[i].variant}
+                    duration={Variables.toastDuration}
+                    onRequestClose={() => this.props.hideToast(i)}
+                />
+            )
+        }
         return (
             <ToastContainer>
-                {this.props.toasts.map(toast => {
-                    <Toast
-                        labels={{
-                            heading: toast.heading,
-                        }}
-                        variant={toast.variant}
-                        duration={Variables.toastDuration}
-                        onRequestClose={() => alert('close toast')}
-                    />
-                })}
+                {toasts}
             </ToastContainer>
         )
 
     }
 }
+
+const mapStateToProps = state => {
+    return state.toasts
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        hideToast: () => dispatch(Actions.hideToast())
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+    null,
+    { context: MainContext }
+)(Toasts)

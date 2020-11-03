@@ -12,7 +12,7 @@ import certificates from './ui/createcv/certificates/certificates'
 import projects from './ui/createcv/projects/projects'
 import accessibility from './ui/components/accessibility/accessibility'
 import modal from './ui/components/modal/modal'
-
+import toasts from './ui/components/toasts/toasts'
 
 
 
@@ -30,5 +30,6 @@ export default combineReducers({
     certificates: certificates,
     projects: projects,
     accessibility: accessibility,
-    modal: modal
+    modal: modal,
+    toasts: toasts
 });
