@@ -12,6 +12,7 @@ import './template/CreateCV'
 import PropTypes from 'prop-types';
 import * as UI from '../../../utilities/ui'
 import DeleteItem from '../components/contentActions/DeleteItem'
+import {showToast} from 'redux/reducers/ui/components/toasts/actions'
 
 import {
     Icon,
@@ -90,6 +91,8 @@ export class Education extends React.Component {
 
     deleteEducation = id => {
         this.props.deleteEducation(id)
+        this.props.showToast(['Education has been deleted.'])
+
         this.updatePreview()
     }
 
@@ -101,6 +104,8 @@ export class Education extends React.Component {
             },
         }));
         this.props.addEducation()
+        this.props.showToast(['New education has been added.'], 'success')
+
         this.updatePreview()
     }
 
@@ -293,6 +298,8 @@ const mapDispatchToProps = dispatch => {
         updateDescription: (id, description) => dispatch(Actions.updateDescription(id, description)),
         deleteEducation: id => dispatch(Actions.deleteEducation(id)),
         addEducation: () => dispatch(Actions.addEducation()),
+        showToast: (heading, variant) => dispatch(showToast(heading, variant))
+
     }
 }
 
