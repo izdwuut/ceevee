@@ -6,6 +6,7 @@ import debounce from '../../../utilities/debounce'
 import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { debounceTime } from '../../../utilities/variables'
 import * as UI from '../../../utilities/ui'
+import {showToast} from 'redux/reducers/ui/components/toasts/actions'
 
 import {
     Icon,
@@ -55,11 +56,15 @@ export class Skills extends React.Component {
         this.setState({
             activeIndex: this.props.skills.length
         })
+        this.props.showToast(['New skill has been added.'], 'success')
+
         this.updatePreview()
     }
 
     deleteSkill = (id) => {
         this.props.deleteSkill(id)
+        this.props.showToast(['Skill has been deleted.'])
+
         this.updatePreview()
     }
 
@@ -136,7 +141,9 @@ const mapDispatchToProps = dispatch => {
         updateDescription: (id, description) => dispatch(Actions.updateDescription(id, description)),
         addSkill: () => dispatch(Actions.addSkill()),
         deleteSkill: id => dispatch(Actions.deleteSkill(id)),
-        updatePreview: (isUpdate) => dispatch(updatePreview(isUpdate))
+        updatePreview: (isUpdate) => dispatch(updatePreview(isUpdate)),
+       showToast: (heading, variant) => dispatch(showToast(heading, variant))
+
     };
 };
 export default connect(
