@@ -8,6 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@salesforce-ux/design-system": "^2.13.7",
+    "@salesforce/design-system-react": "^0.10.23",
     "next": "10.0.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
