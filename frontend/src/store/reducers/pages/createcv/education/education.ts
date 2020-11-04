@@ -1,9 +1,7 @@
-import * as actions from './actionTypes'
-import { getValidatedDate } from '../../../../../utilities/date'
-import { formatterDateFormat } from '../../../../../utilities/variables'
-import moment from 'moment'
+import * as Types from './types'
+import { getValidatedDate } from 'src/utilities/date'
 
-const initialState = {
+const initialState: Types.EducationState = {
     header: 'Education',
     description: "From high school to university, your education is one of the most valuable assets.",
     originalHeader: 'Education',
@@ -11,17 +9,17 @@ const initialState = {
     visible: false
 }
 
-export default function education(state = initialState, action) {
+export default function education(state: Types.EducationState = initialState, action: Types.EducationActionTypes) {
     switch (action.type) {
-        case actions.EDUCATION_UPDATE_HEADER: {
+        case Types.EDUCATION_UPDATE_HEADER: {
             return {
                 ...state,
                 header: action.payload.header
             }
         }
 
-        case actions.EDUCATION_UPDATE_COURSE: {
-            let educationCopy = [...state.education]
+        case Types.EDUCATION_UPDATE_COURSE: {
+            let educationCopy: Array<Types.Education>  = [...state.education]
             educationCopy[action.payload.id].course = action.payload.course
             return {
                 ...state,
@@ -29,8 +27,8 @@ export default function education(state = initialState, action) {
             }
         }
 
-        case actions.EDUCATION_UPDATE_SCHOOL: {
-            let educationCopy = [...state.education]
+        case Types.EDUCATION_UPDATE_SCHOOL: {
+            let educationCopy: Array<Types.Education> = [...state.education]
             educationCopy[action.payload.id].school = action.payload.school
             return {
                 ...state,
@@ -38,8 +36,8 @@ export default function education(state = initialState, action) {
             }
         }
 
-        case actions.EDUCATION_UPDATE_TITLE: {
-            let educationCopy = [...state.education]
+        case Types.EDUCATION_UPDATE_TITLE: {
+            let educationCopy: Array<Types.Education> = [...state.education]
             educationCopy[action.payload.id].title = action.payload.title
             return {
                 ...state,
@@ -47,8 +45,8 @@ export default function education(state = initialState, action) {
             }
         }
 
-        case actions.EDUCATION_UPDATE_CITY: {
-            let educationCopy = [...state.education]
+        case Types.EDUCATION_UPDATE_CITY: {
+            let educationCopy: Array<Types.Education> = [...state.education]
             educationCopy[action.payload.id].city = action.payload.city
             return {
                 ...state,
@@ -56,8 +54,8 @@ export default function education(state = initialState, action) {
             }
         }
 
-        case actions.EDUCATION_UPDATE_COUNTRY: {
-            let educationCopy = [...state.education]
+        case Types.EDUCATION_UPDATE_COUNTRY: {
+            let educationCopy: Array<Types.Education> = [...state.education]
             educationCopy[action.payload.id].country = action.payload.country 
             return {
                 ...state,
@@ -65,24 +63,22 @@ export default function education(state = initialState, action) {
             }
         }
 
-        case actions.EDUCATION_UPDATE_FROM_DATE: {
-         
+        case Types.EDUCATION_UPDATE_FROM_DATE: {
             return {
                 ...state,
                 education: getValidatedDate(state.education, 'fromDate', action)
             }
         }
 
-        case actions.EDUCATION_UPDATE_TO_DATE: {
-            
+        case Types.EDUCATION_UPDATE_TO_DATE: {
             return {
                 ...state,
                 education: getValidatedDate(state.education, 'toDate', action)
             }
         }
 
-        case actions.EDUCATION_UPDATE_DESCRIPTION: {
-            let educationCopy = [...state.education]
+        case Types.EDUCATION_UPDATE_DESCRIPTION: {
+            let educationCopy: Array<Types.Education> = [...state.education]
             educationCopy[action.payload.id].description = action.payload.description
             return {
                 ...state,
@@ -90,8 +86,8 @@ export default function education(state = initialState, action) {
             }
         }
 
-        case actions.EDUCATION_ADD_EDUCATION: {
-            let educationCopy = [...state.education]
+        case Types.EDUCATION_ADD_EDUCATION: {
+            let educationCopy: Array<Types.Education> = [...state.education]
             educationCopy.push({
                 course: '',
                 school: '',
@@ -111,8 +107,8 @@ export default function education(state = initialState, action) {
                 visible: true
             }
         }
-        case actions.EDUCATION_DELETE_EDUCATION: {
-            let educationCopy = [...state.education]
+        case Types.EDUCATION_DELETE_EDUCATION: {
+            let educationCopy: Array<Types.Education> = [...state.education]
             educationCopy.splice(action.payload.id, 1)
             return {
                 ...state,

@@ -1,4 +1,4 @@
-import * as actions from './actionTypes'
+import * as actions from './types'
 
 export const updateHeader = header => ({
     type: actions.EDUCATION_UPDATE_HEADER,
