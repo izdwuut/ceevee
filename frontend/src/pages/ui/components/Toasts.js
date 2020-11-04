@@ -32,29 +32,50 @@ import {
 
 
 export class Toasts extends React.Component {
+    state = {
+        toasts: []
+    }
 
+    componentDidUpdate(prevProps, prevState) {
+        const lastElement = this.props.toasts.length - 1
+        if (this.props.toasts.length === 0 || this.props.toasts[lastElement] === null) {
+            return
+        }
+        this.state.toasts.push(
+            <Toast
+                labels={{
+                    heading: this.props.toasts[lastElement].heading,
+                }}
+                variant={this.props.toasts[lastElement].variant}
+
+            />
+        )
+        this.hideToast(lastElement)
+    }
+    
+    // We override default Toast behaviour (the duration parameter),
+    // because as of now it doesn't work properly for multiple toasts.
+    hideToast = (id) => {
+        this.props.hideToast(id)
+        setTimeout(() => {
+            this.setState({
+                toasts: this.removeToast(id)
+            })
+        }, Variables.toastDuration)
+    }
+    removeToast = (id) => {
+        const toastsCopy = [...this.state.toasts]
+        toastsCopy[id] = null
+
+        return toastsCopy
+    }
 
     render() {
-        let toasts = []
-
-        for (let i = 0; i < this.props.toasts.length; i++) {
-            toasts.push(
-                <Toast
-                    labels={{
-                        heading: this.props.toasts[i].heading,
-                    }}
-                    variant={this.props.toasts[i].variant}
-                    duration={Variables.toastDuration}
-                    onRequestClose={() => this.props.hideToast(i)}
-                />
-            )
-        }
         return (
             <ToastContainer>
-                {toasts}
+                {this.state.toasts}
             </ToastContainer>
         )
-
     }
 }
 
@@ -64,7 +85,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        hideToast: () => dispatch(Actions.hideToast())
+        hideToast: (id) => dispatch(Actions.hideToast(id))
     }
 }
 

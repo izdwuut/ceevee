@@ -10,16 +10,16 @@ export default function toasts(state = initialState, action) {
             let toastsCopy = [...state.toasts]
             toastsCopy.push({
                 heading: action.payload.heading,
-                variant: action.payload.variant
+                variant: action.payload.variant,
             })
             return {
                 ...state,
-                toasts: toastsCopy
+                toasts: toastsCopy,
             }
         }
         case actions.TOASTS_HIDE: {
             let toastsCopy = [...state.toasts]
-            toastsCopy.splice(action.payload.id, 1)
+            toastsCopy[action.payload.id] = null
             return {
                 ...state,
                 toasts: toastsCopy

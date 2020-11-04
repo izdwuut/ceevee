@@ -9,7 +9,7 @@ export const showToast = (heading, variant = 'info') => ({
     }
 })
 
-export const hideToast = id => ({
+export const hideToast = (id) => ({
     type: actions.TOASTS_HIDE,
     payload: {
        id: id
