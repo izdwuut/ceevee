@@ -22,6 +22,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import * as Buttons from '../../../utilities/ui'
 import * as UI from '../../../utilities/ui'
 import DeleteItem from '../components/contentActions/DeleteItem'
+import {showToast} from 'redux/reducers/ui/components/toasts/actions'
 
 
 export class Links extends React.Component {
@@ -49,6 +50,8 @@ export class Links extends React.Component {
 
     deleteLink = id => {
         this.props.deleteLink(id)
+        this.props.showToast(['Link has been deleted.'])
+
         this.updatePreview()
     }
 
@@ -60,6 +63,8 @@ export class Links extends React.Component {
             },
         }));
         this.props.addLink()
+        this.props.showToast(['New link has been added.'], 'success')
+
         this.updatePreview()
     }
 
@@ -142,6 +147,7 @@ const mapDispatchToProps = dispatch => {
         updateLink: (id, link) => dispatch(Actions.updateLink(id, link)),
         deleteLink: id => dispatch(Actions.deleteLink(id)),
         addLink: () => dispatch(Actions.addLink()),
+       showToast: (heading, variant) => dispatch(showToast(heading, variant)),
     }
 }
 
