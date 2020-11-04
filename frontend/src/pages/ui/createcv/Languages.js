@@ -13,6 +13,7 @@ import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import * as UI from '../../../utilities/ui'
 import DeleteItem from '../components/contentActions/DeleteItem'
+import {showToast} from 'redux/reducers/ui/components/toasts/actions'
 
 import {
     Icon,
@@ -51,6 +52,8 @@ export class Languages extends React.Component {
 
     deleteLanguage = id => {
         this.props.deleteLanguage(id)
+        this.props.showToast(['Language has been deleted.'])
+
         this.updatePreview()
     }
 
@@ -62,6 +65,8 @@ export class Languages extends React.Component {
             },
         }));
         this.props.addLanguage()
+        this.props.showToast(['New language has been added.'], 'success')
+
         this.updatePreview()
     }
 
@@ -134,6 +139,8 @@ const mapDispatchToProps = dispatch => {
         updateLanguage: (id, language) => dispatch(Actions.updateLanguage(id, language)),
         deleteLanguage: id => dispatch(Actions.deleteLanguage(id)),
         addLanguage: () => dispatch(Actions.addLanguage()),
+        showToast: (heading, variant) => dispatch(showToast(heading, variant))
+
     }
 }
 
