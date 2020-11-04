@@ -13,6 +13,7 @@ import { datepickerDateFormat } from '../../../utilities/variables'
 import * as UI from '../../../utilities/ui'
 import PropTypes from 'prop-types';
 import DeleteItem from '../components/contentActions/DeleteItem'
+import {showToast} from 'redux/reducers/ui/components/toasts/actions'
 
 import {
     Icon,
@@ -66,6 +67,8 @@ export class Certificates extends React.Component {
 
     deleteCertificate = id => {
         this.props.deleteCertificate(id)
+        this.props.showToast(['Certificate has been deleted.'])
+
         this.updatePreview()
     }
 
@@ -77,6 +80,8 @@ export class Certificates extends React.Component {
             },
         }));
         this.props.addCertificate()
+        this.props.showToast(['New certificate has been added.'], 'success')
+
         this.updatePreview()
     }
 
@@ -193,6 +198,7 @@ const mapDispatchToProps = dispatch => {
         updateValidUntil: (id, validUntil) => dispatch(Actions.updateValidUntil(id, validUntil)),
         deleteCertificate: id => dispatch(Actions.deleteCertificate(id)),
         addCertificate: () => dispatch(Actions.addCertificate()),
+        showToast: (heading, variant) => dispatch(showToast(heading, variant)),
     }
 }
 
