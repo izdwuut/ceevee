@@ -14,6 +14,7 @@ import { datepickerDateFormat } from '../../../utilities/variables'
 import * as UI from '../../../utilities/ui'
 import PropTypes from 'prop-types';
 import DeleteItem from '../components/contentActions/DeleteItem'
+import {showToast} from 'redux/reducers/ui/components/toasts/actions'
 
 import {
     Icon,
@@ -96,6 +97,8 @@ export class Projects extends React.Component {
 
     deleteProject = id => {
         this.props.deleteProject(id)
+        this.props.showToast(['Project has been deleted.'])
+
         this.updatePreview()
     }
 
@@ -107,6 +110,8 @@ export class Projects extends React.Component {
             },
         }));
         this.props.addProject()
+        this.props.showToast(['New project has been added.'], 'success')
+
         this.updatePreview()
     }
 
