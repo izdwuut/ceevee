@@ -314,6 +314,8 @@ const mapDispatchToProps = dispatch => {
         updateDescription: (id, description) => dispatch(Actions.updateDescription(id, description)),
         deleteProject: id => dispatch(Actions.deleteProject(id)),
         addProject: project => dispatch(Actions.addProject(project)),
+       showToast: (heading, variant) => dispatch(showToast(heading, variant))
+
     }
 }
 
