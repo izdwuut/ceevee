@@ -1,9 +1,7 @@
-import * as actions from './actionTypes'
-import { getShortDateString, getValidatedDate } from '../../../../../utilities/date'
-import {formatterDateFormat, } from '../../../../../utilities/variables'
-import moment from 'moment'
+import * as Types from './types'
+import { getValidatedDate } from 'src/utilities/date'
 
-const initialState = {
+const initialState: Types.ExperienceState = {
     header: 'Experience',
     description: "The core of every CV. Don't hesitate to add anything related to the position you're applying for.",
     originalHeader: 'Experience',
@@ -11,26 +9,26 @@ const initialState = {
     visible: false
 }
 
-export default function experience(state = initialState, action) {
+export default function experience(state: Types.ExperienceState = initialState, action: Types.ExperienceActionTypes) {
     switch (action.type) {
-        case actions.EXPERIENCE_UPDATE_HEADER: {
+        case Types.EXPERIENCE_UPDATE_HEADER: {
             return {
                 ...state,
                 header: action.payload.header
             }
         }
 
-        case actions.EXPERIENCE_UPDATE_POSITION: {
-            let experienceCopy = [...state.experience]
-            experienceCopy[action.payload.id].position = action.payload.position || experienceCopy[action.payload.id].position
+        case Types.EXPERIENCE_UPDATE_POSITION: {
+            let experienceCopy: Array<Types.Experience> = [...state.experience]
+            experienceCopy[action.payload.id].position = action.payload.position
             return {
                 ...state,
                 experience: experienceCopy
             }
         }
 
-        case actions.EXPERIENCE_UPDATE_COMPANY: {
-            let experienceCopy = [...state.experience]
+        case Types.EXPERIENCE_UPDATE_COMPANY: {
+            let experienceCopy: Array<Types.Experience> = [...state.experience]
             experienceCopy[action.payload.id].company = action.payload.company || experienceCopy[action.payload.id].company
             return {
                 ...state,
@@ -38,49 +36,49 @@ export default function experience(state = initialState, action) {
             }
         }
 
-        case actions.EXPERIENCE_UPDATE_CITY: {
-            let experienceCopy = [...state.experience]
-            experienceCopy[action.payload.id].city = action.payload.city || experienceCopy[action.payload.id].city
+        case Types.EXPERIENCE_UPDATE_CITY: {
+            let experienceCopy: Array<Types.Experience> = [...state.experience]
+            experienceCopy[action.payload.id].city = action.payload.city 
             return {
                 ...state,
                 experience: experienceCopy
             }
         }
 
-        case actions.EXPERIENCE_UPDATE_COUNTRY: {
-            let experienceCopy = [...state.experience]
-            experienceCopy[action.payload.id].country = action.payload.country || experienceCopy[action.payload.id].country
+        case Types.EXPERIENCE_UPDATE_COUNTRY: {
+            let experienceCopy: Array<Types.Experience> = [...state.experience]
+            experienceCopy[action.payload.id].country = action.payload.country 
             return {
                 ...state,
                 experience: experienceCopy
             }
         }
 
-        case actions.EXPERIENCE_UPDATE_FROM_DATE: {
+        case Types.EXPERIENCE_UPDATE_FROM_DATE: {
             return {
                 ...state,
                 experience: getValidatedDate(state.experience, 'fromDate', action)
             }
         }
 
-        case actions.EXPERIENCE_UPDATE_TO_DATE: {
+        case Types.EXPERIENCE_UPDATE_TO_DATE: {
             return {
                 ...state,
                 experience: getValidatedDate(state.experience, 'toDate', action)
             }
         }
 
-        case actions.EXPERIENCE_UPDATE_DESCRIPTION: {
-            let experienceCopy = [...state.experience]
-            experienceCopy[action.payload.id].description = action.payload.description || experienceCopy[action.payload.id].description
+        case Types.EXPERIENCE_UPDATE_DESCRIPTION: {
+            let experienceCopy: Array<Types.Experience> = [...state.experience]
+            experienceCopy[action.payload.id].description = action.payload.description
             return {
                 ...state,
                 experience: experienceCopy
             }
         }
 
-        case actions.EXPERIENCE_ADD_EXPERIENCE: {
-            let experienceCopy = [...state.experience]
+        case Types.EXPERIENCE_ADD_EXPERIENCE: {
+            let experienceCopy: Array<Types.Experience> = [...state.experience]
             experienceCopy.push({
                 position: '',
                 company: '',
@@ -98,8 +96,8 @@ export default function experience(state = initialState, action) {
                 visible: true
             }
         }
-        case actions.EXPERIENCE_DELETE_EXPERIENCE: {
-            let experienceCopy = [...state.experience]
+        case Types.EXPERIENCE_DELETE_EXPERIENCE: {
+            let experienceCopy: Array<Types.Experience> = [...state.experience]
             experienceCopy.splice(action.payload.id, 1)
             return {
                 ...state,
