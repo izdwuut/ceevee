@@ -4,13 +4,15 @@ import MainContext from '../../../index'
 import debounce from '../../../utilities/debounce'
 import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { debounceTime } from '../../../utilities/variables'
-import * as Actions from '../../../redux/reducers/ui/education/actions'
+import * as Actions from '../../../redux/reducers/ui/createcv/education/actions'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import { datepickerDateFormat } from '../../../utilities/variables'
 import './template/CreateCV'
 import PropTypes from 'prop-types';
 import * as UI from '../../../utilities/ui'
+import DeleteItem from '../components/contentActions/DeleteItem'
+import {showToast} from 'redux/reducers/ui/components/toasts/actions'
 
 import {
     Icon,
@@ -89,6 +91,8 @@ export class Education extends React.Component {
 
     deleteEducation = id => {
         this.props.deleteEducation(id)
+        this.props.showToast(['Education has been deleted.'])
+
         this.updatePreview()
     }
 
@@ -100,6 +104,8 @@ export class Education extends React.Component {
             },
         }));
         this.props.addEducation()
+        this.props.showToast(['New education has been added.'], 'success')
+
         this.updatePreview()
     }
 
@@ -110,7 +116,9 @@ export class Education extends React.Component {
         for (let i = 0; i < this.props.education.length; i++) {
             education.push(
                 <AccordionPanel
-                    panelContentActions={UI.getContentActions(() => this.deleteEducation(i))}
+                    panelContentActions={
+                        <DeleteItem title="Delete education" item={this.props.education[i].school || 'School ' + (i + 1)} onDelete={() => this.deleteEducation(i)} context={MainContext} />
+                    }
                     key={i}
                     onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
                     expanded={!!this.state.expandedPanels[i]}
@@ -290,6 +298,8 @@ const mapDispatchToProps = dispatch => {
         updateDescription: (id, description) => dispatch(Actions.updateDescription(id, description)),
         deleteEducation: id => dispatch(Actions.deleteEducation(id)),
         addEducation: () => dispatch(Actions.addEducation()),
+        showToast: (heading, variant) => dispatch(showToast(heading, variant))
+
     }
 }
 

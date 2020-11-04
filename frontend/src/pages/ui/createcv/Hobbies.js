@@ -1,11 +1,13 @@
 import * as React from 'react';
-import * as Actions from '../../../redux/reducers/ui/hobbies/actions'
+import * as Actions from '../../../redux/reducers/ui/createcv/hobbies/actions'
 import { connect } from "react-redux"
 import MainContext from '../../../index';
 import debounce from '../../../utilities/debounce'
 import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { debounceTime } from '../../../utilities/variables'
 import * as UI from '../../../utilities/ui'
+import DeleteItem from '../components/contentActions/DeleteItem'
+import {showToast} from 'redux/reducers/ui/components/toasts/actions'
 
 import {
     Icon,
@@ -45,11 +47,15 @@ export class Hobbies extends React.Component {
             },
         }));
         this.props.addHobby('')
+        this.props.showToast(['New hobby has been added.'], 'success')
+
         this.updatePreview()
     }
 
     deleteHobby = id => {
         this.props.deleteHobby(id)
+        this.props.showToast(['Hobby has been deleted.'])
+
         this.updatePreview()
     }
 
@@ -61,7 +67,9 @@ export class Hobbies extends React.Component {
             hobbies.push(
 
                 <AccordionPanel
-                    panelContentActions={UI.getContentActions(() => this.deleteHobby(i))}
+                    panelContentActions={
+                        <DeleteItem title="Delete hobby" item={this.props.hobbies[i] || 'Hobby ' + (i + 1)} onDelete={() => this.deleteHobby(i)} context={MainContext} />
+                    }
                     key={i}
                     onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
                     expanded={!!this.state.expandedPanels[i]}
@@ -116,7 +124,8 @@ const mapDispatchToProps = dispatch => {
         updateHobby: (id, hobby) => dispatch(Actions.updateHobby(id, hobby)),
         addHobby: () => dispatch(Actions.addHobby()),
         deleteHobby: id => dispatch(Actions.deleteHobby(id)),
-        updatePreview: (isUpdate) => dispatch(updatePreview(isUpdate))
+        updatePreview: (isUpdate) => dispatch(updatePreview(isUpdate)),
+        showToast: (heading, variant) => dispatch(showToast(heading, variant)),
     }
 }
 

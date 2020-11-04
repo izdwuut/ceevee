@@ -10,12 +10,10 @@ import highContrastTheme from './styles/highContrastTheme'
 import defaultTheme from './styles/defaultTheme'
 import MainContext from './index'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-
-
+import Modal from 'pages/ui/components/Modal'
+import Toasts from 'pages/ui/components/Toasts'
 export class CreateCVApp extends React.Component {
   theme = null
-
-
 
   getTheme() {
     return this.props.isHighContrastMode ? highContrastTheme : defaultTheme
@@ -30,6 +28,9 @@ export class CreateCVApp extends React.Component {
             <Route path="/cv/list" component={CVList} />
           </Switch>
         </Router>
+        <Modal context={MainContext} />
+        <Toasts context={MainContext} />
+
       </div>
     )
   }

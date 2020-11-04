@@ -1,5 +1,5 @@
 import * as actions from './actionTypes'
-import { getValidatedDate } from '../../../../utilities/date'
+import { getValidatedDate } from '../../../../../utilities/date'
 
 const initialState = {
     header: 'Projects',

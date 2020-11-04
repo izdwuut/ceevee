@@ -8,10 +8,12 @@ import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { debounceTime } from '../../../utilities/variables'
 import SemanticDatepicker from 'react-semantic-ui-datepickers'
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css'
-import * as Actions from '../../../redux/reducers/ui/languages/actions'
+import * as Actions from '../../../redux/reducers/ui/createcv/languages/actions'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import * as UI from '../../../utilities/ui'
+import DeleteItem from '../components/contentActions/DeleteItem'
+import {showToast} from 'redux/reducers/ui/components/toasts/actions'
 
 import {
     Icon,
@@ -50,6 +52,8 @@ export class Languages extends React.Component {
 
     deleteLanguage = id => {
         this.props.deleteLanguage(id)
+        this.props.showToast(['Language has been deleted.'])
+
         this.updatePreview()
     }
 
@@ -61,6 +65,8 @@ export class Languages extends React.Component {
             },
         }));
         this.props.addLanguage()
+        this.props.showToast(['New language has been added.'], 'success')
+
         this.updatePreview()
     }
 
@@ -72,7 +78,9 @@ export class Languages extends React.Component {
         for (let i = 0; i < this.props.languages.length; i++) {
             languages.push(
                 <AccordionPanel
-                    panelContentActions={UI.getContentActions(() => this.deleteLanguage(i))}
+                    panelContentActions={
+                        <DeleteItem title="Delete language" item={this.props.languages[i] || 'Language ' + (i + 1)} onDelete={() => this.deleteLanguage(i)} context={MainContext} />
+                    }
                     key={i}
                     onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
                     expanded={!!this.state.expandedPanels[i]}
@@ -131,6 +139,8 @@ const mapDispatchToProps = dispatch => {
         updateLanguage: (id, language) => dispatch(Actions.updateLanguage(id, language)),
         deleteLanguage: id => dispatch(Actions.deleteLanguage(id)),
         addLanguage: () => dispatch(Actions.addLanguage()),
+        showToast: (heading, variant) => dispatch(showToast(heading, variant))
+
     }
 }
 

@@ -5,14 +5,12 @@ import debounce from '../../../utilities/debounce'
 import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { debounceTime } from '../../../utilities/variables'
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css'
-import * as Actions from '../../../redux/reducers/ui/experience/actions'
+import * as Actions from '../../../redux/reducers/ui/createcv/experience/actions'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import { datepickerDateFormat } from '../../../utilities/variables'
 import * as UI from '../../../utilities/ui'
 import PropTypes from 'prop-types';
-
-
 import {
     Icon,
     InputIcon,
@@ -25,7 +23,8 @@ import {
     Textarea,
     CardEmpty
 } from '@salesforce/design-system-react';
-
+import DeleteItem from '../components/contentActions/DeleteItem'
+import {showToast} from 'redux/reducers/ui/components/toasts/actions'
 const propTypes = {
     tooltipOpen: PropTypes.bool,
 };
@@ -88,6 +87,7 @@ export class Experience extends React.Component {
 
     deleteExperience = id => {
         this.props.deleteExperience(id)
+        this.props.showToast(['Experience has been deleted.'])
         this.updatePreview()
     }
 
@@ -99,6 +99,7 @@ export class Experience extends React.Component {
             },
         }));
         this.props.addExperience()
+        this.props.showToast(['New experience has been added.'], 'success')
         this.updatePreview()
     }
 
@@ -111,7 +112,7 @@ export class Experience extends React.Component {
             for (let i = 0; i < this.props.experience.length; i++) {
                 experience.push(
                     <AccordionPanel
-                        panelContentActions={UI.getContentActions(() => this.deleteExperience(i))}
+                        panelContentActions={<DeleteItem title="Delete experience" item={this.props.experience[i].position || 'Experience ' + (i + 1)} onDelete={() => this.deleteExperience(i)} context={MainContext} />}
                         key={i}
                         onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
                         expanded={!!this.state.expandedPanels[i]}
@@ -282,6 +283,7 @@ const mapDispatchToProps = dispatch => {
         updateDescription: (id, description) => dispatch(Actions.updateDescription(id, description)),
         deleteExperience: id => dispatch(Actions.deleteExperience(id)),
         addExperience: experience => dispatch(Actions.addExperience(experience)),
+       showToast: (heading, variant) => dispatch(showToast(heading, variant))
     }
 }
 

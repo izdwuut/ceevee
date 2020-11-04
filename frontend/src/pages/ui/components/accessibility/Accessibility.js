@@ -29,7 +29,7 @@ import {
 import styles from './Accessibility.css'
 import * as Variables from '../../../../utilities/variables'
 import { connect } from "react-redux"
-import * as Actions from '../../../../redux/reducers/ui/accessibility/actions'
+import * as Actions from '../../../../redux/reducers/ui/components/accessibility/actions'
 import MainContext from '../../../../index'
 export class Accessibility extends React.Component {
     constructor(props) {

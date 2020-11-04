@@ -1,11 +1,12 @@
 import * as React from 'react';
-import * as Actions from '../../../redux/reducers/ui/skills/actions'
+import * as Actions from '../../../redux/reducers/ui/createcv/skills/actions'
 import { connect } from "react-redux"
 import MainContext from '../../../index';
 import debounce from '../../../utilities/debounce'
 import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { debounceTime } from '../../../utilities/variables'
 import * as UI from '../../../utilities/ui'
+import {showToast} from 'redux/reducers/ui/components/toasts/actions'
 
 import {
     Icon,
@@ -19,6 +20,7 @@ import {
     Textarea,
     CardEmpty
 } from '@salesforce/design-system-react';
+import DeleteItem from '../components/contentActions/DeleteItem'
 
 export class Skills extends React.Component {
     constructor(props) {
@@ -54,11 +56,15 @@ export class Skills extends React.Component {
         this.setState({
             activeIndex: this.props.skills.length
         })
+        this.props.showToast(['New skill has been added.'], 'success')
+
         this.updatePreview()
     }
 
     deleteSkill = (id) => {
         this.props.deleteSkill(id)
+        this.props.showToast(['Skill has been deleted.'])
+
         this.updatePreview()
     }
 
@@ -69,7 +75,8 @@ export class Skills extends React.Component {
         for (let i = 0; i < this.props.skills.length; i++) {
             skills.push(
                 <AccordionPanel
-                    panelContentActions={UI.getContentActions(() => this.deleteSkill(i))}
+                    panelContentActions={
+                        <DeleteItem title="Delete skill" item={this.props.skills[i].skill || 'Skill ' + (i + 1)} onDelete={() => this.deleteSkill(i)} context={MainContext} />}
                     key={i}
                     onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
                     expanded={!!this.state.expandedPanels[i]}
@@ -134,7 +141,9 @@ const mapDispatchToProps = dispatch => {
         updateDescription: (id, description) => dispatch(Actions.updateDescription(id, description)),
         addSkill: () => dispatch(Actions.addSkill()),
         deleteSkill: id => dispatch(Actions.deleteSkill(id)),
-        updatePreview: (isUpdate) => dispatch(updatePreview(isUpdate))
+        updatePreview: (isUpdate) => dispatch(updatePreview(isUpdate)),
+       showToast: (heading, variant) => dispatch(showToast(heading, variant))
+
     };
 };
 export default connect(

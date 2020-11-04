@@ -7,12 +7,14 @@ import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { debounceTime } from '../../../utilities/variables'
 import SemanticDatepicker from 'react-semantic-ui-datepickers'
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css'
-import * as Actions from '../../../redux/reducers/ui/projects/actions'
+import * as Actions from '../../../redux/reducers/ui/createcv/projects/actions'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import { datepickerDateFormat } from '../../../utilities/variables'
 import * as UI from '../../../utilities/ui'
 import PropTypes from 'prop-types';
+import DeleteItem from '../components/contentActions/DeleteItem'
+import {showToast} from 'redux/reducers/ui/components/toasts/actions'
 
 import {
     Icon,
@@ -95,6 +97,8 @@ export class Projects extends React.Component {
 
     deleteProject = id => {
         this.props.deleteProject(id)
+        this.props.showToast(['Project has been deleted.'])
+
         this.updatePreview()
     }
 
@@ -106,6 +110,8 @@ export class Projects extends React.Component {
             },
         }));
         this.props.addProject()
+        this.props.showToast(['New project has been added.'], 'success')
+
         this.updatePreview()
     }
 
@@ -118,7 +124,9 @@ export class Projects extends React.Component {
             for (let i = 0; i < this.props.projects.length; i++) {
                 projects.push(
                     <AccordionPanel
-                        panelContentActions={UI.getContentActions(() => this.deleteProject(i))}
+                        panelContentActions={
+                            <DeleteItem title="Delete project" item={this.props.projects[i].project || 'Project ' + (i + 1)} onDelete={() => this.deleteProject(i)} context={MainContext} />
+                        }
                         key={i}
                         onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
                         expanded={!!this.state.expandedPanels[i]}
@@ -306,6 +314,8 @@ const mapDispatchToProps = dispatch => {
         updateDescription: (id, description) => dispatch(Actions.updateDescription(id, description)),
         deleteProject: id => dispatch(Actions.deleteProject(id)),
         addProject: project => dispatch(Actions.addProject(project)),
+       showToast: (heading, variant) => dispatch(showToast(heading, variant))
+
     }
 }
 

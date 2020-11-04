@@ -17,10 +17,12 @@ import debounce from '../../../utilities/debounce'
 import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { debounceTime } from '../../../utilities/variables'
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css'
-import * as Actions from '../../../redux/reducers/ui/links/actions'
+import * as Actions from '../../../redux/reducers/ui/createcv/links/actions'
 import "react-datepicker/dist/react-datepicker.css";
 import * as Buttons from '../../../utilities/ui'
 import * as UI from '../../../utilities/ui'
+import DeleteItem from '../components/contentActions/DeleteItem'
+import {showToast} from 'redux/reducers/ui/components/toasts/actions'
 
 
 export class Links extends React.Component {
@@ -48,6 +50,8 @@ export class Links extends React.Component {
 
     deleteLink = id => {
         this.props.deleteLink(id)
+        this.props.showToast(['Link has been deleted.'])
+
         this.updatePreview()
     }
 
@@ -59,6 +63,8 @@ export class Links extends React.Component {
             },
         }));
         this.props.addLink()
+        this.props.showToast(['New link has been added.'], 'success')
+
         this.updatePreview()
     }
 
@@ -72,7 +78,9 @@ export class Links extends React.Component {
             for (let i = 0; i < this.props.links.length; i++) {
                 links.push(
                     <AccordionPanel
-                        panelContentActions={UI.getContentActions(() => this.deleteLink(i))}
+                        panelContentActions={
+                            <DeleteItem title="Delete link" item={this.props.links[i].label || 'Link ' + (i + 1)} onDelete={() => this.deleteLink(i)} context={MainContext} />
+                        }
                         key={i}
                         onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
                         expanded={!!this.state.expandedPanels[i]}
@@ -139,6 +147,7 @@ const mapDispatchToProps = dispatch => {
         updateLink: (id, link) => dispatch(Actions.updateLink(id, link)),
         deleteLink: id => dispatch(Actions.deleteLink(id)),
         addLink: () => dispatch(Actions.addLink()),
+       showToast: (heading, variant) => dispatch(showToast(heading, variant)),
     }
 }
 
