@@ -1,4 +1,4 @@
-import { monthNames, formatterDateFormat } from './variables'
+import { monthNames, formatterDateFormat } from 'src/env/variables'
 import moment from 'moment'
 export function getShortDateString(dateString) {
     if (!isDateValid(dateString)) {
