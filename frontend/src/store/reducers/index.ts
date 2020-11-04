@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-import pdfViewer from "./components/pdfViewer/pdfViewer";
 import details from './pages/createcv/details/details'
 import skills from './pages/createcv/skills/skills'
 import hobbies from './pages/createcv/hobbies/hobbies'
@@ -10,6 +9,8 @@ import links from './pages/createcv/links/links'
 import gdpa from './pages/createcv/gdpa/gdpa'
 import certificates from './pages/createcv/certificates/certificates'
 import projects from './pages/createcv/projects/projects'
+
+import pdfViewer from "./components/pdfViewer/pdfViewer";
 import accessibility from './components/accessibility/accessibility'
 import modal from './components/modal/modal'
 import toasts from './components/toasts/toasts'

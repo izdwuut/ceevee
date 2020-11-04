@@ -2,13 +2,14 @@ import Head from 'next/head'
 import * as Variables from 'src/env/variables'
 import { Button } from '@salesforce/design-system-react';
 import { IconSettings } from '@salesforce/design-system-react'
-
-
+import { Provider }from 'react-redux';
+import store from 'src/store/store'
 
 
 export default function Home() {
   return (
     <div>
+      <Provider store = {store}>
       <IconSettings iconPath="/icons">
 
         <Head>
@@ -25,7 +26,7 @@ export default function Home() {
 
         </footer>
       </IconSettings>
-
+      </Provider>
     </div>
   )
 }

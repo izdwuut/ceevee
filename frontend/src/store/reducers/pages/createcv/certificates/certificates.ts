@@ -1,9 +1,7 @@
-import * as actions from './actionTypes'
-import { formatterDateFormat } from '../../../../../utilities/variables'
-import { getValidatedDate } from '../../../../../utilities/date'
-import moment from 'moment'
+import * as Types from './types'
+import { getValidatedDate } from 'src/utilities/date'
 
-const initialState = {
+const initialState: Types.CertificatesState = {
     header: 'Certificates',
     originalHeader: 'Certificates',
     description: "Certificates are a great way to vouch that you have some skills. Got any? Add them here!",
@@ -11,17 +9,17 @@ const initialState = {
     visible: false
 }
 
-export default function certificates(state = initialState, action) {
+export default function certificates(state: Types.CertificatesState = initialState, action: Types.CertificatesActionTypes) {
     switch (action.type) {
-        case actions.CERTIFICATES_UPDATE_HEADER: {
+        case Types.CERTIFICATES_UPDATE_HEADER: {
             return {
                 ...state,
                 header: action.payload.header
             }
         }
 
-        case actions.CERTIFICATES_UPDATE_CERTIFICATE: {
-            let certificatesCopy = [...state.certificates]
+        case Types.CERTIFICATES_UPDATE_CERTIFICATE: {
+            let certificatesCopy: Array<Types.Certificate> = [...state.certificates]
             certificatesCopy[action.payload.id].certificate = action.payload.certificate
             return {
                 ...state,
@@ -29,8 +27,8 @@ export default function certificates(state = initialState, action) {
             }
         }
 
-        case actions.CERTIFICATES_UPDATE_ISSUER: {
-            let certificatesCopy = [...state.certificates]
+        case Types.CERTIFICATES_UPDATE_ISSUER: {
+            let certificatesCopy: Array<Types.Certificate> = [...state.certificates]
             certificatesCopy[action.payload.id].issuer = action.payload.issuer
             return {
                 ...state,
@@ -38,16 +36,16 @@ export default function certificates(state = initialState, action) {
             }
         }
 
-        case actions.CERTIFICATES_UPDATE_VALID_UNTIL: {
+        case Types.CERTIFICATES_UPDATE_VALID_UNTIL: {
             return {
                 ...state,
                 certificates: getValidatedDate(state.certificates, 'validUntil', action)
             }
         }
 
-       
-        case actions.CERTIFICATES_ADD_CERTIFICATE: {
-            let certificatesCopy = [...state.certificates]
+
+        case Types.CERTIFICATES_ADD_CERTIFICATE: {
+            let certificatesCopy: Array<Types.Certificate> = [...state.certificates]
             certificatesCopy.push({
                 certificate: '',
                 issuer: '',
@@ -60,8 +58,8 @@ export default function certificates(state = initialState, action) {
                 visible: true
             }
         }
-        case actions.CERTIFICATES_DELETE_CERTIFICATE: {
-            let certificatesCopy = [...state.certificates]
+        case Types.CERTIFICATES_DELETE_CERTIFICATE: {
+            let certificatesCopy: Array<Types.Certificate> = [...state.certificates]
             certificatesCopy.splice(action.payload.id, 1)
             return {
                 ...state,
