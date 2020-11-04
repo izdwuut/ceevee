@@ -7,6 +7,7 @@ import { updatePreview } from '../../../redux/reducers/pdf/pdfViewer/actions'
 import { debounceTime } from '../../../utilities/variables'
 import * as UI from '../../../utilities/ui'
 import DeleteItem from '../components/contentActions/DeleteItem'
+import {showToast} from 'redux/reducers/ui/components/toasts/actions'
 
 import {
     Icon,
@@ -46,11 +47,15 @@ export class Hobbies extends React.Component {
             },
         }));
         this.props.addHobby('')
+        this.props.showToast(['New hobby has been added.'], 'success')
+
         this.updatePreview()
     }
 
     deleteHobby = id => {
         this.props.deleteHobby(id)
+        this.props.showToast(['Hobby has been deleted.'])
+
         this.updatePreview()
     }
 
@@ -119,7 +124,8 @@ const mapDispatchToProps = dispatch => {
         updateHobby: (id, hobby) => dispatch(Actions.updateHobby(id, hobby)),
         addHobby: () => dispatch(Actions.addHobby()),
         deleteHobby: id => dispatch(Actions.deleteHobby(id)),
-        updatePreview: (isUpdate) => dispatch(updatePreview(isUpdate))
+        updatePreview: (isUpdate) => dispatch(updatePreview(isUpdate)),
+        showToast: (heading, variant) => dispatch(showToast(heading, variant)),
     }
 }
 
