@@ -1,33 +1,33 @@
-import * as actions from './actionTypes'
+import * as Types from './types'
 
-const initialState = {
+const initialState: Types.AccessibilityState = {
     isDarkMode: false,
     isHighContrastMode: false,
     isColorBlindMode: false,
     fontSize: 100
 }
 
-export default function accessibility(state = initialState, action) {
+export default function accessibility(state:Types.AccessibilityState = initialState, action:Types.AccessibilityActionTypes) {
     switch (action.type) {
-        case actions.ACCESSIBILITY_TOGGLE_COLOR_BLIND_MODE: {
+        case Types.ACCESSIBILITY_TOGGLE_COLOR_BLIND_MODE: {
             return {
                 ...state,
                 isColorBlindMode: !state.isColorBlindMode
             }
         }
-        case actions.ACCESSIBILITY_TOGGLE_HIGH_CONTRAST_MODE: {
+        case Types.ACCESSIBILITY_TOGGLE_HIGH_CONTRAST_MODE: {
             return {
                 ...state,
                 isHighContrastMode: !state.isHighContrastMode
             }
         }
-        case actions.ACCESSIBILITY_TOGGLE_DARK_MODE: {
+        case Types.ACCESSIBILITY_TOGGLE_DARK_MODE: {
             return {
                 ...state,
                 isDarkMode: !state.isDarkMode
             }
         }
-        case actions.ACCESSIBILITY_RESIZE_FONT: {
+        case Types.ACCESSIBILITY_RESIZE_FONT: {
             return {
                 ...state,
                 fontSize: action.payload.fontSize
