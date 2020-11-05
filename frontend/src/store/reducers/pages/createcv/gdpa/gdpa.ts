@@ -1,6 +1,6 @@
-import * as actions from './actionTypes'
+import * as Types from './types'
 
-const initialState = {
+const initialState: Types.GDPAState = {
     header: 'GDPA',
     originalHeader: 'GDPA',
     description: "We know. Why even bother? You tell us, the government.",
@@ -9,9 +9,9 @@ const initialState = {
     visible: true
 }
 
-export default function gdpa(state = initialState, action) {
+export default function gdpa(state: Types.GDPAState = initialState, action: Types.GDPAActionTypes) {
     switch (action.type) {
-        case actions.GDPA_UPDATE_GDPA: {
+        case Types.GDPA_UPDATE_GDPA: {
             return {
                 ...state,
                 gdpa: action.payload.gdpa,
