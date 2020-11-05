@@ -10,7 +10,7 @@ import gdpa from './pages/cv/edit/gdpa/gdpa'
 import certificates from './pages/cv/edit/certificates/certificates'
 import projects from './pages/cv/edit/projects/projects'
 
-import pdfViewer from "./components/pdfViewer/pdfViewer";
+import pdfViewer from "./components/pdf/viewer/viewer";
 import accessibility from './components/accessibility/accessibility'
 import modal from './components/modal/modal'
 import toasts from './components/toasts/toasts'

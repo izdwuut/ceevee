@@ -1,27 +1,27 @@
-import * as actions from './actionTypes'
+import * as Types from './types'
 
-const initialState = {
+const initialState: Types.ViewerState = {
     update: false,
     // template: null,
     previousBlob: null,
     nextBlob: null
 }
 
-export default function pdfViewer(state = initialState, action) {
+export default function pdfViewer(state: Types.ViewerState = initialState, action: Types.PdfViewerActionTypes) {
     switch (action.type) {
-        case actions.UPDATE_PREVIEW: {
+        case Types.UPDATE_PREVIEW: {
             return {
                 ...state,
                 update: action.payload.update
             }
         }
-        case actions.UPDATE_PREVIOUS_BLOB: {
+        case Types.UPDATE_PREVIOUS_BLOB: {
             return {
                 ...state,
                 previousBlob: action.payload.blob
             }
         }
-        case actions.UPDATE_NEXT_BLOB: {
+        case Types.UPDATE_NEXT_BLOB: {
             return {
                 ...state,
                 nextBlob: action.payload.blob
