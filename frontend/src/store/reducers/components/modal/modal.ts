@@ -1,18 +1,16 @@
-import * as actions from './actionTypes'
+import * as Types from './types'
 
-const initialState = {
+const initialState:Types.ModalState = {
     action: null,
     title: '',
     item: '',
     isDelete: false,
-    modalType: '',
-    actionButtonVariant: '',
     isVisible: false
 }
 
-export default function modal(state = initialState, action) {
+export default function modal(state:Types.ModalState = initialState, action:Types.ModalActionTypes) {
     switch (action.type) {
-        case actions.MODAL_SHOW: {
+        case Types.MODAL_SHOW: {
             return {
                 ...state,
                 action: action.payload.action,
@@ -22,7 +20,7 @@ export default function modal(state = initialState, action) {
                 isVisible: action.payload.isVisible
             }
         }
-        case actions.MODAL_HIDE: {
+        case Types.MODAL_HIDE: {
             return {
                 ...state,
                 action: action.payload.action,
@@ -32,7 +30,6 @@ export default function modal(state = initialState, action) {
                 isVisible: action.payload.isVisible
             }
         }
-
         default:
             return state;
     }
