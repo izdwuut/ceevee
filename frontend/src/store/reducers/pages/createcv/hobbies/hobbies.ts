@@ -1,23 +1,22 @@
-import * as actions from './actionTypes'
+import * as Types from './types'
 
-const initialState = {
+const initialState: Types.HobbiesState = {
     header: 'Hobbies',
     originalHeader: 'Hobbies',
     description: "Books? Movies? Vigorously scrolling through Reddit looking for dank memes? We don't judge.",
-    hobbies: [
-    ],
+    hobbies: [],
     visible: false
 }
 
-export default function hobbies(state = initialState, action) {
+export default function hobbies(state:Types.HobbiesState = initialState, action:Types.HobbiesActionTypes) {
     switch (action.type) {
-        case actions.HOBBIES_UPDATE_HEADER: {
+        case Types.HOBBIES_UPDATE_HEADER: {
             return {
                 ...state,
                 header: action.payload.header
             }
         }
-        case actions.HOBBIES_UPDATE_HOBBY: {
+        case Types.HOBBIES_UPDATE_HOBBY: {
             let hobbiesCopy = [...state.hobbies]
             hobbiesCopy[action.payload.id] = action.payload.hobby || hobbiesCopy[action.payload.id]
             return {
@@ -25,16 +24,16 @@ export default function hobbies(state = initialState, action) {
                 hobbies: hobbiesCopy
             }
         }
-        case actions.HOBBIES_ADD_HOBBY: {
+        case Types.HOBBIES_ADD_HOBBY: {
             let hobbiesCopy = [...state.hobbies]
-            hobbiesCopy.push(action.payload.hobby)
+            hobbiesCopy.push('')
             return {
                 ...state,
                 hobbies: hobbiesCopy,
                 visible: true
             }
         }
-        case actions.HOBBIES_DELETE_HOBBY: {
+        case Types.HOBBIES_DELETE_HOBBY: {
             let hobbiesCopy = [...state.hobbies]
             hobbiesCopy.splice(action.payload.id, 1)
             return {
