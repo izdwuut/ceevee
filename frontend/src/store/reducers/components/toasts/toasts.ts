@@ -1,13 +1,13 @@
-import * as actions from './actionTypes'
+import * as Types from './types'
 
-const initialState = {
+const initialState: Types.ToastsState = {
     toasts: []
 }
 
-export default function toasts(state = initialState, action) {
+export default function toasts(state: Types.ToastsState = initialState, action: Types.ToastsActionTypes) {
     switch (action.type) {
-        case actions.TOASTS_SHOW: {
-            let toastsCopy = [...state.toasts]
+        case Types.TOASTS_SHOW: {
+            let toastsCopy: Array<Types.Toast> = [...state.toasts]
             toastsCopy.push({
                 heading: action.payload.heading,
                 variant: action.payload.variant,
@@ -17,15 +17,14 @@ export default function toasts(state = initialState, action) {
                 toasts: toastsCopy,
             }
         }
-        case actions.TOASTS_HIDE: {
-            let toastsCopy = [...state.toasts]
+        case Types.TOASTS_HIDE: {
+            let toastsCopy: Array<Types.Toast> = [...state.toasts]
             toastsCopy[action.payload.id] = null
             return {
                 ...state,
                 toasts: toastsCopy
             }
         }
-
         default:
             return state;
     }
