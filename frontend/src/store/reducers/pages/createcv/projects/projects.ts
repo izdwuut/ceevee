@@ -1,7 +1,7 @@
-import * as actions from './actionTypes'
-import { getValidatedDate } from '../../../../../utilities/date'
+import * as Types from './types'
+import { getValidatedDate } from 'src/utilities/date'
 
-const initialState = {
+const initialState: Types.ProjectsState = {
     header: 'Projects',
     originalHeader: 'Projects',
     description: "Did you create a cool website? Or maybe you're like us and work for the benefit of others? Don't be shy - list it all.",
@@ -9,85 +9,85 @@ const initialState = {
     visible: false
 }
 
-export default function projects(state = initialState, action) {
+export default function projects(state: Types.ProjectsState = initialState, action: Types.ProjectsActionTypes) {
     switch (action.type) {
-        case actions.PROJECTS_UPDATE_HEADER: {
+        case Types.PROJECTS_UPDATE_HEADER: {
             return {
                 ...state,
                 header: action.payload.header
             }
         }
 
-        case actions.PROJECTS_UPDATE_PROJECT: {
-            let projectsCopy = [...state.projects]
-            projectsCopy[action.payload.id].project = action.payload.project || projectsCopy[action.payload.id].project
+        case Types.PROJECTS_UPDATE_PROJECT: {
+            let projectsCopy: Array<Types.Project> = [...state.projects]
+            projectsCopy[action.payload.id].project = action.payload.project
             return {
                 ...state,
                 projects: projectsCopy
             }
         }
 
-        case actions.PROJECTS_UPDATE_COMPANY: {
-            let projectsCopy = [...state.projects]
-            projectsCopy[action.payload.id].company = action.payload.company || projectsCopy[action.payload.id].company
+        case Types.PROJECTS_UPDATE_COMPANY: {
+            let projectsCopy: Array<Types.Project> = [...state.projects]
+            projectsCopy[action.payload.id].company = action.payload.company
             return {
                 ...state,
                 projects: projectsCopy
             }
         }
 
-        case actions.PROJECTS_UPDATE_CITY: {
-            let projectsCopy = [...state.projects]
-            projectsCopy[action.payload.id].city = action.payload.city || projectsCopy[action.payload.id].city
+        case Types.PROJECTS_UPDATE_CITY: {
+            let projectsCopy: Array<Types.Project> = [...state.projects]
+            projectsCopy[action.payload.id].city = action.payload.city
             return {
                 ...state,
                 projects: projectsCopy
             }
         }
 
-        case actions.PROJECTS_UPDATE_COUNTRY: {
-            let projectsCopy = [...state.projects]
-            projectsCopy[action.payload.id].country = action.payload.country || projectsCopy[action.payload.id].country
+        case Types.PROJECTS_UPDATE_COUNTRY: {
+            let projectsCopy: Array<Types.Project> = [...state.projects]
+            projectsCopy[action.payload.id].country = action.payload.country
             return {
                 ...state,
                 projects: projectsCopy
             }
         }
 
-        case actions.PROJECTS_UPDATE_POSITION: {
-            let projectsCopy = [...state.projects]
-            projectsCopy[action.payload.id].position = action.payload.position || projectsCopy[action.payload.id].position
+        case Types.PROJECTS_UPDATE_POSITION: {
+            let projectsCopy: Array<Types.Project> = [...state.projects]
+            projectsCopy[action.payload.id].position = action.payload.position
             return {
                 ...state,
                 projects: projectsCopy
             }
         }
 
-        case actions.PROJECTS_UPDATE_FROM_DATE: {
+        case Types.PROJECTS_UPDATE_FROM_DATE: {
             return {
                 ...state,
                 projects: getValidatedDate(state.projects, 'fromDate', action)
             }
         }
 
-        case actions.PROJECTS_UPDATE_TO_DATE: {
+        case Types.PROJECTS_UPDATE_TO_DATE: {
             return {
                 ...state,
                 projects: getValidatedDate(state.projects, 'toDate', action)
             }
         }
 
-        case actions.PROJECTS_UPDATE_DESCRIPTION: {
-            let projectsCopy = [...state.projects]
-            projectsCopy[action.payload.id].description = action.payload.description || projectsCopy[action.payload.id].description
+        case Types.PROJECTS_UPDATE_DESCRIPTION: {
+            let projectsCopy: Array<Types.Project> = [...state.projects]
+            projectsCopy[action.payload.id].description = action.payload.description
             return {
                 ...state,
                 projects: projectsCopy
             }
         }
 
-        case actions.PROJECTS_ADD_PROJECT: {
-            let projectsCopy = [...state.projects]
+        case Types.PROJECTS_ADD_PROJECT: {
+            let projectsCopy: Array<Types.Project> = [...state.projects]
             projectsCopy.push({
                 project: '',
                 company: '',
@@ -106,8 +106,8 @@ export default function projects(state = initialState, action) {
                 visible: true
             }
         }
-        case actions.PROJECTS_DELETE_PROJECT: {
-            let projectsCopy = [...state.projects]
+        case Types.PROJECTS_DELETE_PROJECT: {
+            let projectsCopy: Array<Types.Project> = [...state.projects]
             projectsCopy.splice(action.payload.id, 1)
             return {
                 ...state,
