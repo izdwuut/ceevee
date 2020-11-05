@@ -1,6 +1,6 @@
-import * as actions from './actionTypes'
+import * as Types from './types'
 
-const initialState = {
+const initialState: Types.LanguagesState = {
     header: 'Languages',
     description: "Habla español? Sprechen sie Deutsch? Mówisz po polsku? Show it off!",
     originalHeader: 'Languages',
@@ -9,15 +9,15 @@ const initialState = {
     visible: false
 }
 
-export default function languages(state = initialState, action) {
+export default function languages(state: Types.LanguagesState = initialState, action: Types.LanguagesActionTypes) {
     switch (action.type) {
-        case actions.LANGUAGES_UPDATE_HEADER: {
+        case Types.LANGUAGES_UPDATE_HEADER: {
             return {
                 ...state,
                 header: action.payload.header
             }
         }
-        case actions.LANGUAGES_UPDATE_LANGUAGE: {
+        case Types.LANGUAGES_UPDATE_LANGUAGE: {
             let languagesCopy = [...state.languages]
             languagesCopy[action.payload.id] = action.payload.language
             return {
@@ -25,16 +25,16 @@ export default function languages(state = initialState, action) {
                 languages: languagesCopy
             }
         }
-        case actions.LANGUAGES_ADD_LANGUAGE: {
+        case Types.LANGUAGES_ADD_LANGUAGE: {
             let languagesCopy = [...state.languages]
-            languagesCopy.push(action.payload.languages)
+            languagesCopy.push('')
             return {
                 ...state,
                 languages: languagesCopy,
                 visible: true
             }
         }
-        case actions.LANGUAGES_DELETE_LANGUAGE: {
+        case Types.LANGUAGES_DELETE_LANGUAGE: {
             let languagesCopy = [...state.languages]
             languagesCopy.splice(action.payload.id, 1)
             return {
