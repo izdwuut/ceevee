@@ -32,4 +32,5 @@ const rootReducer = combineReducers({
     toasts: toasts
 });
 
+export type RootState = ReturnType<typeof rootReducer>
 export default rootReducer
