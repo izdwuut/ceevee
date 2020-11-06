@@ -1,8 +1,11 @@
 import { connect } from 'react-redux'
 import React from 'react'
+import { Global } from '@emotion/core';
 
 import { AccessibilityState } from 'src/store/reducers/components/accessibility/types'
 import { MainContext } from 'src/pages/_document'
+import highContrastTheme from 'styles/accessibility/highContrastTheme'
+import defaultTheme from 'styles/accessibility/defaultTheme'
 
 interface Props {
     Component: React.Component
@@ -11,12 +14,14 @@ interface Props {
 }
 
 class Accessibility extends React.Component<Props> {
-    
+    getTheme() {
+        return this.props.accessibility.isHighContrastMode ? highContrastTheme : defaultTheme
+    }
+
     render() {
-        
         return (
             <div>
-                {this.props.accessibility.isHighContrastMode}
+                <Global styles={this.getTheme()} />
                 {this.props.children}
             </div>
         )
