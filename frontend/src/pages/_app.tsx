@@ -7,6 +7,7 @@ import Accessibility from 'src/components/Accessibility'
 import { store } from 'src/store/store'
 import { MainContext } from './_document'
 import {Toasts} from 'src/components/Toasts'
+import { Modal } from 'src/components/Modal';
 
 export default class CreateCVApp extends App {
   render() {
@@ -17,6 +18,7 @@ export default class CreateCVApp extends App {
           <Accessibility context={MainContext}>
             <Component {...pageProps} context={MainContext} />
             <Toasts context={MainContext} />
+            <Modal context={MainContext} />
           </Accessibility>
         </Provider>
       </IconSettings>

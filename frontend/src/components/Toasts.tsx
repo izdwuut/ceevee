@@ -12,14 +12,8 @@ import { MainContext } from 'src/pages/_document'
 import * as Types from 'src/store/reducers/components/toasts/types'
 import { RootState } from 'src/store/reducers';
 
-type MappedProps = {
-    toasts: Types.ToastsState
-}
-
-const mapStateToProps = (state: RootState): MappedProps => {
-    return {
-        toasts: state.toasts
-    }
+const mapStateToProps = (state: RootState): Types.ToastsState => {
+    return state.toasts
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
@@ -47,8 +41,8 @@ export class Toasts extends React.Component<Props> {
     }
 
     componentDidUpdate(prevProps: Props, prevState: LocalState): void {
-        const lastElement: number = this.props.toasts.toasts.length - 1
-        if (this.props.toasts.toasts.length === 0 || this.props.toasts[lastElement] === null) {
+        const lastElement: number = this.props.toasts.length - 1
+        if (this.props.toasts.length === 0 || this.props.toasts[lastElement] === null) {
             return
         }
         this.state.toasts.push(
@@ -72,7 +66,7 @@ export class Toasts extends React.Component<Props> {
             })
         }, Variables.toastDuration)
     }
-    
+
     removeToast = (id: number): Array<Toast> => {
         const toastsCopy: Array<Toast> = [...this.state.toasts]
         toastsCopy[id] = null
