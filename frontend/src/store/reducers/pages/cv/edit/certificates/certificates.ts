@@ -13,7 +13,6 @@ export default function certificates(state: Types.CertificatesState = initialSta
     switch (action.type) {
         case Types.CERTIFICATES_UPDATE_HEADER: {
             return {
-                ...state,
                 header: action.payload.header
             }
         }
@@ -22,7 +21,6 @@ export default function certificates(state: Types.CertificatesState = initialSta
             let certificatesCopy: Array<Types.Certificate> = [...state.certificates]
             certificatesCopy[action.payload.id].certificate = action.payload.certificate
             return {
-                ...state,
                 certificates: certificatesCopy
             }
         }
@@ -31,14 +29,12 @@ export default function certificates(state: Types.CertificatesState = initialSta
             let certificatesCopy: Array<Types.Certificate> = [...state.certificates]
             certificatesCopy[action.payload.id].issuer = action.payload.issuer
             return {
-                ...state,
                 certificates: certificatesCopy
             }
         }
 
         case Types.CERTIFICATES_UPDATE_VALID_UNTIL: {
             return {
-                ...state,
                 certificates: getValidatedDate(state.certificates, 'validUntil', action)
             }
         }
@@ -53,7 +49,6 @@ export default function certificates(state: Types.CertificatesState = initialSta
                 validUntil: ''
             })
             return {
-                ...state,
                 certificates: certificatesCopy,
                 visible: true
             }
@@ -62,7 +57,6 @@ export default function certificates(state: Types.CertificatesState = initialSta
             let certificatesCopy: Array<Types.Certificate> = [...state.certificates]
             certificatesCopy.splice(action.payload.id, 1)
             return {
-                ...state,
                 certificates: certificatesCopy,
                 visible: certificatesCopy.length > 0
             }

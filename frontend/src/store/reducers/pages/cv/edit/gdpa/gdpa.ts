@@ -13,7 +13,6 @@ export default function gdpa(state: Types.GDPAState = initialState, action: Type
     switch (action.type) {
         case Types.GDPA_UPDATE_GDPA: {
             return {
-                ...state,
                 gdpa: action.payload.gdpa,
                 visible: action.payload.gdpa !== ''
             }

@@ -15,12 +15,10 @@ const bindMiddleware = (middleware) => {
 
 const reducer = (state, action: AnyAction) => {
     if (action.type === HYDRATE) {
-        const nextState = {
+        return {
             ...state,
             ...action.payload,
         }
-        if (state.count.count) nextState.count.count = state.count.count
-        return nextState
     } else {
         return rootReducer(state, action)
     }

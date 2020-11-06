@@ -13,7 +13,6 @@ export default function toasts(state: Types.ToastsState = initialState, action: 
                 variant: action.payload.variant,
             })
             return {
-                ...state,
                 toasts: toastsCopy,
             }
         }
@@ -21,7 +20,6 @@ export default function toasts(state: Types.ToastsState = initialState, action: 
             let toastsCopy: Array<Types.Toast> = [...state.toasts]
             toastsCopy[action.payload.id] = null
             return {
-                ...state,
                 toasts: toastsCopy
             }
         }

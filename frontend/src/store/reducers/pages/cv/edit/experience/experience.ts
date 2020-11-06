@@ -13,7 +13,6 @@ export default function experience(state: Types.ExperienceState = initialState, 
     switch (action.type) {
         case Types.EXPERIENCE_UPDATE_HEADER: {
             return {
-                ...state,
                 header: action.payload.header
             }
         }
@@ -22,7 +21,6 @@ export default function experience(state: Types.ExperienceState = initialState, 
             let experienceCopy: Array<Types.Experience> = [...state.experience]
             experienceCopy[action.payload.id].position = action.payload.position
             return {
-                ...state,
                 experience: experienceCopy
             }
         }
@@ -31,7 +29,6 @@ export default function experience(state: Types.ExperienceState = initialState, 
             let experienceCopy: Array<Types.Experience> = [...state.experience]
             experienceCopy[action.payload.id].company = action.payload.company || experienceCopy[action.payload.id].company
             return {
-                ...state,
                 experience: experienceCopy
             }
         }
@@ -40,7 +37,6 @@ export default function experience(state: Types.ExperienceState = initialState, 
             let experienceCopy: Array<Types.Experience> = [...state.experience]
             experienceCopy[action.payload.id].city = action.payload.city 
             return {
-                ...state,
                 experience: experienceCopy
             }
         }
@@ -49,21 +45,18 @@ export default function experience(state: Types.ExperienceState = initialState, 
             let experienceCopy: Array<Types.Experience> = [...state.experience]
             experienceCopy[action.payload.id].country = action.payload.country 
             return {
-                ...state,
                 experience: experienceCopy
             }
         }
 
         case Types.EXPERIENCE_UPDATE_FROM_DATE: {
             return {
-                ...state,
                 experience: getValidatedDate(state.experience, 'fromDate', action)
             }
         }
 
         case Types.EXPERIENCE_UPDATE_TO_DATE: {
             return {
-                ...state,
                 experience: getValidatedDate(state.experience, 'toDate', action)
             }
         }
@@ -72,7 +65,6 @@ export default function experience(state: Types.ExperienceState = initialState, 
             let experienceCopy: Array<Types.Experience> = [...state.experience]
             experienceCopy[action.payload.id].description = action.payload.description
             return {
-                ...state,
                 experience: experienceCopy
             }
         }
@@ -91,7 +83,6 @@ export default function experience(state: Types.ExperienceState = initialState, 
                 description: ''
             })
             return {
-                ...state,
                 experience: experienceCopy,
                 visible: true
             }
@@ -100,7 +91,6 @@ export default function experience(state: Types.ExperienceState = initialState, 
             let experienceCopy: Array<Types.Experience> = [...state.experience]
             experienceCopy.splice(action.payload.id, 1)
             return {
-                ...state,
                 experience: experienceCopy,
                 visible: experienceCopy.length > 0
             }

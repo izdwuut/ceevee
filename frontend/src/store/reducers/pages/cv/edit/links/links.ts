@@ -12,7 +12,6 @@ export default function links(state: Types.LinksState = initialState, action: Ty
     switch (action.type) {
         case Types.LINKS_UPDATE_HEADER: {
             return {
-                ...state,
                 header: action.payload.header
             }
         }
@@ -20,7 +19,6 @@ export default function links(state: Types.LinksState = initialState, action: Ty
             let linksCopy: Array<Types.Link> = [...state.links]
             linksCopy[action.payload.id].label = action.payload.label
             return {
-                ...state,
                 links: linksCopy
             }
         }
@@ -28,7 +26,6 @@ export default function links(state: Types.LinksState = initialState, action: Ty
             let linksCopy: Array<Types.Link> = [...state.links]
             linksCopy[action.payload.id].link = action.payload.link
             return {
-                ...state,
                 links: linksCopy
             }
         }
@@ -39,7 +36,6 @@ export default function links(state: Types.LinksState = initialState, action: Ty
                 link: ''
             })
             return {
-                ...state,
                 links: linksCopy,
                 visible: true
             }
@@ -48,7 +44,6 @@ export default function links(state: Types.LinksState = initialState, action: Ty
             let linksCopy: Array<Types.Link> = [...state.links]
             linksCopy.splice(action.payload.id, 1)
             return {
-                ...state,
                 links: linksCopy,
                 visible: linksCopy.length > 0
             }
