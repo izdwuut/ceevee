@@ -1,25 +1,24 @@
 import React from 'react'
-import { IconSettings } from '@salesforce/design-system-react'
-import { wrapper } from 'src/store/store'
-import { Provider } from 'react-redux'
 import App from 'next/app'
+import { Provider } from 'react-redux';
+import { IconSettings } from '@salesforce/design-system-react'
 
-export default wrapper.withRedux(class CreateCVApp extends App {
-  static async getInitialProps({ Component, ctx }) {
-    return {
-      pageProps: (Component.getInitialProps ? await Component.getInitialProps(ctx) : {})
-    }
-  }
+import Accessibility from 'src/components/Accessibility'
+import { store } from 'src/store/store'
+import {MainContext} from './_document'
 
+export default class CreateCVApp extends App {
   render() {
-    const { Component, pageProps, store } = this.props as any
+    const { Component, pageProps } = this.props;
     return (
-      <Provider store={store}>
-        <IconSettings iconPath="/icons">
-          <Component {...pageProps} />
-        </IconSettings>
-      </Provider>
+      <IconSettings iconPath="/icons">
+        <Provider store={store} context={MainContext}>
+          <Accessibility context={MainContext}>
+            <Component {...pageProps} context={MainContext} />
+          </Accessibility>
+        </Provider>
+      </IconSettings>
     )
   }
-})
+}
 

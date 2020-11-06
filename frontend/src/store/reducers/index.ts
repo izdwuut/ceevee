@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+
 import details from './pages/cv/edit/details/details'
 import skills from './pages/cv/edit/skills/skills'
 import hobbies from './pages/cv/edit/hobbies/hobbies'
@@ -9,7 +10,6 @@ import links from './pages/cv/edit/links/links'
 import gdpa from './pages/cv/edit/gdpa/gdpa'
 import certificates from './pages/cv/edit/certificates/certificates'
 import projects from './pages/cv/edit/projects/projects'
-
 import pdfViewer from "./components/pdf/viewer/viewer";
 import accessibility from './components/accessibility/accessibility'
 import modal from './components/modal/modal'

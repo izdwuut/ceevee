@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 import * as Variables from 'src/env/variables'
 
-export default class HomePage extends React.Component {
+export class CV extends React.Component {
   render() {
     return (
       <div>
@@ -26,3 +26,14 @@ export default class HomePage extends React.Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  console.log(state)
+  return state.accessibility
+}
+
+export default connect(
+  mapStateToProps,
+  null,
+  null,
+)(CV)
