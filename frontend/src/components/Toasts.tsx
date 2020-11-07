@@ -8,7 +8,7 @@ import {
 
 import * as Variables from 'src/env/variables'
 import * as Actions from 'src/store/reducers/components/toasts/actions'
-import { MainContext } from 'src/pages/_document'
+
 import * as Types from 'src/store/reducers/components/toasts/types'
 import { RootState } from 'src/store/reducers';
 
@@ -24,9 +24,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 
 const connector = connect(
     mapStateToProps,
-    mapDispatchToProps,
-    null,
-    { context: MainContext }
+    mapDispatchToProps
 )
 
 type Props = ConnectedProps<typeof connector>

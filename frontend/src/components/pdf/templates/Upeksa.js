@@ -2,7 +2,7 @@ import React from 'react'
 import { Document, Page, View } from '@react-pdf/renderer'
 import { Provider } from 'react-redux'
 
-import store from '../../../store/store'
+import {wrapper} from '../../../store/store'
 import MainContext from '../../../pages/_document'
 
 import Header from '../Header'
@@ -31,10 +31,9 @@ import gdpaStyles from '../../../../styles/pdf/templates/upeksa/gdpaStyles'
 import certificatesStyles from '../../../../styles/pdf/templates/upeksa/certificatesStyles'
 import projectsStyles from '../../../../styles/pdf/templates/upeksa/projectsStyles'
 
-export default class Upeksa extends React.Component {
+class Upeksa extends React.Component {
   render() {
     return (
-      <Provider store={store} context={MainContext}>
         <Document>
           <Page style={styles.page}>
             <View style={styles.header} fixed></View>
@@ -80,8 +79,8 @@ export default class Upeksa extends React.Component {
             </View> */}
           </Page>
         </Document>
-      </Provider >
     )
   }
 }
 
+export default wrapper.withRedux(Upeksa)

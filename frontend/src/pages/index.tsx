@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import { Button } from '@salesforce/design-system-react';
 import React from 'react';
-import { connect } from 'react-redux'
 
 import * as Variables from 'src/env/variables'
 

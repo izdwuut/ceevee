@@ -7,7 +7,6 @@ import {
 import { bindActionCreators, Dispatch } from 'redux'
 
 import * as Actions from 'src/store/reducers/components/modal/actions'
-import { MainContext } from 'src/pages/_document'
 import * as Types from 'src/store/reducers/components/modal/types'
 import { RootState } from 'src/store/reducers';
 
@@ -24,8 +23,6 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
 const connector = connect(
     mapStateToProps,
     mapDispatchToProps,
-    null,
-    { context: MainContext }
 )
 
 type Props = ConnectedProps<typeof connector>

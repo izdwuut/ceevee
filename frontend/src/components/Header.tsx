@@ -6,8 +6,7 @@ import {
   GlobalNavigationBarLink,
 } from '@salesforce/design-system-react';
 import * as Variables from 'src/env/variables'
-import Accessibility from './Accessibility'
-import { MainContext } from 'src/pages/_document';
+import Accessibility from './accessibility/Accessibility'
 
 export default class Header extends React.Component {
   render() {
@@ -20,16 +19,13 @@ export default class Header extends React.Component {
         <GlobalNavigationBarRegion region="secondary" navigation>
           <GlobalNavigationBarLink active label="Homepage" id="home-link" />
           <GlobalNavigationBarLink label="Edit CV" href="/cv/edit/1" />
-
           <GlobalNavigationBarLink label="CVs List" href="/cv/list" />
-
           <GlobalNavigationBarLink label="About Us" />
           <GlobalNavigationBarLink label="Contact" />
         </GlobalNavigationBarRegion>
 
         <GlobalNavigationBarRegion region="tertiary" className="header-actions">
-
-          <Accessibility context={MainContext} />
+          <Accessibility />
           <a
             href="#"
             className="header-action"
