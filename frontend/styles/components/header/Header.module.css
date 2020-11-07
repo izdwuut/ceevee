@@ -1,0 +1,35 @@
+.header {
+    z-index: 5;
+    width: 100%;
+    padding-right: 1.5rem !important;
+    grid-area: header
+}
+
+.logo {
+    padding-right: 1.5rem;
+}
+
+.header,
+.logo,
+.font-size {
+    display: flex;
+}
+
+.logo,
+.header-actions {
+    align-items: center;
+}
+
+.slds-context-bar {
+    padding: 1.5rem 0;
+}
+
+.header-action-icon {
+    margin-right: 0.5rem;
+}
+
+.header-action:not(.accessibility) {
+    display: flex;            
+     align-items: center;   
+     padding-left: 1.5rem
+}

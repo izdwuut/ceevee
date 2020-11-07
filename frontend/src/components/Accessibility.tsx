@@ -4,8 +4,8 @@ import { Global } from '@emotion/core';
 
 import { AccessibilityState } from 'src/store/reducers/components/accessibility/types'
 import { MainContext } from 'src/pages/_document'
-import highContrastTheme from 'styles/accessibility/highContrastTheme'
-import defaultTheme from 'styles/accessibility/defaultTheme'
+import highContrastTheme from 'styles/components/accessibility/themes/highContrastTheme'
+import defaultTheme from 'styles/components/accessibility/themes/defaultTheme'
 
 interface Props {
     Component: React.Component
