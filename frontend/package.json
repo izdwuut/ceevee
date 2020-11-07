@@ -10,6 +10,7 @@
   "dependencies": {
     "@emotion/babel-preset-css-prop": "^10.1.0",
     "@emotion/core": "^10.1.1",
+    "@react-pdf/renderer": "^1.6.12",
     "@salesforce-ux/design-system": "^2.13.7",
     "@salesforce/design-system-react": "^0.10.23",
     "moment": "^2.29.1",
