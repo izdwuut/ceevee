@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css, SerializedStyles } from '@emotion/core';
 
 const mainTextColor = 'white'
 const accentColor = 'yellow'
@@ -8,7 +8,7 @@ const focusColor = '#161616'
 const hoverColor = focusColor
 const borderColor = 'white'
 
-const highContrastTheme = css`
+const highContrastTheme: SerializedStyles = css`
   body,
   html {
     background: black;
@@ -17,7 +17,7 @@ const highContrastTheme = css`
   }
   ::selection {
     color: black;
-    background: yellow;
+    background: ${accentColor};
   }
   label {
     ${mainTextColor};
