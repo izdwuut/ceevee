@@ -10,7 +10,6 @@ import { bindActionCreators, Dispatch } from 'redux'
 
 import * as Actions from 'src/store/reducers/components/accessibility/actions'
 import { RootState } from 'src/store/reducers';
-import * as Types from 'src/store/reducers/components/accessibility/types'
 
 const mapStateToProps = (state: RootState) => {
     return state.accessibility

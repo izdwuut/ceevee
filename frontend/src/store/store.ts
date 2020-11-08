@@ -28,4 +28,4 @@ const reducer = (state, action: AnyAction) => {
 const makeStore: MakeStore = (context: Context) => createStore(reducer, bindMiddleware([thunkMiddleware]));
 
 
-export const wrapper = createWrapper(makeStore, {debug: true})
+export const wrapper = createWrapper(makeStore)

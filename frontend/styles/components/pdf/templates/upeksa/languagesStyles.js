@@ -10,18 +10,19 @@ Font.register(
     }
 );
 
-export default skillsStyles = StyleSheet.create({
+const languagesStyles = StyleSheet.create({
     header: {
         fontFamily: Variables.serifFont,
         fontWeight: 400,
         fontSize: 16,
         paddingBottom: Variables.sectionPadding
     },
-    description: {
+    language: {
         paddingBottom: Variables.contentsSpacing
     },
     section: {
         paddingBottom: Variables.sectionPadding
-        
     }
 })
+
+export default languagesStyles

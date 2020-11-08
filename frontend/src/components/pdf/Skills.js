@@ -2,7 +2,6 @@ import React from 'react';
 import { Text, View } from '@react-pdf/renderer';
 import { connect } from "react-redux";
 
-import { MainContext } from '../../pages/_document';
 
 export class Skills extends React.Component {
     render() {
@@ -34,6 +33,4 @@ const mapStateToProps = state => {
 export default connect(
     mapStateToProps,
     null,
-    null,
-    { context: MainContext }
 )(Skills);

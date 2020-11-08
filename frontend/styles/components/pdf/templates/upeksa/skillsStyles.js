@@ -10,19 +10,20 @@ Font.register(
     }
 );
 
-export default projectsStyles = StyleSheet.create({
+const skillsStyles = StyleSheet.create({
     header: {
         fontFamily: Variables.serifFont,
         fontWeight: 400,
         fontSize: 16,
         paddingBottom: Variables.sectionPadding
     },
-
-    metaData: {
-        fontWeight: Variables.contentsSectionMetaDataFontWeight,
-    },
     description: {
-        paddingTop: Variables.contentsSpacing,
+        paddingBottom: Variables.contentsSpacing
+    },
+    section: {
         paddingBottom: Variables.sectionPadding
+        
     }
 })
+
+export default skillsStyles

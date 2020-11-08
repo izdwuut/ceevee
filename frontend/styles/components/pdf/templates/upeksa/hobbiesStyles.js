@@ -10,18 +10,20 @@ Font.register(
     }
 );
 
-export default certificatesStyles = StyleSheet.create({
+const hobbiesStyles = StyleSheet.create({
     header: {
         fontFamily: Variables.serifFont,
         fontWeight: 400,
         fontSize: 16,
         paddingBottom: Variables.sectionPadding
     },
-
-    metaData: {
-        fontWeight: Variables.contentsSectionMetaDataFontWeight,
+    hobby: {
+        paddingBottom: Variables.contentsSpacing
     },
-    description: {
+    section: {
         paddingBottom: Variables.sectionPadding
+        
     }
 })
+
+export default hobbiesStyles

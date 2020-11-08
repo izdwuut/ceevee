@@ -10,7 +10,7 @@ Font.register(
     }
 );
 
-export default headerStyles = StyleSheet.create({
+const headerStyles = StyleSheet.create({
     section: {
         fontFamily: Variables.serifFont,
         position: 'relative',
@@ -37,3 +37,5 @@ export default headerStyles = StyleSheet.create({
         top: Variables.headerTopPosition - 4
     }
 })
+
+export default headerStyles

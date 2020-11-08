@@ -2,8 +2,6 @@ import React from 'react';
 import { Text, View, Link } from '@react-pdf/renderer';
 import { connect } from "react-redux";
 
-import { MainContext } from '../../pages/_document';
-
 export class Details extends React.Component {
     render() {
         return (
@@ -42,6 +40,4 @@ const mapStateToProps = state => {
 export default connect(
     mapStateToProps,
     null,
-    null,
-    { context: MainContext }
 )(Details);

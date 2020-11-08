@@ -10,17 +10,21 @@ Font.register(
     }
 );
 
-export default languagesStyles = StyleSheet.create({
+const experienceStyles = StyleSheet.create({
     header: {
         fontFamily: Variables.serifFont,
         fontWeight: 400,
         fontSize: 16,
         paddingBottom: Variables.sectionPadding
     },
-    language: {
-        paddingBottom: Variables.contentsSpacing
+
+    metaData: {
+        fontWeight: Variables.contentsSectionMetaDataFontWeight,
     },
-    section: {
+    description: {
+        paddingTop: Variables.contentsSpacing,
         paddingBottom: Variables.sectionPadding
     }
 })
+
+export default experienceStyles

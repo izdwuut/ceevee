@@ -14,7 +14,7 @@ Font.register(
     },
 );
 
-export default styles = StyleSheet.create({
+const styles = StyleSheet.create({
     page: {
         flexDirection: 'column',
         fontFamily: "Montserrat",
@@ -61,3 +61,5 @@ export default styles = StyleSheet.create({
     //     top: -1
     // },
 });
+
+export default styles

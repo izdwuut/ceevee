@@ -10,7 +10,7 @@ Font.register(
     }
 );
 
-export default educationStyles = StyleSheet.create({
+const linksStyles = StyleSheet.create({
     header: {
         fontFamily: Variables.serifFont,
         fontWeight: 400,
@@ -18,11 +18,13 @@ export default educationStyles = StyleSheet.create({
         paddingBottom: Variables.sectionPadding
     },
 
-    metaData: {
-        fontWeight: Variables.contentsSectionMetaDataFontWeight,
+    link: {
+        color: Variables.fontColor,
+        paddingBottom: Variables.contentsSpacing
     },
-    description: {
-        paddingTop: Variables.contentsSpacing,
+    section: {
         paddingBottom: Variables.sectionPadding
     }
 })
+
+export default linksStyles

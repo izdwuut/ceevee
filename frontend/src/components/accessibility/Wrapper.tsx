@@ -1,14 +1,10 @@
-import { connect, ConnectedProps, AnyAction } from "react-redux"
-
+import { connect, ConnectedProps } from "react-redux"
 import React from 'react'
 import { Global } from '@emotion/core';
-import { ReactReduxContext } from 'react-redux'
 
-import { AccessibilityState } from 'src/store/reducers/components/accessibility/types'
 import highContrastTheme from 'styles/components/accessibility/themes/highContrastTheme'
 import defaultTheme from 'styles/components/accessibility/themes/defaultTheme'
 import { RootState } from 'src/store/reducers';
-import * as Types from 'src/store/reducers/components/accessibility/types'
 
 const mapStateToProps = (state: RootState) => {
     return state.accessibility

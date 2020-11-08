@@ -10,7 +10,7 @@ Font.register(
     }
 );
 
-export default experienceStyles = StyleSheet.create({
+const projectsStyles = StyleSheet.create({
     header: {
         fontFamily: Variables.serifFont,
         fontWeight: 400,
@@ -26,3 +26,5 @@ export default experienceStyles = StyleSheet.create({
         paddingBottom: Variables.sectionPadding
     }
 })
+
+export default projectsStyles
