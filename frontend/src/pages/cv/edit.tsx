@@ -41,7 +41,7 @@ export default class CreateCV extends React.Component {
                 title="CV"
               />
             }
-            className="page-header"
+            className={styles.pageHeader}
             title="Create CV"
             info={<div className={styles.description}>
               Our core functionality - creating CVs. Here you have access to various components, like your personal details, work experience, education, and more. When something is not being used, it doesn't display on a generated document. By default, the preview is pretty much empty. That's because it fills with content as you update the form.
