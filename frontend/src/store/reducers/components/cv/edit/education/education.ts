@@ -13,6 +13,7 @@ export default function education(state: Types.EducationState = initialState, ac
     switch (action.type) {
         case Types.EDUCATION_UPDATE_HEADER: {
             return {
+                ...state,
                 header: action.payload.header
             }
         }
@@ -21,6 +22,7 @@ export default function education(state: Types.EducationState = initialState, ac
             let educationCopy: Array<Types.Education>  = [...state.education]
             educationCopy[action.payload.id].course = action.payload.course
             return {
+                ...state,
                 education: educationCopy
             }
         }
@@ -29,6 +31,7 @@ export default function education(state: Types.EducationState = initialState, ac
             let educationCopy: Array<Types.Education> = [...state.education]
             educationCopy[action.payload.id].school = action.payload.school
             return {
+                ...state,
                 education: educationCopy
             }
         }
@@ -37,6 +40,7 @@ export default function education(state: Types.EducationState = initialState, ac
             let educationCopy: Array<Types.Education> = [...state.education]
             educationCopy[action.payload.id].title = action.payload.title
             return {
+                ...state,
                 education: educationCopy
             }
         }
@@ -45,6 +49,7 @@ export default function education(state: Types.EducationState = initialState, ac
             let educationCopy: Array<Types.Education> = [...state.education]
             educationCopy[action.payload.id].city = action.payload.city
             return {
+                ...state,
                 education: educationCopy
             }
         }
@@ -53,18 +58,21 @@ export default function education(state: Types.EducationState = initialState, ac
             let educationCopy: Array<Types.Education> = [...state.education]
             educationCopy[action.payload.id].country = action.payload.country 
             return {
+                ...state,
                 education: educationCopy
             }
         }
 
         case Types.EDUCATION_UPDATE_FROM_DATE: {
             return {
+                ...state,
                 education: getValidatedDate(state.education, 'fromDate', action)
             }
         }
 
         case Types.EDUCATION_UPDATE_TO_DATE: {
             return {
+                ...state,
                 education: getValidatedDate(state.education, 'toDate', action)
             }
         }
@@ -73,6 +81,7 @@ export default function education(state: Types.EducationState = initialState, ac
             let educationCopy: Array<Types.Education> = [...state.education]
             educationCopy[action.payload.id].description = action.payload.description
             return {
+                ...state,
                 education: educationCopy
             }
         }
@@ -93,6 +102,7 @@ export default function education(state: Types.EducationState = initialState, ac
                 description: ''
             })
             return {
+                ...state,
                 education: educationCopy,
                 visible: true
             }
@@ -101,6 +111,7 @@ export default function education(state: Types.EducationState = initialState, ac
             let educationCopy: Array<Types.Education> = [...state.education]
             educationCopy.splice(action.payload.id, 1)
             return {
+                ...state,
                 education: educationCopy,
                 visible: educationCopy.length > 0
             }

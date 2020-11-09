@@ -5,50 +5,52 @@ import {
   GlobalNavigationBarRegion,
   GlobalNavigationBarLink,
 } from '@salesforce/design-system-react';
+
 import * as Variables from 'src/env/variables'
 import Accessibility from './accessibility/Accessibility'
+import styles from 'styles/components/Header.module.css'
 
 export default class Header extends React.Component {
   render() {
     return (
-      <GlobalNavigationBar className="header">
+      <GlobalNavigationBar className={styles.header}>
         <GlobalNavigationBarRegion region="primary">
-          <a href="#" rel="Go to homepage" className="logo">{Variables.applicationName}</a>
+          <a href="#" rel="Go to homepage" className={styles.logo}>{Variables.applicationName}</a>
         </GlobalNavigationBarRegion>
 
         <GlobalNavigationBarRegion region="secondary" navigation>
-          <GlobalNavigationBarLink active label="Homepage" id="home-link" />
+          <GlobalNavigationBarLink active label="Homepage" />
           <GlobalNavigationBarLink label="Edit CV" href="/cv/edit/1" />
           <GlobalNavigationBarLink label="CVs List" href="/cv/list" />
           <GlobalNavigationBarLink label="About Us" />
           <GlobalNavigationBarLink label="Contact" />
         </GlobalNavigationBarRegion>
 
-        <GlobalNavigationBarRegion region="tertiary" className="header-actions">
+        <GlobalNavigationBarRegion region="tertiary" className={styles.headerActions}>
           <Accessibility />
           <a
             href="#"
-            className="header-action"
+            className={styles.headerAction}
           >
             <Icon
               assistiveText={{ label: 'User Profile' }}
               category="utility"
               name="user"
               size="x-small"
-              className="header-action-icon"
+              className={styles.headerActionIcon}
             />
               User Profile
               </a>
           <a
             href="#"
-            className="header-action"
+            className={styles.headerAction}
           >
             <Icon
               assistiveText={{ label: 'Log Out' }}
               category="utility"
               name="logout"
               size="x-small"
-              className="header-action-icon"
+              className={styles.headerActionIcon}
 
             />
               Log Out

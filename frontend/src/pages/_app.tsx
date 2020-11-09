@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head'
 import App from 'next/app'
 import { IconSettings } from '@salesforce/design-system-react'
 
@@ -13,6 +14,10 @@ export class CreateCVApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <IconSettings iconPath="/icons">
+        <Head>
+          <link rel="icon" href="/favicon.ico" />
+          <link rel="stylesheet" type="text/css" href="/salesforce-lightning-design-system.min.css"></link>
+        </Head>
         <Wrapper >
           <Component {...pageProps} />
           <Toasts />

@@ -1,37 +1,61 @@
 
 import React from 'react';
 import { pdf } from '@react-pdf/renderer'
+import { jsx, css } from '@emotion/core'
 import { Document, Page, pdfjs, } from 'react-pdf'
-import { connect } from 'react-redux'
+import { connect, ConnectedProps, AnyAction } from 'react-redux'
 import { CSSTransition } from "react-transition-group"
 import {
   Button,
 } from '@salesforce/design-system-react';
-import { bindActionCreators } from 'redux'
+import { bindActionCreators, Dispatch } from 'redux'
+
+import viewer from 'styles/components/pdf/Viewer'
 
 import Upeksa from '../templates/Upeksa'
 import * as Actions from 'src/store/reducers/components/pdf/viewer/actions'
 import * as UI from 'src/utilities/ui'
+import { RootState } from 'src/store/reducers';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-export class Viewer extends React.Component {
+const mapStateToProps = (state: RootState): RootState => {
+  return state
+}
+
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
+  return {
+    updatePreview: bindActionCreators(Actions.updatePreview, dispatch),
+    updateNextBlob: bindActionCreators(Actions.updateNextBlob, dispatch),
+    updatePreviousBlob: bindActionCreators(Actions.updatePreviousBlob, dispatch)
+  }
+}
+
+const connector = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)
+
+type Props = ConnectedProps<typeof connector>
+
+
+class Viewer extends React.Component<Props> {
   constructor(props) {
     super(props)
-    this.state = {
-      activePage: 1,
-      numberOfPages: 0,
-      isNextPage: false,
-      isPreviousPage: false,
-      isPdfIn: false
-    }
+    
 
     this.setIsNextPage = this.setIsNextPage.bind(this)
     this.setIsPreviousPage = this.setIsPreviousPage.bind(this)
     this.onPdfRenderSuccess = this.onPdfRenderSuccess.bind(this)
     this.onPdfLoadSuccess = this.onPdfLoadSuccess.bind(this)
   }
-
+  state = {
+    activePage: 1,
+    numberOfPages: 0,
+    isNextPage: false,
+    isPreviousPage: false,
+    isPdfIn: false
+  }
   timeout = 2000
 
   getBlob() {
@@ -286,10 +310,7 @@ ${this.props.gdpa.gdpa}
   }
   render() {
     return (
-
-
-
-      <div className="pdf">
+      <div className="pdf" css={viewer}>
         <div className="actions-top">
           <Button
             iconCategory="utility"
@@ -355,20 +376,4 @@ ${this.props.gdpa.gdpa}
   }
 }
 
-const mapStateToProps = state => {
-  console.log(state)
-  return state
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updatePreview: bindActionCreators(Actions.updatePreview, dispatch),
-    updateNextBlob: bindActionCreators(Actions.updateNextBlob, dispatch),
-    updatePreviousBlob: bindActionCreators(Actions.updatePreviousBlob, dispatch)
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Viewer);
+export default connector(Viewer)

@@ -11,16 +11,19 @@ export default function pdfViewer(state: Types.ViewerState = initialState, actio
     switch (action.type) {
         case Types.UPDATE_PREVIEW: {
             return {
+                ...state,
                 update: action.payload.update
             }
         }
         case Types.UPDATE_PREVIOUS_BLOB: {
             return {
+                ...state,
                 previousBlob: action.payload.blob
             }
         }
         case Types.UPDATE_NEXT_BLOB: {
             return {
+                ...state,
                 nextBlob: action.payload.blob
             }
         }

@@ -11,6 +11,7 @@ export default function skills(state: Types.SkillsState = initialState, action: 
     switch (action.type) {
         case Types.SKILLS_UPDATE_HEADER: {
             return {
+                ...state,
                 header: action.payload.header
             }
         }
@@ -18,6 +19,7 @@ export default function skills(state: Types.SkillsState = initialState, action: 
             let skillsCopy: Array<Types.Skill> = [...state.skills]
             skillsCopy[action.payload.id].skill = action.payload.skill
             return {
+                ...state,
                 skills: skillsCopy
             }
         }
@@ -25,6 +27,7 @@ export default function skills(state: Types.SkillsState = initialState, action: 
             let skillsCopy: Array<Types.Skill> = [...state.skills]
             skillsCopy[action.payload.id].description = action.payload.description
             return {
+                ...state,
                 skills: skillsCopy
             }
         }
@@ -35,6 +38,7 @@ export default function skills(state: Types.SkillsState = initialState, action: 
                 description: ''
             })
             return {
+                ...state,
                 skills: skillsCopy,
                 visible: true
             }
@@ -43,6 +47,7 @@ export default function skills(state: Types.SkillsState = initialState, action: 
             let skillsCopy: Array<Types.Skill> = [...state.skills]
             skillsCopy.splice(action.payload.id, 1)
             return {
+                ...state,
                 skills: skillsCopy,
                 visible: skillsCopy.length > 0
             }

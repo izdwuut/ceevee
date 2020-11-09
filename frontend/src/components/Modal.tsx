@@ -28,10 +28,10 @@ const connector = connect(
 type Props = ConnectedProps<typeof connector>
 
 export class Modal extends React.Component<Props> {
-    hideModal = () => {
+    hideModal = ():void => {
         this.props.hideModal()
     }
-    confirmAction = () => {
+    confirmAction = ():void => {
         this.props.action()
         this.hideModal()
     }

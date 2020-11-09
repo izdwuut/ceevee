@@ -13,6 +13,7 @@ export default function projects(state: Types.ProjectsState = initialState, acti
     switch (action.type) {
         case Types.PROJECTS_UPDATE_HEADER: {
             return {
+                ...state,
                 header: action.payload.header
             }
         }
@@ -21,6 +22,7 @@ export default function projects(state: Types.ProjectsState = initialState, acti
             let projectsCopy: Array<Types.Project> = [...state.projects]
             projectsCopy[action.payload.id].project = action.payload.project
             return {
+                ...state,
                 projects: projectsCopy
             }
         }
@@ -29,6 +31,7 @@ export default function projects(state: Types.ProjectsState = initialState, acti
             let projectsCopy: Array<Types.Project> = [...state.projects]
             projectsCopy[action.payload.id].company = action.payload.company
             return {
+                ...state,
                 projects: projectsCopy
             }
         }
@@ -37,6 +40,7 @@ export default function projects(state: Types.ProjectsState = initialState, acti
             let projectsCopy: Array<Types.Project> = [...state.projects]
             projectsCopy[action.payload.id].city = action.payload.city
             return {
+                ...state,
                 projects: projectsCopy
             }
         }
@@ -45,6 +49,7 @@ export default function projects(state: Types.ProjectsState = initialState, acti
             let projectsCopy: Array<Types.Project> = [...state.projects]
             projectsCopy[action.payload.id].country = action.payload.country
             return {
+                ...state,
                 projects: projectsCopy
             }
         }
@@ -53,18 +58,21 @@ export default function projects(state: Types.ProjectsState = initialState, acti
             let projectsCopy: Array<Types.Project> = [...state.projects]
             projectsCopy[action.payload.id].position = action.payload.position
             return {
+                ...state,
                 projects: projectsCopy
             }
         }
 
         case Types.PROJECTS_UPDATE_FROM_DATE: {
             return {
+                ...state,
                 projects: getValidatedDate(state.projects, 'fromDate', action)
             }
         }
 
         case Types.PROJECTS_UPDATE_TO_DATE: {
             return {
+                ...state,
                 projects: getValidatedDate(state.projects, 'toDate', action)
             }
         }
@@ -73,6 +81,7 @@ export default function projects(state: Types.ProjectsState = initialState, acti
             let projectsCopy: Array<Types.Project> = [...state.projects]
             projectsCopy[action.payload.id].description = action.payload.description
             return {
+                ...state,
                 projects: projectsCopy
             }
         }
@@ -92,6 +101,7 @@ export default function projects(state: Types.ProjectsState = initialState, acti
                 description: ''
             })
             return {
+                ...state,
                 projects: projectsCopy,
                 visible: true
             }
@@ -100,6 +110,7 @@ export default function projects(state: Types.ProjectsState = initialState, acti
             let projectsCopy: Array<Types.Project> = [...state.projects]
             projectsCopy.splice(action.payload.id, 1)
             return {
+                ...state,
                 projects: projectsCopy,
                 visible: projectsCopy.length > 0
             }

@@ -5,7 +5,6 @@ import {
 } from '@salesforce/design-system-react';
 
 import Viewer from 'src/components/pdf/viewer/Viewer'
-import classes from 'styles/cv/Edit.module.css'
 import Skills from 'src/components/cv/edit/Skills'
 import Details from 'src/components/cv/edit/Details';
 import Hobbies from 'src/components/cv/edit/Hobbies';
@@ -18,16 +17,15 @@ import Certificates from 'src/components/cv/edit/Certificates';
 import Projects from 'src/components/cv/edit/Projects';
 import Header from 'src/components/Header'
 
-
-
+import styles from 'styles/cv/Edit.module.css'
 
 export default class CreateCV extends React.Component {
   render() {
 
     return (
-      <div className={classes.container}>
+      <div className={styles.container}>
         <Header />
-        <div className={classes.uiContainer}>
+        <div className={styles.uiContainer}>
           <PageHeader
             icon={
               <Icon
@@ -45,7 +43,7 @@ export default class CreateCV extends React.Component {
             }
             className="page-header"
             title="Create CV"
-            info={<div className="description">
+            info={<div className={styles.description}>
               Our core functionality - creating CVs. Here you have access to various components, like your personal details, work experience, education, and more. When something is not being used, it doesn't display on a generated document. By default, the preview is pretty much empty. That's because it fills with content as you update the form.
             <br /><br />
             You have an option to download the generated document in two formats: PDF and text (for accessibility).
@@ -65,7 +63,7 @@ export default class CreateCV extends React.Component {
           <GDPA />
         </div>
 
-        <div className={classes.pdfContainer}>
+        <div className={styles.pdfContainer}>
           <Viewer  />
         </div>
       </div>

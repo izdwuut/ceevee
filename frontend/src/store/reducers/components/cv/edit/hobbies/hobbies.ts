@@ -12,6 +12,7 @@ export default function hobbies(state:Types.HobbiesState = initialState, action:
     switch (action.type) {
         case Types.HOBBIES_UPDATE_HEADER: {
             return {
+                ...state,
                 header: action.payload.header
             }
         }
@@ -19,6 +20,7 @@ export default function hobbies(state:Types.HobbiesState = initialState, action:
             let hobbiesCopy = [...state.hobbies]
             hobbiesCopy[action.payload.id] = action.payload.hobby || hobbiesCopy[action.payload.id]
             return {
+                ...state,
                 hobbies: hobbiesCopy
             }
         }
@@ -26,6 +28,7 @@ export default function hobbies(state:Types.HobbiesState = initialState, action:
             let hobbiesCopy = [...state.hobbies]
             hobbiesCopy.push('')
             return {
+                ...state,
                 hobbies: hobbiesCopy,
                 visible: true
             }
@@ -34,6 +37,7 @@ export default function hobbies(state:Types.HobbiesState = initialState, action:
             let hobbiesCopy = [...state.hobbies]
             hobbiesCopy.splice(action.payload.id, 1)
             return {
+                ...state,
                 hobbies: hobbiesCopy,
                 visible: hobbiesCopy.length > 0
             }

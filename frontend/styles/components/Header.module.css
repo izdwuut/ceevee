@@ -11,12 +11,12 @@
 
 .header,
 .logo,
-.font-size {
+.fontSize {
     display: flex;
 }
 
 .logo,
-.header-actions {
+.headerActions {
     align-items: center;
 }
 
@@ -24,11 +24,11 @@
     padding: 1.5rem 0;
 }
 
-.header-action-icon {
+.headerActionIcon {
     margin-right: 0.5rem;
 }
 
-.header-action:not(.accessibility) {
+.headerAction:not(.accessibility) {
     display: flex;            
      align-items: center;   
      padding-left: 1.5rem

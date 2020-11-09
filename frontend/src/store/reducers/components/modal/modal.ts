@@ -12,6 +12,7 @@ export default function modal(state:Types.ModalState = initialState, action:Type
     switch (action.type) {
         case Types.MODAL_SHOW: {
             return {
+                ...state,
                 action: action.payload.action,
                 title: action.payload.title,
                 item: action.payload.item,
@@ -21,6 +22,7 @@ export default function modal(state:Types.ModalState = initialState, action:Type
         }
         case Types.MODAL_HIDE: {
             return {
+                ...state,
                 action: action.payload.action,
                 title: action.payload.title,
                 item: action.payload.item,
