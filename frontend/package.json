@@ -21,6 +21,7 @@
     "next-redux-wrapper": "^6.0.2",
     "prop-types": "^15.7.2",
     "react": "17.0.1",
+    "react-datepicker": "^3.3.0",
     "react-dom": "17.0.1",
     "react-pdf": "^5.0.0",
     "react-redux": "^7.2.2",

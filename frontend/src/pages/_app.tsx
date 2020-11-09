@@ -5,8 +5,8 @@ import { IconSettings } from '@salesforce/design-system-react'
 
 import Wrapper from 'src/components/accessibility/Wrapper'
 import { wrapper } from 'src/store/store'
-import { Toasts } from 'src/components/Toasts'
-import { Modal } from 'src/components/Modal';
+import  Toasts from 'src/components/Toasts'
+import  Modal from 'src/components/Modal';
 
 export class CreateCVApp extends App {
 

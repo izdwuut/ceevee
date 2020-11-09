@@ -9,8 +9,10 @@ import {
     Tooltip,
     CardEmpty
 } from '@salesforce/design-system-react';
-import { connect } from "react-redux"
+import { connect, ConnectedProps } from "react-redux"
 import { bindActionCreators } from 'redux'
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
 
 import * as Actions from 'src/store/reducers/components/cv/edit/certificates/actions'
 import { updatePreview } from 'src/store/reducers/components/pdf/viewer/actions'
@@ -18,13 +20,38 @@ import { showToast } from 'src/store/reducers/components/toasts/actions'
 import { debounce } from 'src/utilities/debounce'
 import * as Variables from 'src/env/variables'
 import * as UI from 'src/utilities/ui'
+import DeleteItem from 'src/components/contextActions/DeleteItem'
 
-export class Certificates extends React.Component {
+const mapStateToProps = state => {
+    return state.certificates
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        updateHeader: bindActionCreators(Actions.updateHeader, dispatch),
+        updatePreview: bindActionCreators(updatePreview, dispatch),
+        updateCertificate: bindActionCreators(Actions.updateCertificate, dispatch),
+        updateIssuer: bindActionCreators(Actions.updateIssuer, dispatch),
+        updateValidUntil: bindActionCreators(Actions.updateValidUntil, dispatch),
+        deleteCertificate: bindActionCreators(Actions.deleteCertificate, dispatch),
+        addCertificate: bindActionCreators(Actions.addCertificate, dispatch),
+        showToast: bindActionCreators(showToast, dispatch),
+    }
+}
+
+const connector = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)
+
+type Props = ConnectedProps<typeof connector>
+
+class Certificates extends React.Component<Props> {
     state = {
         expandedPanels: {},
     }
     setState = this.setState.bind(this)
-
+    calendarValidUntil
 
     updatePreview = debounce(() => {
         this.props.updatePreview(true)
@@ -78,7 +105,7 @@ export class Certificates extends React.Component {
             certificates.push(
                 <AccordionPanel
                     panelContentActions={
-                        <DeleteItem title="Delete certificate" item={this.props.certificates[i].certificate || 'Certificate ' + (i + 1)} onDelete={() => this.deleteCertificate(i)} context={MainContext} />
+                        <DeleteItem title="Delete certificate" item={this.props.certificates[i].certificate || 'Certificate ' + (i + 1)} onDelete={() => this.deleteCertificate(i)}  />
                     }
                     key={i}
                     onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
@@ -108,7 +135,7 @@ export class Certificates extends React.Component {
                                 }}
                                 iconCategory="utility"
                                 iconName="event"
-                                calendar={this._calendarValidUntil} onClick={() => this._calendarValidUntil.setOpen(true)}
+                                calendar={this.calendarValidUntil} onClick={() => this.calendarValidUntil.setOpen(true)}
                             />}
                         fieldLevelHelpTooltip={
                             <Tooltip
@@ -124,10 +151,10 @@ export class Certificates extends React.Component {
                     />
                     <DatePicker
                         onChange={date => this.updateValidUntil(i, date)}
-                        dateFormat={datepickerDateFormat}
+                        dateFormat={Variables.datepickerDateFormat}
                         showMonthYearPicker
                         showFullMonthYearPicker
-                        ref={(c) => this._calendarValidUntil = c}
+                        ref={(c) => this.calendarValidUntil = c}
                         selected={this.props.certificates[i].validUntil}
                         customInput={
                             <div></div>
@@ -170,24 +197,5 @@ export class Certificates extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
-    return state.certificates
-}
+export default connector(Certificates)
 
-const mapDispatchToProps = dispatch => {
-    return {
-        updateHeader: bindActionCreators(Actions.updateHeader, dispatch),
-        updatePreview: bindActionCreators(updatePreview, dispatch),
-        updateCertificate: bindActionCreators(Actions.updateCertificate, dispatch),
-        updateIssuer: bindActionCreators(Actions.updateIssuer, dispatch),
-        updateValidUntil: bindActionCreators(Actions.updateValidUntil, dispatch),
-        deleteCertificate: bindActionCreators(Actions.deleteCertificate, dispatch),
-        addCertificate: bindActionCreators(Actions.addCertificate, dispatch),
-        showToast: bindActionCreators(showToast, dispatch),
-    }
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(Certificates)
