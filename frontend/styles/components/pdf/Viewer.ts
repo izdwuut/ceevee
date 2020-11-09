@@ -1,20 +1,19 @@
-/** @jsx jsx */
-import { css, jsx, SerializedStyles } from '@emotion/core'
 
+import { css, SerializedStyles } from '@emotion/core'
 
-const viewer = css`
+const canvasHeight: number = 85
+const A4Ratio: number = 210 / 297 // A4 width to height ratio
+const canvasWidth: number = 85 * A4Ratio
 
-
-.pdf {
+const viewer: SerializedStyles = css`
   position: fixed;
   top: 48%;
   left: 75%;
-  margin-top: -42.5vh;
-  margin-left: calc((85vh * -0.71) / 2);
-  height: 85vh;
-  width: calc(85vh * 0.71);
-}
-
+  margin-top: ${canvasHeight / (-2)}vh;
+  margin-left: calc((${canvasWidth} * (-1vh)) / 2);
+  height: ${canvasHeight};
+  width: calc(${canvasWidth} * 1vh);
+  
 .react-pdf__Page__canvas {
   height: 85vh !important;
   width: calc(85vh * 0.71) !important; /* 0.71 is A4 page scale ratio. */

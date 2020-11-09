@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { pdf } from '@react-pdf/renderer'
-import { jsx, css } from '@emotion/core'
 import { Document, Page, pdfjs, } from 'react-pdf'
 import { connect, ConnectedProps, AnyAction } from 'react-redux'
 import { CSSTransition } from "react-transition-group"
@@ -9,9 +8,9 @@ import {
   Button,
 } from '@salesforce/design-system-react';
 import { bindActionCreators, Dispatch } from 'redux'
+import { css } from '@emotion/core'
 
 import viewer from 'styles/components/pdf/Viewer'
-
 import Upeksa from '../templates/Upeksa'
 import * as Actions from 'src/store/reducers/components/pdf/viewer/actions'
 import * as UI from 'src/utilities/ui'
@@ -311,6 +310,7 @@ ${this.props.gdpa.gdpa}
   render() {
     return (
       <div className="pdf" css={viewer}>
+        
         <div className="actions-top">
           <Button
             iconCategory="utility"
