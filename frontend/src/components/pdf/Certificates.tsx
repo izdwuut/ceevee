@@ -1,8 +1,19 @@
 import React from 'react';
 import { Text, View } from '@react-pdf/renderer';
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 
-export class Certificates extends React.Component {
+const mapStateToProps = state => {
+    return state.certificates
+}
+
+const connector = connect(
+    mapStateToProps,
+    null
+)
+
+type Props = ConnectedProps<typeof connector>
+
+export class Certificates extends React.Component<Props> {
     render() {
         return (
             <View style={this.props.style.section}>
@@ -28,11 +39,4 @@ export class Certificates extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
-    return state.certificates
-}
-
-export default connect(
-    mapStateToProps,
-    null,
-)(Certificates);
+export default connector(Certificates)
