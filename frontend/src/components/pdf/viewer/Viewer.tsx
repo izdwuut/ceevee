@@ -36,7 +36,13 @@ const connector = connect(
 
 type Props = ConnectedProps<typeof connector>
 
-
+type LocalState = {
+  activePage: number,
+  numberOfPages: number,
+  isNextPage: boolean,
+  isPreviousPage: boolean,
+  isPdfIn: boolean
+}
 class Viewer extends React.Component<Props> {
   constructor(props) {
     super(props)
@@ -45,7 +51,7 @@ class Viewer extends React.Component<Props> {
     this.onPdfRenderSuccess = this.onPdfRenderSuccess.bind(this)
     this.onPdfLoadSuccess = this.onPdfLoadSuccess.bind(this)
   }
-  state = {
+  state: LocalState = {
     activePage: 1,
     numberOfPages: 0,
     isNextPage: false,
@@ -54,9 +60,9 @@ class Viewer extends React.Component<Props> {
   }
   timeout: number = 2000
 
-  getBlob() {
+  getBlob():void {
     pdf(<Upeksa />).toBlob().then((blob) => {
-      const url = URL.createObjectURL(new Blob([blob], {
+      const url: string = URL.createObjectURL(new Blob([blob], {
         type:
           'application/pdf'
       }))
@@ -79,7 +85,7 @@ class Viewer extends React.Component<Props> {
     this.getBlob()
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps:Props, prevState:LocalState) {
     if (prevState.numberOfPages != this.state.numberOfPages || prevState.activePage != this.state.activePage || this.props != prevProps) {
       this.setState({
         isNextPage: this.isNextPage(),
@@ -92,32 +98,32 @@ class Viewer extends React.Component<Props> {
     }
   }
 
-  setIsNextPage() {
-    const activePage = this.state.activePage
+  setIsNextPage():void {
+    const activePage:number = this.state.activePage
     this.setState({
       activePage: this.isNextPage() ? activePage + 1 : activePage
     })
   }
 
-  setIsPreviousPage() {
+  setIsPreviousPage():void {
     this.setState({
       activePage: this.isPreviousPage() ? this.state.activePage - 1 : this.state.activePage
     })
   }
 
-  isNextPage() {
+  isNextPage():boolean {
     return this.state.activePage < this.state.numberOfPages
   }
 
-  isPreviousPage() {
+  isPreviousPage():boolean {
     return this.state.activePage > 1
   }
 
-  onPdfRenderSuccess() {
-    setTimeout(() => this.props.updatePreviousBlob(this.props.pdfViewer.nextBlob), this.timeout)
+  onPdfRenderSuccess():void {
+    setTimeout(():void => this.props.updatePreviousBlob(this.props.pdfViewer.nextBlob), this.timeout)
   }
 
-  onPdfLoadSuccess(pdf) {
+  onPdfLoadSuccess(pdf:any):void {
     this.setState({
       numberOfPages: pdf.numPages,
       width: pdf.width,
@@ -125,10 +131,9 @@ class Viewer extends React.Component<Props> {
     })
   }
 
-  handleDownload = (e) => {
+  handleDownload = (type:string):void => {
     const fileName = 'file'
-    console.log(e)
-    switch (e.value) {
+    switch (type) {
       case 'pdf':
         this.downloadCV(fileName + '.pdf', this.props.pdfViewer.nextBlob)
         break;
@@ -138,8 +143,8 @@ class Viewer extends React.Component<Props> {
     }
   }
 
-  downloadCV = (fileName, file) => {
-    let anchor = document.createElement('a');
+  downloadCV = (fileName:string, file:string):void => {
+    let anchor: HTMLAnchorElement = document.createElement('a');
     anchor.setAttribute('href', file);
     anchor.setAttribute('download', fileName);
 
@@ -151,10 +156,10 @@ class Viewer extends React.Component<Props> {
     document.body.removeChild(anchor);
   }
 
-  getText = () => {
-    let experience = []
-    this.props.experience.experience.forEach((entry) => {
-      const exp =
+  getText = ():string => {
+    let experience: Array<string> = []
+    this.props.experience.experience.forEach((entry):void => {
+      const exp:string =
         `Position: ${entry.position}
 Company: ${entry.company}
 City: ${entry.city}
@@ -166,9 +171,9 @@ Description: ${entry.description}
       experience.push(exp)
     })
 
-    let education = []
-    this.props.education.education.forEach((entry) => {
-      const edu =
+    let education: Array<string> = []
+    this.props.education.education.forEach((entry):void => {
+      const edu:string =
         `Course: ${entry.course}
 School: ${entry.school}
 Title: ${entry.title}
@@ -181,35 +186,35 @@ Description: ${entry.description}
       education.push(edu)
     })
 
-    let skills = []
-    this.props.skills.skills.forEach((entry) => {
-      const skill =
+    let skills: Array<string> = []
+    this.props.skills.skills.forEach((entry):void => {
+      const skill:string =
         `Skill: ${entry.skill}
 Description: ${entry.description}
 `
       skills.push(skill)
     })
 
-    let languages = []
-    this.props.languages.languages.forEach((entry) => {
-      const language =
+    let languages: Array<string> = []
+    this.props.languages.languages.forEach((entry):void => {
+      const language:string =
         `${entry.language}
 `
       languages.push(language)
     })
 
-    let links = []
-    this.props.links.links.forEach((entry) => {
-      const link =
+    let links: Array<string> = []
+    this.props.links.links.forEach((entry):void => {
+      const link:string =
         `Label: ${entry.label}
 Link: ${entry.link}
 `
       links.push(link)
     })
 
-    let certificates = []
-    this.props.certificates.certificates.forEach((entry) => {
-      const certificate =
+    let certificates: Array<string> = []
+    this.props.certificates.certificates.forEach((entry):void => {
+      const certificate:string =
         `Certificate: ${entry.certificate} 
 Issuer: ${entry.issuer}
 Valid until: ${entry.validUntilString}
@@ -217,16 +222,16 @@ Valid until: ${entry.validUntilString}
       certificates.push(certificate)
     })
 
-    let hobbies = []
-    this.props.hobbies.hobbies.forEach((entry) => {
-      const hobby =
+    let hobbies: Array<string> = []
+    this.props.hobbies.hobbies.forEach((entry):void => {
+      const hobby:string =
         `${entry}`
       hobbies.push(hobby)
     })
 
-    let projects = []
-    this.props.projects.projects.forEach((entry) => {
-      const project =
+    let projects: Array<string> = []
+    this.props.projects.projects.forEach((entry):void => {
+      const project:string =
         `Project: ${entry.project}
 Company: ${entry.company}
 City: ${entry.city}
@@ -239,7 +244,7 @@ Description: ${entry.description}
       projects.push(project)
     })
 
-    let downloadText =
+    const downloadText:string =
       `---
 Header
 ---
@@ -304,7 +309,7 @@ ${this.props.gdpa.gdpa}
         'application/text'
     }))
   }
-  render() {
+  render():JSX.Element {
     return (
       <div className="pdf" css={viewer}>
         <div className="actions-top">
@@ -313,12 +318,10 @@ ${this.props.gdpa.gdpa}
             iconName="chevronleft"
             iconPosition="left"
             disabled={!this.state.isPreviousPage}
-
             onClick={this.setIsPreviousPage}
             label="Previous page"
           />
-          {UI.getDownload((event) => this.handleDownload(event))}
-
+          {UI.getDownload((e):void => this.handleDownload(e.value))}
           <Button
             iconCategory="utility"
             iconName="chevronright"
@@ -328,7 +331,6 @@ ${this.props.gdpa.gdpa}
             label="Next page"
           />
         </div>
-
         <Document
           className="previous-pdf"
           file={this.props.pdfViewer.previousBlob}
