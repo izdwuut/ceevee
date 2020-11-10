@@ -12,7 +12,6 @@ import {
 
 import * as Actions from 'src/store/reducers/components/cv/edit/hobbies/actions'
 import * as Types from 'src/store/reducers/components/cv/edit/hobbies/types'
-
 import { updatePreview } from 'src/store/reducers/components/pdf/viewer/actions'
 import { showToast } from 'src/store/reducers/components/toasts/actions'
 import { debounce, PreviewDebounce } from 'src/utilities/debounce'
@@ -20,6 +19,7 @@ import * as Variables from 'src/env/variables'
 import * as UI from 'src/utilities/ui'
 import { RootState } from 'src/store/reducers';
 import DeleteItem from 'src/components/actions/DeleteItem'
+import AddItem from 'src/components/actions/AddItem'
 
 const mapStateToProps = (state: RootState): Types.HobbiesState => {
     return state.hobbies
@@ -110,12 +110,12 @@ export class Hobbies extends React.Component<Props> {
                 heading={this.props.header}
                 icon={<Icon category="standard" name="topic" size="small" />}
                 headerActions={
-                    !isEmpty && UI.getAdd(this.addHobby)
+                    !isEmpty && <AddItem onAdd={this.addHobby} />
                 }
                 empty={
                     isEmpty ? (
                         <CardEmpty heading="No hobbies">
-                            {UI.getAdd(this.addHobby)}
+                            <AddItem onAdd={this.addHobby} />
                         </CardEmpty>
                     ) : null
                 }

@@ -22,6 +22,7 @@ import { debounce, PreviewDebounce } from 'src/utilities/debounce'
 import * as UI from 'src/utilities/ui'
 import * as Variables from 'src/env/variables'
 import DeleteItem from 'src/components/actions/DeleteItem'
+import AddItem from 'src/components/actions/AddItem'
 
 const mapStateToProps = state => {
     return state.experience
@@ -258,12 +259,12 @@ export class Experience extends React.Component<Props> {
 
                 icon={<Icon category="standard" name="case" size="small" />}
                 headerActions={
-                    !isEmpty && UI.getAdd(this.addExperience)
+                    !isEmpty && <AddItem onAdd={this.addExperience} />
                 }
                 empty={
                     isEmpty ? (
                         <CardEmpty heading="No experience">
-                            {UI.getAdd(this.addExperience)}
+                            <AddItem onAdd={this.addExperience} />
                         </CardEmpty>
                     ) : null
                 }

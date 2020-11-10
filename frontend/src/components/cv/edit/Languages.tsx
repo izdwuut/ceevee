@@ -19,6 +19,7 @@ import * as Variables from 'src/env/variables'
 import * as UI from 'src/utilities/ui'
 import { RootState } from 'src/store/reducers';
 import DeleteItem from 'src/components/actions/DeleteItem'
+import AddItem from 'src/components/actions/AddItem'
 
 const mapStateToProps = (state: RootState): Types.LanguagesState => {
     return state.languages
@@ -111,12 +112,12 @@ export class Languages extends React.Component<Props> {
                 heading={this.props.header}
                 icon={<Icon category="standard" name="live_chat" size="small" />}
                 headerActions={
-                    !isEmpty && UI.getAdd(this.addLanguage)
+                    !isEmpty && <AddItem onAdd={this.addLanguage} />
                 }
                 empty={
                     isEmpty ? (
                         <CardEmpty heading="No languages">
-                            {UI.getAdd(this.addLanguage)}
+                            <AddItem onAdd={this.addLanguage} />
                         </CardEmpty>
                     ) : null
                 }

@@ -10,7 +10,6 @@ import { bindActionCreators, Dispatch, AnyAction } from 'redux'
 import { updatePreview } from 'src/store/reducers/components/pdf/viewer/actions'
 import * as Actions from 'src/store/reducers/components/cv/edit/details/actions'
 import * as Types from 'src/store/reducers/components/cv/edit/details/types'
-
 import { debounce } from 'src/utilities/debounce'
 import * as Variables from 'src/env/variables'
 import { RootState } from 'src/store/reducers';

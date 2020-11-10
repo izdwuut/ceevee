@@ -19,6 +19,7 @@ import { showToast } from 'src/store/reducers/components/toasts/actions'
 import { updatePreview } from 'src/store/reducers/components/pdf/viewer/actions'
 import * as Variables from 'src/env/variables'
 import { RootState } from 'src/store/reducers';
+import AddItem from 'src/components/actions/AddItem'
 
 const mapStateToProps = (state: RootState): Types.SkillsState => {
     return state.skills
@@ -123,12 +124,12 @@ export class Skills extends React.Component<Props> {
                 heading={this.props.header}
                 icon={<Icon category="standard" name="skill" size="small" />}
                 headerActions={
-                    !isEmpty && UI.getAdd(this.addSkill)
+                    !isEmpty && <AddItem onAdd={this.addSkill} />
                 }
                 empty={
                     isEmpty ? (
                         <CardEmpty heading="No skills">
-                            {UI.getAdd(this.addSkill)}
+                            <AddItem onAdd={this.addSkill} />
                         </CardEmpty>
                     ) : null
                 }

@@ -23,6 +23,7 @@ import * as Variables from 'src/env/variables'
 import * as UI from 'src/utilities/ui'
 import DeleteItem from 'src/components/actions/DeleteItem'
 import { RootState } from 'src/store/reducers';
+import AddItem from 'src/components/actions/AddItem'
 
 const mapStateToProps = (state: RootState):Types.CertificatesState => {
     return state.certificates
@@ -173,12 +174,12 @@ class Certificates extends React.Component<Props> {
 
                 icon={<Icon category="standard" name="document" size="small" />}
                 headerActions={
-                    !isEmpty && UI.getAdd(this.addCertificate)
+                    !isEmpty && <AddItem onAdd={this.addCertificate} />
                 }
                 empty={
                     isEmpty ? (
                         <CardEmpty heading="No certificates">
-                            {UI.getAdd(this.addCertificate)}
+                            <AddItem onAdd={this.addCertificate} />
                         </CardEmpty>
                     ) : null
                 }

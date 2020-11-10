@@ -24,6 +24,7 @@ import * as Variables from 'src/env/variables'
 import * as UI from 'src/utilities/ui'
 import DeleteItem from 'src/components/actions/DeleteItem'
 import { RootState } from 'src/store/reducers';
+import AddItem from 'src/components/actions/AddItem'
 
 const mapStateToProps = (state: RootState): Types.ProjectsState => {
     return state.projects
@@ -274,12 +275,12 @@ export class Projects extends React.Component<Props> {
                 heading={this.props.header}
                 icon={<Icon category="standard" name="case_wrap_up" size="small" />}
                 headerActions={
-                    !isEmpty && UI.getAdd(this.addProject)
+                    !isEmpty && <AddItem onAdd={this.addProject} />
                 }
                 empty={
                     isEmpty ? (
                         <CardEmpty heading="No projects">
-                            {UI.getAdd(this.addProject)}
+                            <AddItem onAdd={this.addProject} />
                         </CardEmpty>
                     ) : null
                 }

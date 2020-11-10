@@ -4,18 +4,6 @@ import {
     Dropdown
 } from '@salesforce/design-system-react';
 
-export const getAdd = (callback) => {
-    return (
-        <Button
-            label="Add"
-            onClick={callback}
-            iconCategory="utility"
-            iconName="add"
-            iconPosition="left"
-        />
-    )
-}
-
 export const getTogglePanel = (id, setState) => {
     setState((state) => ({
         ...state,
