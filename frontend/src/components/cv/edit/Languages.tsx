@@ -93,7 +93,7 @@ export class Languages extends React.Component<Props> {
                         <DeleteItem title="Delete language" item={this.props.languages[i] || 'Language ' + (i + 1)} onDelete={() => this.deleteLanguage(i)} />
                     }
                     key={i}
-                    onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
+                    onTogglePanel={(e) => UI.toggleAccordionPanel(i, this.setState)}
                     expanded={!!this.state.expandedPanels[i]}
                     summary={this.props.languages[i] || 'Language ' + (i + 1)}
                 >

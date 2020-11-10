@@ -137,7 +137,7 @@ export class Experience extends React.Component<Props> {
                 <AccordionPanel
                     panelContentActions={<DeleteItem title="Delete experience" item={this.props.experience[i].position || 'Experience ' + (i + 1)} onDelete={() => this.deleteExperience(i)} />}
                     key={i}
-                    onTogglePanel={e => UI.getTogglePanel(i, this.setState)}
+                    onTogglePanel={e => UI.toggleAccordionPanel(i, this.setState)}
                     expanded={!!this.state.expandedPanels[i]}
                     summary={this.props.experience[i].position || 'Experience ' + (i + 1)}
                 >

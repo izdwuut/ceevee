@@ -98,7 +98,7 @@ export class Links extends React.Component<Props> {
                         <DeleteItem title="Delete link" item={this.props.links[i].label || 'Link ' + (i + 1)} onDelete={() => this.deleteLink(i)} />
                     }
                     key={i}
-                    onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
+                    onTogglePanel={(e) => UI.toggleAccordionPanel(i, this.setState)}
                     expanded={!!this.state.expandedPanels[i]}
                     summary={this.props.links[i].label || 'Link ' + (i + 1)}
                 >

@@ -146,7 +146,7 @@ export class Projects extends React.Component<Props> {
                         <DeleteItem title="Delete project" item={this.props.projects[i].project || 'Project ' + (i + 1)} onDelete={() => this.deleteProject(i)} />
                     }
                     key={i}
-                    onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
+                    onTogglePanel={(e) => UI.toggleAccordionPanel(i, this.setState)}
                     expanded={!!this.state.expandedPanels[i]}
                     summary={this.props.projects[i].project || 'Project ' + (i + 1)}
                 >

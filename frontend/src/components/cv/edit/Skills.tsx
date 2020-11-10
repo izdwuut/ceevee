@@ -96,7 +96,7 @@ export class Skills extends React.Component<Props> {
                     panelContentActions={
                         <DeleteItem title="Delete skill" item={this.props.skills[i].skill || 'Skill ' + (i + 1)} onDelete={() => this.deleteSkill(i)} />}
                     key={i}
-                    onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
+                    onTogglePanel={(e) => UI.toggleAccordionPanel(i, this.setState)}
                     expanded={!!this.state.expandedPanels[i]}
                     summary={this.props.skills[i].skill || 'Skill ' + (i + 1)}
                 >

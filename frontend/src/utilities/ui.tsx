@@ -4,7 +4,7 @@ import {
     Dropdown
 } from '@salesforce/design-system-react';
 
-export const getTogglePanel = (id, setState) => {
+export const toggleAccordionPanel = (id, setState) => {
     setState((state) => ({
         ...state,
         expandedPanels: {

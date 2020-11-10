@@ -91,7 +91,7 @@ export class Hobbies extends React.Component<Props> {
                         <DeleteItem title="Delete hobby" item={this.props.hobbies[i] || 'Hobby ' + (i + 1)} onDelete={() => this.deleteHobby(i)} />
                     }
                     key={i}
-                    onTogglePanel={e => UI.getTogglePanel(i, this.setState)}
+                    onTogglePanel={e => UI.toggleAccordionPanel(i, this.setState)}
                     expanded={!!this.state.expandedPanels[i]}
                     summary={this.props.hobbies[i] || 'Hobby ' + (i + 1)}
                 >

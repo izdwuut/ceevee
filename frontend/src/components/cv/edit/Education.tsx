@@ -145,7 +145,7 @@ export class Education extends React.Component<Props> {
                         <DeleteItem title="Delete education" item={this.props.education[i].school || 'School ' + (i + 1)} onDelete={() => this.deleteEducation(i)} />
                     }
                     key={i}
-                    onTogglePanel={e => UI.getTogglePanel(i, this.setState)}
+                    onTogglePanel={e => UI.toggleAccordionPanel(i, this.setState)}
                     expanded={!!this.state.expandedPanels[i]}
                     summary={this.props.education[i].school || 'School ' + (i + 1)}
                 >
