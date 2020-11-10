@@ -7,23 +7,26 @@ import {
 
 import { showModal } from 'src/store/reducers/components/modal/actions'
 import { RootState } from 'src/store/reducers';
-
-const mapStateToProps = (state: RootState) => {
-    return state
-}
-
-const mapDispatchToProps = (dispatch:Dispatch<AnyAction>) => {
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
     return {
-        showModal: bindActionCreators(showModal,dispatch)
+        showModal: bindActionCreators(showModal, dispatch)
     }
 }
 
 const connector = connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )
 
-type Props = ConnectedProps<typeof connector>
+type DeleteItemAction = {
+    (): void
+}
+
+type Props = ConnectedProps<typeof connector> & {
+    onDelete: DeleteItemAction,
+    title: string,
+    item: string
+}
 
 
 export class DeleteItem extends React.Component<Props> {
@@ -32,21 +35,18 @@ export class DeleteItem extends React.Component<Props> {
     }
 
     render() {
-
         return (
-            <div>
-                <Button
-                    assistiveText={{ icon: 'Delete' }}
-                    label="Delete"
-                    iconCategory="action"
-                    iconName="delete"
-                    iconSize="small"
-                    iconVariant="bare"
-                    colorVariant="error"
-                    onClick={this.showModal}
-                    variant="icon"
-                />
-            </div>
+            <Button
+                assistiveText={{ icon: 'Delete' }}
+                label="Delete"
+                iconCategory="action"
+                iconName="delete"
+                iconSize="small"
+                iconVariant="bare"
+                colorVariant="error"
+                onClick={this.showModal}
+                variant="icon"
+            />
         )
 
     }
