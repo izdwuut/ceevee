@@ -1,23 +1,25 @@
-import { StyleSheet, Font } from '@react-pdf/renderer';
+import ReactPDF, { StyleSheet, Font } from '@react-pdf/renderer';
 import * as Variables from './variables'
 
 Font.register(
     {
         family: Variables.serifFont,
         fonts: [
-            {src: Variables.serifFontURL, fontWeight: 400},
+            { src: Variables.serifFontURL, fontWeight: 400 },
         ]
     }
 );
 
-const languagesStyles = StyleSheet.create({
+const linksStyles: ReactPDF.Styles = StyleSheet.create({
     header: {
         fontFamily: Variables.serifFont,
         fontWeight: 400,
         fontSize: 16,
         paddingBottom: Variables.sectionPadding
     },
-    language: {
+
+    link: {
+        color: Variables.fontColor,
         paddingBottom: Variables.contentsSpacing
     },
     section: {
@@ -25,4 +27,4 @@ const languagesStyles = StyleSheet.create({
     }
 })
 
-export default languagesStyles
+export default linksStyles

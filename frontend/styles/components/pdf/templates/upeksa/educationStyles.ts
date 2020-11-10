@@ -1,4 +1,4 @@
-import { StyleSheet, Font } from '@react-pdf/renderer';
+import ReactPDF, { StyleSheet, Font } from '@react-pdf/renderer';
 import * as Variables from './variables'
 
 Font.register(
@@ -10,7 +10,7 @@ Font.register(
     }
 );
 
-const projectsStyles = StyleSheet.create({
+const educationStyles: ReactPDF.Styles = StyleSheet.create({
     header: {
         fontFamily: Variables.serifFont,
         fontWeight: 400,
@@ -27,4 +27,4 @@ const projectsStyles = StyleSheet.create({
     }
 })
 
-export default projectsStyles
+export default educationStyles

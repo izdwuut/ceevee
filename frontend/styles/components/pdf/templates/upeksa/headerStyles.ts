@@ -1,4 +1,4 @@
-import { StyleSheet, Font } from '@react-pdf/renderer';
+import ReactPDF, { StyleSheet, Font, } from '@react-pdf/renderer';
 import * as Variables from './variables'
 
 Font.register(
@@ -10,7 +10,7 @@ Font.register(
     }
 );
 
-const headerStyles = StyleSheet.create({
+const headerStyles: ReactPDF.Styles = StyleSheet.create({
     section: {
         fontFamily: Variables.serifFont,
         position: 'relative',
@@ -23,7 +23,6 @@ const headerStyles = StyleSheet.create({
         fontSize: Variables.headerNameSize,
         position: 'relative',
         top: Variables.headerTopPosition
-
     },
     lastName: {
         fontSize: Variables.headerNameSize,

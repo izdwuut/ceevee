@@ -1,4 +1,4 @@
-import { StyleSheet, Font } from '@react-pdf/renderer';
+import ReactPDF, { StyleSheet, Font } from '@react-pdf/renderer';
 import * as Variables from './variables'
 
 Font.register(
@@ -10,14 +10,14 @@ Font.register(
     }
 );
 
-const skillsStyles = StyleSheet.create({
+const hobbiesStyles: ReactPDF.Styles = StyleSheet.create({
     header: {
         fontFamily: Variables.serifFont,
         fontWeight: 400,
         fontSize: 16,
         paddingBottom: Variables.sectionPadding
     },
-    description: {
+    hobby: {
         paddingBottom: Variables.contentsSpacing
     },
     section: {
@@ -26,4 +26,4 @@ const skillsStyles = StyleSheet.create({
     }
 })
 
-export default skillsStyles
+export default hobbiesStyles

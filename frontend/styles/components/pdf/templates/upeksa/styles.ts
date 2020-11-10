@@ -1,4 +1,4 @@
-import { StyleSheet, Font } from '@react-pdf/renderer';
+import ReactPDF, { StyleSheet, Font } from '@react-pdf/renderer';
 import * as Variables from './variables'
 
 Font.register(
@@ -14,7 +14,7 @@ Font.register(
     },
 );
 
-const styles = StyleSheet.create({
+const styles: ReactPDF.Styles = StyleSheet.create({
     page: {
         flexDirection: 'column',
         fontFamily: "Montserrat",
