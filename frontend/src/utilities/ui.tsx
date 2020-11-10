@@ -1,10 +1,9 @@
 import * as React from 'react';
 import {
-    Button,
     Dropdown
 } from '@salesforce/design-system-react';
 
-export const toggleAccordionPanel = (id, setState) => {
+export const toggleAccordionPanel = (id:number, setState:any):void => {
     setState((state) => ({
         ...state,
         expandedPanels: {
@@ -13,7 +12,7 @@ export const toggleAccordionPanel = (id, setState) => {
     }));
 }
 
-export const getDownload = (onSelect = null, buttonClassName = null, triggerClassName = null) => {
+export const getDownload = (onSelect:any = null, buttonClassName:string = '', triggerClassName:string = '') => {
     return (
         <Dropdown
             align="right"

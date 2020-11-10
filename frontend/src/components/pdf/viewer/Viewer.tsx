@@ -40,8 +40,6 @@ type Props = ConnectedProps<typeof connector>
 class Viewer extends React.Component<Props> {
   constructor(props) {
     super(props)
-    
-
     this.setIsNextPage = this.setIsNextPage.bind(this)
     this.setIsPreviousPage = this.setIsPreviousPage.bind(this)
     this.onPdfRenderSuccess = this.onPdfRenderSuccess.bind(this)
@@ -54,7 +52,7 @@ class Viewer extends React.Component<Props> {
     isPreviousPage: false,
     isPdfIn: false
   }
-  timeout = 2000
+  timeout: number = 2000
 
   getBlob() {
     pdf(<Upeksa />).toBlob().then((blob) => {
