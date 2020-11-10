@@ -10,23 +10,25 @@ import {
     CardEmpty
 } from '@salesforce/design-system-react';
 import { connect, ConnectedProps } from "react-redux"
-import { bindActionCreators } from 'redux'
+import { bindActionCreators, Dispatch, AnyAction } from 'redux'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 
 import * as Actions from 'src/store/reducers/components/cv/edit/certificates/actions'
+import * as Types from 'src/store/reducers/components/cv/edit/certificates/types'
 import { updatePreview } from 'src/store/reducers/components/pdf/viewer/actions'
 import { showToast } from 'src/store/reducers/components/toasts/actions'
-import { debounce } from 'src/utilities/debounce'
+import { debounce, PreviewDebounce } from 'src/utilities/debounce'
 import * as Variables from 'src/env/variables'
 import * as UI from 'src/utilities/ui'
 import DeleteItem from 'src/components/contextActions/DeleteItem'
+import { RootState } from 'src/store/reducers';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: RootState):Types.CertificatesState => {
     return state.certificates
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
     return {
         updateHeader: bindActionCreators(Actions.updateHeader, dispatch),
         updatePreview: bindActionCreators(updatePreview, dispatch),
@@ -46,46 +48,49 @@ const connector = connect(
 
 type Props = ConnectedProps<typeof connector>
 
+type LocalState = {
+    expandedPanels: {}
+}
+
 class Certificates extends React.Component<Props> {
-    state = {
+    state: LocalState = {
         expandedPanels: {},
     }
     setState = this.setState.bind(this)
     calendarValidUntil
 
-    updatePreview = debounce(() => {
+    updatePreview: PreviewDebounce = debounce((): void => {
         this.props.updatePreview(true)
     }, Variables.debounceTime)
 
-    updateHeader = header => {
+    updateHeader = (header: string): void => {
         this.props.updateHeader(header)
         this.updatePreview()
     }
 
-    updateCertificate = (id, school) => {
+    updateCertificate = (id: number, school: number): void => {
         this.props.updateCertificate(id, school)
         this.updatePreview()
     }
 
-    updateIssuer = (id, title) => {
+    updateIssuer = (id: number, title: string): void => {
         this.props.updateIssuer(id, title)
         this.updatePreview()
     }
 
-    updateValidUntil = (id, from) => {
+    updateValidUntil = (id: number, from: Date): void => {
         this.props.updateValidUntil(id, from.toString())
         this.updatePreview()
     }
 
-    deleteCertificate = id => {
+    deleteCertificate = (id: number): void => {
         this.props.deleteCertificate(id)
         this.props.showToast(['Certificate has been deleted.'])
-
         this.updatePreview()
     }
 
-    addCertificate = () => {
-        this.setState((state) => ({
+    addCertificate = (): void => {
+        this.setState((state: LocalState) => ({
             ...state,
             expandedPanels: {
                 [this.props.certificates.length]: true
@@ -93,19 +98,18 @@ class Certificates extends React.Component<Props> {
         }));
         this.props.addCertificate()
         this.props.showToast(['New certificate has been added.'], 'success')
-
         this.updatePreview()
     }
 
-    render() {
-        const isEmpty = this.props.certificates.length === 0;
+    render(): JSX.Element {
+        const isEmpty: boolean = this.props.certificates.length === 0;
 
-        let certificates = []
+        let certificates: Array<AccordionPanel> = []
         for (let i = 0; i < this.props.certificates.length; i++) {
             certificates.push(
                 <AccordionPanel
                     panelContentActions={
-                        <DeleteItem title="Delete certificate" item={this.props.certificates[i].certificate || 'Certificate ' + (i + 1)} onDelete={() => this.deleteCertificate(i)}  />
+                        <DeleteItem title="Delete certificate" item={this.props.certificates[i].certificate || 'Certificate ' + (i + 1)} onDelete={() => this.deleteCertificate(i)} />
                     }
                     key={i}
                     onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
@@ -118,8 +122,6 @@ class Certificates extends React.Component<Props> {
                         value={this.props.certificates[i].certificate}
                         onChange={e => this.updateCertificate(i, e.target.value)}
                     />
-
-
                     <Input
                         variant="outlined"
                         label='Issuer'
@@ -165,9 +167,7 @@ class Certificates extends React.Component<Props> {
             )
         }
 
-
         return (
-
             <Card
                 heading={this.props.header}
 

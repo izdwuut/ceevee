@@ -7,45 +7,69 @@ import {
     AccordionPanel,
     CardEmpty
 } from '@salesforce/design-system-react';
-import { connect } from "react-redux"
-import { bindActionCreators } from 'redux'
+import { connect, ConnectedProps } from "react-redux"
+import { bindActionCreators, Dispatch, AnyAction } from 'redux'
 
 import * as Actions from 'src/store/reducers/components/cv/edit/languages/actions'
+import * as Types from 'src/store/reducers/components/cv/edit/languages/types'
 import { updatePreview } from 'src/store/reducers/components/pdf/viewer/actions'
 import { showToast } from 'src/store/reducers/components/toasts/actions'
-import { debounce } from 'src/utilities/debounce'
+import { debounce, PreviewDebounce } from 'src/utilities/debounce'
 import * as Variables from 'src/env/variables'
 import * as UI from 'src/utilities/ui'
+import { RootState } from 'src/store/reducers';
+import DeleteItem from 'src/components/contextActions/DeleteItem'
 
+const mapStateToProps = (state: RootState): Types.LanguagesState => {
+    return state.languages
+}
 
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
+    return {
+        updateHeader: bindActionCreators(Actions.updateHeader, dispatch),
+        updateLanguage: bindActionCreators(Actions.updateLanguage, dispatch),
+        deleteLanguage: bindActionCreators(Actions.deleteLanguage, dispatch),
+        addLanguage: bindActionCreators(Actions.addLanguage, dispatch),
+        updatePreview: bindActionCreators(updatePreview, dispatch),
+        showToast: bindActionCreators(showToast, dispatch),
+    }
+}
 
-export class Languages extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            expandedPanels: {},
-        }
+const connector = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)
+
+type Props = ConnectedProps<typeof connector>
+
+type LocalState = {
+    expandedPanels: {}
+}
+
+export class Languages extends React.Component<Props> {
+    state: LocalState = {
+        expandedPanels: {},
     }
     setState = this.setState.bind(this)
 
-    updatePreview = debounce(() => {
+    updatePreview: PreviewDebounce = debounce((): void => {
         this.props.updatePreview(true)
     }, Variables.debounceTime)
 
-    updateLanguage = (id, language) => {
+    updateLanguage = (id: number, language: string): void => {
         this.props.updateLanguage(id, language)
         this.updatePreview()
     }
 
-    deleteLanguage = id => {
+    deleteLanguage = (id: number): void => {
         this.props.deleteLanguage(id)
         this.props.showToast(['Language has been deleted.'])
 
         this.updatePreview()
     }
 
-    addLanguage = () => {
-        this.setState((state) => ({
+    addLanguage = (): void => {
+        this.setState((state: LocalState) => ({
             ...state,
             expandedPanels: {
                 [this.props.languages.length]: true
@@ -57,16 +81,15 @@ export class Languages extends React.Component {
         this.updatePreview()
     }
 
-    render() {
-        const isEmpty = this.props.languages.length === 0;
+    render(): JSX.Element {
+        const isEmpty: boolean = this.props.languages.length === 0;
 
-
-        let languages = []
+        let languages: Array<AccordionPanel> = []
         for (let i = 0; i < this.props.languages.length; i++) {
             languages.push(
                 <AccordionPanel
                     panelContentActions={
-                        <DeleteItem title="Delete language" item={this.props.languages[i] || 'Language ' + (i + 1)} onDelete={() => this.deleteLanguage(i)} context={MainContext} />
+                        <DeleteItem title="Delete language" item={this.props.languages[i] || 'Language ' + (i + 1)} onDelete={() => this.deleteLanguage(i)} />
                     }
                     key={i}
                     onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
@@ -79,7 +102,6 @@ export class Languages extends React.Component {
                         value={this.props.languages[i]}
                         onChange={e => this.updateLanguage(i, e.target.value)}
                     />
-
                 </AccordionPanel>
             )
         }
@@ -87,14 +109,13 @@ export class Languages extends React.Component {
         return (
             <Card
                 heading={this.props.header}
-
                 icon={<Icon category="standard" name="live_chat" size="small" />}
                 headerActions={
                     !isEmpty && UI.getAdd(this.addLanguage)
                 }
                 empty={
                     isEmpty ? (
-                        <CardEmpty heading="Languages">
+                        <CardEmpty heading="No languages">
                             {UI.getAdd(this.addLanguage)}
                         </CardEmpty>
                     ) : null
@@ -109,28 +130,8 @@ export class Languages extends React.Component {
                     </Accordion>
                 }
             </Card>
-
         )
     }
 }
 
-
-const mapStateToProps = state => {
-    return state.languages
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        updateHeader: bindActionCreators(Actions.updateHeader,dispatch),
-        updateLanguage: bindActionCreators(Actions.updateLanguage,dispatch),
-        deleteLanguage: bindActionCreators(Actions.deleteLanguage,dispatch),
-        addLanguage: bindActionCreators(Actions.addLanguage,dispatch),
-        updatePreview: bindActionCreators(updatePreview,dispatch),
-        showToast: bindActionCreators(showToast,dispatch),
-    }
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Languages)
+export default connector(Languages)

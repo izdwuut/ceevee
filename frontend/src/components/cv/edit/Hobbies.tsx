@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { connect } from "react-redux"
-import { bindActionCreators } from 'redux'
+import { connect, ConnectedProps } from "react-redux"
+import { bindActionCreators, Dispatch, AnyAction } from 'redux'
 import {
     Icon,
     Card,
@@ -11,30 +11,59 @@ import {
 } from '@salesforce/design-system-react';
 
 import * as Actions from 'src/store/reducers/components/cv/edit/hobbies/actions'
+import * as Types from 'src/store/reducers/components/cv/edit/hobbies/types'
+
 import { updatePreview } from 'src/store/reducers/components/pdf/viewer/actions'
 import { showToast } from 'src/store/reducers/components/toasts/actions'
-import { debounce } from 'src/utilities/debounce'
+import { debounce, PreviewDebounce } from 'src/utilities/debounce'
 import * as Variables from 'src/env/variables'
 import * as UI from 'src/utilities/ui'
+import { RootState } from 'src/store/reducers';
+import DeleteItem from 'src/components/contextActions/DeleteItem'
 
-export class Hobbies extends React.Component {
-        state = {
-            expandedPanels: {},
-        }
-  
+const mapStateToProps = (state: RootState): Types.HobbiesState => {
+    return state.hobbies
+}
+
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
+    return {
+        updateHeader: bindActionCreators(Actions.updateHeader, dispatch),
+        updateHobby: bindActionCreators(Actions.updateHobby, dispatch),
+        addHobby: bindActionCreators(Actions.addHobby, dispatch),
+        deleteHobby: bindActionCreators(Actions.deleteHobby, dispatch),
+        updatePreview: bindActionCreators(updatePreview, dispatch),
+        showToast: bindActionCreators(showToast, dispatch),
+    }
+}
+
+const connector = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)
+
+type Props = ConnectedProps<typeof connector>
+
+type LocalState = {
+    expandedPanels: {}
+}
+
+export class Hobbies extends React.Component<Props> {
+    state: LocalState = {
+        expandedPanels: {},
+    }
     setState = this.setState.bind(this)
 
-    updatePreview = debounce(() => {
+    updatePreview: PreviewDebounce = debounce((): void => {
         this.props.updatePreview(true)
     }, Variables.debounceTime)
 
-    updateHobby = (id, hobby) => {
+    updateHobby = (id: number, hobby: string): void => {
         this.props.updateHobby(id, hobby)
         this.updatePreview()
     }
 
-    addHobby = () => {
-        this.setState((state) => ({
+    addHobby = (): void => {
+        this.setState((state: LocalState) => ({
             ...state,
             expandedPanels: {
                 [this.props.hobbies.length]: true
@@ -42,30 +71,27 @@ export class Hobbies extends React.Component {
         }));
         this.props.addHobby('')
         this.props.showToast(['New hobby has been added.'], 'success')
-
         this.updatePreview()
     }
 
-    deleteHobby = id => {
+    deleteHobby = (id: number): void => {
         this.props.deleteHobby(id)
         this.props.showToast(['Hobby has been deleted.'])
-
         this.updatePreview()
     }
 
-    render() {
-        const isEmpty = this.props.hobbies.length === 0;
+    render(): JSX.Element {
+        const isEmpty: boolean = this.props.hobbies.length === 0;
 
-        let hobbies = []
+        let hobbies: Array<AccordionPanel> = []
         for (let i = 0; i < this.props.hobbies.length; i++) {
             hobbies.push(
-
                 <AccordionPanel
                     panelContentActions={
-                        <DeleteItem title="Delete hobby" item={this.props.hobbies[i] || 'Hobby ' + (i + 1)} onDelete={() => this.deleteHobby(i)} context={MainContext} />
+                        <DeleteItem title="Delete hobby" item={this.props.hobbies[i] || 'Hobby ' + (i + 1)} onDelete={() => this.deleteHobby(i)} />
                     }
                     key={i}
-                    onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
+                    onTogglePanel={e => UI.getTogglePanel(i, this.setState)}
                     expanded={!!this.state.expandedPanels[i]}
                     summary={this.props.hobbies[i] || 'Hobby ' + (i + 1)}
                 >
@@ -82,7 +108,6 @@ export class Hobbies extends React.Component {
         return (
             <Card
                 heading={this.props.header}
-
                 icon={<Icon category="standard" name="topic" size="small" />}
                 headerActions={
                     !isEmpty && UI.getAdd(this.addHobby)
@@ -101,29 +126,9 @@ export class Hobbies extends React.Component {
                 <Accordion>
                     {hobbies}
                 </Accordion>
-
-
             </Card>
         )
     }
 }
 
-const mapStateToProps = state => {
-    return state.hobbies
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        updateHeader: bindActionCreators(Actions.updateHeader, dispatch),
-        updateHobby: bindActionCreators(Actions.updateHobby, dispatch),
-        addHobby: bindActionCreators(Actions.addHobby, dispatch),
-        deleteHobby: bindActionCreators(Actions.deleteHobby, dispatch),
-        updatePreview: bindActionCreators(updatePreview, dispatch),
-        showToast: bindActionCreators(showToast, dispatch),
-    }
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(Hobbies);
+export default connector(Hobbies)

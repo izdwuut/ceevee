@@ -1,5 +1,9 @@
-export function debounce(func, wait) {
-    let timeout;
+export type PreviewDebounce = {
+    (): void
+}
+
+export function debounce(func: any, wait: number) {
+    let timeout: any;
 
     return function executedFunction(...args) {
         const later = () => {

@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { connect } from "react-redux"
-
 import {
     Icon,
     Card,
@@ -9,42 +7,68 @@ import {
     AccordionPanel,
     CardEmpty
 } from '@salesforce/design-system-react';
-import { bindActionCreators } from 'redux'
+import { connect, ConnectedProps } from "react-redux"
+import { bindActionCreators, Dispatch, AnyAction } from 'redux'
 
-import { debounce } from 'src/utilities/debounce'
+import { debounce, PreviewDebounce } from 'src/utilities/debounce'
 import * as Actions from 'src/store/reducers/components/cv/edit/skills/actions'
+import * as Types from 'src/store/reducers/components/cv/edit/skills/types'
 import * as UI from 'src/utilities/ui'
 import DeleteItem from '../../contextActions/DeleteItem'
 import { showToast } from 'src/store/reducers/components/toasts/actions'
 import { updatePreview } from 'src/store/reducers/components/pdf/viewer/actions'
 import * as Variables from 'src/env/variables'
+import { RootState } from 'src/store/reducers';
 
+const mapStateToProps = (state: RootState): Types.SkillsState => {
+    return state.skills
+}
 
-export class Skills extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            expandedPanels: {},
-        }
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
+    return {
+        updateHeader: bindActionCreators(Actions.updateHeader, dispatch),
+        updateSkill: bindActionCreators(Actions.updateSkill, dispatch),
+        updateDescription: bindActionCreators(Actions.updateDescription, dispatch),
+        addSkill: bindActionCreators(Actions.addSkill, dispatch),
+        deleteSkill: bindActionCreators(Actions.deleteSkill, dispatch),
+        updatePreview: bindActionCreators(updatePreview, dispatch),
+        showToast: bindActionCreators(showToast, dispatch)
+    };
+};
+
+const connector = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)
+
+type Props = ConnectedProps<typeof connector>
+
+type LocalState = {
+    expandedPanels: {}
+}
+
+export class Skills extends React.Component<Props> {
+    state: LocalState = {
+        expandedPanels: {},
     }
     setState = this.setState.bind(this)
 
-    updatePreview = debounce(() => {
+    updatePreview: PreviewDebounce = debounce((): void => {
         this.props.updatePreview(true)
     }, Variables.debounceTime)
 
-    updateSkill = (id, skill) => {
+    updateSkill = (id: number, skill: string): void => {
         this.props.updateSkill(id, skill)
         this.updatePreview()
     }
 
-    updateDescription = (id, description) => {
+    updateDescription = (id: number, description: string): void => {
         this.props.updateDescription(id, description)
         this.updatePreview()
     }
 
-    addSkill = () => {
-        this.setState((state) => ({
+    addSkill = (): void => {
+        this.setState((state: LocalState) => ({
             ...state,
             expandedPanels: {
                 [this.props.skills.length]: true
@@ -55,31 +79,28 @@ export class Skills extends React.Component {
             activeIndex: this.props.skills.length
         })
         this.props.showToast(['New skill has been added.'], 'success')
-
         this.updatePreview()
     }
 
-    deleteSkill = (id) => {
+    deleteSkill = (id: number): void => {
         this.props.deleteSkill(id)
         this.props.showToast(['Skill has been deleted.'])
-
         this.updatePreview()
     }
 
-    render() {
-        const isEmpty = this.props.skills.length === 0
+    render(): JSX.Element {
+        const isEmpty: boolean = this.props.skills.length === 0
 
-        let skills = []
+        let skills: Array<AccordionPanel> = []
         for (let i = 0; i < this.props.skills.length; i++) {
             skills.push(
                 <AccordionPanel
                     panelContentActions={
-                        <DeleteItem title="Delete skill" item={this.props.skills[i].skill || 'Skill ' + (i + 1)} onDelete={() => this.deleteSkill(i)} context={MainContext} />}
+                        <DeleteItem title="Delete skill" item={this.props.skills[i].skill || 'Skill ' + (i + 1)} onDelete={() => this.deleteSkill(i)} />}
                     key={i}
                     onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
                     expanded={!!this.state.expandedPanels[i]}
                     summary={this.props.skills[i].skill || 'Skill ' + (i + 1)}
-
                 >
                     <Input
                         variant="outlined"
@@ -100,7 +121,6 @@ export class Skills extends React.Component {
         return (
             <Card
                 heading={this.props.header}
-
                 icon={<Icon category="standard" name="skill" size="small" />}
                 headerActions={
                     !isEmpty && UI.getAdd(this.addSkill)
@@ -113,7 +133,6 @@ export class Skills extends React.Component {
                     ) : null
                 }
             >
-
                 <p className='slds-col_padded'>
                     {this.props.description}
                 </p>
@@ -122,29 +141,9 @@ export class Skills extends React.Component {
                         {skills}
                     </Accordion>
                 }
-
-
             </Card>
         )
     }
 }
 
-const mapStateToProps = state => {
-    return state.skills
-}
-const mapDispatchToProps = dispatch => {
-    return {
-        updateHeader: bindActionCreators(Actions.updateHeader, dispatch),
-        updateSkill: bindActionCreators(Actions.updateSkill, dispatch),
-        updateDescription: bindActionCreators(Actions.updateDescription, dispatch),
-        addSkill: bindActionCreators(Actions.addSkill, dispatch),
-        deleteSkill: bindActionCreators(Actions.deleteSkill, dispatch),
-        updatePreview: bindActionCreators(updatePreview, dispatch),
-        showToast: bindActionCreators(showToast, dispatch)
-
-    };
-};
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Skills);
+export default connector(Skills)

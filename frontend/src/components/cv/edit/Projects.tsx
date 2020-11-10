@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from "react-redux"
 import {
     Icon,
     InputIcon,
@@ -11,82 +10,119 @@ import {
     Textarea,
     CardEmpty
 } from '@salesforce/design-system-react';
-import { bindActionCreators } from 'redux'
+import { connect, ConnectedProps } from "react-redux"
+import { bindActionCreators, Dispatch, AnyAction } from 'redux'
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
 
 import * as Actions from 'src/store/reducers/components/cv/edit/projects/actions'
+import * as Types from 'src/store/reducers/components/cv/edit/projects/types'
 import { updatePreview } from 'src/store/reducers/components/pdf/viewer/actions'
 import { showToast } from 'src/store/reducers/components/toasts/actions'
-import { debounce } from 'src/utilities/debounce'
+import { debounce, PreviewDebounce } from 'src/utilities/debounce'
 import * as Variables from 'src/env/variables'
 import * as UI from 'src/utilities/ui'
+import DeleteItem from 'src/components/contextActions/DeleteItem'
+import { RootState } from 'src/store/reducers';
 
-export class Projects extends React.Component {
-    state = {
+const mapStateToProps = (state: RootState): Types.ProjectsState => {
+    return state.projects
+}
+
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
+    return {
+        updateHeader: bindActionCreators(Actions.updateHeader, dispatch),
+        updatePreview: bindActionCreators(updatePreview, dispatch),
+        updateProject: bindActionCreators(Actions.updateProject, dispatch),
+        updatePosition: bindActionCreators(Actions.updatePosition, dispatch),
+        updateCompany: bindActionCreators(Actions.updateCompany, dispatch),
+        updateCity: bindActionCreators(Actions.updateCity, dispatch),
+        updateCountry: bindActionCreators(Actions.updateCountry, dispatch),
+        updateFromDate: bindActionCreators(Actions.updateFromDate, dispatch),
+        updateToDate: bindActionCreators(Actions.updateToDate, dispatch),
+        updateDescription: bindActionCreators(Actions.updateDescription, dispatch),
+        deleteProject: bindActionCreators(Actions.deleteProject, dispatch),
+        addProject: bindActionCreators(Actions.addProject, dispatch),
+        showToast: bindActionCreators(showToast, dispatch)
+    }
+}
+
+const connector = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)
+
+type Props = ConnectedProps<typeof connector>
+
+type LocalState = {
+    expandedPanels: {}
+}
+
+export class Projects extends React.Component<Props> {
+    state: LocalState = {
         expandedPanels: {},
     }
-
     setState = this.setState.bind(this)
+    calendarFrom
+    calendarTo
 
-    updatePreview = debounce(() => {
+    updatePreview: PreviewDebounce = debounce((): void => {
         this.props.updatePreview(true)
     }, Variables.debounceTime)
 
-    updateHeader = header => {
+    updateHeader = (header: string): void => {
         this.props.updateHeader(header)
         this.updatePreview()
     }
 
-    updateProject = (id, project) => {
+    updateProject = (id: number, project: string): void => {
         this.props.updateProject(id, project)
         this.updatePreview()
     }
 
-    updateCompany = (id, company) => {
+    updateCompany = (id: number, company: string): void => {
         this.props.updateCompany(id, company)
         this.updatePreview()
     }
 
-    updateCity = (id, city) => {
+    updateCity = (id: number, city: string): void => {
         this.props.updateCity(id, city)
         this.updatePreview()
     }
 
-    updateCountry = (id, country) => {
+    updateCountry = (id: number, country: string): void => {
         this.props.updateCountry(id, country)
         this.updatePreview()
     }
 
-    updatePosition = (id, position) => {
+    updatePosition = (id: number, position: string): void => {
         this.props.updatePosition(id, position)
         this.updatePreview()
     }
 
-
-
-    updateFromDate = (id, from) => {
+    updateFromDate = (id: number, from: Date) => {
         this.props.updateFromDate(id, from.toString())
         this.updatePreview()
     }
 
-    updateToDate = (id, to) => {
+    updateToDate = (id: number, to: Date): void => {
         this.props.updateToDate(id, to.toString())
         this.updatePreview()
     }
 
-    updateDescription = (id, description) => {
+    updateDescription = (id: number, description: string): void => {
         this.props.updateDescription(id, description)
         this.updatePreview()
     }
 
-    deleteProject = id => {
+    deleteProject = (id:number):void => {
         this.props.deleteProject(id)
         this.props.showToast(['Project has been deleted.'])
-
         this.updatePreview()
     }
 
-    addProject = () => {
-        this.setState((state) => ({
+    addProject = ():void => {
+        this.setState((state:LocalState) => ({
             ...state,
             expandedPanels: {
                 [this.props.projects.length]: true
@@ -94,20 +130,19 @@ export class Projects extends React.Component {
         }));
         this.props.addProject()
         this.props.showToast(['New project has been added.'], 'success')
-
         this.updatePreview()
     }
 
-    render() {
-        const isEmpty = this.props.projects.length === 0;
+    render():JSX.Element {
+        const isEmpty:boolean = this.props.projects.length === 0;
 
-        let projects = []
+        let projects: Array<AccordionPanel> = []
         if (projects) {
             for (let i = 0; i < this.props.projects.length; i++) {
                 projects.push(
                     <AccordionPanel
                         panelContentActions={
-                            <DeleteItem title="Delete project" item={this.props.projects[i].project || 'Project ' + (i + 1)} onDelete={() => this.deleteProject(i)} context={MainContext} />
+                            <DeleteItem title="Delete project" item={this.props.projects[i].project || 'Project ' + (i + 1)} onDelete={() => this.deleteProject(i)} />
                         }
                         key={i}
                         onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
@@ -120,8 +155,6 @@ export class Projects extends React.Component {
                             value={this.props.projects[i].project}
                             onChange={e => this.updateProject(i, e.target.value)}
                         />
-
-
                         <Input
                             variant="outlined"
                             label='Position'
@@ -162,7 +195,7 @@ export class Projects extends React.Component {
                                             }}
                                             iconCategory="utility"
                                             iconName="event"
-                                            calendar={this._calendarFrom} onClick={() => this._calendarFrom.setOpen(true)}
+                                            calendar={this.calendarFrom} onClick={() => this.calendarFrom.setOpen(true)}
                                         />}
                                     fieldLevelHelpTooltip={
                                         <Tooltip
@@ -176,13 +209,12 @@ export class Projects extends React.Component {
                                     value={this.props.projects[i].fromDateString}
                                     onChange={e => this.updateFromDate(i, e.target.value)}
                                 />
-
                                 <DatePicker
                                     onChange={date => this.updateFromDate(i, date)}
                                     dateFormat={Variables.datepickerDateFormat}
                                     showMonthYearPicker
                                     showFullMonthYearPicker
-                                    ref={(c) => this._calendarFrom = c}
+                                    ref={(c) => this.calendarFrom = c}
                                     selected={this.props.projects[i].fromDate}
 
                                     customInput={
@@ -200,7 +232,7 @@ export class Projects extends React.Component {
                                             }}
                                             iconCategory="utility"
                                             iconName="event"
-                                            calendar={this._calendarTo} onClick={() => this._calendarTo.setOpen(true)}
+                                            calendar={this.calendarTo} onClick={() => this.calendarTo.setOpen(true)}
                                         />}
                                     fieldLevelHelpTooltip={
                                         <Tooltip
@@ -219,7 +251,7 @@ export class Projects extends React.Component {
                                     dateFormat={Variables.datepickerDateFormat}
                                     showMonthYearPicker
                                     showFullMonthYearPicker
-                                    ref={(c) => this._calendarTo = c}
+                                    ref={(c) => this.calendarTo = c}
                                     selected={this.props.projects[i].toDate}
                                     customInput={
                                         <div></div>
@@ -228,15 +260,11 @@ export class Projects extends React.Component {
                                 />
                             </div>
                         </div>
-
-
                         <Textarea
                             label='Description'
                             value={this.props.projects[i].description}
                             onChange={e => this.updateDescription(i, e.target.value)}
                         />
-
-
                     </AccordionPanel >
                 )
             }
@@ -244,7 +272,6 @@ export class Projects extends React.Component {
             return (
                 <Card
                     heading={this.props.header}
-
                     icon={<Icon category="standard" name="case_wrap_up" size="small" />}
                     headerActions={
                         !isEmpty && UI.getAdd(this.addProject)
@@ -264,38 +291,11 @@ export class Projects extends React.Component {
                         <Accordion>
                             {projects}
                         </Accordion>
-                    }
-
-
+                    } 
                 </Card>
             )
         }
     }
 }
 
-const mapStateToProps = state => {
-    return state.projects
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        updateHeader: bindActionCreators(Actions.updateHeader, dispatch),
-        updatePreview: bindActionCreators(updatePreview, dispatch),
-        updateProject: bindActionCreators(Actions.updateProject, dispatch),
-        updatePosition: bindActionCreators(Actions.updatePosition, dispatch),
-        updateCompany: bindActionCreators(Actions.updateCompany, dispatch),
-        updateCity: bindActionCreators(Actions.updateCity, dispatch),
-        updateCountry: bindActionCreators(Actions.updateCountry, dispatch),
-        updateFromDate: bindActionCreators(Actions.updateFromDate, dispatch),
-        updateToDate: bindActionCreators(Actions.updateToDate, dispatch),
-        updateDescription: bindActionCreators(Actions.updateDescription, dispatch),
-        deleteProject: bindActionCreators(Actions.deleteProject, dispatch),
-        addProject: bindActionCreators(Actions.addProject, dispatch),
-        showToast: bindActionCreators(showToast, dispatch)
-    }
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(Projects)
+export default connector(Projects)
