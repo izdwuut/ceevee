@@ -7,7 +7,6 @@ import {
 } from '@salesforce/design-system-react';
 import { bindActionCreators, Dispatch, AnyAction } from 'redux'
 
-
 import { updatePreview } from 'src/store/reducers/components/pdf/viewer/actions'
 import * as Actions from 'src/store/reducers/components/cv/edit/details/actions'
 import * as Types from 'src/store/reducers/components/cv/edit/details/types'

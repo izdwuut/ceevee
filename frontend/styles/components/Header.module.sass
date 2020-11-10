@@ -1,11 +1,15 @@
+$spacing-small: 0.5rem
+$spacing: 1rem
+$spacing-large:1.5rem
+
 .header
     z-index: 5
     width: 100%
-    padding-right: 1.5rem !important
+    padding-right: $spacing-large !important
     grid-area: header
 
 .logo
-    padding-right: 1.5rem
+    padding-right: $spacing-large
 
 .header,
 .logo,
@@ -17,12 +21,12 @@
     align-items: center
 
 .slds-context-bar
-    padding: 1.5rem 0
+    padding: $spacing-large 0
 
 .headerActionIcon
-    margin-right: 0.5rem
+    margin-right: $spacing-small
 
 .headerAction:not(.accessibility)
     display: flex
     align-items: center
-    padding-left: 1.5rem
+    padding-left: $spacing-large

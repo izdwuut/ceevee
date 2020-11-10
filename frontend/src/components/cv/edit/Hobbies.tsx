@@ -19,7 +19,7 @@ import { debounce, PreviewDebounce } from 'src/utilities/debounce'
 import * as Variables from 'src/env/variables'
 import * as UI from 'src/utilities/ui'
 import { RootState } from 'src/store/reducers';
-import DeleteItem from 'src/components/contextActions/DeleteItem'
+import DeleteItem from 'src/components/actions/DeleteItem'
 
 const mapStateToProps = (state: RootState): Types.HobbiesState => {
     return state.hobbies

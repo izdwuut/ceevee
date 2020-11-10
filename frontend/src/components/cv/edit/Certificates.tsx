@@ -21,7 +21,7 @@ import { showToast } from 'src/store/reducers/components/toasts/actions'
 import { debounce, PreviewDebounce } from 'src/utilities/debounce'
 import * as Variables from 'src/env/variables'
 import * as UI from 'src/utilities/ui'
-import DeleteItem from 'src/components/contextActions/DeleteItem'
+import DeleteItem from 'src/components/actions/DeleteItem'
 import { RootState } from 'src/store/reducers';
 
 const mapStateToProps = (state: RootState):Types.CertificatesState => {

@@ -21,7 +21,7 @@ import { updatePreview } from 'src/store/reducers/components/pdf/viewer/actions'
 import { debounce, PreviewDebounce } from 'src/utilities/debounce'
 import * as UI from 'src/utilities/ui'
 import * as Variables from 'src/env/variables'
-import DeleteItem from 'src/components/contextActions/DeleteItem'
+import DeleteItem from 'src/components/actions/DeleteItem'
 
 const mapStateToProps = state => {
     return state.experience
