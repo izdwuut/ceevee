@@ -8,7 +8,6 @@ import {
   Button,
 } from '@salesforce/design-system-react';
 import { bindActionCreators, Dispatch } from 'redux'
-import { css } from '@emotion/core'
 
 import viewer from 'styles/components/pdf/Viewer'
 import Upeksa from '../templates/Upeksa'

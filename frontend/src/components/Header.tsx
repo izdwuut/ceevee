@@ -8,7 +8,7 @@ import {
 
 import * as Variables from 'src/env/variables'
 import Accessibility from './accessibility/Accessibility'
-import styles from 'styles/components/Header.module.css'
+import styles from 'styles/components/Header.module.sass'
 
 export default class Header extends React.Component {
   render() {
