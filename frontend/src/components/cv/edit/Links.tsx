@@ -89,35 +89,35 @@ export class Links extends React.Component<Props> {
         const isEmpty: boolean = this.props.links.length === 0;
 
         let links: Array<AccordionPanel> = []
-        if (this.props.links) {
-            for (let i = 0; i < this.props.links.length; i++) {
-                links.push(
-                    <AccordionPanel
-                        panelContentActions={
-                            <DeleteItem title="Delete link" item={this.props.links[i].label || 'Link ' + (i + 1)} onDelete={() => this.deleteLink(i)} />
-                        }
-                        key={i}
-                        onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
-                        expanded={!!this.state.expandedPanels[i]}
-                        summary={this.props.links[i].label || 'Link ' + (i + 1)}
-                    >
-                        <Input
-                            variant="outlined"
-                            label='Label'
-                            value={this.props.links[i].label}
-                            onChange={e => this.updateLabel(i, e.target.value)}
-                        />
-                        <Input
-                            variant="outlined"
-                            label='Link'
-                            value={this.props.links[i].link}
-                            onChange={e => this.updateLink(i, e.target.value)}
-                        />
 
-                    </AccordionPanel>
-                )
-            }
+        for (let i = 0; i < this.props.links.length; i++) {
+            links.push(
+                <AccordionPanel
+                    panelContentActions={
+                        <DeleteItem title="Delete link" item={this.props.links[i].label || 'Link ' + (i + 1)} onDelete={() => this.deleteLink(i)} />
+                    }
+                    key={i}
+                    onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
+                    expanded={!!this.state.expandedPanels[i]}
+                    summary={this.props.links[i].label || 'Link ' + (i + 1)}
+                >
+                    <Input
+                        variant="outlined"
+                        label='Label'
+                        value={this.props.links[i].label}
+                        onChange={e => this.updateLabel(i, e.target.value)}
+                    />
+                    <Input
+                        variant="outlined"
+                        label='Link'
+                        value={this.props.links[i].link}
+                        onChange={e => this.updateLink(i, e.target.value)}
+                    />
+
+                </AccordionPanel>
+            )
         }
+
         return (
             <Card
                 heading={this.props.header}

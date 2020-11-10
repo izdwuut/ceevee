@@ -115,14 +115,14 @@ export class Projects extends React.Component<Props> {
         this.updatePreview()
     }
 
-    deleteProject = (id:number):void => {
+    deleteProject = (id: number): void => {
         this.props.deleteProject(id)
         this.props.showToast(['Project has been deleted.'])
         this.updatePreview()
     }
 
-    addProject = ():void => {
-        this.setState((state:LocalState) => ({
+    addProject = (): void => {
+        this.setState((state: LocalState) => ({
             ...state,
             expandedPanels: {
                 [this.props.projects.length]: true
@@ -133,168 +133,168 @@ export class Projects extends React.Component<Props> {
         this.updatePreview()
     }
 
-    render():JSX.Element {
-        const isEmpty:boolean = this.props.projects.length === 0;
+    render(): JSX.Element {
+        const isEmpty: boolean = this.props.projects.length === 0;
 
         let projects: Array<AccordionPanel> = []
-        if (projects) {
-            for (let i = 0; i < this.props.projects.length; i++) {
-                projects.push(
-                    <AccordionPanel
-                        panelContentActions={
-                            <DeleteItem title="Delete project" item={this.props.projects[i].project || 'Project ' + (i + 1)} onDelete={() => this.deleteProject(i)} />
-                        }
-                        key={i}
-                        onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
-                        expanded={!!this.state.expandedPanels[i]}
-                        summary={this.props.projects[i].project || 'Project ' + (i + 1)}
-                    >
-                        <Input
-                            variant="outlined"
-                            label='Project'
-                            value={this.props.projects[i].project}
-                            onChange={e => this.updateProject(i, e.target.value)}
-                        />
-                        <Input
-                            variant="outlined"
-                            label='Position'
-                            value={this.props.projects[i].position}
-                            onChange={e => this.updatePosition(i, e.target.value)}
-                        />
-                        <Input
-                            variant="outlined"
-                            label='Company'
-                            value={this.props.projects[i].company}
-                            onChange={e => this.updateCompany(i, e.target.value)}
-                        />
-                        <div className="slds-grid slds-gutters">
-                            <div className="slds-col">
-                                <Input
-                                    variant="outlined"
-                                    label='City'
-                                    value={this.props.projects[i].city}
-                                    onChange={e => this.updateCity(i, e.target.value)}
-                                />
-                            </div>
-                            <div className="slds-col">
-                                <Input
-                                    variant="outlined"
-                                    label='Country'
-                                    value={this.props.projects[i].country}
-                                    onChange={e => this.updateCountry(i, e.target.value)}
-                                />
-                            </div>
-                        </div>
-                        <div className="slds-grid slds-gutters">
-                            <div className="slds-col">
-                                <Input
-                                    iconLeft={
-                                        <InputIcon
-                                            assistiveText={{
-                                                icon: 'Pick from date',
-                                            }}
-                                            iconCategory="utility"
-                                            iconName="event"
-                                            calendar={this.calendarFrom} onClick={() => this.calendarFrom.setOpen(true)}
-                                        />}
-                                    fieldLevelHelpTooltip={
-                                        <Tooltip
-                                            align="top left"
-                                            content="ex: January 2020"
-                                            isOpen={this.props.tooltipOpen}
-                                        />
-                                    }
-                                    variant="outlined"
-                                    label='From'
-                                    value={this.props.projects[i].fromDateString}
-                                    onChange={e => this.updateFromDate(i, e.target.value)}
-                                />
-                                <DatePicker
-                                    onChange={date => this.updateFromDate(i, date)}
-                                    dateFormat={Variables.datepickerDateFormat}
-                                    showMonthYearPicker
-                                    showFullMonthYearPicker
-                                    ref={(c) => this.calendarFrom = c}
-                                    selected={this.props.projects[i].fromDate}
 
-                                    customInput={
-                                        <div></div>
-
-                                    }
-                                />
-                            </div>
-                            <div className="slds-col">
-                                <Input
-                                    iconLeft={
-                                        <InputIcon
-                                            assistiveLeft={{
-                                                icon: 'Pick to date',
-                                            }}
-                                            iconCategory="utility"
-                                            iconName="event"
-                                            calendar={this.calendarTo} onClick={() => this.calendarTo.setOpen(true)}
-                                        />}
-                                    fieldLevelHelpTooltip={
-                                        <Tooltip
-                                            align="top left"
-                                            content="ex: January 2020"
-                                            isOpen={this.props.tooltipOpen}
-                                        />
-                                    }
-                                    variant="outlined"
-                                    label='To'
-                                    value={this.props.projects[i].toDateString}
-                                    onChange={e => this.updateToDate(i, e.target.value)}
-                                />
-                                <DatePicker
-                                    onChange={date => this.updateToDate(i, date)}
-                                    dateFormat={Variables.datepickerDateFormat}
-                                    showMonthYearPicker
-                                    showFullMonthYearPicker
-                                    ref={(c) => this.calendarTo = c}
-                                    selected={this.props.projects[i].toDate}
-                                    customInput={
-                                        <div></div>
-
-                                    }
-                                />
-                            </div>
-                        </div>
-                        <Textarea
-                            label='Description'
-                            value={this.props.projects[i].description}
-                            onChange={e => this.updateDescription(i, e.target.value)}
-                        />
-                    </AccordionPanel >
-                )
-            }
-
-            return (
-                <Card
-                    heading={this.props.header}
-                    icon={<Icon category="standard" name="case_wrap_up" size="small" />}
-                    headerActions={
-                        !isEmpty && UI.getAdd(this.addProject)
+        for (let i = 0; i < this.props.projects.length; i++) {
+            projects.push(
+                <AccordionPanel
+                    panelContentActions={
+                        <DeleteItem title="Delete project" item={this.props.projects[i].project || 'Project ' + (i + 1)} onDelete={() => this.deleteProject(i)} />
                     }
-                    empty={
-                        isEmpty ? (
-                            <CardEmpty heading="No projects">
-                                {UI.getAdd(this.addProject)}
-                            </CardEmpty>
-                        ) : null
-                    }
+                    key={i}
+                    onTogglePanel={(e) => UI.getTogglePanel(i, this.setState)}
+                    expanded={!!this.state.expandedPanels[i]}
+                    summary={this.props.projects[i].project || 'Project ' + (i + 1)}
                 >
-                    <p className='slds-col_padded'>
-                        {this.props.description}
-                    </p>
-                    {projects.length > 0 &&
-                        <Accordion>
-                            {projects}
-                        </Accordion>
-                    } 
-                </Card>
+                    <Input
+                        variant="outlined"
+                        label='Project'
+                        value={this.props.projects[i].project}
+                        onChange={e => this.updateProject(i, e.target.value)}
+                    />
+                    <Input
+                        variant="outlined"
+                        label='Position'
+                        value={this.props.projects[i].position}
+                        onChange={e => this.updatePosition(i, e.target.value)}
+                    />
+                    <Input
+                        variant="outlined"
+                        label='Company'
+                        value={this.props.projects[i].company}
+                        onChange={e => this.updateCompany(i, e.target.value)}
+                    />
+                    <div className="slds-grid slds-gutters">
+                        <div className="slds-col">
+                            <Input
+                                variant="outlined"
+                                label='City'
+                                value={this.props.projects[i].city}
+                                onChange={e => this.updateCity(i, e.target.value)}
+                            />
+                        </div>
+                        <div className="slds-col">
+                            <Input
+                                variant="outlined"
+                                label='Country'
+                                value={this.props.projects[i].country}
+                                onChange={e => this.updateCountry(i, e.target.value)}
+                            />
+                        </div>
+                    </div>
+                    <div className="slds-grid slds-gutters">
+                        <div className="slds-col">
+                            <Input
+                                iconLeft={
+                                    <InputIcon
+                                        assistiveText={{
+                                            icon: 'Pick from date',
+                                        }}
+                                        iconCategory="utility"
+                                        iconName="event"
+                                        calendar={this.calendarFrom} onClick={() => this.calendarFrom.setOpen(true)}
+                                    />}
+                                fieldLevelHelpTooltip={
+                                    <Tooltip
+                                        align="top left"
+                                        content="ex: January 2020"
+                                        isOpen={this.props.tooltipOpen}
+                                    />
+                                }
+                                variant="outlined"
+                                label='From'
+                                value={this.props.projects[i].fromDateString}
+                                onChange={e => this.updateFromDate(i, e.target.value)}
+                            />
+                            <DatePicker
+                                onChange={date => this.updateFromDate(i, date)}
+                                dateFormat={Variables.datepickerDateFormat}
+                                showMonthYearPicker
+                                showFullMonthYearPicker
+                                ref={(c) => this.calendarFrom = c}
+                                selected={this.props.projects[i].fromDate}
+
+                                customInput={
+                                    <div></div>
+
+                                }
+                            />
+                        </div>
+                        <div className="slds-col">
+                            <Input
+                                iconLeft={
+                                    <InputIcon
+                                        assistiveLeft={{
+                                            icon: 'Pick to date',
+                                        }}
+                                        iconCategory="utility"
+                                        iconName="event"
+                                        calendar={this.calendarTo} onClick={() => this.calendarTo.setOpen(true)}
+                                    />}
+                                fieldLevelHelpTooltip={
+                                    <Tooltip
+                                        align="top left"
+                                        content="ex: January 2020"
+                                        isOpen={this.props.tooltipOpen}
+                                    />
+                                }
+                                variant="outlined"
+                                label='To'
+                                value={this.props.projects[i].toDateString}
+                                onChange={e => this.updateToDate(i, e.target.value)}
+                            />
+                            <DatePicker
+                                onChange={date => this.updateToDate(i, date)}
+                                dateFormat={Variables.datepickerDateFormat}
+                                showMonthYearPicker
+                                showFullMonthYearPicker
+                                ref={(c) => this.calendarTo = c}
+                                selected={this.props.projects[i].toDate}
+                                customInput={
+                                    <div></div>
+
+                                }
+                            />
+                        </div>
+                    </div>
+                    <Textarea
+                        label='Description'
+                        value={this.props.projects[i].description}
+                        onChange={e => this.updateDescription(i, e.target.value)}
+                    />
+                </AccordionPanel >
             )
         }
+
+        return (
+            <Card
+                heading={this.props.header}
+                icon={<Icon category="standard" name="case_wrap_up" size="small" />}
+                headerActions={
+                    !isEmpty && UI.getAdd(this.addProject)
+                }
+                empty={
+                    isEmpty ? (
+                        <CardEmpty heading="No projects">
+                            {UI.getAdd(this.addProject)}
+                        </CardEmpty>
+                    ) : null
+                }
+            >
+                <p className='slds-col_padded'>
+                    {this.props.description}
+                </p>
+                {projects.length > 0 &&
+                    <Accordion>
+                        {projects}
+                    </Accordion>
+                }
+            </Card>
+        )
+
     }
 }
 
