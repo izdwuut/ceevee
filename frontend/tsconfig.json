@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "es5",
     "lib": [
       "dom",
@@ -8,19 +9,22 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
+    "strict": false,
     "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react",
-    "baseUrl": "src"
+    "jsx": "preserve"
   },
   "include": [
-    "src"
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx", "src/pages/_document.js", "styles/pdf/templates/upeksa/styles.js", "styles/pdf/templates/upeksa/variables.js", "styles/pdf/templates/upeksa/gdpaStyles.js", "styles/pdf/templates/upeksa/headerStyles.js", "styles/pdf/templates/upeksa/detailsStyles.js", "styles/pdf/templates/upeksa/educationStyles.js", "styles/pdf/templates/upeksa/experienceStyles.js", "styles/pdf/templates/upeksa/certificatesStyles.js", "styles/pdf/templates/upeksa/hobbiesStyles.js", "styles/components/pdf/Viewer.ts"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

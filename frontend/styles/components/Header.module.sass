@@ -1,0 +1,32 @@
+$spacing-small: 0.5rem
+$spacing: 1rem
+$spacing-large:1.5rem
+
+.header
+    z-index: 5
+    width: 100%
+    padding-right: $spacing-large !important
+    grid-area: header
+
+.logo
+    padding-right: $spacing-large
+
+.header,
+.logo,
+.fontSize
+    display: flex
+
+.logo,
+.headerActions
+    align-items: center
+
+.slds-context-bar
+    padding: $spacing-large 0
+
+.headerActionIcon
+    margin-right: $spacing-small
+
+.headerAction:not(.accessibility)
+    display: flex
+    align-items: center
+    padding-left: $spacing-large
