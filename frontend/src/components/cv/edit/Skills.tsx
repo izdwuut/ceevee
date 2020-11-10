@@ -76,9 +76,6 @@ export class Skills extends React.Component<Props> {
             },
         }));
         this.props.addSkill()
-        this.setState({
-            activeIndex: this.props.skills.length
-        })
         this.props.showToast(['New skill has been added.'], 'success')
         this.updatePreview()
     }
@@ -90,7 +87,7 @@ export class Skills extends React.Component<Props> {
     }
 
     render(): JSX.Element {
-        const isEmpty: boolean = this.props.skills.length === 0
+        const isEmpty: boolean =this.props.skills.length === 0
 
         let skills: Array<AccordionPanel> = []
         for (let i = 0; i < this.props.skills.length; i++) {
@@ -143,6 +140,7 @@ export class Skills extends React.Component<Props> {
                     </Accordion>
                 }
             </Card>
+           
         )
     }
 }
