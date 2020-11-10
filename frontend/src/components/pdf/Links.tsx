@@ -1,12 +1,24 @@
 import React from 'react';
 import { Text, View, Link } from '@react-pdf/renderer';
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux"
+import { RootState } from 'src/store/reducers';
+import * as Types from 'src/store/reducers/components/cv/edit/links/types'
 
-export class Links extends React.Component {
-    render() {
+const mapStateToProps = (state:RootState):Types.LinksState => {
+    return state.links
+}
+
+const connector = connect(
+    mapStateToProps,
+    null
+)
+
+type Props = ConnectedProps<typeof connector>
+
+class Links extends React.Component<Props> {
+    render():JSX.Element {
         return (
             <View style={this.props.style.section}>
-
                 {this.props.visible && <View style={this.props.style.section}>
                     <Text style={this.props.style.header}>
                         {this.props.header}
@@ -22,12 +34,5 @@ export class Links extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
-    return state.links
-}
-
-export default connect(
-    mapStateToProps,
-    null,
-)(Links);
+export default connector(Links)
 

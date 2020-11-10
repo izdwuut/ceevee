@@ -1,9 +1,22 @@
 import React from 'react';
 import { Text, View } from '@react-pdf/renderer';
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux"
+import { RootState } from 'src/store/reducers';
+import * as Types from 'src/store/reducers/components/cv/edit/education/types'
 
-export class Education extends React.Component {
-    render() {
+const mapStateToProps = (state: RootState): Types.EducationState => {
+    return state.education
+}
+
+const connector = connect(
+    mapStateToProps,
+    null
+)
+
+type Props = ConnectedProps<typeof connector>
+
+export class Education extends React.Component<Props> {
+    render():JSX.Element {
         return (
             <View style={this.props.style.section}>
 
@@ -30,11 +43,4 @@ export class Education extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
-    return state.education
-}
-
-export default connect(
-    mapStateToProps,
-    null,
-)(Education);
+export default connector(Education)

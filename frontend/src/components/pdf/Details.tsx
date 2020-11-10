@@ -1,9 +1,22 @@
 import React from 'react';
 import { Text, View, Link } from '@react-pdf/renderer';
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux"
+import { RootState } from 'src/store/reducers';
+import * as Types from 'src/store/reducers/components/cv/edit/details/types'
 
-export class Details extends React.Component {
-    render() {
+const mapStateToProps = (state:RootState):Types.DetailsState => {
+    return state.details
+}
+
+const connector = connect(
+    mapStateToProps,
+    null
+)
+
+type Props = ConnectedProps<typeof connector>
+
+export class Details extends React.Component<Props> {
+    render():JSX.Element {
         return (
             <View style={this.props.style.section}>
                 <Text style={this.props.style.header}>{this.props.emptyHeader ? '' : this.props.header}</Text>
@@ -11,7 +24,7 @@ export class Details extends React.Component {
                     <Text style={this.props.style.origin}>{this.props.city}{this.props.country != '' && this.props.city != '' ? ', ' : ''}{this.props.country}</Text>
                 }
                 {this.props.email != '' &&
-                    <Link style={this.props.style.email} url={`mailto:${this.props.email}`}>{this.props.email}</Link>
+                    <Link style={this.props.style.email} src={`mailto:${this.props.email}`}>{this.props.email}</Link>
                 }
                 {this.props.mobile != '' &&
                     <Text style={this.props.style.mobileHeader}>
@@ -33,11 +46,5 @@ export class Details extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
-    return state.details
-}
+export default connector(Details)
 
-export default connect(
-    mapStateToProps,
-    null,
-)(Details);

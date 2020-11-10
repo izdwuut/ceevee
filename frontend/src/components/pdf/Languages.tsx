@@ -1,13 +1,24 @@
 import React from 'react';
 import { Text, View } from '@react-pdf/renderer';
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux"
+import { RootState } from 'src/store/reducers';
+import * as Types from 'src/store/reducers/components/cv/edit/languages/types'
 
+const mapStateToProps = (state:RootState):Types.LanguagesState => {
+    return state.languages
+}
 
-export class Languages extends React.Component {
-    render() {
+const connector = connect(
+    mapStateToProps,
+    null
+)
+
+type Props = ConnectedProps<typeof connector>
+
+class Languages extends React.Component<Props> {
+    render():JSX.Element {
         return (
             <View style={this.props.style.section}>
-
                 {this.props.visible &&
                     <View>
                         <Text style={this.props.style.header}>{this.props.header}</Text>
@@ -23,12 +34,5 @@ export class Languages extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
-    return state.languages
-}
-
-export default connect(
-    mapStateToProps,
-    null,
-)(Languages);
+export default connector(Languages)
 

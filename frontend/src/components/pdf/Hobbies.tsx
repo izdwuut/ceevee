@@ -1,10 +1,22 @@
 import React from 'react';
 import { Text, View } from '@react-pdf/renderer';
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux"
+import { RootState } from 'src/store/reducers';
+import * as Types from 'src/store/reducers/components/cv/edit/hobbies/types'
 
+const mapStateToProps = (state: RootState): Types.HobbiesState => {
+    return state.hobbies
+}
 
-export class Hobbies extends React.Component {
-    render() {
+const connector = connect(
+    mapStateToProps,
+    null
+)
+
+type Props = ConnectedProps<typeof connector>
+
+class Hobbies extends React.Component<Props> {
+    render(): JSX.Element {
         return (
             <View style={this.props.style.section}>
 
@@ -23,11 +35,4 @@ export class Hobbies extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
-    return state.hobbies
-}
-
-export default connect(
-    mapStateToProps,
-    null,
-)(Hobbies);
+export default connector(Hobbies)

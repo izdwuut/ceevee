@@ -31,7 +31,7 @@ import certificatesStyles from '../../../../styles/components/pdf/templates/upek
 import projectsStyles from '../../../../styles/components/pdf/templates/upeksa/projectsStyles'
 
 class Upeksa extends React.Component {
-  render() {
+  render(): JSX.Element {
     return (
       <Document>
         <Page style={styles.page}>

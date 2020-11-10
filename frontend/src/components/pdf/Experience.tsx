@@ -1,12 +1,24 @@
 import React from 'react';
 import { Text, View } from '@react-pdf/renderer';
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux"
+import { RootState } from 'src/store/reducers';
+import * as Types from 'src/store/reducers/components/cv/edit/experience/types'
 
-export class Experience extends React.Component {
-    render() {
+const mapStateToProps = (state: RootState): Types.ExperienceState => {
+    return state.experience
+}
+
+const connector = connect(
+    mapStateToProps,
+    null
+)
+
+type Props = ConnectedProps<typeof connector>
+
+export class Experience extends React.Component<Props> {
+    render(): JSX.Element {
         return (
             <View style={this.props.style.section}>
-
                 {this.props.visible &&
                     <View>
                         <Text style={this.props.style.header}>{this.props.header}</Text>
@@ -32,11 +44,4 @@ export class Experience extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
-    return state.experience
-}
-
-export default connect(
-    mapStateToProps,
-    null,
-)(Experience);
+export default connector(Experience)

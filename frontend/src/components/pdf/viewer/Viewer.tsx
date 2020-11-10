@@ -310,7 +310,6 @@ ${this.props.gdpa.gdpa}
   render() {
     return (
       <div className="pdf" css={viewer}>
-        
         <div className="actions-top">
           <Button
             iconCategory="utility"

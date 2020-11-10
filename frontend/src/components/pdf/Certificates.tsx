@@ -14,7 +14,7 @@ const connector = connect(
 type Props = ConnectedProps<typeof connector>
 
 export class Certificates extends React.Component<Props> {
-    render() {
+    render():JSX.Element {
         return (
             <View style={this.props.style.section}>
 

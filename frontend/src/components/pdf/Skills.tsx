@@ -1,10 +1,22 @@
 import React from 'react';
-import { Text, View } from '@react-pdf/renderer';
-import { connect } from "react-redux";
+import { Text, View, Link } from '@react-pdf/renderer';
+import { connect, ConnectedProps } from "react-redux"
+import { RootState } from 'src/store/reducers';
+import * as Types from 'src/store/reducers/components/cv/edit/skills/types'
 
+const mapStateToProps = (state:RootState):Types.SkillsState => {
+    return state.skills
+}
 
-export class Skills extends React.Component {
-    render() {
+const connector = connect(
+    mapStateToProps,
+    null
+)
+
+type Props = ConnectedProps<typeof connector>
+
+class Skills extends React.Component<Props> {
+    render():JSX.Element {
         return (
             <View>
                 {this.props.visible &&
@@ -26,11 +38,4 @@ export class Skills extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
-    return state.skills
-}
-
-export default connect(
-    mapStateToProps,
-    null,
-)(Skills);
+export default connector(Skills)
