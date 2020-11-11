@@ -1,0 +1,21 @@
+.container
+    display: grid
+    grid-template-areas: "header header header header header" ". ui-container . pdf-container ." ". . . . ."
+    $column-width: 1fr
+    $gutter-width: auto
+    grid-template-columns: $gutter-width $column-width $gutter-width $column-width $gutter-width
+
+.uiContainer 
+    grid-area: ui-container
+    padding: 1%
+
+.pdfContainer
+    grid-area: pdf-container
+    display: flex
+    justify-content: center
+
+.description 
+    padding-top: 0.75rem
+
+.pageHeader
+    margin-bottom: 2rem
