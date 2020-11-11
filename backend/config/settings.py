@@ -9,6 +9,8 @@ class Settings(BaseSettings):
     DATABASE_PORT: str
     DATABASE_NAME: str
 
+    APP_NAME: str = 'Create.CV'
+
     class Config:
         env_prefix: str = 'CREATE_CV_'
         case_sensitive: bool = True
