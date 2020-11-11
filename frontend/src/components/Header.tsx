@@ -20,7 +20,7 @@ export default class Header extends React.Component {
 
         <GlobalNavigationBarRegion region="secondary" navigation>
           <GlobalNavigationBarLink active label="Homepage" />
-          <GlobalNavigationBarLink label="Edit CV" href="/cv/edit/1" />
+          <GlobalNavigationBarLink label="Edit CV" href="/cv/edit" />
           <GlobalNavigationBarLink label="CVs List" href="/cv/list" />
           <GlobalNavigationBarLink label="About Us" />
           <GlobalNavigationBarLink label="Contact" />

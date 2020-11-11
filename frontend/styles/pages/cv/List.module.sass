@@ -1,0 +1,21 @@
+
+.container
+  display: grid
+  grid-template-areas: "header header header" "page-header page-header page-header" ". cvs . "
+
+  grid-template-columns: 1rem auto 0.5rem
+
+
+.pageHeader 
+  grid-area: page-header
+  align-self: center
+  justify-self: center
+  width: 100%
+  margin-bottom: 1.5rem
+
+.cvs 
+  grid-area: cvs
+
+.slds-grid:last-child 
+  margin-right: 0
+

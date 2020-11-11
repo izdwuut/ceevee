@@ -15,16 +15,14 @@ import Links from 'src/components/cv/edit/Links';
 import GDPA from 'src/components/cv/edit/GDPA';
 import Certificates from 'src/components/cv/edit/Certificates';
 import Projects from 'src/components/cv/edit/Projects';
-import Header from 'src/components/Header'
 
-import styles from 'styles/cv/Edit.module.css'
+import styles from 'styles/pages/cv/Edit.module.sass'
 
 export default class CreateCV extends React.Component {
   render() {
 
     return (
       <div className={styles.container}>
-        <Header />
         <div className={styles.uiContainer}>
           <PageHeader
             icon={

@@ -5,8 +5,9 @@ import { IconSettings } from '@salesforce/design-system-react'
 
 import Wrapper from 'src/components/accessibility/Wrapper'
 import { wrapper } from 'src/store/store'
-import  Toasts from 'src/components/Toasts'
-import  Modal from 'src/components/Modal';
+import Toasts from 'src/components/Toasts'
+import Modal from 'src/components/Modal';
+import Header from 'src/components/Header'
 
 export class CreateCVApp extends App {
 
@@ -19,6 +20,7 @@ export class CreateCVApp extends App {
           <link rel="stylesheet" type="text/css" href="/salesforce-lightning-design-system.min.css"></link>
         </Head>
         <Wrapper >
+          <Header />
           <Component {...pageProps} />
           <Toasts />
           <Modal />
