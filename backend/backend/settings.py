@@ -11,12 +11,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
-# #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
-# THE SECRET KEY IS IMPORTED FROM:
-# important/key.py
-from backend.important.key import TOKEN
-# #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+ENV_PREFIX = 'CREATE_CV_'
+DATABASE_ENV_PREFIX = ENV_PREFIX + 'DATABASE_'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = TOKEN
+SECRET_KEY = os.environ.get(ENV_PREFIX + 'SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -94,14 +92,15 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'dbtest',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get(DATABASE_ENV_PREFIX + 'NAME'),
+        'USER': os.environ.get(DATABASE_ENV_PREFIX + 'USER'),
+        'PASSWORD': os.environ.get(DATABASE_ENV_PREFIX + 'PASSWORD'),
+        'HOST': os.environ.get(DATABASE_ENV_PREFIX + 'HOST'),
+        'PORT': os.environ.get(DATABASE_ENV_PREFIX + 'PORT'),
     }
 }
 
