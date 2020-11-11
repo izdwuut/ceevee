@@ -7,11 +7,6 @@ from config.settings import Settings
 settings = Settings()
 app = FastAPI(title=settings.APP_NAME)
 
-
-@app.get("/")
-async def root():
-    return {}
-
 app.include_router(
     users.router,
     prefix='/users',
