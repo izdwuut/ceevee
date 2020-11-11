@@ -41,10 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # additional
     'rest_framework',
-    # ----------
+    'backend.cv'
 ]
 
 # REST FRAMEWORK
