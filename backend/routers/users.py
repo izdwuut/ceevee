@@ -7,4 +7,3 @@ router = APIRouter()
 async def get_users():
     user = User(id=1, user_name='Lorem ipsum')
     return await User_Pydantic.from_tortoise_orm(user)
-User.get()
