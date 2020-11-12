@@ -8,8 +8,11 @@ class Settings(BaseSettings):
     DATABASE_HOST: str
     DATABASE_PORT: str
     DATABASE_NAME: str
-
+    SECRET_KEY: str
     APP_NAME: str = 'Create.CV'
+    TOKEN_LIFETIME: int = 60 * 60
+    REFRESH_TOKEN_LIFETIME: int = 60 * 60 * 24
+    API_PREFIX: str = '/api'
 
     class Config:
         env_prefix: str = 'CREATE_CV_'

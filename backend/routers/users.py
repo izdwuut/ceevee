@@ -1,9 +1,12 @@
-from fastapi import APIRouter
-from models.users import User_Pydantic, User
-router = APIRouter()
+from fastapi_users import FastAPIUsers
+from models import users
+from config.auth.jwt import auth_backends
 
-
-@router.get('/')
-async def get_users():
-    user = User(id=1, user_name='Lorem ipsum')
-    return await User_Pydantic.from_tortoise_orm(user)
+fastapi_users = FastAPIUsers(
+    users.user_db,
+    auth_backends,
+    users.User,
+    users.UserCreate,
+    users.UserUpdate,
+    users.UserDB,
+)

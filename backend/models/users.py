@@ -1,11 +1,26 @@
-from tortoise.models import Model
-from tortoise import fields
-from tortoise.contrib.pydantic import pydantic_model_creator
+from fastapi_users import models
+from fastapi_users.db import TortoiseBaseUserModel, TortoiseUserDatabase
 
 
-class User(Model):
-    id: int = fields.IntField(pk=True)
-    user_name: str = fields.CharField(max_length=255, unique=True)
+class User(models.BaseUser):
+    pass
 
 
-User_Pydantic = pydantic_model_creator(User)
+class UserCreate(models.BaseUserCreate):
+    pass
+
+
+class UserUpdate(User, models.BaseUserUpdate):
+    pass
+
+
+class UserDB(User, models.BaseUserDB):
+    pass
+
+
+class UserModel(TortoiseBaseUserModel):
+    class Meta:
+        table: str = 'users'
+
+
+user_db = TortoiseUserDatabase(UserDB, UserModel)
