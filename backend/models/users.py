@@ -19,7 +19,8 @@ class UserDB(User, models.BaseUserDB):
 
 
 class UserModel(TortoiseBaseUserModel):
-    pass
+    class Meta:
+        table: str = 'users'
 
 
 user_db = TortoiseUserDatabase(UserDB, UserModel)
