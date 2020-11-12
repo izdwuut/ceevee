@@ -25,6 +25,6 @@ for router in auth_routers:
 register_tortoise(
     app,
     config=DB_CONFIG,
-    generate_schemas=True,
+    generate_schemas=False,
     add_exception_handlers=True,
 )

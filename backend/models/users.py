@@ -2,6 +2,7 @@ from fastapi_users import models
 from fastapi_users.db import TortoiseBaseUserModel, TortoiseUserDatabase
 from typing import Optional
 from datetime import date
+from tortoise import fields
 
 
 class User(models.BaseUser):
@@ -12,11 +13,12 @@ class User(models.BaseUser):
     country: Optional[str]
     city: Optional[str]
     driving_license: Optional[str]
-    birth_date: date
+    birth_date: Optional[date]
 
 
 class UserCreate(models.BaseUserCreate):
-    pass
+    first_name: str
+    last_name: str
 
 
 class UserUpdate(User, models.BaseUserUpdate):
@@ -28,6 +30,15 @@ class UserDB(User, models.BaseUserDB):
 
 
 class UserModel(TortoiseBaseUserModel):
+    first_name = fields.CharField(null=False, max_length=255)
+    middle_name = fields.CharField(null=True, max_length=255)
+    last_name = fields.CharField(null=False, max_length=255)
+    mobile = fields.CharField(null=True, max_length=255)
+    country = fields.CharField(null=True, max_length=255)
+    city = fields.CharField(null=True, max_length=255)
+    driving_license = fields.CharField(null=True, max_length=255)
+    birth_date = fields.DateField(null=True)
+
     class Meta:
         table: str = 'users'
 
