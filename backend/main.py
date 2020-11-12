@@ -4,6 +4,7 @@ from tortoise.contrib.fastapi import register_tortoise
 from config.db import DB_CONFIG
 from config.settings import Settings
 from config.auth.jwt import jwt_authentication
+from routers.cv import cv_router
 
 settings = Settings()
 app = FastAPI(title=settings.APP_NAME)
@@ -21,6 +22,12 @@ for router in auth_routers:
         prefix=settings.API_PREFIX + '/auth',
         tags=['auth'],
     )
+
+app.include_router(
+    cv_router,
+    prefix=settings.API_PREFIX + '/cv',
+    tags=['cv'],
+)
 
 register_tortoise(
     app,

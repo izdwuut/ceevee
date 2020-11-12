@@ -17,7 +17,11 @@ DB_CONFIG = {
     },
     "apps": {
         "models": {
-            "models": ["models.users"],
+            "models": [
+                "models.users",
+                "models.cv.details",
+                "models.cv.cv"
+            ],
             "default_connection": "default",
         }
     }
