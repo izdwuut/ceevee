@@ -13,4 +13,3 @@ class Details(models.Model):
     driving_license = fields.BooleanField(null=False, default=False)
     birth_date = fields.BooleanField(null=False, default=False)
     position: fields.CharField(null=True, max_length=255)
-
