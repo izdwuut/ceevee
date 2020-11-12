@@ -10,7 +10,8 @@ class Settings(BaseSettings):
     DATABASE_NAME: str
     SECRET_KEY: str
     APP_NAME: str = 'Create.CV'
-    TOKEN_LIFETIME: int = 3600
+    TOKEN_LIFETIME: int = 60 * 60
+    REFRESH_TOKEN_LIFETIME: int = 60 * 60 * 24
     API_PREFIX: str = '/api'
 
     class Config:

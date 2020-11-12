@@ -3,7 +3,7 @@ from routers.users import fastapi_users
 from tortoise.contrib.fastapi import register_tortoise
 from config.db import DB_CONFIG
 from config.settings import Settings
-from config.jwt import jwt_authentication
+from config.auth.jwt import jwt_authentication
 
 settings = Settings()
 app = FastAPI(title=settings.APP_NAME)

@@ -1,6 +1,6 @@
 from fastapi_users import FastAPIUsers
 from models import users
-from config.jwt import auth_backends
+from config.auth.jwt import auth_backends
 
 fastapi_users = FastAPIUsers(
     users.user_db,
