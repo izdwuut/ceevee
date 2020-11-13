@@ -6,6 +6,7 @@ from config.settings import Settings
 from config.auth.jwt import jwt_authentication
 from routers.cv import cv_router
 
+
 settings = Settings()
 app = FastAPI(title=settings.APP_NAME)
 
