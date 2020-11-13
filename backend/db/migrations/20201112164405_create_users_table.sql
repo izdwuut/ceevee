@@ -15,4 +15,4 @@ CREATE TABLE users (
     birth_date varchar(255)
 )
 -- migrate:down
-
+DROP TABLE users

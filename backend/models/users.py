@@ -3,6 +3,7 @@ from fastapi_users.db import TortoiseBaseUserModel, TortoiseUserDatabase
 from typing import Optional
 from datetime import date
 from tortoise import fields
+from tortoise.contrib.pydantic import pydantic_model_creator
 
 
 class User(models.BaseUser):
@@ -44,3 +45,4 @@ class UserModel(TortoiseBaseUserModel):
 
 
 user_db = TortoiseUserDatabase(UserDB, UserModel)
+User_Pydantic = pydantic_model_creator(UserModel, exclude=('id', 'hashed_password', 'is_active', 'is_superuser'))
