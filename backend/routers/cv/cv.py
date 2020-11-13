@@ -26,3 +26,6 @@ async def add_cv(user_id: UUID4):
     details = await DetailsModel.create()
     cv = await CVModel().create(details=details, user_id=user_id)
     return await CV_Pydantic.from_tortoise_orm(cv)
+
+
+

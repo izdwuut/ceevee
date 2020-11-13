@@ -4,11 +4,18 @@ from tortoise.contrib.fastapi import register_tortoise
 from config.db import DB_CONFIG
 from config.settings import Settings
 from config.auth.jwt import jwt_authentication
-from routers.cv import cv_router
-
+from routers.cv.cv import cv_router
+from routers.cv.details import details_router
 
 settings = Settings()
 app = FastAPI(title=settings.APP_NAME)
+
+register_tortoise(
+    app,
+    config=DB_CONFIG,
+    generate_schemas=False,
+    add_exception_handlers=True,
+)
 
 auth_routers = [
     fastapi_users.get_register_router(),
@@ -16,6 +23,7 @@ auth_routers = [
     fastapi_users.get_users_router(),
     fastapi_users.get_reset_password_router(settings.SECRET_KEY)
 ]
+
 
 for router in auth_routers:
     app.include_router(
@@ -30,9 +38,9 @@ app.include_router(
     tags=['cv'],
 )
 
-register_tortoise(
-    app,
-    config=DB_CONFIG,
-    generate_schemas=False,
-    add_exception_handlers=True,
+app.include_router(
+    details_router,
+    prefix=settings.API_PREFIX + '/details',
+    tags=['details'],
 )
+
