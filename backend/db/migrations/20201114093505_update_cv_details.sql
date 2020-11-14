@@ -1,0 +1,7 @@
+-- migrate:up
+ALTER TABLE cvs DROP COLUMN details_id;
+ALTER TABLE details ADD COLUMN cv_id UUID NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000';
+-- migrate:down
+ALTER TABLE cvs ADD COLUMN details_id;
+ALTER TABLE details DROP COLUMN cv_id;
+

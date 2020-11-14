@@ -5,7 +5,6 @@ from tortoise import Tortoise
 
 class CVModel(models.Model):
     id = fields.UUIDField(pk=True)
-    details: fields.OneToOneRelation = fields.OneToOneField('models.DetailsModel', related_name='cv')
 
     user = fields.ForeignKeyField('models.UserModel', related_name='cvs')
 
