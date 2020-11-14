@@ -1,4 +1,4 @@
-from tortoise import fields, models
+from tortoise import fields, models, Tortoise
 from tortoise.contrib.pydantic import pydantic_model_creator
 
 
@@ -14,6 +14,8 @@ class DetailsModel(models.Model):
     driving_license = fields.BooleanField(null=False, default=False)
     birth_date = fields.BooleanField(null=False, default=False)
     position: fields.CharField(null=True, max_length=255)
+
+    cv: fields.OneToOneRelation = fields.OneToOneField('models.CVModel', related_name='details')
 
     class Meta:
         table = 'details'

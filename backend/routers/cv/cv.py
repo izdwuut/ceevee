@@ -23,8 +23,9 @@ async def get_cvs(user_id: UUID4):
 
 @cv_router.post("/{user_id}")
 async def add_cv(user_id: UUID4):
-    details = await DetailsModel.create()
-    cv = await CVModel().create(details=details, user_id=user_id)
+    cv = await CVModel().create(user_id=user_id)
+    details = await DetailsModel.create(cv_id=cv.id)
+    cv.details_id = details.id
     return await CV_Pydantic.from_tortoise_orm(cv)
 
 

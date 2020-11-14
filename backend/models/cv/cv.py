@@ -14,5 +14,6 @@ class CVModel(models.Model):
 
 Tortoise.init_models(['models.cv.cv', 'models.users', 'models.cv.details'], "models")
 
+
 CV_Pydantic_List = pydantic_queryset_creator(CVModel)
 CV_Pydantic = pydantic_model_creator(CVModel)
