@@ -45,4 +45,4 @@ class UserModel(TortoiseBaseUserModel):
 
 
 user_db = TortoiseUserDatabase(UserDB, UserModel)
-User_Pydantic = pydantic_model_creator(UserModel, exclude=('id', 'hashed_password', 'is_active', 'is_superuser'))
+User_Pydantic = pydantic_model_creator(UserModel, exclude=('hashed_password', 'is_active', 'is_superuser'))
