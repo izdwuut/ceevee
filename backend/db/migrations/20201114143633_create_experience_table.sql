@@ -9,7 +9,7 @@ CREATE TABLE experience (
     to_date date,
     description text,
 
-    cv_id UUID
+    cv_id UUID NOT NULL
 )
 -- migrate:down
 DROP TABLE experience
