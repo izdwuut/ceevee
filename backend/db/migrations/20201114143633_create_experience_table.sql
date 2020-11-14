@@ -5,9 +5,9 @@ CREATE TABLE experience (
     company varchar(255),
     city varchar(255),
     country varchar(255),
-    from date,
-    to date,
-    description text
+    from_date date,
+    to_date date,
+    description text,
 
     cv_id UUID
 )
