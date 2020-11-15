@@ -48,7 +48,7 @@ app.include_router(
 
 app.include_router(
     experience_router,
-    prefix=settings.API_PREFIX + '/experience',
+    prefix=settings.API_PREFIX + '/cvs/experience',
     tags=['experience'],
 )
 

@@ -21,4 +21,5 @@ Tortoise.init_models([
 
 
 CV_Pydantic = pydantic_model_creator(CVModel)
+CV_List_Pydantic = pydantic_model_creator(CVModel, include=('id',))
 CV_Add_Pydantic = pydantic_model_creator(CVModel, include=('id',))
