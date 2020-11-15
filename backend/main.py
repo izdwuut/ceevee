@@ -6,6 +6,8 @@ from config.settings import Settings
 from config.auth.jwt import jwt_authentication
 from routers.cv.cv import cv_router
 from routers.cv.details import details_router
+from routers.cv.experience import experience_router
+import uvicorn
 
 settings = Settings()
 app = FastAPI(title=settings.APP_NAME)
@@ -34,8 +36,8 @@ for router in auth_routers:
 
 app.include_router(
     cv_router,
-    prefix=settings.API_PREFIX + '/cv',
-    tags=['cv'],
+    prefix=settings.API_PREFIX + '/cvs',
+    tags=['cvs'],
 )
 
 app.include_router(
@@ -44,3 +46,11 @@ app.include_router(
     tags=['details'],
 )
 
+app.include_router(
+    experience_router,
+    prefix=settings.API_PREFIX + '/experience',
+    tags=['experience'],
+)
+
+if __name__ == '__main__':
+    uvicorn.run(app, host="0.0.0.0", port=8000)

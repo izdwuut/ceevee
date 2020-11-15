@@ -22,4 +22,4 @@ class DetailsModel(models.Model):
 
 
 Details_Pydantic = pydantic_model_creator(DetailsModel)
-Details_Update_Pydantic = pydantic_model_creator(DetailsModel, exclude=('cv',))
+Details_Update_Pydantic = pydantic_model_creator(DetailsModel)

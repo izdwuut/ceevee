@@ -11,11 +11,12 @@ class ExperienceModel(models.Model):
     from_date = fields.DateField(null=True)
     to_date = fields.DateField(null=True)
 
-    cv = fields.ForeignKeyField('models.cv.cv.CV', related_name='experience')
+    cv = fields.ForeignKeyField('models.CVModel', related_name='experience')
 
     class Meta:
-        table = 'details'
+        table = 'experience'
 
 
 Experience_Pydantic = pydantic_model_creator(ExperienceModel)
-Experience_Update_Pydantic = pydantic_model_creator(ExperienceModel, exclude=('cv',))
+Experience_Update_Pydantic = pydantic_model_creator(ExperienceModel)
+

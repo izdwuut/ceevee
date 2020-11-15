@@ -20,7 +20,8 @@ DB_CONFIG = {
             "models": [
                 "models.users",
                 "models.cv.details",
-                "models.cv.cv"
+                "models.cv.cv",
+                "models.cv.experience"
             ],
             "default_connection": "default",
         }
