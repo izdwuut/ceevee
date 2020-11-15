@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from models.cv.experience import ExperienceModel, Experience_Update_Pydantic, Experience_Pydantic
+from models.cv.experience import ExperienceModel, Experience_Update_Pydantic
 from pydantic import UUID4
 
 experience_router = APIRouter()
@@ -12,3 +12,6 @@ async def patch_experience(experience_id: UUID4, experience: Experience_Update_P
     return await Experience_Update_Pydantic.from_tortoise_orm(experience_orm)
 
 
+@experience_router.delete('/{experience_id}')
+async def delete_experience(experience_id: UUID4):
+    await ExperienceModel.get(id=experience_id).delete()
