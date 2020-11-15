@@ -18,7 +18,10 @@ class ExperienceModel(models.Model):
         table = 'experience'
 
 
-Experience_Create_Out_Pydantic = pydantic_model_creator(ExperienceModel, name='ExperienceCreateOut', exclude=['cv'])
-Experience_Update_In_Pydantic = pydantic_model_creator(ExperienceModel, name='ExperienceUpdateIn', exclude=['id', 'cv'])
-Experience_Update_Out_Pydantic = pydantic_model_creator(ExperienceModel, name='ExperienceUpdateOut', exclude=['cv'])
+Experience_Update_In_Pydantic = pydantic_model_creator(
+    ExperienceModel,
+    name='ExperienceUpdateIn',
+    exclude=['id', 'cv']
+)
+Experience_Out_Pydantic = pydantic_model_creator(ExperienceModel, name='ExperienceOut', exclude=['cv'])
 
