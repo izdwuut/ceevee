@@ -16,7 +16,8 @@ Tortoise.init_models([
     'models.cv.cv',
     'models.users',
     'models.cv.details',
-    'models.cv.experience'
+    'models.cv.experience',
+    'models.cv.education'
 ], "models")
 
 

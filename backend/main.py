@@ -8,6 +8,7 @@ from routers.cv.cv import cv_router
 from routers.cv.details import details_router
 from routers.cv.experience import experience_router
 import uvicorn
+from routers.cv.education import education_router
 
 settings = Settings()
 app = FastAPI(title=settings.APP_NAME)
@@ -51,6 +52,12 @@ app.include_router(
     experience_router,
     prefix=settings.API_PREFIX + CVS_PREFIX,
     tags=['experience'],
+)
+
+app.include_router(
+    education_router,
+    prefix=settings.API_PREFIX + CVS_PREFIX,
+    tags=['education'],
 )
 
 if __name__ == '__main__':

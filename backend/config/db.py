@@ -21,7 +21,8 @@ DB_CONFIG = {
                 "models.users",
                 "models.cv.details",
                 "models.cv.cv",
-                "models.cv.experience"
+                "models.cv.experience",
+                "models.cv.education"
             ],
             "default_connection": "default",
         }
