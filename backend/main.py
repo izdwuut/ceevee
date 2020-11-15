@@ -11,6 +11,7 @@ import uvicorn
 
 settings = Settings()
 app = FastAPI(title=settings.APP_NAME)
+CVS_PREFIX = '/cvs'
 
 register_tortoise(
     app,
@@ -36,19 +37,19 @@ for router in auth_routers:
 
 app.include_router(
     cv_router,
-    prefix=settings.API_PREFIX + '/cvs',
+    prefix=settings.API_PREFIX + CVS_PREFIX,
     tags=['cvs'],
 )
 
 app.include_router(
     details_router,
-    prefix=settings.API_PREFIX + '/cvs/details',
+    prefix=settings.API_PREFIX + CVS_PREFIX,
     tags=['details'],
 )
 
 app.include_router(
     experience_router,
-    prefix=settings.API_PREFIX + '/cvs',
+    prefix=settings.API_PREFIX + CVS_PREFIX,
     tags=['experience'],
 )
 

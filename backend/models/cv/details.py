@@ -21,5 +21,5 @@ class DetailsModel(models.Model):
         table = 'details'
 
 
-Details_Pydantic = pydantic_model_creator(DetailsModel)
-Details_Update_Pydantic = pydantic_model_creator(DetailsModel)
+Details_Update_In_Pydantic = pydantic_model_creator(DetailsModel, name='DetailsUpdateIn', exclude=['id', 'cv'])
+Details_Update_Out_Pydantic = pydantic_model_creator(DetailsModel, name='DetailsUpdateOut', exclude=['cv'])
