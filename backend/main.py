@@ -42,13 +42,13 @@ app.include_router(
 
 app.include_router(
     details_router,
-    prefix=settings.API_PREFIX + '/details',
+    prefix=settings.API_PREFIX + '/cvs/details',
     tags=['details'],
 )
 
 app.include_router(
     experience_router,
-    prefix=settings.API_PREFIX + '/cvs/experience',
+    prefix=settings.API_PREFIX + '/cvs',
     tags=['experience'],
 )
 

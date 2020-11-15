@@ -10,6 +10,7 @@ class ExperienceModel(models.Model):
     country = fields.CharField(max_length=255, null=True)
     from_date = fields.DateField(null=True)
     to_date = fields.DateField(null=True)
+    description = fields.data.TextField(null=True)
 
     cv = fields.ForeignKeyField('models.CVModel', related_name='experience')
 
@@ -17,6 +18,6 @@ class ExperienceModel(models.Model):
         table = 'experience'
 
 
-Experience_Pydantic = pydantic_model_creator(ExperienceModel)
+Experience_Pydantic = pydantic_model_creator(ExperienceModel, exclude=('cv',))
 Experience_Update_Pydantic = pydantic_model_creator(ExperienceModel)
 
