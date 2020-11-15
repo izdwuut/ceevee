@@ -17,9 +17,9 @@ Tortoise.init_models([
     'models.users',
     'models.cv.details',
     'models.cv.experience',
-    'models.cv.education'
+    'models.cv.education',
+    'models.cv.projects'
 ], "models")
-
 
 CV_Pydantic = pydantic_model_creator(CVModel)
 CV_List_Pydantic = pydantic_model_creator(CVModel, include=('id',))

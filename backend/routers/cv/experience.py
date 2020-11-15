@@ -10,7 +10,7 @@ experience_router = APIRouter()
 PREFIX = '/experience'
 
 
-@experience_router.patch(PREFIX + "/{experience_id}", response_model=Experience_Update_In_Pydantic)
+@experience_router.patch(PREFIX + "/{experience_id}", response_model=Experience_Out_Pydantic)
 async def patch_experience(
         experience_id: UUID4,
         experience: Experience_Update_In_Pydantic

@@ -9,6 +9,7 @@ from routers.cv.details import details_router
 from routers.cv.experience import experience_router
 import uvicorn
 from routers.cv.education import education_router
+from routers.cv.projects import projects_router
 
 settings = Settings()
 app = FastAPI(title=settings.APP_NAME)
@@ -36,29 +37,21 @@ for router in auth_routers:
         tags=['auth'],
     )
 
-app.include_router(
-    cv_router,
-    prefix=settings.API_PREFIX + CVS_PREFIX,
-    tags=['cvs'],
-)
+routers = [
+    (cv_router, ['cvs']),
+    (details_router, ['details']),
+    (experience_router, ['experience']),
+    (education_router, ['education']),
+    (projects_router, ['projects'])
+]
 
-app.include_router(
-    details_router,
-    prefix=settings.API_PREFIX + CVS_PREFIX,
-    tags=['details'],
-)
+for router in routers:
+    app.include_router(
+        router[0],
+        prefix=settings.API_PREFIX + CVS_PREFIX,
+        tags=router[1],
+    )
 
-app.include_router(
-    experience_router,
-    prefix=settings.API_PREFIX + CVS_PREFIX,
-    tags=['experience'],
-)
-
-app.include_router(
-    education_router,
-    prefix=settings.API_PREFIX + CVS_PREFIX,
-    tags=['education'],
-)
 
 if __name__ == '__main__':
     uvicorn.run(app, host="0.0.0.0", port=8000)

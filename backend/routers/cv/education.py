@@ -9,7 +9,7 @@ education_router = APIRouter()
 PREFIX = '/education'
 
 
-@education_router.patch(PREFIX + "/{education_id}", response_model=Education_Update_In_Pydantic)
+@education_router.patch(PREFIX + "/{education_id}", response_model=Education_Out_Pydantic)
 async def patch_education(
         education_id: UUID4,
         education: Education_Update_In_Pydantic
