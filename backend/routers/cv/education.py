@@ -4,6 +4,7 @@ from models.cv.education import \
     Education_Update_In_Pydantic, \
     Education_Out_Pydantic
 from pydantic import UUID4
+from services.patch import patch
 
 education_router = APIRouter()
 PREFIX = '/education'
@@ -14,9 +15,7 @@ async def patch_education(
         education_id: UUID4,
         education: Education_Update_In_Pydantic
 ) -> Education_Out_Pydantic:
-    education_orm = await EducationModel.get(id=education_id)
-    await education_orm.update_from_dict(education.dict(exclude_unset=True)).save()
-    return await Education_Out_Pydantic.from_tortoise_orm(education_orm)
+    return await patch(EducationModel, education, Education_Out_Pydantic, education_id)
 
 
 @education_router.delete(PREFIX + '/{education_id}')
