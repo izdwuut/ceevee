@@ -12,7 +12,8 @@ from routers.cv import \
     education, \
     projects, \
     skills, \
-    languages
+    languages, \
+    certificates
 
 settings = Settings()
 app = FastAPI(title=settings.APP_NAME)
@@ -48,6 +49,7 @@ routers = [
     (projects.projects_router, ['Projects']),
     (skills.skills_router, ['Skills']),
     (languages.languages_router, ['Languages']),
+    (certificates.certificates_router, ['Certificates']),
 ]
 
 for router in routers:

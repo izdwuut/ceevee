@@ -21,7 +21,8 @@ class Settings(BaseSettings):
         'models.cv.education',
         'models.cv.projects',
         'models.cv.skills',
-        'models.cv.languages'
+        'models.cv.languages',
+        'models.cv.certificates'
     ]
 
     class Config:
