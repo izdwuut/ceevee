@@ -17,16 +17,7 @@ DB_CONFIG = {
     },
     "apps": {
         "models": {
-            "models": [
-                "models.users",
-                "models.cv.details",
-                "models.cv.cvs",
-                "models.cv.experience",
-                "models.cv.education",
-                "models.cv.projects",
-                "models.cv.skills",
-                "models.cv.languages"
-            ]
+            "models": settings.MODELS
         }
     }
 }

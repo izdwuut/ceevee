@@ -1,6 +1,9 @@
 from tortoise import fields, models
 from tortoise.contrib.pydantic import pydantic_model_creator, pydantic_queryset_creator
 from tortoise import Tortoise
+from config.settings import Settings
+
+settings = Settings()
 
 
 class CVModel(models.Model):
@@ -12,15 +15,7 @@ class CVModel(models.Model):
         table = 'cvs'
 
 
-Tortoise.init_models([
-    'models.cv.cvs',
-    'models.users',
-    'models.cv.details',
-    'models.cv.experience',
-    'models.cv.education',
-    'models.cv.projects',
-    'models.cv.skills'
-], "models")
+Tortoise.init_models(settings.MODELS, "models")
 
 CV_Pydantic = pydantic_model_creator(CVModel)
 CV_List_Pydantic = pydantic_model_creator(CVModel, include=('id',))
