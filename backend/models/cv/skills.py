@@ -15,7 +15,7 @@ class SkillModel(models.Model):
 
 Skill_Update_In_Pydantic = pydantic_model_creator(
     SkillModel,
-    name='SkillsUpdateIn',
+    name='SkillUpdateIn',
     exclude=['id', 'cv']
 )
 Skill_Out_Pydantic = pydantic_model_creator(SkillModel, name='SkillOut', exclude=['cv'])

@@ -24,9 +24,9 @@ DB_CONFIG = {
                 "models.cv.experience",
                 "models.cv.education",
                 "models.cv.projects",
-                "models.cv.skills"
-            ],
-            "default_connection": "default",
+                "models.cv.skills",
+                "models.cv.languages"
+            ]
         }
     }
 }

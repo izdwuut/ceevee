@@ -11,7 +11,8 @@ from routers.cv import \
     experience, \
     education, \
     projects, \
-    skills
+    skills, \
+    languages
 
 settings = Settings()
 app = FastAPI(title=settings.APP_NAME)
@@ -36,16 +37,17 @@ for router in auth_routers:
     app.include_router(
         router,
         prefix=settings.API_PREFIX + '/auth',
-        tags=['auth'],
+        tags=['Auth'],
     )
 
 routers = [
-    (cvs.cv_router, ['cv']),
-    (details.details_router, ['details']),
-    (experience.experience_router, ['experience']),
-    (education.education_router, ['education']),
-    (projects.projects_router, ['projects']),
-    (skills.skills_router, ['skills'])
+    (cvs.cv_router, ['Cvs']),
+    (details.details_router, ['Details']),
+    (experience.experience_router, ['Experience']),
+    (education.education_router, ['Education']),
+    (projects.projects_router, ['Projects']),
+    (skills.skills_router, ['Skills']),
+    (languages.languages_router, ['Languages']),
 ]
 
 for router in routers:
