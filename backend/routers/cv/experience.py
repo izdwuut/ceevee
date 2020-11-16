@@ -15,15 +15,14 @@ async def patch_experience(
         experience_id: UUID4,
         experience: Experience_Update_In_Pydantic
 ) -> Experience_Out_Pydantic:
-    return await rest.patch(ExperienceModel, experience, Experience_Out_Pydantic, experience_id)
+    return await rest.patch_item(ExperienceModel, experience, Experience_Out_Pydantic, experience_id)
 
 
 @experience_router.delete(PREFIX + '/{experience_id}')
 async def delete_experience(experience_id: UUID4) -> None:
-    await ExperienceModel.get(id=experience_id).delete()
+    await rest.delete_item(ExperienceModel, experience_id)
 
 
 @experience_router.post("/{cv_id}/experience", response_model=Experience_Out_Pydantic)
 async def add_experience(cv_id: UUID4) -> Experience_Out_Pydantic:
-    experience_orm = await ExperienceModel.create(cv_id=cv_id)
-    return await Experience_Out_Pydantic.from_tortoise_orm(experience_orm)
+    return await rest.post_item(ExperienceModel, Experience_Out_Pydantic, cv_id)
