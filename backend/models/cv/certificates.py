@@ -5,7 +5,7 @@ from tortoise.contrib.pydantic import pydantic_model_creator
 class CertificateModel(models.Model):
     id = fields.UUIDField(pk=True)
     certificate = fields.CharField(max_length=255, null=True)
-    description = fields.CharField(max_length=255, null=True)
+    issuer = fields.CharField(max_length=255, null=True)
 
     cv = fields.ForeignKeyField('models.CVModel', related_name='certificates')
 
