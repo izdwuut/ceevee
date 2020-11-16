@@ -5,6 +5,7 @@ from config.db import DB_CONFIG
 from config.settings import Settings
 from config.auth.jwt import jwt_authentication
 import uvicorn
+
 from routers.cv import \
     cvs, \
     details, \
@@ -13,7 +14,8 @@ from routers.cv import \
     projects, \
     skills, \
     languages, \
-    certificates
+    certificates, \
+    hobbies
 
 settings = Settings()
 app = FastAPI(title=settings.APP_NAME)
@@ -50,6 +52,7 @@ routers = [
     (skills.skills_router, ['Skills']),
     (languages.languages_router, ['Languages']),
     (certificates.certificates_router, ['Certificates']),
+    (hobbies.hobbies_router, ['Hobbies'])
 ]
 
 for router in routers:
