@@ -4,7 +4,7 @@ from models.cv.experience import \
     Experience_Update_In_Pydantic, \
     Experience_Out_Pydantic
 from pydantic import UUID4
-from services.patch import patch
+from services import rest
 
 experience_router = APIRouter()
 PREFIX = '/experience'
@@ -15,7 +15,7 @@ async def patch_experience(
         experience_id: UUID4,
         experience: Experience_Update_In_Pydantic
 ) -> Experience_Out_Pydantic:
-    return await patch(ExperienceModel, experience, Experience_Out_Pydantic, experience_id)
+    return await rest.patch(ExperienceModel, experience, Experience_Out_Pydantic, experience_id)
 
 
 @experience_router.delete(PREFIX + '/{experience_id}')

@@ -4,7 +4,7 @@ from models.cv.projects import \
     Project_Update_In_Pydantic, \
     Project_Out_Pydantic
 from pydantic import UUID4
-from services.patch import patch
+from services import rest
 
 projects_router = APIRouter()
 PREFIX = '/projects'
@@ -15,7 +15,7 @@ async def patch_project(
         projects_id: UUID4,
         projects: Project_Update_In_Pydantic
 ) -> Project_Out_Pydantic:
-    return await patch(ProjectModel, projects, Project_Out_Pydantic, projects_id)
+    return await rest.patch(ProjectModel, projects, Project_Out_Pydantic, projects_id)
 
 
 @projects_router.delete(PREFIX + '/{projects_id}')
