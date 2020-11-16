@@ -7,7 +7,7 @@ from pydantic import UUID4
 from services import rest
 
 skills_router = APIRouter()
-PREFIX = '/skills'
+PREFIX = '/skill'
 
 
 @skills_router.patch(PREFIX + "/{skills_id}", response_model=Skill_Out_Pydantic)

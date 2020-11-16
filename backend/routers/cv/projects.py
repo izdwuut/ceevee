@@ -7,7 +7,7 @@ from pydantic import UUID4
 from services import rest
 
 projects_router = APIRouter()
-PREFIX = '/projects'
+PREFIX = '/project'
 
 
 @projects_router.patch(PREFIX + "/{projects_id}", response_model=Project_Out_Pydantic)
