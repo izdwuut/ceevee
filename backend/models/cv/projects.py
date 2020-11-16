@@ -21,8 +21,8 @@ class ProjectModel(models.Model):
 
 Project_Update_In_Pydantic = pydantic_model_creator(
     ProjectModel,
-    name='ProjectsUpdateIn',
+    name='ProjectUpdateIn',
     exclude=['id', 'cv']
 )
-Project_Out_Pydantic = pydantic_model_creator(ProjectModel, name='ProjectsOut', exclude=['cv'])
+Project_Out_Pydantic = pydantic_model_creator(ProjectModel, name='ProjectOut', exclude=['cv'])
 

@@ -4,16 +4,18 @@ from tortoise.contrib.fastapi import register_tortoise
 from config.db import DB_CONFIG
 from config.settings import Settings
 from config.auth.jwt import jwt_authentication
-from routers.cv.cv import cv_router
-from routers.cv.details import details_router
-from routers.cv.experience import experience_router
 import uvicorn
-from routers.cv.education import education_router
-from routers.cv.projects import projects_router
+from routers.cv import \
+    cvs, \
+    details, \
+    experience, \
+    education, \
+    projects, \
+    skills
 
 settings = Settings()
 app = FastAPI(title=settings.APP_NAME)
-CVS_PREFIX = '/cvs'
+CVS_PREFIX = '/cv'
 
 register_tortoise(
     app,
@@ -38,11 +40,12 @@ for router in auth_routers:
     )
 
 routers = [
-    (cv_router, ['cvs']),
-    (details_router, ['details']),
-    (experience_router, ['experience']),
-    (education_router, ['education']),
-    (projects_router, ['projects'])
+    (cvs.cv_router, ['cv']),
+    (details.details_router, ['details']),
+    (experience.experience_router, ['experience']),
+    (education.education_router, ['education']),
+    (projects.projects_router, ['projects']),
+    (skills.skills_router, ['skills'])
 ]
 
 for router in routers:

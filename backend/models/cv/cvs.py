@@ -13,12 +13,13 @@ class CVModel(models.Model):
 
 
 Tortoise.init_models([
-    'models.cv.cv',
+    'models.cv.cvs',
     'models.users',
     'models.cv.details',
     'models.cv.experience',
     'models.cv.education',
-    'models.cv.projects'
+    'models.cv.projects',
+    'models.cv.skills'
 ], "models")
 
 CV_Pydantic = pydantic_model_creator(CVModel)

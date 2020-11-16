@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from pydantic import UUID4
-from models.cv.cv import CVModel, CV_Pydantic, CV_Add_Pydantic, CV_List_Pydantic
+from models.cv.cvs import CVModel, CV_Pydantic, CV_Add_Pydantic, CV_List_Pydantic
 from models.cv.details import DetailsModel
 
 cv_router = APIRouter()
