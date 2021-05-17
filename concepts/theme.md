@@ -1,0 +1,3 @@
+# Theme
+
+While we don't provide a theme editor, it's possible to design a new one by hand, using the YAML definition we provide. By default, you can choose between light and dark ones. You are more than welcome to create your own, althought you'd have to maintain it. By default, we only provide a light and dark ones. As harsh as it is, maintaining every theme you contribute would burn our precious resources rather quickly. We would be more than happy to feature your work on our website, though.

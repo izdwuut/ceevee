@@ -1,0 +1,16 @@
+- Open Resume
+    - [Design](README.md)
+    - [Tech Stack](stack.md)
+    - [Contributors](contributors.md)
+    - [Who Uses It?](who-uses-it.md)
+- Concepts
+    - [Versioning](concepts/versioning.md)
+    - [Template](concepts/template.md)
+    - [Theme](concepts/theme.md)
+    - [Save](concepts/save.md)
+    - [Config](concepts/config.md)
+    - [Profile](concepts/profile.md)
+    - [I18n](concepts/i18n.md)
+- Interfaces
+    - [GUI](interfaces/gui.md)
+    - [CLI](interfaces/cli.md)
