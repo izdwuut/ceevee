@@ -2,7 +2,7 @@
 
 Welcome to our documentation! We hope that you will enjoy skimming through it as much as we enjoy developing our piece of software!
 
-The documentation reflects the current state of the application, and this particular page was created to make you more familiar with the key concepts behind our design.
+The documentation doesn't reflect the current state of the application. It's more of a **design document**. This particular page was created to make you more familiar with the key concepts behind our design.
 
 ## Resumes adjusted to _you_
 
