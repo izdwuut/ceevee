@@ -1,4 +1,4 @@
-- Open Resume
+- Core
     - [Design](README.md)
     - [Tech Stack](stack.md)
     - [Contributors](contributors.md)
